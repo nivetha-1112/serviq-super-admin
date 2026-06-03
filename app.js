@@ -2,7 +2,7 @@
 let restaurantsData = {
   "rest-1": {
     id: "rest-1",
-    name: "Saravana Bhavan",
+    name: "Serviq SaaS",
     ownerName: "Saravana Kumaran",
     email: "admin@saravana.com",
     owner: "admin@saravana.com",
@@ -19,7 +19,7 @@ let restaurantsData = {
     plan: "Standard",
     status: "Active",
     settings: {
-      name: "Saravana Bhavan",
+      name: "Serviq SaaS",
       tagline: "High Quality South Indian Vegetarian Food",
       currency: "₹",
       tablesCount: 5,

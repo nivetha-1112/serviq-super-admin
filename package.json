@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Serviq - SaaS Restaurant Ordering and Management Panel",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "server": "node server.js",
     "start": "node server.js"
   },
   "keywords": [
@@ -14,5 +18,15 @@
     "admin"
   ],
   "author": "Antigravity",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.3.1"
+  }
 }

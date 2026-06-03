@@ -1,0 +1,18 @@
+{
+  "name": "serviq-admin",
+  "version": "1.0.0",
+  "description": "Serviq - SaaS Restaurant Ordering and Management Panel",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "serviq",
+    "restaurant",
+    "saas",
+    "admin"
+  ],
+  "author": "Antigravity",
+  "license": "ISC"
+}

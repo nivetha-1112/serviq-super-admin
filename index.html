@@ -1,0 +1,2155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QRMenu - SaaS Admin Panel</title>
+  <link rel="icon" type="image/png" href="ChatGPT Image May 28, 2026, 03_54_23 PM.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- ==========================================
+         1. ADMIN LOGIN VIEW
+         ========================================== -->
+    <div id="login-view" class="login-container">
+      <div class="login-card">
+        <!-- Logo crossed-box container -->
+        <div class="login-logo-crossed-box" style="border: none; background: transparent; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px; margin: 0 auto 24px auto; overflow: hidden;">
+          <img src="ChatGPT Image May 28, 2026, 03_54_23 PM.png" alt="Serviq Logo" style="width: 150px; height: 150px; object-fit: contain;">
+        </div>
+        
+        <h1 class="login-title">Serviq Admin</h1>
+        <p class="login-subtitle">Sign in to your dashboard</p>
+        
+        <!-- Login Role Toggle Buttons -->
+        <div id="login-role-toggle" style="display: flex; gap: 0; margin-bottom: 24px; border-radius: 12px; overflow: hidden; border: 2px solid var(--primary); background: var(--primary-light);">
+          <button type="button" id="toggle-superadmin" class="login-role-btn active" onclick="switchLoginRole('superadmin')" style="flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s ease; background: var(--primary); color: #fff;">
+            🛡️ Super Admin
+          </button>
+          <button type="button" id="toggle-admin" class="login-role-btn" onclick="switchLoginRole('admin')" style="flex: 1; padding: 12px 16px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s ease; background: transparent; color: var(--primary);">
+            👤 Admin
+          </button>
+        </div>
+
+        <!-- Demo Credentials - Super Admin -->
+        <div id="demo-creds-superadmin" style="background-color: var(--primary-light); border: 1px solid rgba(255, 122, 0, 0.2); border-radius: 8px; padding: 12px; margin-bottom: 24px; font-size: 12px; text-align: left; line-height: 1.4;">
+          <div style="font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+            <span>🔑</span> Super Admin Demo Login
+          </div>
+          <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; color: var(--text-main);">
+            <span><strong>Email:</strong></span>
+            <span><code>superadmin@serviq.com</code></span>
+            <span><strong>Password:</strong></span>
+            <span><code>super123</code></span>
+          </div>
+        </div>
+
+        <!-- Demo Credentials - Admin -->
+        <div id="demo-creds-admin" style="background-color: var(--primary-light); border: 1px solid rgba(255, 122, 0, 0.2); border-radius: 8px; padding: 12px; margin-bottom: 24px; font-size: 12px; text-align: left; line-height: 1.4; display: none;">
+          <div style="font-weight: 700; color: var(--primary); margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+            <span>🔑</span> Admin Demo Logins
+          </div>
+          <div style="display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; color: var(--text-main);">
+            <span><strong>Tenant Admin:</strong></span>
+            <span><code>admin@saravana.com</code> / <code>admin123</code></span>
+            <span><strong>Kitchen Stn:</strong></span>
+            <span><code>kitchen@saravana.com</code> / <code>kitchen123</code></span>
+          </div>
+        </div>
+        
+        <form id="login-form">
+          <div class="form-group">
+            <label for="login-email" id="login-email-label">Super Admin Email</label>
+            <div class="input-icon-wrapper">
+              <span class="input-icon">✉️</span>
+              <input type="email" id="login-email" value="superadmin@serviq.com" required placeholder="superadmin@serviq.com">
+            </div>
+          </div>
+          
+          <div class="form-group" style="position: relative;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 6px;">
+              <label for="login-password" id="login-password-label" style="margin-bottom:0;">Super Admin Password</label>
+              <a href="#" class="forgot-pwd-link" onclick="alert('Password reset link sent to registered email.')">Forgot password?</a>
+            </div>
+            <div class="input-icon-wrapper" style="position: relative;">
+              <span class="input-icon">🔒</span>
+              <input type="password" id="login-password" value="super123" required placeholder="Enter super admin password" style="padding-right: 40px;">
+              <span id="toggle-password-btn" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); cursor: pointer; user-select: none; font-size: 14px;">👁️</span>
+            </div>
+          </div>
+          
+          <div class="form-row-remember">
+            <label class="checkbox-container">
+              <input type="checkbox" id="remember-me" checked>
+              <span class="checkmark-box"></span>
+              Remember me
+            </label>
+          </div>
+          
+          <div id="login-error" style="color: var(--danger); font-size: 13px; margin-bottom: 15px; display: none; text-align: left;">
+            ❌ Invalid email or password. Please try again.
+          </div>
+          
+          <button type="submit" class="btn btn-black" id="login-submit-btn" style="width: 100%; margin-top: 10px;">
+            Login as Super Admin
+          </button>
+        </form>
+
+        <div class="login-divider-or">
+          <span>or</span>
+        </div>
+
+        <button class="btn btn-login-google" onclick="alert('Google authentication mocked successfully!')">
+          <span style="font-size:16px;">🔑</span> Login with Google
+        </button>
+
+        <div class="login-card-footer-plan">
+          Serviq SaaS · 4 Default Restaurants
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         2.5 SUPER ADMIN WORKSPACE (HIDDEN BY DEFAULT)
+         ========================================== -->
+    <div id="superadmin-view" class="superadmin-wrapper" style="display: none;">
+      <!-- SUPER ADMIN SIDEBAR (DARK THEME) -->
+      <aside class="sidebar superadmin-sidebar" style="background-color: #0c0a09;">
+        <div class="sidebar-header-card">
+          <div class="sidebar-logo-icon" style="background-color: var(--primary); display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 8px; overflow: hidden;">
+            <img src="ChatGPT Image May 28, 2026, 03_54_23 PM.png" alt="Serviq Logo" style="width: 36px; height: 36px; object-fit: contain; filter: brightness(0) invert(1);">
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <span class="brand-text">Serviq SaaS</span>
+            <span class="plan-sub">Super Admin</span>
+          </div>
+        </div>
+        
+        <ul class="sidebar-menu">
+          <li class="sidebar-item superadmin-sidebar-item active" data-tab="saas-overview">
+            <a href="#">📊 Dashboard</a>
+          </li>
+          <li class="sidebar-item superadmin-sidebar-item" data-tab="saas-restaurants">
+            <a href="#">🏪 Restaurants</a>
+          </li>
+          <li class="sidebar-item superadmin-sidebar-item" data-tab="saas-admins">
+            <a href="#">👤 Admins</a>
+          </li>
+          <li class="sidebar-item superadmin-sidebar-item" data-tab="saas-plans">
+            <a href="#">💳 Subscription & Plans</a>
+          </li>
+          <li class="sidebar-item superadmin-sidebar-item" data-tab="saas-invoices">
+            <a href="#">💰 Revenue & Billing</a>
+          </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <div class="user-avatar" style="background-color: var(--primary);">SA</div>
+            <div class="user-details">
+              <div class="user-name">SaaS Owner</div>
+              <div class="user-role">Super Admin</div>
+            </div>
+          </div>
+          <button id="saas-logout-btn" class="btn btn-outline" style="width: 100%; border-color: var(--border); color: #ffffff; border-color: rgba(255,255,255,0.15);">
+            🔒 Log Out
+          </button>
+        </div>
+      </aside>
+
+      <!-- SUPER ADMIN CONTENT -->
+      <main class="main-content">
+        <header class="main-header">
+          <div class="header-title-container">
+            <h1 class="header-title" id="saas-active-panel-title">SaaS Overview</h1>
+            <span id="saas-date-time" class="header-subtitle-date">Wednesday, 14 May 2025 · 1:30 PM</span>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-notify" onclick="alert('No new system alerts.')">
+              🔔 0 alerts
+            </button>
+            <button class="btn btn-user-profile" onclick="alert('Super Admin Profile')">
+              👤 Super Admin
+            </button>
+          </div>
+        </header>
+
+        <div class="content-body">
+          <!-- PANEL: SAAS OVERVIEW -->
+          <section id="panel-saas-overview" class="saas-panel-view active">
+            <!-- SaaS Stats Row -->
+            <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr); display: grid; gap: 20px; margin-bottom: 24px;">
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Total Restaurants</div>
+                    <h3 id="saas-val-total-rest">0</h3>
+                    <div class="stat-sub-label text-muted">Across network</div>
+                  </div>
+                  <div class="stat-icon-wrapper">🏪</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Active Restaurants</div>
+                    <h3 id="saas-val-active-rest">0</h3>
+                    <div class="stat-sub-label green-label">Operational</div>
+                  </div>
+                  <div class="stat-icon-wrapper">✅</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Inactive Restaurants</div>
+                    <h3 id="saas-val-inactive-rest">0</h3>
+                    <div class="stat-sub-label red-label">Suspended/Inactive</div>
+                  </div>
+                  <div class="stat-icon-wrapper">⏸️</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Total Users</div>
+                    <h3 id="saas-val-users">0</h3>
+                    <div class="stat-sub-label text-muted">Platform wide</div>
+                  </div>
+                  <div class="stat-icon-wrapper">👥</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Total Orders</div>
+                    <h3 id="saas-val-total-orders">0</h3>
+                    <div class="stat-sub-label text-muted">All time</div>
+                  </div>
+                  <div class="stat-icon-wrapper">📦</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Today's Orders</div>
+                    <h3 id="saas-val-today-orders">0</h3>
+                    <div class="stat-sub-label green-label">Active today</div>
+                  </div>
+                  <div class="stat-icon-wrapper">🚀</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Monthly Revenue</div>
+                    <h3 id="saas-val-mrr">₹0</h3>
+                    <div class="stat-sub-label green-label">Active Plans MRR</div>
+                  </div>
+                  <div class="stat-icon-wrapper font-rupee">₹</div>
+                </div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Subscription Revenue</div>
+                    <h3 id="saas-val-sub-rev">₹0</h3>
+                    <div class="stat-sub-label green-label">Total Collected</div>
+                  </div>
+                  <div class="stat-icon-wrapper font-rupee">₹</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SaaS Analytics Row -->
+            <div class="dashboard-inner-grid" style="grid-template-columns: 2fr 1fr; gap: 20px; margin-top: 20px;">
+              <div class="feed-card">
+                <div class="feed-header">
+                  <h2 class="feed-title">Monthly Subscription Growth</h2>
+                  <span style="font-size: 12px; color: var(--text-muted); font-weight:600;">Year 2026</span>
+                </div>
+                <!-- Beautiful SVG Chart representing SaaS Growth -->
+                <div style="height: 250px; display: flex; align-items: flex-end; padding-top: 20px;" id="saas-growth-chart-container">
+                  <!-- Injected SVG Chart via app.js -->
+                </div>
+              </div>
+
+              <!-- System Audit Logs -->
+              <div class="feed-card">
+                <div class="feed-header">
+                  <h2 class="feed-title">System Audit Logs</h2>
+                  <span class="live-dot-indicator"><span class="pulse-dot"></span>Live</span>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 12px; max-height: 250px; overflow-y: auto;" id="saas-logs-container">
+                  <!-- Injected Logs -->
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- PANEL: RESTAURANTS DIRECTORY -->
+          <section id="panel-saas-restaurants" class="saas-panel-view" style="display:none;">
+            <div class="panel-header-flex" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Restaurant Directory</h2>
+                <p class="panel-inner-desc">Manage tenant subscriptions, limits, status, and impersonate admins</p>
+              </div>
+              <button class="btn btn-black" id="saas-add-restaurant-btn">
+                ➕ Add New Restaurant
+              </button>
+            </div>
+
+            <div class="menu-table-wrapper" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 16px; box-shadow: var(--card-shadow); overflow-x: auto;">
+              <table class="feed-table" style="width: 100%;">
+                <thead>
+                  <tr style="text-align: left; white-space: nowrap;">
+                    <th style="padding: 12px 8px; font-size: 11px;">RESTAURANT ID</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">RESTAURANT NAME</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">OWNER NAME</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">EMAIL</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">PHONE NUMBER</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">ADDRESS</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">CITY</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">STATE</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">GST NUMBER</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">SUBSCRIPTION PLAN</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">STATUS</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">CREATED DATE</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">OPENING TIME</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">CLOSING TIME</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">RESTAURANT LOGO</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">RESTAURANT BANNER</th>
+                    <th style="text-align: right; padding: 12px 8px; font-size: 11px;">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="saas-restaurants-tbody">
+                  <!-- Dynamic rows of restaurants -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- PANEL: RESTAURANT ADMIN MANAGEMENT -->
+          <section id="panel-saas-admins" class="saas-panel-view" style="display:none;">
+            <div class="panel-header-flex" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Restaurant Admin Management</h2>
+                <p class="panel-inner-desc">Create, manage, and control restaurant administrator accounts</p>
+              </div>
+              <button class="btn btn-black" id="saas-add-admin-btn">
+                ➕ Create Admin
+              </button>
+            </div>
+
+            <div class="menu-table-wrapper" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 16px; box-shadow: var(--card-shadow); overflow-x: auto;">
+              <table class="feed-table" style="width: 100%;">
+                <thead>
+                  <tr style="text-align: left; white-space: nowrap;">
+                    <th style="padding: 12px 8px; font-size: 11px;">ADMIN ID</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">NAME</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">EMAIL</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">PHONE</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">RESTAURANT NAME</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">ROLE</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">STATUS</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">LAST LOGIN</th>
+                    <th style="text-align: right; padding: 12px 8px; font-size: 11px;">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="saas-admins-tbody">
+                  <!-- Dynamic rows of admins -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- PANEL: SUBSCRIPTION PLANS -->
+          <section id="panel-saas-plans" class="saas-panel-view" style="display:none;">
+            <div class="panel-header-flex" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Subscription & Plans</h2>
+                <p class="panel-inner-desc">Define pricing tiers, resource limits, feature access, and manage restaurant plan assignments</p>
+              </div>
+              <button class="btn btn-black" id="saas-add-plan-btn">
+                ➕ Create Plan
+              </button>
+            </div>
+
+            <div class="menu-table-wrapper" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 16px; box-shadow: var(--card-shadow); overflow-x: auto;">
+              <table class="feed-table" style="width: 100%;">
+                <thead>
+                  <tr style="text-align: left; white-space: nowrap;">
+                    <th style="padding: 12px 8px; font-size: 11px;">PLAN NAME</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">MONTHLY PRICE</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">ANNUAL PRICE</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">BRANCH LIMIT</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">USER LIMIT</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">ORDER LIMIT</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">FEATURES INCLUDED</th>
+                    <th style="padding: 12px 8px; font-size: 11px;">STATUS</th>
+                    <th style="text-align: right; padding: 12px 8px; font-size: 11px;">ACTIONS</th>
+                  </tr>
+                </thead>
+                <tbody id="saas-plans-tbody">
+                  <!-- Dynamic rows of plans -->
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- Add / Edit Plan Modal -->
+          <div class="modal-overlay" id="saas-plan-modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000;">
+            <div class="modal-card" style="max-width: 600px; background: white; padding: 24px; border-radius: 8px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: var(--card-shadow);">
+              <div class="modal-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 id="saas-plan-form-title" style="margin: 0; font-size: 18px; font-weight: 700;">Create Subscription Plan</h3>
+                <span class="modal-close" onclick="document.getElementById('saas-plan-modal').style.display='none'" style="cursor: pointer; font-size: 18px;">✕</span>
+              </div>
+              <form id="saas-plan-form">
+                <input type="hidden" id="saas-edit-plan-id">
+                
+                <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px;">Pricing Details</h4>
+                <div class="form-row-two-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+                  <div class="form-group" style="margin-bottom:0;">
+                    <label for="saas-plan-input-name" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Plan Name</label>
+                    <input type="text" id="saas-plan-input-name" required placeholder="e.g. Pro" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                  </div>
+                  <div class="form-group" style="margin-bottom:0;">
+                    <label for="saas-plan-input-status" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Status</label>
+                    <select id="saas-plan-input-status" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                      <option value="Active">Active</option>
+                      <option value="Archived">Archived</option>
+                    </select>
+                  </div>
+                  <div class="form-group" style="margin-bottom:0;">
+                    <label for="saas-plan-input-monthly" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Monthly Price (₹)</label>
+                    <input type="number" id="saas-plan-input-monthly" required placeholder="999" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                  </div>
+                  <div class="form-group" style="margin-bottom:0;">
+                    <label for="saas-plan-input-annual" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Annual Price (₹)</label>
+                    <input type="number" id="saas-plan-input-annual" required placeholder="9999" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                  </div>
+                </div>
+
+                <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px;">Resource Limits</h4>
+                <div class="form-row-two-col" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+                  <div class="form-group" style="margin-bottom:0;">
+                    <label for="saas-plan-input-branch" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Branch Limit</label>
+                    <input type="number" id="saas-plan-input-branch" required placeholder="1" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                  </div>
+                  <div class="form-group" style="margin-bottom:0;">
+                    <label for="saas-plan-input-users" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">User Limit</label>
+                    <input type="number" id="saas-plan-input-users" required placeholder="5" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                  </div>
+                  <div class="form-group" style="margin-bottom:0;">
+                    <label for="saas-plan-input-orders" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Order Limit</label>
+                    <input type="number" id="saas-plan-input-orders" required placeholder="500" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                  </div>
+                </div>
+
+                <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px;">Features</h4>
+                <div class="form-group" style="margin-bottom: 20px;">
+                  <label for="saas-plan-input-features" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Features Included (comma separated)</label>
+                  <textarea id="saas-plan-input-features" required rows="3" placeholder="Standard Support, Basic Analytics..." style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box; resize: vertical;"></textarea>
+                </div>
+
+                <div style="display:flex; flex-direction:column; gap:10px;">
+                  <button type="submit" class="btn btn-black" style="width: 100%;">Save Plan Configuration</button>
+                  <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('saas-plan-modal').style.display='none'">Cancel</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Upgrade / Downgrade Plan Modal -->
+          <div class="modal-overlay" id="saas-upgrade-modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000;">
+            <div class="modal-card" style="max-width: 480px; background: white; padding: 24px; border-radius: 8px; width: 90%; box-shadow: var(--card-shadow);">
+              <div class="modal-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                <h3 style="margin: 0; font-size: 18px; font-weight: 700;">⬆️ Upgrade / Downgrade Plan</h3>
+                <span class="modal-close" onclick="document.getElementById('saas-upgrade-modal').style.display='none'" style="cursor: pointer; font-size: 18px;">✕</span>
+              </div>
+              <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Assign this plan to a restaurant or change a restaurant's current plan.</p>
+              <input type="hidden" id="saas-upgrade-plan-id">
+              <div class="form-group" style="margin-bottom: 15px;">
+                <label for="saas-upgrade-restaurant" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Select Restaurant</label>
+                <select id="saas-upgrade-restaurant" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                  <!-- Dynamically populated -->
+                </select>
+              </div>
+              <div id="saas-upgrade-info" style="background: var(--bg-secondary); padding: 12px; border-radius: 8px; font-size: 12px; color: var(--text-muted); margin-bottom: 20px;">
+                Select a restaurant to see their current plan.
+              </div>
+              <div style="display: flex; gap: 10px;">
+                <button class="btn btn-black" style="flex: 1;" onclick="applyPlanUpgrade()">Apply Change</button>
+                <button class="btn btn-outline" style="flex: 1;" onclick="document.getElementById('saas-upgrade-modal').style.display='none'">Cancel</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL: SAAS INVOICES -->
+          <section id="panel-saas-invoices" class="saas-panel-view" style="display:none;">
+            <div class="panel-header-flex" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Invoices & Billing History</h2>
+                <p class="panel-inner-desc">Track restaurant subscription payments, invoices, and collected commission fees</p>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button class="btn btn-black" onclick="alert('Generating new invoices for current billing cycle...')" style="border-radius: 20px; padding: 6px 16px; font-size: 13px; margin-right: 12px;">➕ Generate Invoice</button>
+                <button class="btn btn-outline" id="btn-filter-invoices-all" onclick="filterSaaSInvoices('All')" style="border-radius: 20px; padding: 6px 16px; font-size: 13px;">All</button>
+                <button class="btn btn-outline" id="btn-filter-invoices-paid" onclick="filterSaaSInvoices('Paid')" style="border-radius: 20px; padding: 6px 16px; font-size: 13px;">Paid</button>
+                <button class="btn btn-outline" id="btn-filter-invoices-pending" onclick="filterSaaSInvoices('Pending')" style="border-radius: 20px; padding: 6px 16px; font-size: 13px;">Pending</button>
+              </div>
+            </div>
+
+            <!-- Invoices Stats Row -->
+            <div class="stats-grid" style="margin-bottom: 20px;">
+              <div class="stat-card" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 16px;">
+                <div class="stat-label" style="font-size: 12px; color: var(--text-muted); font-weight:600;">Total Revenue Collected</div>
+                <h3 id="saas-invoice-total-revenue" style="margin: 8px 0 0 0; font-size: 22px; font-weight:800; color: var(--black);">₹0</h3>
+              </div>
+              <div class="stat-card" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 16px;">
+                <div class="stat-label" style="font-size: 12px; color: var(--text-muted); font-weight:600;">Pending Invoices Count</div>
+                <h3 id="saas-invoice-pending-count" style="margin: 8px 0 0 0; font-size: 22px; font-weight:800; color: var(--primary);">0</h3>
+              </div>
+              <div class="stat-card" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 16px;">
+                <div class="stat-label" style="font-size: 12px; color: var(--text-muted); font-weight:600;">Next Projected Billing</div>
+                <h3 id="saas-invoice-projected" style="margin: 8px 0 0 0; font-size: 22px; font-weight:800; color: var(--success);">₹0</h3>
+              </div>
+            </div>
+
+            <div class="feed-card" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 20px; box-shadow: var(--card-shadow);">
+              <div class="menu-table-wrapper" style="overflow-x: auto;">
+                <table class="menu-items-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                  <thead>
+                    <tr style="border-bottom: 1.5px solid var(--border); background-color: var(--bg-secondary);">
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">INVOICE ID</th>
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">RESTAURANT</th>
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">PLAN</th>
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">AMOUNT</th>
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">PAYMENT METHOD</th>
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">PAYMENT DATE</th>
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">DUE DATE</th>
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">STATUS</th>
+                      <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted); text-align: right;">ACTIONS</th>
+                    </tr>
+                  </thead>
+                  <tbody id="saas-invoices-tbody">
+                    <!-- Dynamic Rows -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          <!-- PANEL: SAAS LOGS -->
+          <section id="panel-saas-logs" class="saas-panel-view" style="display:none;">
+            <div class="panel-header-flex" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Platform Audit Trail</h2>
+                <p class="panel-inner-desc">Detailed logs of all events, settings changes, updates, and login attempts</p>
+              </div>
+              <div style="display: flex; gap: 12px; align-items: center;">
+                <input type="text" id="saas-logs-search" placeholder="🔍 Search logs..." style="padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border); font-size: 13px; width: 220px; outline: none; background: white;">
+                <button class="btn btn-outline" onclick="clearPlatformLogs()" style="border-radius: 20px; padding: 6px 14px; font-size: 12px; border-color: var(--primary); color: var(--primary);">Clear Logs</button>
+              </div>
+            </div>
+
+            <div class="feed-card" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 20px; box-shadow: var(--card-shadow);">
+              <div style="display: flex; flex-direction: column; gap: 8px; max-height: 480px; overflow-y: auto; padding-right: 8px;" id="saas-full-logs-container">
+                <!-- Dynamic Logs List -->
+              </div>
+            </div>
+          </section>
+
+          <!-- PANEL: SAAS SETTINGS -->
+          <section id="panel-saas-settings" class="saas-panel-view" style="display:none;">
+            <div class="panel-header-flex" style="margin-bottom: 20px;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Global SaaS Configuration</h2>
+                <p class="panel-inner-desc">Manage platform defaults, fees, and administrative metadata</p>
+              </div>
+            </div>
+
+            <div class="settings-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px;">
+              <div class="settings-forms-column" style="display: flex; flex-direction: column; gap: 24px;">
+                <div class="settings-card" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 24px; box-shadow: var(--card-shadow);">
+                  <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 0;">Platform Branding</h3>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                      <label for="saas-set-name">Platform Name</label>
+                      <input type="text" id="saas-set-name" value="Serviq SaaS">
+                    </div>
+                    <div class="form-group">
+                      <label for="saas-set-email">Support Email</label>
+                      <input type="email" id="saas-set-email" value="support@serviq.com">
+                    </div>
+                  </div>
+                </div>
+                <div class="settings-card" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 24px; box-shadow: var(--card-shadow);">
+                  <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 0;">Billing & Commission Defaults</h3>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                      <label for="saas-set-commission">Default Commission (%)</label>
+                      <input type="number" id="saas-set-commission" value="2.5" step="0.1">
+                    </div>
+                    <div class="form-group">
+                      <label for="saas-set-gateway">Payment Gateway</label>
+                      <select id="saas-set-gateway">
+                        <option value="razorpay">Razorpay Checkout (Mocked)</option>
+                        <option value="stripe">Stripe Connect (Mocked)</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div style="display: flex; justify-content: flex-end;">
+                  <button class="btn btn-black" onclick="alert('Global SaaS configuration saved!')">Save Global Settings</button>
+                </div>
+              </div>
+              
+              <div class="settings-preview-column">
+                <div class="settings-card" style="background: white; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 24px; box-shadow: var(--card-shadow);">
+                  <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 0;">System Information</h3>
+                  <div style="display: flex; flex-direction: column; gap: 12px; font-size: 13px;">
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                      <span style="color: var(--text-muted);">Version</span>
+                      <strong>v1.2.0-SaaS</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                      <span style="color: var(--text-muted);">Database</span>
+                      <strong>LocalState (Mocked SQL)</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                      <span style="color: var(--text-muted);">Region</span>
+                      <strong>Asia-South1 (Mumbai)</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Add / Edit Restaurant Modal -->
+    <div class="modal-overlay" id="saas-restaurant-modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000;">
+      <div class="modal-card" style="max-width: 800px; background: white; padding: 24px; border-radius: 8px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: var(--card-shadow);">
+        <div class="modal-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h3 id="saas-restaurant-form-title" style="margin: 0; font-size: 18px; font-weight: 700;">Add New Restaurant</h3>
+          <span class="modal-close" id="close-saas-restaurant-modal" onclick="document.getElementById('saas-restaurant-modal').style.display='none'" style="cursor: pointer; font-size: 18px;">✕</span>
+        </div>
+        <form id="saas-restaurant-form">
+          <input type="hidden" id="saas-edit-rest-id">
+          
+          <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px;">Basic Information</h4>
+          <div class="form-row-two-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-name" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Restaurant Name</label>
+              <input type="text" id="saas-input-name" required placeholder="e.g. Tikka Town" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-owner-name" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Owner Name</label>
+              <input type="text" id="saas-input-owner-name" required placeholder="e.g. Rajesh Kumar" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-owner" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Owner Email</label>
+              <input type="email" id="saas-input-owner" required placeholder="e.g. admin@tikkatown.com" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-phone" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Phone Number</label>
+              <input type="tel" id="saas-input-phone" required placeholder="9876543210" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+          </div>
+
+          <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px;">Location & Legal</h4>
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="saas-input-address" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Address</label>
+            <input type="text" id="saas-input-address" required placeholder="123 Main Street" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+          </div>
+          <div class="form-row-two-col" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-city" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">City</label>
+              <input type="text" id="saas-input-city" required placeholder="New Delhi" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-state" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">State</label>
+              <input type="text" id="saas-input-state" required placeholder="Delhi" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-gst" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">GST Number</label>
+              <input type="text" id="saas-input-gst" required placeholder="22AAAAA0000A1Z5" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+          </div>
+
+          <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px;">Operations & Branding</h4>
+          <div class="form-row-two-col" style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-opening" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Opening Time</label>
+              <input type="time" id="saas-input-opening" required value="08:00" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-closing" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Closing Time</label>
+              <input type="time" id="saas-input-closing" required value="22:00" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-logo" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Logo URL</label>
+              <input type="text" id="saas-input-logo" placeholder="https://example.com/logo.png" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-banner" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Banner URL</label>
+              <input type="text" id="saas-input-banner" placeholder="https://example.com/banner.png" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+          </div>
+
+          <h4 style="font-size: 14px; margin-bottom: 12px; color: var(--primary); border-bottom: 1px solid var(--border); padding-bottom: 6px;">SaaS Settings</h4>
+          <div class="form-row-two-col" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-plan" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Subscription Plan</label>
+              <select id="saas-input-plan" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                <option value="Basic">Basic</option>
+                <option value="Standard" selected>Standard</option>
+                <option value="Premium">Premium</option>
+                <option value="Enterprise">Enterprise</option>
+              </select>
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-tables" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Dining Tables Limit</label>
+              <input type="number" id="saas-input-tables" required value="5" min="1" max="50" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="margin-bottom:0;">
+              <label for="saas-input-status" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Status</label>
+              <select id="saas-input-status" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                <option value="Active" selected>Active</option>
+                <option value="Suspended">Suspended</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="saas-input-created" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Created Date</label>
+            <input type="date" id="saas-input-created" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <button type="submit" class="btn btn-black" style="width: 100%;">Save Restaurant</button>
+            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('saas-restaurant-modal').style.display='none'">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Create / Edit Admin Modal -->
+    <div class="modal-overlay" id="saas-admin-modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000;">
+      <div class="modal-card" style="max-width: 480px; background: white; padding: 24px; border-radius: 8px; width: 90%; box-shadow: var(--card-shadow);">
+        <div class="modal-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h3 id="saas-admin-form-title" style="margin: 0; font-size: 18px; font-weight: 700;">Create New Admin</h3>
+          <span class="modal-close" onclick="document.getElementById('saas-admin-modal').style.display='none'" style="cursor: pointer; font-size: 18px;">✕</span>
+        </div>
+        <form id="saas-admin-form">
+          <input type="hidden" id="saas-edit-admin-id">
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="saas-admin-input-name" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Full Name</label>
+            <input type="text" id="saas-admin-input-name" required placeholder="e.g. Rajesh Verma" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+          </div>
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="saas-admin-input-email" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Email</label>
+            <input type="email" id="saas-admin-input-email" required placeholder="e.g. admin@restaurant.com" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+          </div>
+          <div class="form-row-two-col" style="display: flex; gap: 12px; margin-bottom: 15px;">
+            <div class="form-group" style="flex:1; margin-bottom:0;">
+              <label for="saas-admin-input-phone" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Phone</label>
+              <input type="tel" id="saas-admin-input-phone" required placeholder="9876543210" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+            </div>
+            <div class="form-group" style="flex:1; margin-bottom:0;">
+              <label for="saas-admin-input-role" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Role</label>
+              <select id="saas-admin-input-role" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+                <option value="Owner">Owner</option>
+                <option value="Manager">Manager</option>
+                <option value="Staff Admin">Staff Admin</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group" style="margin-bottom: 15px;">
+            <label for="saas-admin-input-restaurant" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Restaurant</label>
+            <select id="saas-admin-input-restaurant" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom: 20px;">
+            <label for="saas-admin-input-status" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Status</label>
+            <select id="saas-admin-input-status" required style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+              <option value="Active" selected>Active</option>
+              <option value="Disabled">Disabled</option>
+            </select>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <button type="submit" class="btn btn-black" style="width: 100%;">Save Admin</button>
+            <button type="button" class="btn btn-outline" style="width: 100%;" onclick="document.getElementById('saas-admin-modal').style.display='none'">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Reset Password Modal -->
+    <div class="modal-overlay" id="saas-reset-password-modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000;">
+      <div class="modal-card" style="max-width: 400px; background: white; padding: 24px; border-radius: 8px; width: 90%; box-shadow: var(--card-shadow);">
+        <div class="modal-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700;">🔒 Reset Password</h3>
+          <span class="modal-close" onclick="document.getElementById('saas-reset-password-modal').style.display='none'" style="cursor: pointer; font-size: 18px;">✕</span>
+        </div>
+        <p id="reset-pw-admin-label" style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">Resetting password for: <strong>Admin Name</strong></p>
+        <input type="hidden" id="reset-pw-admin-id">
+        <div class="form-group" style="margin-bottom: 15px;">
+          <label style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">New Password</label>
+          <input type="password" id="saas-reset-pw-input" required placeholder="Enter new password" style="width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; box-sizing: border-box;">
+        </div>
+        <button class="btn btn-black" style="width: 100%;" onclick="resetAdminPassword()">Reset Password</button>
+      </div>
+    </div>
+
+    <!-- Restaurant Details Modal -->
+    <div class="modal-overlay" id="saas-restaurant-detail-modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000;">
+      <div class="modal-card" style="max-width: 600px; background: white; padding: 24px; border-radius: 8px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: var(--card-shadow);">
+        <div class="modal-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1.5px solid var(--border); padding-bottom: 10px;">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px;">🏪 <span id="saas-detail-name">Restaurant Details</span></h3>
+          <span class="modal-close" onclick="document.getElementById('saas-restaurant-detail-modal').style.display='none'" style="cursor: pointer; font-size: 18px;">✕</span>
+        </div>
+        
+        <div id="saas-detail-banner" style="width: 100%; height: 120px; background: var(--bg-tertiary); border-radius: 8px; margin-bottom: 16px; background-size: cover; background-position: center; border: 1px solid var(--border);"></div>
+        
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <div style="display: flex; align-items: center; gap: 16px; border-bottom: 1px solid var(--border); padding-bottom: 16px;">
+            <div id="saas-detail-logo" style="width: 60px; height: 60px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 8px; background-size: contain; background-repeat: no-repeat; background-position: center;"></div>
+            <div>
+              <strong id="saas-detail-id" style="font-size: 14px; color: var(--text-muted); font-family: monospace;">rest-01</strong>
+              <div style="font-size: 12px; color: var(--text-muted);">Created: <span id="saas-detail-created"></span></div>
+            </div>
+            <div style="margin-left: auto; text-align: right;">
+              <span id="saas-detail-status" class="badge-custom" style="display: inline-block;">Active</span>
+              <div style="font-size: 12px; color: var(--primary); font-weight: 600; margin-top: 4px;" id="saas-detail-plan">Standard</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 13px;">
+            <div>
+              <span style="font-size: 11px; color: var(--text-muted); font-weight:600; display:block;">OWNER</span>
+              <strong id="saas-detail-owner-name" style="color: var(--text-main);">Rajesh</strong>
+              <div id="saas-detail-owner" style="color: var(--text-muted);">admin@rest.com</div>
+              <div id="saas-detail-phone" style="color: var(--text-muted);">9876543210</div>
+            </div>
+            <div>
+              <span style="font-size: 11px; color: var(--text-muted); font-weight:600; display:block;">LOCATION & LEGAL</span>
+              <div id="saas-detail-address" style="color: var(--text-main);">123 Main St</div>
+              <div id="saas-detail-location" style="color: var(--text-muted);">City, State</div>
+              <div style="color: var(--text-muted);">GST: <strong id="saas-detail-gst">GSTIN</strong></div>
+            </div>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 13px;">
+            <div>
+              <span style="font-size: 11px; color: var(--text-muted); font-weight:600; display:block;">OPERATIONAL HOURS</span>
+              <strong style="color: var(--text-main);"><span id="saas-detail-opening"></span> - <span id="saas-detail-closing"></span></strong>
+            </div>
+          </div>
+
+          <div style="background-color: var(--bg-secondary); border: 1px solid var(--border); border-radius: 6px; padding: 14px;">
+            <h4 style="margin: 0 0 10px 0; font-size: 13px; font-weight: 700; border-bottom: 1px dashed var(--border); padding-bottom: 6px; color: var(--black);">Usage and Limits</h4>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 13px;">
+              <div style="display:flex; justify-content:space-between;">
+                <span style="color: var(--text-muted);">Tables Count:</span>
+                <strong id="saas-detail-tables">5 / 8</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span style="color: var(--text-muted);">Staff Members:</span>
+                <strong id="saas-detail-staff">3 members</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span style="color: var(--text-muted);">Menu Items:</span>
+                <strong id="saas-detail-menu">12 items</strong>
+              </div>
+              <div style="display:flex; justify-content:space-between;">
+                <span style="color: var(--text-muted);">Total Orders:</span>
+                <strong id="saas-detail-orders">42 orders</strong>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 10px;">
+            <button type="button" class="btn btn-outline" style="padding: 8px 16px; font-size: 13px; border-radius: 16px;" onclick="document.getElementById('saas-restaurant-detail-modal').style.display='none'">
+              Close Details
+            </button>
+            <button type="button" id="saas-detail-btn-impersonate" class="btn btn-black" style="padding: 8px 16px; font-size: 13px; border-radius: 16px;">
+              ⚡ Impersonate
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Restaurant Performance Modal -->
+    <div class="modal-overlay" id="saas-performance-modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000;">
+      <div class="modal-card" style="max-width: 600px; background: white; padding: 24px; border-radius: 8px; width: 90%; box-shadow: var(--card-shadow);">
+        <div class="modal-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1.5px solid var(--border); padding-bottom: 10px;">
+          <h3 style="margin: 0; font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 8px;">📈 <span id="saas-perf-name">Performance Metrics</span></h3>
+          <span class="modal-close" onclick="document.getElementById('saas-performance-modal').style.display='none'" style="cursor: pointer; font-size: 18px;">✕</span>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 20px;">
+          <div style="background: #fafafa; border: 1px solid var(--border); padding: 16px; border-radius: 8px;">
+            <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Total Sales Revenue</div>
+            <h3 id="saas-perf-revenue" style="margin-top: 4px; font-size: 24px; color: var(--black);">₹0</h3>
+          </div>
+          <div style="background: #fafafa; border: 1px solid var(--border); padding: 16px; border-radius: 8px;">
+            <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Total Orders</div>
+            <h3 id="saas-perf-orders" style="margin-top: 4px; font-size: 24px; color: var(--black);">0</h3>
+          </div>
+          <div style="background: #fafafa; border: 1px solid var(--border); padding: 16px; border-radius: 8px;">
+            <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Average Order Value</div>
+            <h3 id="saas-perf-aov" style="margin-top: 4px; font-size: 24px; color: var(--black);">₹0</h3>
+          </div>
+          <div style="background: #fafafa; border: 1px solid var(--border); padding: 16px; border-radius: 8px;">
+            <div style="font-size: 12px; color: var(--text-muted); font-weight: 600;">Active Tables</div>
+            <h3 id="saas-perf-tables" style="margin-top: 4px; font-size: 24px; color: var(--black);">0 / 0</h3>
+          </div>
+        </div>
+        
+        <div style="background: #fafafa; border: 1px solid var(--border); padding: 16px; border-radius: 8px; margin-bottom: 20px;">
+          <h4 style="font-size: 13px; font-weight: 700; color: var(--black); margin-bottom: 12px;">Monthly Revenue Growth (Mock)</h4>
+          <div style="height: 100px; display: flex; align-items: flex-end; gap: 8px;">
+            <div style="flex: 1; background: var(--bg-tertiary); height: 40%; border-radius: 4px;"></div>
+            <div style="flex: 1; background: var(--bg-tertiary); height: 50%; border-radius: 4px;"></div>
+            <div style="flex: 1; background: var(--bg-tertiary); height: 70%; border-radius: 4px;"></div>
+            <div style="flex: 1; background: var(--bg-tertiary); height: 60%; border-radius: 4px;"></div>
+            <div style="flex: 1; background: var(--primary); height: 90%; border-radius: 4px;"></div>
+            <div style="flex: 1; background: var(--bg-tertiary); height: 100%; border-radius: 4px; opacity: 0.5;"></div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button type="button" class="btn btn-black" style="padding: 8px 16px; font-size: 13px; border-radius: 16px;" onclick="document.getElementById('saas-performance-modal').style.display='none'">
+            Close Performance
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Invoice Details Modal -->
+    <div class="modal-overlay" id="saas-invoice-detail-modal" style="display: none; align-items: center; justify-content: center; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 1000;">
+      <div class="modal-card" style="max-width: 440px; background: white; padding: 24px; border-radius: 8px; width: 90%; box-shadow: var(--card-shadow);">
+        <div class="modal-header-flex" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1.5px solid var(--border); padding-bottom: 10px;">
+          <h3 style="margin: 0; font-size: 16px; font-weight: 700;">📄 Invoice Details</h3>
+          <span class="modal-close" onclick="document.getElementById('saas-invoice-detail-modal').style.display='none'" style="cursor: pointer; font-size: 18px;">✕</span>
+        </div>
+        
+        <div id="saas-invoice-receipt-content" style="font-size: 13px; line-height: 1.5; color: var(--text-main); font-family: 'Inter', sans-serif;">
+          <div style="text-align: center; margin-bottom: 16px;">
+            <strong style="font-size: 18px; color: var(--black); letter-spacing: 0.5px;">SERVIQ SAAS PLATFORM</strong>
+            <div style="font-size: 11px; color: var(--text-muted);">Email: support@serviq.com · Web: www.serviq.com</div>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed var(--border); padding-bottom: 10px; margin-bottom: 10px;">
+            <div>
+              <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">BILL TO:</div>
+              <strong id="invoice-receipt-restaurant" style="color: var(--black);">Saravana Bhavan</strong>
+              <div id="invoice-receipt-owner" style="font-size: 12px;">admin@saravana.com</div>
+            </div>
+            <div style="text-align: right;">
+              <div style="font-size: 11px; color: var(--text-muted); font-weight: 600;">INVOICE DETAILS:</div>
+              <strong id="invoice-receipt-id" style="font-family: monospace;">INV-2026-001</strong>
+              <div id="invoice-receipt-date">28 May 2026</div>
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 16px;">
+            <div style="display: flex; justify-content: space-between; font-weight: 700; border-bottom: 1px solid var(--border); padding-bottom: 6px; margin-bottom: 6px; font-size: 11px; color: var(--text-muted);">
+              <span>DESCRIPTION</span>
+              <span>TOTAL</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+              <div>
+                <span id="invoice-receipt-desc">SaaS Subscription - Standard Plan</span>
+                <div style="font-size: 11px; color: var(--text-muted);">Monthly recurring billing cycle</div>
+              </div>
+              <strong id="invoice-receipt-amount">₹2,499.00</strong>
+            </div>
+          </div>
+          
+          <div style="background-color: var(--bg-secondary); border-radius: 4px; padding: 10px; margin-bottom: 20px;">
+            <div style="display:flex; justify-content:space-between; font-weight: 500; font-size:12px; margin-bottom: 4px;">
+              <span>Subtotal:</span>
+              <span id="invoice-receipt-subtotal">₹2,499.00</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-weight: 500; font-size:12px; margin-bottom: 4px;">
+              <span>Tax (GST 18% inclusive):</span>
+              <span id="invoice-receipt-tax">₹381.20</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; font-weight: 700; font-size:14px; border-top: 1px dashed var(--border); padding-top: 6px; margin-top: 6px; color: var(--black);">
+              <span>Total Paid:</span>
+              <span id="invoice-receipt-total">₹2,499.00</span>
+            </div>
+          </div>
+          
+          <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--border); padding-top: 10px;">
+            <div>
+              <span style="font-size: 11px; color: var(--text-muted); font-weight: 600; display: block;">PAYMENT STATUS</span>
+              <span id="invoice-receipt-status" class="badge-custom badge-ready" style="display: inline-block;">PAID</span>
+            </div>
+            <button type="button" class="btn btn-black" onclick="window.print()" style="padding: 6px 12px; font-size: 12px; border-radius: 12px; display: flex; align-items: center; gap: 4px;">
+              🖨️ Print Receipt
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         2. MAIN DASHBOARD WORKSPACE (HIDDEN BY DEFAULT)
+         ========================================== -->
+    <div id="dashboard-view" class="dashboard-wrapper" style="display: none;">
+      
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <div class="sidebar-header-card">
+          <div class="sidebar-logo-icon" style="background-color: var(--primary); display: flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 8px; overflow: hidden;">
+            <img src="ChatGPT Image May 28, 2026, 03_54_23 PM.png" alt="Serviq Logo" style="width: 36px; height: 36px; object-fit: contain; filter: brightness(0) invert(1);">
+          </div>
+          <div style="display:flex; flex-direction:column;">
+            <span class="brand-text">Serviq</span>
+            <span class="plan-sub">Standard Plan</span>
+          </div>
+        </div>
+        
+        <ul class="sidebar-menu">
+          <li class="sidebar-item active" data-tab="overview">
+            <a href="#">🎛️ Dashboard</a>
+          </li>
+          <li class="sidebar-item" data-tab="orders">
+            <a href="#">
+              📝 Incoming Orders 
+              <span id="live-orders-badge" class="pulse-indicator" style="display: none; margin-left: auto;"></span>
+            </a>
+          </li>
+          <li class="sidebar-item" data-tab="menu">
+            <a href="#">🍴 Menu Management</a>
+          </li>
+          <li class="sidebar-item" data-tab="billing">
+            <a href="#">💵 Billing</a>
+          </li>
+          <li class="sidebar-item" data-tab="saas">
+            <a href="#">📋 Tables</a>
+          </li>
+          <li class="sidebar-item" data-tab="staff">
+            <a href="#">👥 Staff</a>
+          </li>
+          <li class="sidebar-item" data-tab="settings">
+            <a href="#">⚙️ Settings</a>
+          </li>
+        </ul>
+        
+        <div class="sidebar-footer">
+          <div class="user-info">
+            <div class="user-avatar" id="avatar-letter">Q</div>
+            <div class="user-details">
+              <div class="user-name" id="profile-restaurant-name">QRMenu Restaurant</div>
+              <div class="user-role" id="profile-user-email">admin@restaurant.com</div>
+            </div>
+          </div>
+          <button id="logout-btn" class="btn btn-outline" style="width: 100%; border-color: var(--border);">
+            🔒 Log Out
+          </button>
+        </div>
+      </aside>
+
+      <!-- MAIN WORKSPACE -->
+      <main class="main-content" style="position: relative;">
+        <!-- Impersonation Banner -->
+        <div id="saas-impersonation-banner" style="display: none; background: #fff1f2; border-bottom: 1.5px solid #fca5a5; color: #991b1b; padding: 12px 32px; font-size: 13px; font-weight: 600; align-items: center; justify-content: space-between; font-family: 'Inter', sans-serif;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span>⚠️</span>
+            <span><strong>Super Admin Impersonation Mode:</strong> Currently managing <strong id="impersonation-rest-name">Saravana Bhavan</strong> (Simulated Session)</span>
+          </div>
+          <button id="saas-exit-impersonation-btn" class="btn" style="background: #991b1b; color: white; padding: 4px 12px; font-size: 12px; font-weight: 700; border-radius: 4px; border: none; transition: all 0.2s; cursor: pointer;">
+            Exit & Return to Super Admin
+          </button>
+        </div>
+        
+        <!-- HEADER -->
+        <header class="main-header">
+          <div class="header-title-container">
+            <h1 class="header-title" id="active-panel-title">Dashboard</h1>
+            <span id="dashboard-date-time" class="header-subtitle-date">Wednesday, 14 May 2025 · 1:30 PM</span>
+          </div>
+          <div class="header-actions">
+            <button class="simulator-toggle-btn" id="toggle-simulator-btn">
+              📱 Toggle Simulator
+            </button>
+            <button class="btn btn-notify" onclick="alert('No new notifications.')">
+              🔔 3 notifications
+            </button>
+            <button class="btn btn-user-profile" onclick="alert('User profile settings menu.')">
+              👤 Admin
+            </button>
+          </div>
+        </header>
+
+        <!-- CONTENT BODY -->
+        <div class="content-body">
+
+          <!-- ==========================================
+               PANEL: DASHBOARD OVERVIEW
+               ========================================== -->
+          <section id="panel-overview" class="panel-view active">
+            <!-- 4 KPI Metrics Row -->
+            <div class="stats-grid">
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Today's Revenue</div>
+                    <h3 id="dash-val-revenue">₹12,480</h3>
+                    <div class="stat-sub-label green-label">+12% from yesterday</div>
+                  </div>
+                  <div class="stat-icon-wrapper font-rupee">₹</div>
+                </div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Total Orders</div>
+                    <h3 id="dash-val-orders">38</h3>
+                    <div id="dash-val-in-progress" class="stat-sub-label text-muted">6 in progress</div>
+                  </div>
+                  <div class="stat-icon-wrapper">📋</div>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Active Tables</div>
+                    <h3 id="dash-val-tables">4 / 5</h3>
+                    <div id="dash-val-table-avail" class="stat-sub-label text-muted">1 table available</div>
+                  </div>
+                  <div class="stat-icon-wrapper">🪑</div>
+                </div>
+              </div>
+
+              <div class="stat-card">
+                <div class="stat-main-row">
+                  <div class="stat-info">
+                    <div class="stat-label">Pending Orders</div>
+                    <h3 id="dash-val-pending">3</h3>
+                    <div class="stat-sub-label red-label">Needs attention</div>
+                  </div>
+                  <div class="stat-icon-wrapper">⏱️</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dashboard Inner Grid -->
+            <div class="dashboard-inner-grid">
+              <!-- Left: Live Order Feed -->
+              <div class="feed-card">
+                <div class="feed-header">
+                  <h2 class="feed-title">Live Order Feed</h2>
+                  <span class="live-dot-indicator"><span class="pulse-dot"></span>Live</span>
+                </div>
+                <div class="feed-table-wrapper">
+                  <table class="feed-table">
+                    <thead>
+                      <tr>
+                        <th>ORDER ID</th>
+                        <th>TABLE</th>
+                        <th>ITEMS</th>
+                        <th>TIME</th>
+                        <th>STATUS</th>
+                      </tr>
+                    </thead>
+                    <tbody id="dash-order-feed-tbody">
+                      <!-- Dynamically filled with order rows -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <!-- Right: Tables Status Widget -->
+              <div class="tables-widget-card">
+                <h2 class="feed-title" style="margin-bottom: 20px;">Tables</h2>
+                <div class="tables-status-grid" id="dash-tables-grid-container">
+                  <!-- Dynamically populated cells T-01 to T-05 -->
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               PANEL: INCOMING ORDERS
+               ========================================== -->
+          <section id="panel-orders" class="panel-view">
+            <div class="panel-header-flex">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Incoming Orders</h2>
+                <p class="panel-inner-desc">Manage and process all live orders</p>
+              </div>
+
+              <!-- Filter tabs row -->
+              <div class="filter-tabs-row" id="incoming-filter-tabs">
+                <button class="filter-btn active" data-filter="All">All</button>
+                <button class="filter-btn" data-filter="New">New</button>
+                <button class="filter-btn" data-filter="Preparing">Preparing</button>
+                <button class="filter-btn" data-filter="Ready">Ready</button>
+                <button class="filter-btn" data-filter="Done">Done</button>
+              </div>
+            </div>
+
+            <div class="incoming-orders-list-wrapper" id="incoming-orders-list">
+              <!-- Dynamically populated order bar cards -->
+            </div>
+          </section>
+
+          <!-- ==========================================
+               PANEL: MENU MANAGEMENT
+               ========================================== -->
+          <section id="panel-menu" class="panel-view">
+            <div class="panel-header-flex" style="margin-bottom: 20px;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Menu Management</h2>
+                <p class="panel-inner-desc">Add, edit, and manage your menu items</p>
+              </div>
+              <button class="btn btn-black" id="add-menu-item-btn">
+                ➕ Add New Item
+              </button>
+            </div>
+
+            <!-- Three-column layout -->
+            <div class="menu-manager-grid">
+              
+              <!-- Column 1: Categories Side Navigation -->
+              <div class="menu-categories-column">
+                <div class="column-header-title">CATEGORIES</div>
+                <ul class="categories-list-menu" id="menu-categories-list">
+                  <!-- Populate Category Counts -->
+                </ul>
+                <button class="btn btn-add-cat" onclick="alert('Add category modal mockup.')">
+                  ➕ Add Category
+                </button>
+              </div>
+
+              <!-- Column 2: Items Table Listing -->
+              <div class="menu-items-column">
+                <div class="menu-search-sort-row">
+                  <div class="menu-search-wrapper">
+                    <span class="search-input-icon">🔍</span>
+                    <input type="text" id="menu-search-input" placeholder="Search menu items...">
+                  </div>
+                  <div style="display:flex; align-items:center; gap:8px;">
+                    <span style="font-size:13px; color:var(--text-muted);">Sort by</span>
+                    <select id="menu-sort-select" style="padding:6px 12px; font-size:13px; border-radius:6px; background:white;">
+                      <option value="name">Name</option>
+                      <option value="price-asc">Price: Low to High</option>
+                      <option value="price-desc">Price: High to Low</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="menu-table-wrapper">
+                  <table class="menu-items-table">
+                    <tbody id="menu-items-tbody">
+                      <!-- Injected rows of menu items -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Add / Edit Menu Item Modal -->
+            <div class="modal-overlay" id="menu-item-modal" style="display: none;">
+              <div class="modal-card" style="max-width: 480px;">
+                <div class="modal-header-flex">
+                  <h3 id="menu-form-title">Edit Item</h3>
+                  <span class="modal-close" id="close-menu-item-modal">✕</span>
+                </div>
+                <form id="menu-edit-form">
+                  <input type="hidden" id="edit-item-id">
+                  
+                  <!-- Crossed Photo box -->
+                  <div class="edit-image-placeholder-box">
+                    <div class="crossed-inner">
+                      <span class="crossed-label" id="edit-image-placeholder-label">Item Photo</span>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="edit-input-name">Item Name</label>
+                    <input type="text" id="edit-input-name" required placeholder="e.g. Chicken Biryani">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="edit-input-desc">Description</label>
+                    <textarea id="edit-input-desc" rows="3" placeholder="Item description..."></textarea>
+                  </div>
+
+                  <div class="form-row-two-col" style="margin-bottom: 20px;">
+                    <div class="form-group" style="flex:1;">
+                      <label for="edit-input-price">Price (₹)</label>
+                      <input type="number" id="edit-input-price" required placeholder="320">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                      <label for="edit-input-category">Category</label>
+                      <select id="edit-input-category" required>
+                        <option value="Starters">Starters</option>
+                        <option value="Rice Meals">Rice Meals</option>
+                        <option value="Tiffin">Tiffin</option>
+                        <option value="Rotis">Rotis</option>
+                        <option value="Desserts">Desserts</option>
+                        <option value="Drinks">Drinks</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:10px;">
+                    <button type="submit" class="btn btn-black" style="width: 100%;">
+                      Save Changes
+                    </button>
+                    <button type="button" class="btn btn-outline" id="menu-cancel-btn" style="width: 100%;">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               PANEL: BILLING PANEL
+               ========================================== -->
+          <section id="panel-billing" class="panel-view">
+            <div class="panel-header-flex" style="margin-bottom: 20px;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Billing Panel</h2>
+                <p class="panel-inner-desc">Manage table bills, GST and payment status</p>
+              </div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <select id="billing-time-filter" style="padding:6px 12px; font-size:13px; border-radius:6px;">
+                  <option value="today">Today</option>
+                  <option value="yesterday">Yesterday</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Billing Grid -->
+            <div class="billing-panel-grid">
+              
+              <!-- Column 1: Tables List -->
+              <div class="billing-tables-column">
+                <div class="column-header-title">TABLES</div>
+                <div class="billing-tables-list-container" id="billing-tables-list">
+                  <!-- Dynamic table rows -->
+                </div>
+              </div>
+
+              <!-- Column 2: Bill Summary detail & payment state -->
+              <div class="billing-summary-column">
+                
+                <div class="bill-summary-header-row">
+                  <div>
+                    <h3 id="bill-title-header" class="bill-summary-title">Table 05 — Bill Summary</h3>
+                    <p id="bill-order-count-sub" class="bill-summary-subtitle">2 orders · Last updated 1:28 PM</p>
+                  </div>
+                  <div style="display:flex; gap:10px;">
+                    <button class="btn btn-outline btn-bill-action" onclick="alert('Receipt sent to printing queue.')">
+                      🖨️ Print Receipt
+                    </button>
+                    <button class="btn btn-outline btn-bill-action" onclick="alert('Receipt link generated!')">
+                      🔗 Share
+                    </button>
+                  </div>
+                </div>
+
+                <div class="billing-split-inner">
+                  <!-- Table of bill items -->
+                  <div class="bill-items-table-wrapper">
+                    <table class="bill-items-table">
+                      <thead>
+                        <tr>
+                          <th>ITEM</th>
+                          <th>QTY</th>
+                          <th>RATE</th>
+                          <th style="text-align:right;">AMOUNT</th>
+                        </tr>
+                      </thead>
+                      <tbody id="billing-summary-items-tbody">
+                        <!-- Dynamic items from state -->
+                      </tbody>
+                    </table>
+
+                    <div class="price-breakdown-card">
+                      <div class="breakdown-header">PRICE BREAKDOWN</div>
+                      <div id="billing-breakdown-container">
+                        <!-- Dynamically populated in app.js -->
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right block: Payment Status selector widget -->
+                  <div class="payment-status-wrapper">
+                    <div class="payment-status-card">
+                      <div class="column-header-title" style="border-bottom: 1px solid var(--border); padding-bottom:10px; margin-bottom:16px;">
+                        PAYMENT STATUS
+                      </div>
+                      
+                      <div class="payment-options-list">
+                        <label class="payment-checkbox-row">
+                          <input type="radio" name="payment-method" value="Cash">
+                          <span class="radio-indicator"></span>
+                          <span>Cash</span>
+                        </label>
+                        <label class="payment-checkbox-row">
+                          <input type="radio" name="payment-method" value="UPI" checked>
+                          <span class="radio-indicator"></span>
+                          <span>UPI / QR</span>
+                        </label>
+                        <label class="payment-checkbox-row">
+                          <input type="radio" name="payment-method" value="Card">
+                          <span class="radio-indicator"></span>
+                          <span>Card</span>
+                        </label>
+                      </div>
+
+                      <button class="btn btn-black" id="bill-pay-btn" style="width:100%; margin-top:24px;">
+                        Mark as Paid
+                      </button>
+                      <button class="btn btn-outline" style="width:100%; margin-top:10px;" onclick="alert('PDF invoice downloaded successfully!')">
+                        Generate Receipt
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </section>
+
+          <!-- ==========================================
+               PANEL: TABLES / CONFIG
+               ========================================== -->
+          <section id="panel-saas" class="panel-view">
+            <div class="panel-header-flex" style="margin-bottom: 20px;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Dining Tables & QR Management</h2>
+                <p class="panel-inner-desc">Monitor real-time table status, view active orders, and customize QR stickers for contactless ordering.</p>
+              </div>
+              <button class="btn btn-black" id="add-table-btn">
+                <span>➕ Add Dining Table</span>
+              </button>
+            </div>
+
+            <!-- New interactive columns layout -->
+            <div class="tables-dashboard-grid">
+              
+              <!-- Left Column: Tables Grid & Seating Overview -->
+              <div class="tables-list-column">
+                
+                <!-- Table Metrics Row -->
+                <div class="tables-metrics-row">
+                  <div class="table-metric-card">
+                    <div class="metric-value" id="metric-total-tables">5</div>
+                    <div class="metric-label">Total Tables</div>
+                  </div>
+                  <div class="table-metric-card">
+                    <div class="metric-value" id="metric-occupied-tables">4</div>
+                    <div class="metric-label">Occupied</div>
+                  </div>
+                  <div class="table-metric-card">
+                    <div class="metric-value" id="metric-seating-capacity">18</div>
+                    <div class="metric-label">Total Seats</div>
+                  </div>
+                  <div class="table-metric-card">
+                    <div class="metric-value" id="metric-free-tables">1</div>
+                    <div class="metric-label">Available</div>
+                  </div>
+                </div>
+
+                <!-- Grid of tables -->
+                <div class="dining-tables-grid" id="dining-tables-grid-container">
+                  <!-- Dynamic table cards -->
+                </div>
+              </div>
+
+              <!-- Right Column: QR Sticker Customizer & Details -->
+              <div class="qr-customizer-column">
+                <div class="customizer-header" id="customizer-panel-title">Table T-01 Details</div>
+                
+                <!-- Sticker Preview Card -->
+                <div class="sticker-preview-card" id="qr-sticker-preview">
+                  <div class="sticker-restaurant-name" id="sticker-store-name">Serviq</div>
+                  <div class="sticker-subtitle">SCAN TO ORDER</div>
+                  
+                  <!-- QR Code Box -->
+                  <div class="sticker-qr-wrapper">
+                    <div class="fancy-qr-code" id="fancy-qr-display">
+                      <!-- Center logo inside, styled SVG or custom canvas -->
+                    </div>
+                  </div>
+                  
+                  <div class="sticker-table-label" id="sticker-table-label-display">Table T-01</div>
+                  <div class="sticker-url-text" id="sticker-url-display">http://localhost:3000/menu?table=T-01</div>
+                  <div class="sticker-footer-instructions">Powered by Serviq</div>
+                </div>
+
+                <!-- Customization Options Form -->
+                <div class="customizer-controls-card">
+                  <div class="control-section-title">QR Code Customizer</div>
+                  
+                  <div class="form-group">
+                    <label>Accent Color</label>
+                    <div class="qr-color-dots">
+                      <button class="qr-color-dot active" data-color="#ff7a00" style="background: #ff7a00;"></button>
+                      <button class="qr-color-dot" data-color="#000000" style="background: #000000;"></button>
+                      <button class="qr-color-dot" data-color="#1e40af" style="background: #1e40af;"></button>
+                      <button class="qr-color-dot" data-color="#15803d" style="background: #15803d;"></button>
+                      <button class="qr-color-dot" data-color="#7c3aed" style="background: #7c3aed;"></button>
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px;">
+                    <div>
+                      <div style="font-weight: 600; font-size: 13px;">Center Logo</div>
+                      <div style="font-size: 11px; color: var(--text-muted);">Show brand logo icon inside QR</div>
+                    </div>
+                    <label class="switch-container">
+                      <input type="checkbox" id="qr-toggle-logo" checked>
+                      <span class="switch-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 20px;">
+                    <label for="table-seats-edit-input">Seating Capacity</label>
+                    <input type="number" id="table-seats-edit-input" min="1" max="12" style="padding: 8px 12px; font-size: 13px;">
+                  </div>
+
+                  <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="btn btn-black" id="simulate-table-btn" style="width: 100%;">
+                      📱 Open in Customer Simulator
+                    </button>
+                    <div style="display: flex; gap: 10px;">
+                      <button class="btn btn-outline" id="print-sticker-btn" style="flex: 1; font-size: 13px;" onclick="alert('Print request sent to sticker queue!')">
+                        🖨️ Print Sticker
+                      </button>
+                      <button class="btn btn-outline" id="download-sticker-btn" style="flex: 1; font-size: 13px;" onclick="alert('Sticker template saved to downloads!')">
+                        💾 Download SVG
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- Add Dining Table Modal -->
+            <div class="modal-overlay" id="add-table-modal" style="display: none;">
+              <div class="modal-card">
+                <div class="modal-header-flex">
+                  <h3>Add Dining Table</h3>
+                  <span class="modal-close" id="close-add-table-modal">✕</span>
+                </div>
+                <form id="add-table-form">
+                  <div class="form-group">
+                    <label for="new-table-id">Table Number / ID</label>
+                    <input type="text" id="new-table-id" placeholder="e.g. T-06" required>
+                    <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Recommended format: T-XX (e.g. T-06, T-07)</p>
+                  </div>
+                  <div class="form-group">
+                    <label for="new-table-seats">Seating Capacity</label>
+                    <input type="number" id="new-table-seats" min="1" max="20" value="4" required>
+                  </div>
+                  <button type="submit" class="btn btn-black" style="width: 100%; margin-top: 10px;">
+                    Create Table
+                  </button>
+                </form>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- ==========================================
+               PANEL: STAFF MANAGEMENT
+               ========================================== -->
+          <section id="panel-staff" class="panel-view">
+            <div class="panel-header-flex" style="margin-bottom: 20px;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Staff Management</h2>
+                <p class="panel-inner-desc">Manage your restaurant staff, roles, contact details, and duty status.</p>
+              </div>
+              <button class="btn btn-black" id="add-staff-btn">
+                <span>➕ Add New Staff</span>
+              </button>
+            </div>
+
+            <!-- Staff Columns/Grid Layout -->
+            <div class="staff-dashboard-grid" style="display: grid; grid-template-columns: 1fr; gap: 24px; align-items: start;">
+              
+              <!-- Left Column: Staff Table -->
+              <div class="staff-list-column" style="background-color: #ffffff; border: 1px solid var(--border); border-radius: var(--border-radius-sm); padding: 24px; box-shadow: var(--card-shadow);">
+                
+                <!-- Staff Metrics Row -->
+                <div class="staff-metrics-row" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 24px;">
+                  <div class="table-metric-card" style="background-color: #fafafa; border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center;">
+                    <div class="metric-value" id="metric-total-staff" style="font-size: 20px; font-weight: 700; color: var(--black);">5</div>
+                    <div class="metric-label" style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Total Staff</div>
+                  </div>
+                  <div class="table-metric-card" style="background-color: #fafafa; border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center;">
+                    <div class="metric-value" id="metric-active-staff" style="font-size: 20px; font-weight: 700; color: var(--success);">4</div>
+                    <div class="metric-label" style="font-size: 11px; color: var(--text-muted); font-weight: 600;">On Duty</div>
+                  </div>
+                  <div class="table-metric-card" style="background-color: #fafafa; border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center;">
+                    <div class="metric-value" id="metric-chef-staff" style="font-size: 20px; font-weight: 700; color: var(--primary);">3</div>
+                    <div class="metric-label" style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Kitchen Staff</div>
+                  </div>
+                  <div class="table-metric-card" style="background-color: #fafafa; border: 1px solid var(--border); border-radius: 8px; padding: 12px; text-align: center;">
+                    <div class="metric-value" id="metric-waiter-staff" style="font-size: 20px; font-weight: 700; color: #1e40af;">2</div>
+                    <div class="metric-label" style="font-size: 11px; color: var(--text-muted); font-weight: 600;">Waitstaff</div>
+                  </div>
+                </div>
+
+                <div class="menu-table-wrapper" style="overflow-x: auto;">
+                  <table class="menu-items-table" style="width: 100%; border-collapse: collapse; text-align: left;">
+                    <thead>
+                      <tr style="border-bottom: 1.5px solid var(--border); background-color: var(--bg-secondary);">
+                        <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">STAFF ID</th>
+                        <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">NAME</th>
+                        <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">ROLE</th>
+                        <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">PHONE</th>
+                        <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">LOGIN INFO</th>
+                        <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted);">STATUS</th>
+                        <th style="padding: 12px 14px; font-size: 11px; font-weight: 700; color: var(--text-muted); text-align: right;">ACTIONS</th>
+                      </tr>
+                    </thead>
+                    <tbody id="staff-items-tbody">
+                      <!-- Dynamic rows of staff members -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Add / Edit Staff Modal -->
+            <div class="modal-overlay" id="staff-item-modal" style="display: none;">
+              <div class="modal-card" style="max-width: 480px;">
+                <div class="modal-header-flex">
+                  <h3 id="staff-form-title">Add New Staff</h3>
+                  <span class="modal-close" id="close-staff-item-modal">✕</span>
+                </div>
+                <form id="staff-edit-form">
+                  <input type="hidden" id="edit-staff-id">
+                  
+                  <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="edit-staff-name" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Full Name</label>
+                    <input type="text" id="edit-staff-name" required placeholder="e.g. Ramesh Kumar">
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="edit-staff-role" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Role</label>
+                    <select id="edit-staff-role" required>
+                      <option value="Waiter">Waiter</option>
+                      <option value="Kitchen">Kitchen</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="edit-staff-phone" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Phone Number</label>
+                    <input type="tel" id="edit-staff-phone" required placeholder="e.g. 9876543210">
+                  </div>
+
+                  <div class="form-row-two-col" style="display: flex; gap: 12px; margin-bottom: 15px;">
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                      <label for="edit-staff-email" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Email Address</label>
+                      <input type="email" id="edit-staff-email" required placeholder="e.g. ramesh@serviq.com">
+                    </div>
+                    <div class="form-group" style="flex: 1; margin-bottom: 0;">
+                      <label for="edit-staff-password" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Password</label>
+                      <input type="text" id="edit-staff-password" required placeholder="e.g. waiter123">
+                    </div>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="edit-staff-status" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Duty Status</label>
+                    <select id="edit-staff-status" required>
+                      <option value="On Duty">On Duty</option>
+                      <option value="Off Duty">Off Duty</option>
+                    </select>
+                  </div>
+
+                  <div style="display:flex; flex-direction:column; gap:10px; margin-top:24px;">
+                    <button type="submit" class="btn btn-black" style="width: 100%;">
+                      Save Changes
+                    </button>
+                    <button type="button" class="btn btn-outline" id="staff-cancel-btn" style="width: 100%;">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+            <!-- Kitchen Shared Login Modal -->
+            <div class="modal-overlay" id="kitchen-shared-modal" style="display: none;">
+              <div class="modal-card" style="max-width: 480px;">
+                <div class="modal-header-flex">
+                  <h3>Kitchen Shared Login</h3>
+                  <span class="modal-close" id="close-kitchen-shared-modal">✕</span>
+                </div>
+                <form id="kitchen-login-form">
+                  <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="kitchen-shared-role" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Role</label>
+                    <select id="kitchen-shared-role" required>
+                      <option value="Kitchen" selected>Kitchen</option>
+                      <option value="Waiter">Waiter</option>
+                    </select>
+                  </div>
+
+                  <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Kitchen Login Email</label>
+                    <input type="email" id="kitchen-login-email" value="kitchen@serviq.com" readonly style="background-color: var(--bg-tertiary); color: var(--text-muted); cursor: not-allowed; padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; width: 100%; box-sizing: border-box;">
+                  </div>
+                  <div class="form-group" style="margin-bottom: 15px;">
+                    <label for="kitchen-login-password" style="display: block; font-size: 13px; font-weight: 600; color: var(--black); margin-bottom: 6px;">Kitchen Login Password</label>
+                    <input type="text" id="kitchen-login-password" value="kitchen123" required placeholder="e.g. kitchen123" style="padding: 8px 12px; border: 1px solid var(--border); border-radius: 6px; width: 100%; box-sizing: border-box;">
+                  </div>
+                  <div style="display:flex; flex-direction:column; gap:10px; margin-top:24px;">
+                    <button type="submit" class="btn btn-black" style="width: 100%;">
+                      Update Kitchen Password
+                    </button>
+                    <button type="button" class="btn btn-outline" id="kitchen-cancel-btn" style="width: 100%;">
+                      Cancel
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </section>
+
+          <!-- ==========================================
+               PANEL: SETTINGS
+               ========================================== -->
+          <section id="panel-settings" class="panel-view">
+            <div class="panel-header-flex" style="margin-bottom: 20px;">
+              <div class="panel-title-desc">
+                <h2 class="panel-inner-title">Restaurant Settings</h2>
+                <p class="panel-inner-desc">Manage store branding, operations, tax policies, and dashboard appearance</p>
+              </div>
+            </div>
+
+            <div class="settings-grid" style="display: grid; grid-template-columns: 2fr 1fr; gap: 24px; align-items: start;">
+              <!-- Left Column: Form Cards -->
+              <div class="settings-forms-column" style="display: flex; flex-direction: column; gap: 24px;">
+                
+                <!-- Card 1: Restaurant Identity -->
+                <div class="settings-card">
+                  <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 0;">
+                    <span>🏪</span> Restaurant Details
+                  </h3>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="settings-name" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 13px;">Restaurant Name</label>
+                      <input type="text" id="settings-name" style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-primary); color: var(--text-main);" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="settings-tagline" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 13px;">Tagline / Subtitle</label>
+                      <input type="text" id="settings-tagline" style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-primary); color: var(--text-main);">
+                    </div>
+                  </div>
+                  <div style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 16px;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="settings-currency" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 13px;">Currency Symbol</label>
+                      <select id="settings-currency" style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-primary); color: var(--text-main);">
+                        <option value="₹">₹ (Indian Rupee)</option>
+                        <option value="$">$ (US Dollar)</option>
+                        <option value="€">€ (Euro)</option>
+                        <option value="£">£ (British Pound)</option>
+                        <option value="AED">AED (UAE Dirham)</option>
+                      </select>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="settings-email" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 13px;">Support Email</label>
+                      <input type="email" id="settings-email" style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-primary); color: var(--text-main);">
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Operations & Finance -->
+                <div class="settings-card">
+                  <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 0;">
+                    <span>⚙️</span> Operations & Charges
+                  </h3>
+                  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;">
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="settings-tables" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 13px;">Dining Tables Count</label>
+                      <input type="number" id="settings-tables" min="1" max="15" style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-primary); color: var(--text-main);" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="settings-tax" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 13px;">Total Tax Rate (%)</label>
+                      <input type="number" id="settings-tax" min="0" max="30" step="0.1" style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-primary); color: var(--text-main);" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 0;">
+                      <label for="settings-service" style="font-weight: 600; display: block; margin-bottom: 6px; font-size: 13px;">Service Charge (%)</label>
+                      <input type="number" id="settings-service" min="0" max="25" step="0.5" style="width: 100%; padding: 10px 12px; border-radius: 8px; border: 1px solid var(--border); background-color: var(--bg-primary); color: var(--text-main);" required>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Theme Preferences -->
+                <div class="settings-card">
+                  <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 0;">
+                    <span>🎨</span> Appearance & Theme
+                  </h3>
+                  <div style="display: flex; flex-direction: column; gap: 20px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                      <div>
+                        <div style="font-weight: 600; font-size: 13px; color: var(--text-main);">Dark Mode</div>
+                        <div style="font-size: 11px; color: var(--text-muted);">Enable dark mode styling for the admin panel</div>
+                      </div>
+                      <label class="switch-container">
+                        <input type="checkbox" id="settings-darkmode">
+                        <span class="switch-slider"></span>
+                      </label>
+                    </div>
+                    
+                    <div>
+                      <div style="font-weight: 600; font-size: 13px; margin-bottom: 8px; color: var(--text-main);">Theme Accent Color</div>
+                      <div style="display: flex; gap: 12px;">
+                        <button class="theme-dot active" data-color="#ff7a00" style="background: #ff7a00;"></button>
+                        <button class="theme-dot" data-color="#1e40af" style="background: #1e40af;"></button>
+                        <button class="theme-dot" data-color="#15803d" style="background: #15803d;"></button>
+                        <button class="theme-dot" data-color="#7c3aed" style="background: #7c3aed;"></button>
+                        <button class="theme-dot" data-color="#e11d48" style="background: #e11d48;"></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Form Action Buttons -->
+                <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 8px;">
+                  <button class="btn btn-outline" id="settings-reset-btn" style="padding: 10px 24px;">Reset Defaults</button>
+                  <button class="btn" id="settings-save-btn" style="padding: 10px 32px; background: var(--primary); color: white; border: none; font-weight: 600;">Save Settings</button>
+                </div>
+
+              </div>
+
+              <!-- Right Column: Settings Summary / Preview Panel -->
+              <div class="settings-preview-column" style="display: flex; flex-direction: column; gap: 24px;">
+                <div class="settings-card">
+                  <h3 style="font-size: 15px; font-weight: 700; margin-bottom: 14px; color: var(--text-main); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-top: 0;">Store Profile Summary</h3>
+                  <div style="display: flex; flex-direction: column; gap: 14px; font-size: 13px;">
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                      <span style="color: var(--text-muted);">Current Name</span>
+                      <strong id="preview-store-name" style="color: var(--text-main);">Serviq</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                      <span style="color: var(--text-muted);">Active Tables</span>
+                      <strong id="preview-store-tables" style="color: var(--text-main);">5 Tables</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                      <span style="color: var(--text-muted);">Tax Setup</span>
+                      <strong id="preview-store-tax" style="color: var(--text-main);">5% (GST)</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                      <span style="color: var(--text-muted);">Service Charge</span>
+                      <strong id="preview-store-service" style="color: var(--text-main);">0%</strong>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                      <span style="color: var(--text-muted);">Currency</span>
+                      <strong id="preview-store-currency" style="color: var(--text-main);">₹ (INR)</strong>
+                    </div>
+                    
+                    <div style="margin-top: 10px; background-color: var(--primary-light); color: var(--primary); padding: 12px; border-radius: 8px; font-size: 12px; line-height: 1.5; font-weight: 500;">
+                      💡 Saving these settings will dynamically update the customer menu simulator, billing receipts, and dining table counts.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+        </div>
+      </main>
+
+      <!-- ==========================================
+           3. CUSTOMER SMARTPHONE WORKFLOW SIMULATOR
+           ========================================== -->
+      <aside class="simulator-panel collapsed" id="simulator-panel">
+        <div class="simulator-header">
+          <div class="simulator-title">
+            📱 <span>Customer Simulator</span>
+          </div>
+          <button class="btn" id="close-simulator-btn" style="background: transparent; color: white; font-size: 18px; padding: 0;">
+            ✕
+          </button>
+        </div>
+
+        <!-- Simulator debug controls bar outside phone screen -->
+        <div class="simulator-controls" style="padding: 10px 16px; background-color: #f1f5f9; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+          <label for="cust-select-table-sim" style="font-size: 12px; font-weight: 600; color: var(--text-main); margin-bottom: 0;">Simulate Table:</label>
+          <select id="cust-select-table-sim" style="padding: 4px 8px; font-size: 12px; width: auto; max-width: 120px; height: 30px; border-radius: 4px;">
+            <!-- Auto-populated tables -->
+          </select>
+        </div>
+
+        <div class="phone-mockup-wrapper">
+          <div class="phone-device">
+            <div class="phone-notch"></div>
+            
+            <!-- iOS Status Bar -->
+            <div class="phone-status-bar">
+              <span class="status-time">9:41 AM</span>
+              <span class="status-icons">
+                <!-- Mobile Signal Icons -->
+                <svg width="14" height="10" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle;"><rect x="1" y="16" width="3" height="4" rx="0.5"/><rect x="6" y="12" width="3" height="8" rx="0.5"/><rect x="11" y="8" width="3" height="12" rx="0.5"/><rect x="16" y="4" width="3" height="16" rx="0.5"/><rect x="21" y="0" width="3" height="20" rx="0.5"/></svg>
+                <!-- Wifi Icon -->
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
+                <!-- Battery Icon -->
+                <svg width="18" height="10" viewBox="0 0 24 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><rect x="1" y="1" width="18" height="10" rx="2" ry="2"></rect><line x1="23" y1="4" x2="23" y2="8"></line><rect x="3" y="3" width="11" height="6" rx="1" ry="1" fill="currentColor"></rect></svg>
+              </span>
+            </div>
+            
+            <div class="phone-screen" id="phone-screen-viewport">
+              
+              <!-- SCREEN 1: QR LANDING VIEW -->
+              <div id="cust-landing-view" class="customer-view active cust-landing">
+                <!-- Crossed Square Logo Placeholder -->
+                <div class="cust-logo-crossed-box" style="border: none; background: transparent; display: flex; align-items: center; justify-content: center; width: 150px; height: 150px; margin: 16px auto 20px auto; overflow: hidden;">
+                  <img src="ChatGPT Image May 28, 2026, 03_54_23 PM.png" alt="Serviq Logo" style="width: 150px; height: 150px; object-fit: contain;">
+                </div>
+
+                <div class="cust-landing-welcome-sub">Welcome to</div>
+                <h2 class="cust-landing-title" id="cust-landing-welcome">The Grand Bistro</h2>
+                <p class="cust-landing-tagline">Scan &bull; Order &bull; Enjoy</p>
+                
+                <div class="cust-landing-divider"></div>
+
+                <div class="cust-table-card">
+                  <div class="cust-table-card-label">YOUR TABLE</div>
+                  <div class="cust-table-card-number" id="cust-table-label">Table 01</div>
+                  <div class="cust-table-card-sub">Assigned via QR Code</div>
+                </div>
+
+                <div class="cust-info-banner">
+                  <span class="cust-info-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                  </span>
+                  <span class="cust-info-text">Menu and order will be linked to this table. Call staff if table number is wrong.</span>
+                </div>
+
+                <button class="btn-black-full" id="cust-start-btn">
+                  Start Ordering
+                </button>
+
+                <div class="cust-landing-footer">Powered by QRMenu - Free Plan</div>
+              </div>
+
+              <!-- SCREEN 2: DIGITAL MENU BROWSING VIEW -->
+              <div id="cust-menu-view" class="customer-view">
+                <!-- Dark Header Block matching screenshot -->
+                <div class="cust-menu-header-dark">
+                  <div class="header-top-row">
+                    <div class="table-info-orange">
+                      <span class="pin-icon">📍</span>
+                      <span id="cust-menu-table-label-top">Table T-05</span>
+                    </div>
+                    <button class="cust-header-cart-btn" id="cust-header-cart-btn">
+                      <span class="cart-icon">🛒</span>
+                      <span>Cart</span>
+                      <span class="cart-badge-count" id="cust-cart-badge-count">0</span>
+                    </button>
+                  </div>
+                  
+                  <h2 class="brand-title-white" id="cust-brand-title">Saravana Bhavan</h2>
+                  <p class="brand-subtitle-grey" id="cust-brand-subtitle">Table T-05 · Order anytime</p>
+                  
+                  <!-- Dark Search bar inside header -->
+                  <div class="cust-menu-search-dark">
+                    <span class="search-icon-dark">🔍</span>
+                    <input type="text" id="cust-menu-search-input" placeholder="Search dishes...">
+                  </div>
+
+                  <!-- Category Pills inside header block -->
+                  <div class="cust-menu-categories-dark" id="cust-menu-categories-pills">
+                    <!-- Dynamic category pills -->
+                  </div>
+                </div>
+
+                <!-- Dynamic Item List with light grey page background -->
+                <div class="cust-menu-list-wrapper">
+                  <div class="cust-category-title-strip" id="cust-category-title-strip">
+                    RICE MEALS - 5 ITEMS
+                  </div>
+                  <div class="cust-menu-list" id="cust-menu-list-container">
+                    <!-- Dynamic cards -->
+                  </div>
+                </div>
+
+                <!-- Cart sticky footer -->
+                <div class="cust-cart-bar-sticky" id="cust-cart-bar-sticky" style="display: none;">
+                  <button class="cust-cart-trigger" id="cust-view-cart-btn">
+                    <span class="cart-quantity-circle" id="cust-cart-quantity-circle">0</span>
+                    <span class="cart-text-center">View Cart</span>
+                    <span class="cart-total-price" id="cust-cart-subtotal">₹0.00</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- SCREEN 3: CART PREVIEW & BILLING SUMMARY -->
+              <div id="cust-cart-view" class="customer-view">
+                <div class="cust-menu-header">
+                  <button id="cust-cart-back-btn" class="btn" style="background:transparent; font-size: 14px; padding: 0; font-weight: 700;">⬅️ Menu</button>
+                  <span style="font-weight: 700;">Review Cart</span>
+                  <span style="width: 24px;"></span>
+                </div>
+
+                <div class="cust-cart-screen">
+                  <div class="cust-cart-items" id="cust-cart-items-container">
+                    <!-- Dynamic cart items list -->
+                  </div>
+
+                  <!-- Tax calculations -->
+                  <div class="cust-bill-summary">
+                    <div class="receipt-row" style="margin-bottom: 6px;">
+                      <span>Items Subtotal:</span>
+                      <span id="cust-summary-subtotal">₹0.00</span>
+                    </div>
+                    <div class="receipt-row" style="margin-bottom: 6px;">
+                      <span>GST Tax (5%):</span>
+                      <span id="cust-summary-tax">₹0.00</span>
+                    </div>
+                    <div class="receipt-row bold" style="margin-top: 8px; border-top: 1px solid var(--border); padding-top: 8px;">
+                      <span>Estimated Total:</span>
+                      <span id="cust-summary-total">₹0.00</span>
+                    </div>
+                  </div>
+
+                  <!-- Customer instructions -->
+                  <div class="form-group">
+                    <label for="cust-order-notes" style="font-size: 11px;">Kitchen instructions / notes:</label>
+                    <textarea id="cust-order-notes" rows="2" placeholder="e.g. Extra spicy, no onions, gluten free..." style="font-size: 12px; padding: 8px;"></textarea>
+                  </div>
+
+                  <button class="btn btn-primary" id="cust-place-order-btn" style="width:100%; padding:12px; border-radius: 8px; font-weight: 700; margin-top: 10px;">
+                    🚀 Confirm & Place Order
+                  </button>
+                </div>
+              </div>
+
+              <!-- SCREEN 4: ORDER CONFIRMATION & REAL-TIME STATUS TRACKING -->
+              <div id="cust-confirm-view" class="customer-view cust-confirm-screen">
+                <div class="track-icon-container">
+                  🔥
+                </div>
+                <h2 style="font-size: 18px; margin-bottom: 6px;">Order Placed Successfully!</h2>
+                <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;" id="cust-confirm-order-id">Order ID: #847</p>
+                <div class="cust-table-tag" id="cust-confirm-table-tag" style="margin-bottom: 0px;">Table 01</div>
+
+                <div style="background-color: var(--primary-light); width: 100%; border-radius: 8px; padding: 10px; margin-top: 15px; font-size: 12px;">
+                  Estimated Wait Time: <strong id="cust-est-time">15 - 20 mins</strong>
+                </div>
+
+                <!-- Real time tracking step indicators -->
+                <div class="tracking-steps">
+                  <div class="track-step" id="step-pending">
+                    <div class="track-step-dot">
+                      <div class="track-step-line"></div>
+                    </div>
+                    <div class="track-step-info">
+                      <span class="track-step-title">Order Received</span>
+                      <span class="track-step-desc">Sent to kitchen for approval</span>
+                    </div>
+                  </div>
+                  
+                  <div class="track-step" id="step-preparing">
+                    <div class="track-step-dot">
+                      <div class="track-step-line"></div>
+                    </div>
+                    <div class="track-step-info">
+                      <span class="track-step-title">Preparing in Kitchen</span>
+                      <span class="track-step-desc">Chefs are preparing your meal</span>
+                    </div>
+                  </div>
+
+                  <div class="track-step" id="step-ready">
+                    <div class="track-step-dot">
+                      <div class="track-step-line"></div>
+                    </div>
+                    <div class="track-step-info">
+                      <span class="track-step-title">Ready to Serve</span>
+                      <span class="track-step-desc">Waitstaff is delivering to table</span>
+                    </div>
+                  </div>
+
+                  <div class="track-step" id="step-delivered">
+                    <div class="track-step-dot"></div>
+                    <div class="track-step-info">
+                      <span class="track-step-title">Delivered & Served</span>
+                      <span class="track-step-desc">Enjoy your delicious food!</span>
+                    </div>
+                  </div>
+                </div>
+
+                <button class="btn btn-outline" id="cust-order-more-btn" style="width: 100%; font-size: 12px;">
+                  📋 Order More Items
+                </button>
+              </div>
+
+              <!-- POPUP SUB-MODAL FOR QUANTITY & INSTRUCTIONS BEFORE CART -->
+              <div class="cust-modal" id="cust-item-modal">
+                <div class="cust-modal-content">
+                  <div class="modal-header-flex" style="margin-bottom: 12px;">
+                    <h3 id="cust-modal-item-name" style="font-size: 18px;">Garlic Parmesan Wings</h3>
+                    <span class="modal-close" id="cust-modal-close">✕</span>
+                  </div>
+                  <img id="cust-modal-item-img" src="" alt="Food Item" style="width:100%; height:150px; object-fit:cover; border-radius: 8px; margin-bottom: 16px; display:none;">
+                  <p id="cust-modal-item-desc" style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4;">Crispy golden fries tossed in fresh garlic butter and grated parmesan.</p>
+                  
+                  <div class="receipt-row">
+                    <span>Base Price:</span>
+                    <span id="cust-modal-item-price" style="font-weight: 700; color: var(--primary); font-size: 16px;">₹180</span>
+                  </div>
+
+                  <!-- Quantity management -->
+                  <div style="margin-top: 16px;">
+                    <label style="font-size: 11px; font-weight: 700; color: var(--text-muted)">Select Quantity:</label>
+                    <div class="cust-quantity-control">
+                      <button class="qty-btn" id="qty-minus">-</button>
+                      <span id="qty-value" style="font-weight: 700; font-size: 16px;">1</span>
+                      <button class="qty-btn" id="qty-plus">+</button>
+                    </div>
+                  </div>
+
+                  <!-- Instructions -->
+                  <div class="form-group">
+                    <label for="cust-modal-notes" style="font-size: 11px;">Special Instructions (Optional):</label>
+                    <input type="text" id="cust-modal-notes" placeholder="e.g. Extra cheese, sauce on the side...">
+                  </div>
+
+                  <button class="btn btn-primary" id="cust-modal-add-btn" style="width: 100%; padding: 12px; font-weight: 700; border-radius: 8px;">
+                    Add to Cart • <span id="cust-modal-total-price">₹180</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

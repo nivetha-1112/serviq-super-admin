@@ -37,7 +37,7 @@ export default function Admin() {
   // 1. Dashboard states
   // 2. Incoming Orders states
   const [orderFilter, setOrderFilter] = useState('All'); // All, New, Preparing, Ready, Done
-  
+
   // 3. Menu Management states
   const [menuCategory, setMenuCategory] = useState('All Items');
   const [menuSearch, setMenuSearch] = useState('');
@@ -149,7 +149,7 @@ export default function Admin() {
             <div className="stat-icon-wrapper font-rupee">₹</div>
           </div>
         </div>
-        
+
         <div className="stat-card">
           <div className="stat-main-row">
             <div className="stat-info">
@@ -264,8 +264,8 @@ export default function Admin() {
           </div>
           <div className="filter-tabs-row">
             {['All', 'New', 'Preparing', 'Ready', 'Done'].map(tab => (
-              <button 
-                key={tab} 
+              <button
+                key={tab}
                 className={`filter-btn ${orderFilter === tab ? 'active' : ''}`}
                 onClick={() => setOrderFilter(tab)}
               >
@@ -302,7 +302,7 @@ export default function Admin() {
                   ) : (
                     <>
                       <button className="btn-print" onClick={() => alert(`Print receipt ORD-${ord.id}`)}>🖨️ Print</button>
-                      <button 
+                      <button
                         className="btn-mark-complete"
                         onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
                       >
@@ -381,7 +381,7 @@ export default function Admin() {
     if (menuSearch) {
       filteredMenu = filteredMenu.filter(item => item.name.toLowerCase().includes(menuSearch.toLowerCase()));
     }
-    
+
     // Sort
     filteredMenu = [...filteredMenu].sort((a, b) => {
       if (menuSort === 'name') return a.name.localeCompare(b.name);
@@ -410,8 +410,8 @@ export default function Admin() {
               {categoriesList.map(cat => {
                 const count = cat === 'All Items' ? menu.length : menu.filter(i => i.category === cat).length;
                 return (
-                  <li 
-                    key={cat} 
+                  <li
+                    key={cat}
                     className={menuCategory === cat ? 'active' : ''}
                     onClick={() => setMenuCategory(cat)}
                   >
@@ -428,17 +428,17 @@ export default function Admin() {
             <div className="menu-search-sort-row">
               <div className="menu-search-wrapper">
                 <span className="search-input-icon">🔍</span>
-                <input 
-                  type="text" 
-                  placeholder="Search menu items..." 
+                <input
+                  type="text"
+                  placeholder="Search menu items..."
                   value={menuSearch}
                   onChange={(e) => setMenuSearch(e.target.value)}
                 />
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Sort by</span>
-                <select 
-                  value={menuSort} 
+                <select
+                  value={menuSort}
                   onChange={(e) => setMenuSort(e.target.value)}
                   style={{ padding: '6px 12px', fontSize: '13px', borderRadius: '6px', background: 'white' }}
                 >
@@ -499,11 +499,11 @@ export default function Admin() {
 
   const renderBilling = () => {
     const selectedBillData = billingData.find(b => b.table === selectedBillingTable) || { table: selectedBillingTable, orders: 0, total: 0, status: 'Paid' };
-    
+
     // Find active orders for selected billing table to show details
     const billingNum = selectedBillingTable.replace('Table ', '');
     const activeTableOrders = orders.filter(o => (o.table === billingNum || parseInt(o.table) === parseInt(billingNum)) && o.billingStatus === 'unpaid');
-    
+
     // Combine items from all unpaid orders of this table
     const billingItems = [];
     activeTableOrders.forEach(o => {
@@ -520,7 +520,7 @@ export default function Admin() {
 
     const taxRate = activeRestaurant.settings?.taxRate || 0.025; // split tax
     const serviceRate = activeRestaurant.settings?.serviceChargeRate || 0;
-    
+
     const subtotal = billingItems.reduce((acc, curr) => acc + curr.amount, 0);
     const taxAmt = parseFloat((subtotal * taxRate * 2).toFixed(2));
     const serviceAmt = parseFloat((subtotal * serviceRate).toFixed(2));
@@ -541,8 +541,8 @@ export default function Admin() {
             <div className="column-header-title">TABLES</div>
             <div className="billing-tables-list-container">
               {billingData.map(b => (
-                <div 
-                  key={b.table} 
+                <div
+                  key={b.table}
                   className={`table-selection-row ${selectedBillingTable === b.table ? 'active' : ''}`}
                   onClick={() => setSelectedBillingTable(b.table)}
                 >
@@ -613,11 +613,11 @@ export default function Admin() {
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>CGST ({(taxRate * 100).toFixed(1)}%):</span>
-                        <strong>₹{(taxAmt/2).toFixed(2)}</strong>
+                        <strong>₹{(taxAmt / 2).toFixed(2)}</strong>
                       </div>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                         <span>SGST ({(taxRate * 100).toFixed(1)}%):</span>
-                        <strong>₹{(taxAmt/2).toFixed(2)}</strong>
+                        <strong>₹{(taxAmt / 2).toFixed(2)}</strong>
                       </div>
                       {serviceAmt > 0 && (
                         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -641,14 +641,14 @@ export default function Admin() {
                     <div className="column-header-title" style={{ borderBottom: '1px solid var(--border)', paddingBottom: '10px', marginBottom: '16px' }}>
                       PAYMENT METHOD
                     </div>
-                    
+
                     <div className="payment-options-list">
                       {['Cash', 'UPI', 'Card'].map(method => (
                         <label key={method} className="payment-checkbox-row" style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer', marginBottom: '8px' }}>
-                          <input 
-                            type="radio" 
-                            name="payment-method" 
-                            value={method} 
+                          <input
+                            type="radio"
+                            name="payment-method"
+                            value={method}
                             checked={billingPaymentMethod === method}
                             onChange={() => setBillingPaymentMethod(method)}
                             style={{ margin: 0 }}
@@ -701,7 +701,7 @@ export default function Admin() {
     const rawNum = tId.replace('T-', '');
     setActiveCustomerTable(rawNum);
     setCart([]);
-    
+
     // Open simulator panel
     const simPanel = document.getElementById('simulator-panel');
     if (simPanel) simPanel.classList.remove('collapsed');
@@ -746,8 +746,8 @@ export default function Admin() {
 
             <div className="dining-tables-grid">
               {tables.map(table => (
-                <div 
-                  key={table.id} 
+                <div
+                  key={table.id}
                   className={`dining-table-card ${table.status.toLowerCase()} ${selectedTableId === table.id ? 'selected' : ''}`}
                   onClick={() => setSelectedTableId(table.id)}
                   style={{ cursor: 'pointer', border: selectedTableId === table.id ? '2px solid var(--primary)' : '1px solid var(--border)' }}
@@ -756,7 +756,7 @@ export default function Admin() {
                     <span className="table-label-tag">{table.id}</span>
                     <span className={`table-status-dot ${table.status.toLowerCase()}`}></span>
                   </div>
-                  
+
                   <div className="table-seating-row">
                     <span className="seats-icon">👥</span>
                     <span className="seats-count">{table.seats || 4} Seats</span>
@@ -771,12 +771,12 @@ export default function Admin() {
           {/* QR Customizer & Details */}
           <div className="qr-customizer-column">
             <div className="customizer-header">Table {currentTable.id} Details</div>
-            
+
             {/* Sticker Preview */}
             <div className="sticker-preview-card" style={{ borderColor: qrCustomizer.color }}>
               <div className="sticker-restaurant-name" style={{ color: qrCustomizer.color }}>{name}</div>
               <div className="sticker-subtitle">SCAN TO ORDER</div>
-              
+
               <div className="sticker-qr-wrapper">
                 <div className="fancy-qr-code" style={{ borderColor: qrCustomizer.color }}>
                   {/* Mock QR graphic */}
@@ -790,7 +790,7 @@ export default function Admin() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="sticker-table-label" style={{ backgroundColor: qrCustomizer.color }}>Table {currentTable.id}</div>
               <div className="sticker-url-text">http://localhost:3000/menu?table={currentTable.id}</div>
               <div className="sticker-footer-instructions">Powered by Serviq</div>
@@ -799,12 +799,12 @@ export default function Admin() {
             {/* controls */}
             <div className="customizer-controls-card">
               <div className="control-section-title">QR Code Customizer</div>
-              
+
               <div className="form-group">
                 <label>Accent Color</label>
                 <div className="qr-color-dots">
                   {['#ff7a00', '#000000', '#1e40af', '#15803d', '#7c3aed'].map(color => (
-                    <button 
+                    <button
                       key={color}
                       className={`qr-color-dot ${qrCustomizer.color === color ? 'active' : ''}`}
                       style={{ background: color }}
@@ -820,8 +820,8 @@ export default function Admin() {
                   <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Show brand logo icon inside QR</div>
                 </div>
                 <label className="switch-container">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     checked={qrCustomizer.showLogo}
                     onChange={(e) => setQrCustomizer({ ...qrCustomizer, showLogo: e.target.checked })}
                   />
@@ -831,11 +831,11 @@ export default function Admin() {
 
               <div className="form-group" style={{ marginBottom: '20px' }}>
                 <label>Seating Capacity</label>
-                <input 
-                  type="number" 
-                  min="1" 
-                  max="12" 
-                  value={currentTable.seats || 4} 
+                <input
+                  type="number"
+                  min="1"
+                  max="12"
+                  value={currentTable.seats || 4}
                   onChange={(e) => handleSeatsUpdate(e.target.value)}
                   style={{ padding: '8px 12px', fontSize: '13px' }}
                 />
@@ -1008,7 +1008,7 @@ export default function Admin() {
 
       <div className="settings-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px', alignItems: 'start' }}>
         <form onSubmit={handleSettingsSubmit} className="settings-forms-column" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-          
+
           <div className="settings-card">
             <h3 style={{ fontSize: '15px', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)', borderBottom: '1px solid var(--border)', paddingBottom: '8px', marginTop: 0 }}>
               <span>🏪</span> Restaurant Details
@@ -1016,27 +1016,27 @@ export default function Admin() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label>Restaurant Name</label>
-                <input 
-                  type="text" 
-                  value={settingsForm.name} 
-                  onChange={(e) => setSettingsForm({ ...settingsForm, name: e.target.value })} 
-                  required 
+                <input
+                  type="text"
+                  value={settingsForm.name}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, name: e.target.value })}
+                  required
                 />
               </div>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label>Tagline / Subtitle</label>
-                <input 
-                  type="text" 
-                  value={settingsForm.tagline} 
-                  onChange={(e) => setSettingsForm({ ...settingsForm, tagline: e.target.value })} 
+                <input
+                  type="text"
+                  value={settingsForm.tagline}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, tagline: e.target.value })}
                 />
               </div>
             </div>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '16px' }}>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label>Currency Symbol</label>
-                <select 
-                  value={settingsForm.currency} 
+                <select
+                  value={settingsForm.currency}
                   onChange={(e) => setSettingsForm({ ...settingsForm, currency: e.target.value })}
                 >
                   <option value="₹">₹ (Indian Rupee)</option>
@@ -1048,10 +1048,10 @@ export default function Admin() {
               </div>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label>Support Email</label>
-                <input 
-                  type="email" 
-                  value={activeRestaurant.owner} 
-                  readOnly 
+                <input
+                  type="email"
+                  value={activeRestaurant.owner}
+                  readOnly
                   style={{ background: '#f1f5f9', cursor: 'not-allowed' }}
                 />
               </div>
@@ -1065,37 +1065,37 @@ export default function Admin() {
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '16px' }}>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label>Dining Tables Count</label>
-                <input 
-                  type="number" 
-                  min="1" 
-                  max="50" 
-                  value={settingsForm.tablesCount} 
-                  onChange={(e) => setSettingsForm({ ...settingsForm, tablesCount: parseInt(e.target.value) || 1 })} 
-                  required 
+                <input
+                  type="number"
+                  min="1"
+                  max="50"
+                  value={settingsForm.tablesCount}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, tablesCount: parseInt(e.target.value) || 1 })}
+                  required
                 />
               </div>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label>Total Tax Rate (%)</label>
-                <input 
-                  type="number" 
-                  min="0" 
-                  max="30" 
-                  step="0.1" 
-                  value={settingsForm.taxRate} 
-                  onChange={(e) => setSettingsForm({ ...settingsForm, taxRate: parseFloat(e.target.value) || 0 })} 
-                  required 
+                <input
+                  type="number"
+                  min="0"
+                  max="30"
+                  step="0.1"
+                  value={settingsForm.taxRate}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, taxRate: parseFloat(e.target.value) || 0 })}
+                  required
                 />
               </div>
               <div className="form-group" style={{ marginBottom: 0 }}>
                 <label>Service Charge (%)</label>
-                <input 
-                  type="number" 
-                  min="0" 
-                  max="25" 
-                  step="0.5" 
-                  value={settingsForm.serviceChargeRate} 
-                  onChange={(e) => setSettingsForm({ ...settingsForm, serviceChargeRate: parseFloat(e.target.value) || 0 })} 
-                  required 
+                <input
+                  type="number"
+                  min="0"
+                  max="25"
+                  step="0.5"
+                  value={settingsForm.serviceChargeRate}
+                  onChange={(e) => setSettingsForm({ ...settingsForm, serviceChargeRate: parseFloat(e.target.value) || 0 })}
+                  required
                 />
               </div>
             </div>
@@ -1112,20 +1112,20 @@ export default function Admin() {
                   <div style={{ fontSize: '11px', color: 'var(--text-muted)' }}>Enable dark mode styling for the admin panel</div>
                 </div>
                 <label className="switch-container">
-                  <input 
-                    type="checkbox" 
+                  <input
+                    type="checkbox"
                     checked={settingsForm.darkMode}
                     onChange={(e) => setSettingsForm({ ...settingsForm, darkMode: e.target.checked })}
                   />
                   <span className="switch-slider"></span>
                 </label>
               </div>
-              
+
               <div>
                 <div style={{ fontWeight: 600, fontSize: '13px', marginBottom: '8px', color: 'var(--text-main)' }}>Theme Accent Color</div>
                 <div style={{ display: 'flex', gap: '12px' }}>
                   {['#ff7a00', '#1e40af', '#15803d', '#7c3aed', '#e11d48'].map(color => (
-                    <button 
+                    <button
                       key={color}
                       type="button"
                       className={`theme-dot ${accentColor === color ? 'active' : ''}`}
@@ -1169,7 +1169,7 @@ export default function Admin() {
                 <span style={{ color: 'var(--text-muted)' }}>Currency</span>
                 <strong style={{ color: 'var(--text-main)' }}>{settingsForm.currency}</strong>
               </div>
-              
+
               <div style={{ marginTop: '10px', backgroundColor: 'var(--primary-light)', color: 'var(--primary)', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: 1.5, fontWeight: 500 }}>
                 💡 Saving these settings will dynamically update the customer menu simulator, billing receipts, and dining table counts.
               </div>
@@ -1208,41 +1208,41 @@ export default function Admin() {
 
               <div className="form-group" style={{ marginBottom: '16px' }}>
                 <label>Item Name</label>
-                <input 
-                  type="text" 
-                  value={menuForm.name} 
-                  onChange={(e) => setMenuForm({ ...menuForm, name: e.target.value })} 
-                  required 
-                  placeholder="e.g. Chicken Biryani" 
+                <input
+                  type="text"
+                  value={menuForm.name}
+                  onChange={(e) => setMenuForm({ ...menuForm, name: e.target.value })}
+                  required
+                  placeholder="e.g. Chicken Biryani"
                 />
               </div>
 
               <div className="form-group" style={{ marginBottom: '16px' }}>
                 <label>Description</label>
-                <textarea 
-                  rows="3" 
-                  value={menuForm.desc} 
-                  onChange={(e) => setMenuForm({ ...menuForm, desc: e.target.value })} 
-                  placeholder="Item description..." 
+                <textarea
+                  rows="3"
+                  value={menuForm.desc}
+                  onChange={(e) => setMenuForm({ ...menuForm, desc: e.target.value })}
+                  placeholder="Item description..."
                 ></textarea>
               </div>
 
               <div style={sty.formGrid2}>
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <label>Price (₹)</label>
-                  <input 
-                    type="number" 
-                    value={menuForm.price} 
-                    onChange={(e) => setMenuForm({ ...menuForm, price: e.target.value })} 
-                    required 
-                    placeholder="320" 
+                  <input
+                    type="number"
+                    value={menuForm.price}
+                    onChange={(e) => setMenuForm({ ...menuForm, price: e.target.value })}
+                    required
+                    placeholder="320"
                   />
                 </div>
                 <div className="form-group" style={{ marginBottom: 0 }}>
                   <label>Category</label>
-                  <select 
-                    value={menuForm.category} 
-                    onChange={(e) => setMenuForm({ ...menuForm, category: e.target.value })} 
+                  <select
+                    value={menuForm.category}
+                    onChange={(e) => setMenuForm({ ...menuForm, category: e.target.value })}
                     required
                   >
                     <option value="Starters">Starters</option>
@@ -1273,24 +1273,24 @@ export default function Admin() {
             <form onSubmit={handleAddTableSubmit}>
               <div className="form-group" style={{ marginBottom: '16px' }}>
                 <label>Table Number / ID</label>
-                <input 
-                  type="text" 
-                  value={addTableForm.id} 
-                  onChange={(e) => setAddTableForm({ ...addTableForm, id: e.target.value })} 
-                  placeholder="e.g. T-06" 
-                  required 
+                <input
+                  type="text"
+                  value={addTableForm.id}
+                  onChange={(e) => setAddTableForm({ ...addTableForm, id: e.target.value })}
+                  placeholder="e.g. T-06"
+                  required
                 />
                 <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>Recommended format: T-XX (e.g. T-06, T-07)</p>
               </div>
               <div className="form-group" style={{ marginBottom: '20px' }}>
                 <label>Seating Capacity</label>
-                <input 
-                  type="number" 
-                  min="1" 
-                  max="20" 
-                  value={addTableForm.seats} 
-                  onChange={(e) => setAddTableForm({ ...addTableForm, seats: parseInt(e.target.value) || 4 })} 
-                  required 
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  value={addTableForm.seats}
+                  onChange={(e) => setAddTableForm({ ...addTableForm, seats: parseInt(e.target.value) || 4 })}
+                  required
                 />
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
@@ -1370,12 +1370,12 @@ export default function Admin() {
               </div>
               <div className="form-group" style={{ marginBottom: '20px' }}>
                 <label>Kitchen Login Password</label>
-                <input 
-                  type="text" 
-                  value={kitchenPasswordForm} 
-                  onChange={(e) => setKitchenPasswordForm(e.target.value)} 
-                  required 
-                  placeholder="e.g. kitchen123" 
+                <input
+                  type="text"
+                  value={kitchenPasswordForm}
+                  onChange={(e) => setKitchenPasswordForm(e.target.value)}
+                  required
+                  placeholder="e.g. kitchen123"
                 />
               </div>
               <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
@@ -1516,4 +1516,4 @@ export default function Admin() {
       </main>
     </div>
   );
-}
+} 

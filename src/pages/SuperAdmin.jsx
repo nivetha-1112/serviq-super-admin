@@ -205,10 +205,10 @@ export default function SuperAdmin() {
 
     return (
       <section className="panel-view active">
-        <div style={sty.sectionTitle}>
-          <div style={sty.titleLeft}>
-            <h2 style={sty.h2}>Dashboard Overview</h2>
-            <span style={sty.subtitle}>Platform-wide metrics at a glance</span>
+        <div className="panel-header-flex">
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title">Dashboard Overview</h2>
+            <p className="panel-inner-desc">Platform-wide metrics at a glance</p>
           </div>
         </div>
 
@@ -271,10 +271,10 @@ export default function SuperAdmin() {
 
     return (
       <section className="panel-view active">
-        <div style={sty.sectionTitle}>
-          <div style={sty.titleLeft}>
-            <h2 style={sty.h2}> Restaurant Directory</h2>
-            <span style={sty.subtitle}>Manage all tenant restaurants, subscriptions, and status</span>
+        <div className="panel-header-flex">
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title"> Restaurant Directory</h2>
+            <p className="panel-inner-desc">Manage all tenant restaurants, subscriptions, and status</p>
           </div>
         </div>
 
@@ -284,11 +284,11 @@ export default function SuperAdmin() {
         </div>
 
         <div style={sty.tableWrap}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table className="menu-items-table">
             <thead>
               <tr>
                 {['S.No', '', 'Restaurant ID', 'Restaurant Name', 'Owner Name', 'Email', 'Phone', 'Address', 'City', 'State', 'GST Number', 'Plan', 'Status', 'Created', 'Timings', 'Actions'].map((h, i) => (
-                  <th key={i} style={sty.th}>{h}</th>
+                  <th key={i}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -343,10 +343,10 @@ export default function SuperAdmin() {
 
     return (
       <section className="panel-view active">
-        <div style={sty.sectionTitle}>
-          <div style={sty.titleLeft}>
-            <h2 style={sty.h2}> Admin Management</h2>
-            <span style={sty.subtitle}>Create, manage, and control restaurant administrator accounts</span>
+        <div className="panel-header-flex">
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title"> Admin Management</h2>
+            <p className="panel-inner-desc">Create, manage, and control restaurant administrator accounts</p>
           </div>
         </div>
 
@@ -356,11 +356,11 @@ export default function SuperAdmin() {
         </div>
 
         <div style={sty.tableWrap}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table className="menu-items-table">
             <thead>
               <tr>
                 {['S.No', '', 'Admin ID', 'Name', 'Email', 'Phone', 'Restaurant Name', 'Role', 'Status', 'Last Login', 'Actions'].map((h, i) => (
-                  <th key={i} style={sty.th}>{h}</th>
+                  <th key={i}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -398,10 +398,10 @@ export default function SuperAdmin() {
   const planColors = ['linear-gradient(135deg, #667eea 0%, #764ba2 100%)', 'linear-gradient(135deg, #ff7a00 0%, #f03514 100%)', 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)', 'linear-gradient(135deg, #fc5c7d 0%, #6a82fb 100%)'];
   const renderPlans = () => (
     <section className="panel-view active">
-      <div style={sty.sectionTitle}>
-        <div style={sty.titleLeft}>
-          <h2 style={sty.h2}> Subscription & Plans</h2>
-          <span style={sty.subtitle}>Define pricing tiers, resource limits, and manage plan assignments</span>
+      <div className="panel-header-flex">
+        <div className="panel-title-desc">
+          <h2 className="panel-inner-title"> Subscription & Plans</h2>
+          <p className="panel-inner-desc">Define pricing tiers, resource limits, and manage plan assignments</p>
         </div>
       </div>
 
@@ -489,10 +489,10 @@ export default function SuperAdmin() {
 
     return (
       <section className="panel-view active">
-        <div style={sty.sectionTitle}>
-          <div style={sty.titleLeft}>
-            <h2 style={sty.h2}> Revenue & Billing</h2>
-            <span style={sty.subtitle}>Track subscription payments, invoices, and refunds</span>
+        <div className="panel-header-flex">
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title"> Revenue & Billing</h2>
+            <p className="panel-inner-desc">Track subscription payments, invoices, and refunds</p>
           </div>
         </div>
 
@@ -543,11 +543,11 @@ export default function SuperAdmin() {
         </div>
 
         <div style={sty.tableWrap}>
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table className="menu-items-table">
             <thead>
               <tr>
                 {['S.No', 'Invoice Number', 'Restaurant Name', 'Subscription Plan', 'Amount', 'Payment Method', 'Payment Date', 'Due Date', 'Payment Status', 'Actions'].map((h, i) => (
-                  <th key={i} style={sty.th}>{h}</th>
+                  <th key={i}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -606,8 +606,8 @@ export default function SuperAdmin() {
           onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'inherit'; }}
         >←</button>
         <div>
-          <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>{pageTitle[activePage]}</h2>
-          {subtitle && <span style={{ fontSize: '12px', color: '#64748b' }}>{subtitle}</span>}
+          <h2 className="panel-inner-title" style={{ margin: 0 }}>{pageTitle[activePage]}</h2>
+          {subtitle && <p className="panel-inner-desc" style={{ margin: '4px 0 0 0' }}>{subtitle}</p>}
         </div>
       </div>
     );
@@ -632,7 +632,7 @@ export default function SuperAdmin() {
               <div className="form-group" style={{ marginBottom: 0 }}><label>State *</label><input type="text" value={restForm.state} onChange={e => setRestForm({ ...restForm, state: e.target.value })} required placeholder="Karnataka" /></div>
               <div className="form-group" style={{ marginBottom: 0 }}><label>GST Number *</label><input type="text" value={restForm.gstNumber} onChange={e => setRestForm({ ...restForm, gstNumber: e.target.value })} required placeholder="29AABCT5678B2ZY" /></div>
             </div>
-            <h4 style={sty.formSection}>⏰ Timings & tion</h4>
+            <h4 style={sty.formSection}>⏰ Timings & Subscription</h4>
             <div style={sty.formGrid2}>
               <div className="form-group" style={{ marginBottom: 0 }}><label>Opening Time</label><input type="time" value={restForm.openingTime} onChange={e => setRestForm({ ...restForm, openingTime: e.target.value })} /></div>
               <div className="form-group" style={{ marginBottom: 0 }}><label>Closing Time</label><input type="time" value={restForm.closingTime} onChange={e => setRestForm({ ...restForm, closingTime: e.target.value })} /></div>

@@ -126,6 +126,43 @@ export default function Admin() {
     return false;
   };
 
+  const iconBtnStyle = {
+    width: '32px',
+    height: '32px',
+    borderRadius: '8px',
+    border: '1.5px solid',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+    fontSize: '14px',
+    padding: 0,
+    transition: 'all 0.2s ease',
+    position: 'relative'
+  };
+
+  const iconBtnEditStyle = {
+    ...iconBtnStyle,
+    background: '#eff6ff',
+    color: '#3b82f6',
+    borderColor: '#93c5fd',
+    marginRight: '6px'
+  };
+
+  const iconBtnDeleteStyle = {
+    ...iconBtnStyle,
+    background: '#fef2f2',
+    color: '#ef4444',
+    borderColor: '#fca5a5'
+  };
+
+  const IconBtn = ({ icon, tooltip, style, onClick }) => (
+    <button title={tooltip} style={style} onClick={onClick}
+      onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.15)'; e.currentTarget.style.boxShadow = '0 3px 10px rgba(0,0,0,0.12)'; }}
+      onMouseLeave={e => { e.currentTarget.style.transform = 'scale(1)'; e.currentTarget.style.boxShadow = 'none'; }}
+    >{icon}</button>
+  );
+
   // KPIs
   const todayRevenue = orders
     .filter(o => o.billingStatus === 'paid')
@@ -155,7 +192,7 @@ export default function Admin() {
             <div className="stat-info">
               <div className="stat-label">Total Orders</div>
               <h3>{orders.length}</h3>
-              <div className="stat-sub-label text-muted">{preparingOrdersCount} in progress</div>
+              <div className="stat-sub-label green-label">{preparingOrdersCount} in progress</div>
             </div>
             <div className="stat-icon-wrapper">📋</div>
           </div>
@@ -166,7 +203,7 @@ export default function Admin() {
             <div className="stat-info">
               <div className="stat-label">Active Tables</div>
               <h3>{occupiedTablesCount} / {tables.length}</h3>
-              <div className="stat-sub-label text-muted">{tables.length - occupiedTablesCount} tables available</div>
+              <div className="stat-sub-label green-label">{tables.length - occupiedTablesCount} tables available</div>
             </div>
             <div className="stat-icon-wrapper">🪑</div>
           </div>
@@ -191,7 +228,7 @@ export default function Admin() {
             <span className="live-dot-indicator"><span className="pulse-dot"></span>Live</span>
           </div>
           <div className="feed-table-wrapper">
-            <table className="feed-table">
+            <table className="menu-items-table feed-table">
               <thead>
                 <tr>
                   <th>ORDER ID</th>
@@ -457,10 +494,10 @@ export default function Admin() {
                     <tr key={item.id}>
                       <td style={{ width: '60px', padding: '12px' }}>
                         {item.image ? (
-                          <img 
-                            src={item.image} 
-                            alt={item.name} 
-                            style={{ width: '48px', height: '48px', borderRadius: '6px', objectFit: 'cover', display: 'block' }} 
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            style={{ width: '48px', height: '48px', borderRadius: '6px', objectFit: 'cover', display: 'block' }}
                           />
                         ) : (
                           <div style={{ width: '48px', height: '48px', background: '#f1f5f9', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>
@@ -480,8 +517,8 @@ export default function Admin() {
                       <td style={{ padding: '12px', color: '#000000', fontSize: '13px' }}>{item.category}</td>
                       <td style={{ padding: '12px', fontWeight: 700, fontSize: '15px' }}>₹{item.price}</td>
                       <td style={{ padding: '12px', textAlign: 'right' }}>
-                        <button className="btn btn-outline" style={{ padding: '4px 8px', fontSize: '12px', marginRight: '6px' }} onClick={() => openEditMenuModal(item)}>Edit</button>
-                        <button className="btn btn-outline" style={{ padding: '4px 8px', fontSize: '12px', borderColor: '#fca5a5', color: '#dc2626' }} onClick={() => handleDeleteMenu(item.id)}>Delete</button>
+                        <IconBtn icon="✏️" tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditMenuModal(item)} />
+                        <IconBtn icon="🗑️" tooltip="Delete" style={iconBtnDeleteStyle} onClick={() => handleDeleteMenu(item.id)} />
                       </td>
                     </tr>
                   ))}
@@ -741,7 +778,7 @@ export default function Admin() {
               </div>
               <div className="table-metric-card">
                 <div className="metric-value">{occupiedTablesCount}</div>
-                <div className="metric-label">Occupied</div>
+                <div className="l">Occupied</div>
               </div>
               <div className="table-metric-card">
                 <div className="metric-value">{tables.reduce((acc, t) => acc + (t.seats || 4), 0)}</div>
@@ -800,8 +837,16 @@ export default function Admin() {
                 </div>
               </div>
 
-              <div className="sticker-table-label" style={{ backgroundColor: qrCustomizer.color }}>Table {currentTable.id}</div>
-              <div className="sticker-url-text">http://localhost:3000/menu?table={currentTable.id}</div>
+              <div className="sticker-table-label" style={{
+                backgroundColor: '#ffffff',
+                color: '#000000',
+                border: `2px solid ${qrCustomizer.color}`,
+                borderRadius: '8px',
+                padding: '6px 18px',
+                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.08)',
+                display: 'inline-block'
+              }}>Table {currentTable.id}</div>
+             <br></br>
               <div className="sticker-footer-instructions">Powered by Serviq</div>
             </div>
 
@@ -935,19 +980,19 @@ export default function Admin() {
           <div className="staff-metrics-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
             <div className="table-metric-card" style={{ backgroundColor: '#fafafa', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
               <div className="metric-value" style={{ fontSize: '20px', fontWeight: 700, color: 'var(--black)' }}>{staff.length}</div>
-              <div className="metric-label" style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>Total Staff</div>
+              <div className="metric-label" style={{ fontSize: '11px', fontWeight: 600 }}>Total Staff</div>
             </div>
             <div className="table-metric-card" style={{ backgroundColor: '#fafafa', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
               <div className="metric-value" style={{ fontSize: '20px', fontWeight: 700, color: 'var(--success)' }}>{staff.filter(s => s.status === 'On Duty').length}</div>
-              <div className="metric-label" style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>On Duty</div>
+              <div className="metric-label" style={{ fontSize: '11px', fontWeight: 600 }}>On Duty</div>
             </div>
             <div className="table-metric-card" style={{ backgroundColor: '#fafafa', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
               <div className="metric-value" style={{ fontSize: '20px', fontWeight: 700, color: 'var(--primary)' }}>{staff.filter(s => s.role === 'Kitchen').length}</div>
-              <div className="metric-label" style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>Kitchen Staff</div>
+              <div className="metric-label" style={{ fontSize: '11px', fontWeight: 600 }}>Kitchen Staff</div>
             </div>
             <div className="table-metric-card" style={{ backgroundColor: '#fafafa', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
               <div className="metric-value" style={{ fontSize: '20px', fontWeight: 700, color: '#1e40af' }}>{staff.filter(s => s.role === 'Waiter').length}</div>
-              <div className="metric-label" style={{ fontSize: '11px', color: 'var(--text-muted)', fontWeight: 600 }}>Waitstaff</div>
+              <div className="metric-label" style={{ fontSize: '11px', fontWeight: 600 }}>Waitstaff</div>
             </div>
           </div>
 
@@ -974,8 +1019,8 @@ export default function Admin() {
                     <td style={{ padding: '12px 14px' }}>{s.email}</td>
                     <td style={{ padding: '12px 14px' }}><Badge status={s.status} /></td>
                     <td style={{ padding: '12px 14px', textAlign: 'right' }}>
-                      <button className="btn btn-outline" style={{ padding: '4px 8px', fontSize: '11px', marginRight: '6px' }} onClick={() => openEditStaffModal(s)}>Edit</button>
-                      <button className="btn btn-outline" style={{ padding: '4px 8px', fontSize: '11px', borderColor: '#fca5a5', color: '#dc2626' }} onClick={() => handleDeleteStaff(s.id)}>Delete</button>
+                      <IconBtn icon="✏️" tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditStaffModal(s)} />
+                      <IconBtn icon="🗑️" tooltip="Delete" style={iconBtnDeleteStyle} onClick={() => handleDeleteStaff(s.id)} />
                     </td>
                   </tr>
                 ))}
@@ -1387,7 +1432,7 @@ export default function Admin() {
             <form onSubmit={handleKitchenPasswordSubmit}>
               <div className="form-group" style={{ marginBottom: '16px' }}>
                 <label>Kitchen Login Email</label>
-                <input type="email" value={kitchenLogin.email} readOnly style={{ backgroundColor: 'var(--bg-tertiary)', color: 'var(--text-muted)', cursor: 'not-allowed' }} />
+                <input type="email" value={kitchenLogin.email} nly style={{ backgroundColor: 'var(--bg-tertiary)', cursor: 'not-allowed' }} />
               </div>
               <div className="form-group" style={{ marginBottom: '20px' }}>
                 <label>Kitchen Login Password</label>

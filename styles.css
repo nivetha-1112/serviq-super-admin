@@ -666,7 +666,7 @@ textarea:focus {
 
 .stat-label {
   font-size: 12px;
-  color: var(--text-muted);
+  color: #000000;
   font-weight: 600;
   text-transform: capitalize;
   margin-bottom: 6px;
@@ -683,9 +683,6 @@ textarea:focus {
   font-size: 11px;
 }
 
-.text-muted {
-  color: var(--text-muted);
-}
 
 .green-label {
   color: var(--success);
@@ -770,7 +767,7 @@ textarea:focus {
   padding: 12px 14px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-muted);
+  color: #000000;
   border-bottom: 1.5px solid var(--border);
   background-color: var(--bg-secondary);
 }
@@ -851,12 +848,31 @@ textarea:focus {
 }
 
 .dash-table-cell.occupied {
-  background-color: var(--bg-tertiary);
-  border-color: #cbd5e1;
+  background-color: #ffe4e6;
+  border-color: #fca5a5;
+}
+
+.dash-table-cell.occupied .table-cell-id {
+  color: #b91c1c;
+}
+
+.dash-table-cell.occupied .table-cell-status {
+  color: #e11d48;
+  font-weight: 600;
 }
 
 .dash-table-cell.free {
-  background-color: #ffffff;
+  background-color: #dcfce7;
+  border-color: #86efac;
+}
+
+.dash-table-cell.free .table-cell-id {
+  color: #15803d;
+}
+
+.dash-table-cell.free .table-cell-status {
+  color: #16a34a;
+  font-weight: 600;
 }
 
 .table-cell-id {
@@ -993,7 +1009,7 @@ textarea:focus {
 .order-item-note {
   margin-top: 10px;
   font-size: 12px;
-  color: var(--text-muted);
+  color: black;
   font-style: italic;
 }
 
@@ -1381,7 +1397,7 @@ input:checked+.slider:before {
    ========================================================================== */
 .billing-panel-grid {
   display: grid;
-  grid-template-columns: 220px 1fr;
+  grid-template-columns: 300px 1fr;
   gap: 20px;
   align-items: start;
 }
@@ -2174,6 +2190,7 @@ input:checked+.slider:before {
   line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
+  line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -2573,7 +2590,7 @@ input:checked+.slider:before {
 .table-metric-card .metric-label {
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-muted);
+  color: black;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -2632,7 +2649,7 @@ body.dark-theme .dining-table-card.active {
 .dining-table-card .seats-label {
   font-size: 11px;
   font-weight: 600;
-  color: var(--text-muted);
+  color: #000000;
   background-color: var(--bg-tertiary);
   padding: 3px 8px;
   border-radius: 20px;
@@ -2811,6 +2828,9 @@ body.dark-theme .dining-table-card.active {
 .fancy-qr-code {
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sticker-table-label {

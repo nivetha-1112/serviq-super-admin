@@ -133,7 +133,7 @@ export default function Login() {
               <label htmlFor="login-password" style={{ marginBottom: 0 }}>
                 {role === 'superadmin' ? 'Super Admin Password' : 'Admin Password'}
               </label>
-              <a href="#" className="forgot-pwd-link" onClick={() => alert('Password reset link sent to registered email.')}>Forgot password?</a>
+             
             </div>
             <div className="input-icon-wrapper" style={{ position: 'relative' }}>
               <span className="input-icon">🔒</span>

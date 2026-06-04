@@ -207,7 +207,7 @@ export default function SuperAdmin() {
       <section className="panel-view active">
         <div style={sty.sectionTitle}>
           <div style={sty.titleLeft}>
-            <h2 style={sty.h2}>📊 Dashboard Overview</h2>
+            <h2 style={sty.h2}>Dashboard Overview</h2>
             <span style={sty.subtitle}>Platform-wide metrics at a glance</span>
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function SuperAdmin() {
       <section className="panel-view active">
         <div style={sty.sectionTitle}>
           <div style={sty.titleLeft}>
-            <h2 style={sty.h2}>🏪 Restaurant Directory</h2>
+            <h2 style={sty.h2}> Restaurant Directory</h2>
             <span style={sty.subtitle}>Manage all tenant restaurants, subscriptions, and status</span>
           </div>
         </div>
@@ -345,7 +345,7 @@ export default function SuperAdmin() {
       <section className="panel-view active">
         <div style={sty.sectionTitle}>
           <div style={sty.titleLeft}>
-            <h2 style={sty.h2}>👤 Admin Management</h2>
+            <h2 style={sty.h2}> Admin Management</h2>
             <span style={sty.subtitle}>Create, manage, and control restaurant administrator accounts</span>
           </div>
         </div>
@@ -400,7 +400,7 @@ export default function SuperAdmin() {
     <section className="panel-view active">
       <div style={sty.sectionTitle}>
         <div style={sty.titleLeft}>
-          <h2 style={sty.h2}>💳 Subscription & Plans</h2>
+          <h2 style={sty.h2}> Subscription & Plans</h2>
           <span style={sty.subtitle}>Define pricing tiers, resource limits, and manage plan assignments</span>
         </div>
       </div>
@@ -491,7 +491,7 @@ export default function SuperAdmin() {
       <section className="panel-view active">
         <div style={sty.sectionTitle}>
           <div style={sty.titleLeft}>
-            <h2 style={sty.h2}>💰 Revenue & Billing</h2>
+            <h2 style={sty.h2}> Revenue & Billing</h2>
             <span style={sty.subtitle}>Track subscription payments, invoices, and refunds</span>
           </div>
         </div>
@@ -632,7 +632,7 @@ export default function SuperAdmin() {
               <div className="form-group" style={{ marginBottom: 0 }}><label>State *</label><input type="text" value={restForm.state} onChange={e => setRestForm({ ...restForm, state: e.target.value })} required placeholder="Karnataka" /></div>
               <div className="form-group" style={{ marginBottom: 0 }}><label>GST Number *</label><input type="text" value={restForm.gstNumber} onChange={e => setRestForm({ ...restForm, gstNumber: e.target.value })} required placeholder="29AABCT5678B2ZY" /></div>
             </div>
-            <h4 style={sty.formSection}>⏰ Timings & Subscription</h4>
+            <h4 style={sty.formSection}>⏰ Timings & tion</h4>
             <div style={sty.formGrid2}>
               <div className="form-group" style={{ marginBottom: 0 }}><label>Opening Time</label><input type="time" value={restForm.openingTime} onChange={e => setRestForm({ ...restForm, openingTime: e.target.value })} /></div>
               <div className="form-group" style={{ marginBottom: 0 }}><label>Closing Time</label><input type="time" value={restForm.closingTime} onChange={e => setRestForm({ ...restForm, closingTime: e.target.value })} /></div>

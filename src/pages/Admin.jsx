@@ -43,7 +43,7 @@ export default function Admin() {
   const [menuSearch, setMenuSearch] = useState('');
   const [menuSort, setMenuSort] = useState('name');
   const [activePage, setActivePage] = useState(null); // 'menu-form' | 'table-form' | 'staff-form' | 'kitchen-form'
-  const [menuForm, setMenuForm] = useState({ id: '', name: '', desc: '', price: '', category: 'Starters' });
+  const [menuForm, setMenuForm] = useState({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '' });
 
   // 4. Billing Panel states
   const [selectedBillingTable, setSelectedBillingTable] = useState('');
@@ -340,7 +340,7 @@ export default function Admin() {
         desc: menuForm.desc,
         price: parseFloat(menuForm.price) || 0,
         category: menuForm.category,
-        image: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop&q=60',
+        image: menuForm.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop&q=60',
         available: true
       });
       alert('New dish added to menu!');
@@ -349,7 +349,7 @@ export default function Admin() {
   };
 
   const openAddMenuModal = () => {
-    setMenuForm({ id: '', name: '', desc: '', price: '', category: 'Starters' });
+    setMenuForm({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '' });
     setActivePage('menu-form');
   };
 
@@ -359,7 +359,8 @@ export default function Admin() {
       name: item.name,
       desc: item.desc || '',
       price: item.price.toString(),
-      category: item.category
+      category: item.category,
+      image: item.image || ''
     });
     setActivePage('menu-form');
   };
@@ -455,20 +456,28 @@ export default function Admin() {
                   {filteredMenu.map(item => (
                     <tr key={item.id}>
                       <td style={{ width: '60px', padding: '12px' }}>
-                        <div style={{ width: '48px', height: '48px', background: '#f1f5f9', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                          🍴
-                        </div>
+                        {item.image ? (
+                          <img 
+                            src={item.image} 
+                            alt={item.name} 
+                            style={{ width: '48px', height: '48px', borderRadius: '6px', objectFit: 'cover', display: 'block' }} 
+                          />
+                        ) : (
+                          <div style={{ width: '48px', height: '48px', background: '#f1f5f9', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>
+                            🍴
+                          </div>
+                        )}
                       </td>
                       <td style={{ padding: '12px' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                           <strong style={{ fontSize: '15px' }}>{item.name}</strong>
                           {item.veg ? <span style={{ color: '#16a34a', fontSize: '12px' }}>🟢 Veg</span> : <span style={{ color: '#dc2626', fontSize: '12px' }}>🔴 Non-Veg</span>}
                         </div>
-                        <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '4px', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        <div style={{ fontSize: '12px', color: '#000000', marginTop: '4px', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                           {item.desc || 'No description provided.'}
                         </div>
                       </td>
-                      <td style={{ padding: '12px', color: 'var(--text-muted)', fontSize: '13px' }}>{item.category}</td>
+                      <td style={{ padding: '12px', color: '#000000', fontSize: '13px' }}>{item.category}</td>
                       <td style={{ padding: '12px', fontWeight: 700, fontSize: '15px' }}>₹{item.price}</td>
                       <td style={{ padding: '12px', textAlign: 'right' }}>
                         <button className="btn btn-outline" style={{ padding: '4px 8px', fontSize: '12px', marginRight: '6px' }} onClick={() => openEditMenuModal(item)}>Edit</button>
@@ -1200,10 +1209,12 @@ export default function Admin() {
           <PageHeader subtitle={menuForm.id ? 'Modify menu item details' : 'Create a new dish for the menu'} />
           <div style={sty.pageCard}>
             <form onSubmit={handleMenuSubmit}>
-              <div className="edit-image-placeholder-box" style={{ marginBottom: '20px' }}>
-                <div className="crossed-inner">
-                  <span className="crossed-label">Item Photo Placeholder</span>
-                </div>
+              <div className="edit-image-placeholder-box" style={{ marginBottom: '20px', border: '1px solid var(--border)', borderRadius: '12px', background: '#f8fafc', height: '160px', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                {menuForm.image ? (
+                  <img src={menuForm.image} alt={menuForm.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <div style={{ fontSize: '32px' }}>🍴</div>
+                )}
               </div>
 
               <div className="form-group" style={{ marginBottom: '16px' }}>
@@ -1214,6 +1225,16 @@ export default function Admin() {
                   onChange={(e) => setMenuForm({ ...menuForm, name: e.target.value })}
                   required
                   placeholder="e.g. Chicken Biryani"
+                />
+              </div>
+
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                <label>Image URL</label>
+                <input
+                  type="text"
+                  value={menuForm.image || ''}
+                  onChange={(e) => setMenuForm({ ...menuForm, image: e.target.value })}
+                  placeholder="https://images.unsplash.com/..."
                 />
               </div>
 

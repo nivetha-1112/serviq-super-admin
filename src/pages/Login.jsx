@@ -84,7 +84,7 @@ export default function Login() {
         </div>
 
         {/* Demo Credentials - Super Admin */}
-        {role === 'superadmin' && (
+        {/* {role === 'superadmin' && (
           <div id="demo-creds-superadmin" style={{ backgroundColor: 'var(--primary-light)', border: '1px solid rgba(255, 122, 0, 0.2)', borderRadius: '8px', padding: '12px', marginBottom: '16px', fontSize: '12px', textAlign: 'left', lineHeight: '1.4' }}>
             <div style={{ fontWeight: 700, color: 'var(--primary)', marginBottom: '6px', display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span>🔑</span> Super Admin Demo Login
@@ -96,23 +96,23 @@ export default function Login() {
               <span style={{ wordBreak: 'break-all' }}><code>super123</code></span>
             </div>
           </div>
-        )}
+        )} */}
 
         {/* Demo Credentials - Admin */}
-        {role === 'admin' && (
-          <div id="demo-creds-admin" style={{ backgroundColor: 'var(--primary-light)', border: '1px solid rgba(255, 122, 0, 0.2)', borderRadius: '8px', padding: '12px', marginBottom: '16px', fontSize: '12px', textAlign: 'left', lineHeight: '1.4' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '4px 8px', color: 'var(--text-main)' }}>
-              <span><strong>Tenant Admin:</strong></span>
-              <span style={{ wordBreak: 'break-all' }}><code>admin@saravana.com</code> / <code>admin123</code></span>
-              <span><strong>Kitchen Stn:</strong></span>
-              <span style={{ wordBreak: 'break-all' }}><code>kitchen@saravana.com</code> / <code>kitchen123</code></span>
-            </div>
-          </div>
-        )}
+        {/* {role === 'admin' && (
+          // <div id="demo-creds-admin" style={{ backgroundColor: 'var(--primary-light)', border: '1px solid rgba(255, 122, 0, 0.2)', borderRadius: '8px', padding: '12px', marginBottom: '16px', fontSize: '12px', textAlign: 'left', lineHeight: '1.4' }}>
+          //   <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr', gap: '4px 8px', color: 'var(--text-main)' }}>
+          //     <span><strong>Tenant Admin:</strong></span>
+          //     <span style={{ wordBreak: 'break-all' }}><code>admin@saravana.com</code> / <code>admin123</code></span>
+          //     <span><strong>Kitchen Stn:</strong></span>
+          //     <span style={{ wordBreak: 'break-all' }}><code>kitchen@saravana.com</code> / <code>kitchen123</code></span>
+          //   </div>
+          // </div>
+        )} */}
         
         <form id="login-form" onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="login-email">
+            <label htmlFor="login-email" style={{textAlign:'left'}}>
               {role === 'superadmin' ? 'Super Admin Email' : 'Admin Email'}
             </label>
             <div className="input-icon-wrapper">
@@ -129,7 +129,7 @@ export default function Login() {
           </div>
           
           <div className="form-group" style={{ position: 'relative' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '6px' }}>
+            <div style={{ display: 'flex',  alignItems: 'center', marginBottom: '6px' }}>
               <label htmlFor="login-password" style={{ marginBottom: 0 }}>
                 {role === 'superadmin' ? 'Super Admin Password' : 'Admin Password'}
               </label>

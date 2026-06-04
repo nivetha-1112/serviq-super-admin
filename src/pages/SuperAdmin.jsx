@@ -586,16 +586,16 @@ export default function SuperAdmin() {
   //  INLINE PAGE RENDERER (forms/views inside content-body)
   // ══════════════════════════════════════════════════════════
   const pageTitle = {
-    'rest-form': restForm.id ? '✏️ Edit Restaurant' : ' Add New Restaurant',
-    'rest-view': '👁️ Restaurant Details',
-    'rest-perf': '📊 Restaurant Performance',
-    'admin-form': adminForm.id ? '✏️ Edit Admin' : ' Create Admin',
-    'admin-view': '👁️ Admin Details',
-    'admin-resetpw': '🔑 Reset Admin Password',
-    'plan-form': planForm.id ? '✏️ Modify Plan' : 'Create Subscription Plan',
-    'plan-upgrade': '⬆️ Upgrade / Downgrade Plan',
+    'rest-form': restForm.id ? ' Edit Restaurant' : ' Add New Restaurant',
+    'rest-view': ' Restaurant Details',
+    'rest-perf': ' Restaurant Performance',
+    'admin-form': adminForm.id ? ' Edit Admin' : ' Create Admin',
+    'admin-view': ' Admin Details',
+    'admin-resetpw': 'Reset Admin Password',
+    'plan-form': planForm.id ? ' Modify Plan' : 'Create Subscription Plan',
+    'plan-upgrade': '⬆Upgrade / Downgrade Plan',
     'invoice-gen': ' Generate Invoice',
-    'invoice-view': '📄 Invoice Receipt',
+    'invoice-view': ' Invoice Receipt',
   };
 
   const renderActivePage = () => {
@@ -991,7 +991,7 @@ export default function SuperAdmin() {
             { key: 'saas-plans', icon: '💳', label: 'Subscription & Plans' },
             { key: 'saas-invoices', icon: '💰', label: 'Revenue & Billing' },
           ].map(tab => (
-            <li key={tab.key} className={`sidebar-item superadmin-sidebar-item ${activeTab === tab.key ? 'active' : ''}`} onClick={() => setActiveTab(tab.key)}>
+            <li key={tab.key} className={`sidebar-item superadmin-sidebar-item ${activeTab === tab.key ? 'active' : ''}`} onClick={() => { setActiveTab(tab.key); setActivePage(null); }}>
               <a href="#">{tab.icon} {tab.label}</a>
             </li>
           ))}

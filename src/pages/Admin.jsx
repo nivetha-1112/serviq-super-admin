@@ -58,10 +58,10 @@ export default function Admin() {
   const [kitchenPasswordForm, setKitchenPasswordForm] = useState('');
 
   const pageTitle = {
-    'menu-form': menuForm.id ? '✏️ Edit Menu Item' : '➕ Add New Menu Item',
-    'table-form': '📋 Add Dining Table',
-    'staff-form': staffForm.id ? '✏️ Edit Staff Details' : '👥 Register New Staff',
-    'kitchen-form': '🔑 Kitchen Shared Credentials',
+    'menu-form': menuForm.id ? ' Edit Menu Item' : ' Add New Menu Item',
+    'table-form': ' Add Dining Table',
+    'staff-form': staffForm.id ? ' Edit Staff Details' : 'Register New Staff',
+    'kitchen-form': ' Kitchen Shared Credentials',
   };
 
   const sty = {
@@ -1407,12 +1407,12 @@ export default function Admin() {
 
         <ul className="sidebar-menu">
           {isTabAllowed('overview') && (
-            <li className={`sidebar-item ${activeTab === 'overview' ? 'active' : ''}`} onClick={() => setActiveTab('overview')}>
+            <li className={`sidebar-item ${activeTab === 'overview' ? 'active' : ''}`} onClick={() => { setActiveTab('overview'); setActivePage(null); }}>
               <a href="#">🎛️ Dashboard</a>
             </li>
           )}
           {isTabAllowed('orders') && (
-            <li className={`sidebar-item ${activeTab === 'orders' ? 'active' : ''}`} onClick={() => setActiveTab('orders')}>
+            <li className={`sidebar-item ${activeTab === 'orders' ? 'active' : ''}`} onClick={() => { setActiveTab('orders'); setActivePage(null); }}>
               <a href="#">
                 📝 Incoming Orders
                 {pendingOrdersCount > 0 && <span className="pulse-indicator" style={{ marginLeft: 'auto' }}></span>}
@@ -1420,27 +1420,27 @@ export default function Admin() {
             </li>
           )}
           {isTabAllowed('menu') && (
-            <li className={`sidebar-item ${activeTab === 'menu' ? 'active' : ''}`} onClick={() => setActiveTab('menu')}>
+            <li className={`sidebar-item ${activeTab === 'menu' ? 'active' : ''}`} onClick={() => { setActiveTab('menu'); setActivePage(null); }}>
               <a href="#">🍴 Menu Management</a>
             </li>
           )}
           {isTabAllowed('billing') && (
-            <li className={`sidebar-item ${activeTab === 'billing' ? 'active' : ''}`} onClick={() => setActiveTab('billing')}>
+            <li className={`sidebar-item ${activeTab === 'billing' ? 'active' : ''}`} onClick={() => { setActiveTab('billing'); setActivePage(null); }}>
               <a href="#">💵 Billing</a>
             </li>
           )}
           {isTabAllowed('saas') && (
-            <li className={`sidebar-item ${activeTab === 'saas' ? 'active' : ''}`} onClick={() => setActiveTab('saas')}>
+            <li className={`sidebar-item ${activeTab === 'saas' ? 'active' : ''}`} onClick={() => { setActiveTab('saas'); setActivePage(null); }}>
               <a href="#">📋 Tables</a>
             </li>
           )}
           {isTabAllowed('staff') && (
-            <li className={`sidebar-item ${activeTab === 'staff' ? 'active' : ''}`} onClick={() => setActiveTab('staff')}>
+            <li className={`sidebar-item ${activeTab === 'staff' ? 'active' : ''}`} onClick={() => { setActiveTab('staff'); setActivePage(null); }}>
               <a href="#">👥 Staff</a>
             </li>
           )}
           {isTabAllowed('settings') && (
-            <li className={`sidebar-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => setActiveTab('settings')}>
+            <li className={`sidebar-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => { setActiveTab('settings'); setActivePage(null); }}>
               <a href="#">⚙️ Settings</a>
             </li>
           )}

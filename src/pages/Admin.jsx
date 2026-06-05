@@ -20,6 +20,9 @@ export default function Admin() {
     deleteStaff,
     updateKitchenPassword,
     updateOrderStatus,
+    assignWaiterToOrder,
+    deleteOrder,
+    updateOrder,
     markBillAsPaid,
     darkMode,
     setDarkMode,
@@ -37,6 +40,11 @@ export default function Admin() {
   // 1. Dashboard states
   // 2. Incoming Orders states
   const [orderFilter, setOrderFilter] = useState('All'); // All, New, Preparing, Ready, Done
+  const [selectedWaiterFilter, setSelectedWaiterFilter] = useState('All Waiters');
+  const [waiterDropdownOpen, setWaiterDropdownOpen] = useState(false);
+  const [activeViewOrder, setActiveViewOrder] = useState(null);
+  const [activeEditOrder, setActiveEditOrder] = useState(null);
+  const [editOrderForm, setEditOrderForm] = useState({ table: '', notes: '', waiter: 'Unassigned' });
 
   // 3. Menu Management states
   const [menuCategory, setMenuCategory] = useState('All Items');
@@ -62,6 +70,7 @@ export default function Admin() {
     'table-form': ' Add Dining Table',
     'staff-form': staffForm.id ? ' Edit Staff Details' : 'Register New Staff',
     'kitchen-form': ' Kitchen Shared Credentials',
+    'order-edit-form': ' Edit Order Details',
   };
 
   const sty = {
@@ -287,28 +296,105 @@ export default function Admin() {
   };
 
   const renderOrders = () => {
+    const waitersList = staff.filter(s => s.role === 'Waiter').map(s => s.name);
+    
     let filteredOrders = [...orders].reverse();
     if (orderFilter !== 'All') {
       filteredOrders = filteredOrders.filter(o => o.status === orderFilter.toLowerCase());
     }
+    if (selectedWaiterFilter !== 'All Waiters') {
+      filteredOrders = filteredOrders.filter(o => o.waiter === selectedWaiterFilter);
+    }
 
     return (
       <section className="panel-view active">
-        <div className="panel-header-flex">
+        <div className="panel-header-flex" style={{ alignItems: 'center' }}>
           <div className="panel-title-desc">
             <h2 className="panel-inner-title">Incoming Orders</h2>
             <p className="panel-inner-desc">Manage and process all live orders</p>
           </div>
-          <div className="filter-tabs-row">
-            {['All', 'New', 'Preparing', 'Ready', 'Done'].map(tab => (
-              <button
-                key={tab}
-                className={`filter-btn ${orderFilter === tab ? 'active' : ''}`}
-                onClick={() => setOrderFilter(tab)}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            {/* Waiter Option Dropdown Filter */}
+            <div style={{ position: 'relative' }}>
+              <button 
+                onClick={() => setWaiterDropdownOpen(!waiterDropdownOpen)}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  gap: '12px',
+                  padding: '8px 16px',
+                  backgroundColor: '#ffffff',
+                  border: '1.5px solid var(--border)',
+                  borderRadius: '10px',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: 'var(--text-main)',
+                  cursor: 'pointer',
+                  minWidth: '150px',
+                  boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
+                }}
               >
-                {tab}
+                <span>{selectedWaiterFilter}</span>
+                <span style={{ fontSize: '10px', transition: 'transform 0.2s', transform: waiterDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
               </button>
-            ))}
+              {waiterDropdownOpen && (
+                <div style={{
+                  position: 'absolute',
+                  top: 'calc(100% + 6px)',
+                  left: 0,
+                  width: '100%',
+                  backgroundColor: '#ffffff',
+                  border: '1.5px solid var(--border)',
+                  borderRadius: '10px',
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
+                  zIndex: 1000,
+                  overflow: 'hidden'
+                }}>
+                  {['All Waiters', ...waitersList].map((w, idx) => {
+                    const isSelected = selectedWaiterFilter === w;
+                    return (
+                      <div
+                        key={idx}
+                        onClick={() => {
+                          setSelectedWaiterFilter(w);
+                          setWaiterDropdownOpen(false);
+                        }}
+                        style={{
+                          padding: '10px 16px',
+                          fontSize: '13px',
+                          fontWeight: '500',
+                          backgroundColor: isSelected ? '#3b82f6' : '#ffffff',
+                          color: isSelected ? '#ffffff' : 'var(--text-main)',
+                          cursor: 'pointer',
+                          transition: 'background-color 0.15s, color 0.15s'
+                        }}
+                        onMouseEnter={(e) => {
+                          if (!isSelected) e.currentTarget.style.backgroundColor = '#f3f4f6';
+                        }}
+                        onMouseLeave={(e) => {
+                          if (!isSelected) e.currentTarget.style.backgroundColor = '#ffffff';
+                        }}
+                      >
+                        {w}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+
+            <div className="filter-tabs-row">
+              {['All', 'New', 'Preparing', 'Ready', 'Done'].map(tab => (
+                <button
+                  key={tab}
+                  className={`filter-btn ${orderFilter === tab ? 'active' : ''}`}
+                  onClick={() => setOrderFilter(tab)}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -316,10 +402,16 @@ export default function Admin() {
           {filteredOrders.map(ord => (
             <div key={ord.id} className="incoming-order-bar">
               <div className="order-bar-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
                   <span className="order-bar-id">#ORD-{ord.id}</span>
                   <span className="order-bar-table">📍 Table {ord.table}</span>
                   <span className="order-bar-time">🕒 {ord.time} · {ord.timeAgo}</span>
+                  
+                  {/* Waiter Name Text Option (plain text style) */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', background: '#f3f4f6', padding: '4px 10px', borderRadius: '6px', border: '1px solid var(--border)' }}>
+                    <span style={{ fontSize: '13px' }}>👤</span>
+                    <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{ord.waiter || 'Unassigned'}</span>
+                  </div>
                 </div>
                 <Badge status={ord.status} />
               </div>
@@ -333,20 +425,158 @@ export default function Admin() {
                   </div>
                   {ord.notes && <div className="order-item-note">📝 Note: {ord.notes}</div>}
                 </div>
-                <div className="order-bar-actions">
+                <div className="order-bar-actions" style={{ display: 'flex', gap: '6px' }}>
+                  {/* Action Icons: View, Edit, Delete */}
+                  <button
+                    title="View Details"
+                    onClick={() => setActiveViewOrder(ord)}
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '8px',
+                      border: '1.5px solid var(--border)',
+                      background: '#eff6ff',
+                      color: '#3b82f6',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      fontSize: '16px',
+                      transition: 'transform 0.15s'
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    👁️
+                  </button>
+                  <button
+                    title="Edit Order"
+                    onClick={() => {
+                      setActiveEditOrder(ord);
+                      setEditOrderForm({
+                        table: ord.table,
+                        notes: ord.notes || '',
+                        waiter: ord.waiter || 'Unassigned'
+                      });
+                      setActivePage('order-edit-form');
+                    }}
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '8px',
+                      border: '1.5px solid var(--border)',
+                      background: '#fff7ed',
+                      color: '#f97316',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      fontSize: '16px',
+                      transition: 'transform 0.15s'
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    ✏️
+                  </button>
+                  <button
+                    title="Delete Order"
+                    onClick={() => {
+                      if (window.confirm(`Are you sure you want to cancel/delete order #ORD-${ord.id}?`)) {
+                        deleteOrder(activeRestaurant.id, ord.id);
+                      }
+                    }}
+                    style={{
+                      width: '36px',
+                      height: '36px',
+                      borderRadius: '8px',
+                      border: '1.5px solid var(--border)',
+                      background: '#fef2f2',
+                      color: '#ef4444',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      cursor: 'pointer',
+                      fontSize: '16px',
+                      transition: 'transform 0.15s'
+                    }}
+                    onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                    onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                  >
+                    🗑️
+                  </button>
+
+                  {/* Print and Status controls */}
                   {ord.status === 'done' ? (
-                    <span style={{ fontSize: '13px', color: 'var(--success)', fontWeight: 600 }}>✔️ Served & Paid</span>
+                    <span style={{ fontSize: '13px', color: 'var(--success)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', marginLeft: '6px' }}>✔️ Served</span>
                   ) : (
                     <>
-                      <button className="btn-print" onClick={() => alert(`Print receipt ORD-${ord.id}`)}>🖨️ Print</button>
-                      <button
-                        className="btn-mark-complete"
-                        onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
-                      >
-                        {ord.status === 'new' && '🍳 Prepare'}
-                        {ord.status === 'preparing' && '🔔 Set Ready'}
-                        {ord.status === 'ready' && '🍽️ Serve / Done'}
-                      </button>
+                      {plan === 'Standard' ? (
+                        <>
+                          <button 
+                            title="Print Receipt"
+                            onClick={() => alert(`Print receipt ORD-${ord.id}`)}
+                            style={{
+                              width: '36px',
+                              height: '36px',
+                              borderRadius: '8px',
+                              border: '1.5px solid var(--border)',
+                              background: '#f3f4f6',
+                              color: '#374151',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              cursor: 'pointer',
+                              fontSize: '16px',
+                              transition: 'transform 0.15s'
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                          >
+                            🖨️
+                          </button>
+                          <button
+                            title={
+                              ord.status === 'new' ? 'Prepare' :
+                              ord.status === 'preparing' ? 'Set Ready' :
+                              'Serve / Done'
+                            }
+                            onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
+                            style={{
+                              width: '36px',
+                              height: '36px',
+                              borderRadius: '8px',
+                              border: '1.5px solid #16a34a',
+                              background: '#f0fdf4',
+                              color: '#16a34a',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              cursor: 'pointer',
+                              fontSize: '16px',
+                              transition: 'transform 0.15s'
+                            }}
+                            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
+                            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
+                          >
+                            {ord.status === 'new' && '🍳'}
+                            {ord.status === 'preparing' && '🔔'}
+                            {ord.status === 'ready' && '🍽️'}
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <button className="btn-print" onClick={() => alert(`Print receipt ORD-${ord.id}`)}>🖨️ Print</button>
+                          <button
+                            className="btn-mark-complete"
+                            onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
+                          >
+                            {ord.status === 'new' && '🍳 Prepare'}
+                            {ord.status === 'preparing' && '🔔 Set Ready'}
+                            {ord.status === 'ready' && '🍽️ Serve / Done'}
+                          </button>
+                        </>
+                      )}
                     </>
                   )}
                 </div>
@@ -357,6 +587,78 @@ export default function Admin() {
             <div style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)' }}>No orders in {orderFilter} status.</div>
           )}
         </div>
+
+        {/* View Order Modal */}
+        {activeViewOrder && (
+          <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            zIndex: 9999
+          }}>
+            <div style={{
+              backgroundColor: '#ffffff',
+              borderRadius: '16px',
+              width: '90%',
+              maxWidth: '500px',
+              padding: '28px',
+              boxShadow: '0 10px 25px rgba(0,0,0,0.15)',
+              position: 'relative'
+            }}>
+              <h3 style={{ margin: '0 0 16px 0', fontSize: '20px', fontWeight: '800', color: '#000000' }}>Order Details - #ORD-{activeViewOrder.id}</h3>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', marginBottom: '20px', color: '#000000' }}>
+                <div><strong>Table:</strong> Table {activeViewOrder.table}</div>
+                <div><strong>Time:</strong> {activeViewOrder.time} ({activeViewOrder.timeAgo})</div>
+                <div><strong>Status:</strong> <Badge status={activeViewOrder.status} /></div>
+                <div><strong>Assigned Waiter:</strong> {activeViewOrder.waiter || 'Unassigned'}</div>
+                {activeViewOrder.notes && <div><strong>Notes:</strong> {activeViewOrder.notes}</div>}
+                <div style={{ borderTop: '1px dashed var(--border)', paddingTop: '12px', marginTop: '8px' }}>
+                  <strong style={{ display: 'block', marginBottom: '8px' }}>Items Summary:</strong>
+                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                    <thead>
+                      <tr style={{ borderBottom: '1px solid var(--border)', textAlign: 'left', fontSize: '12px', color: '#64748b' }}>
+                        <th style={{ padding: '6px 0' }}>Item Name</th>
+                        <th style={{ padding: '6px 0', textAlign: 'center' }}>Qty</th>
+                        <th style={{ padding: '6px 0', textAlign: 'right' }}>Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {activeViewOrder.items.map((item, idx) => (
+                        <tr key={idx} style={{ borderBottom: '1px solid #f1f5f9', fontSize: '13px' }}>
+                          <td style={{ padding: '8px 0' }}>{item.name}</td>
+                          <td style={{ padding: '8px 0', textAlign: 'center' }}>{item.qty}</td>
+                          <td style={{ padding: '8px 0', textAlign: 'right' }}>₹{item.price * item.qty}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px', borderTop: '1px dashed var(--border)', paddingTop: '12px', marginTop: '8px', alignItems: 'flex-end' }}>
+                  <div>Subtotal: <strong>₹{activeViewOrder.subtotal}</strong></div>
+                  <div>Tax: <strong>₹{activeViewOrder.tax}</strong></div>
+                  <div>Total: <strong style={{ fontSize: '16px', color: 'var(--primary)' }}>₹{activeViewOrder.total}</strong></div>
+                </div>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <button 
+                  className="btn btn-black" 
+                  onClick={() => setActiveViewOrder(null)}
+                  style={{ padding: '8px 20px' }}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Edit Order Modal is now rendered as a page view */}
       </section>
     );
   };
@@ -771,22 +1073,49 @@ export default function Admin() {
         <div className="tables-dashboard-grid">
           {/* Tables Grid */}
           <div className="tables-list-column">
-            <div className="tables-metrics-row">
-              <div className="table-metric-card">
-                <div className="metric-value">{tables.length}</div>
-                <div className="metric-label">Total Tables</div>
+            <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+              <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
+                <div className="stat-main-row">
+                  <div className="stat-info">
+                    <div className="stat-label" style={{ color: '#64748b' }}>Total Tables</div>
+                    <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '24px', fontWeight: '700' }}>{tables.length}</h3>
+                    <div className="stat-sub-label green-label">Active terminals</div>
+                  </div>
+                  <div className="stat-icon-wrapper" style={{ fontSize: '18px' }}>📋</div>
+                </div>
               </div>
-              <div className="table-metric-card">
-                <div className="metric-value">{occupiedTablesCount}</div>
-                <div className="l">Occupied</div>
+
+              <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
+                <div className="stat-main-row">
+                  <div className="stat-info">
+                    <div className="stat-label" style={{ color: '#64748b' }}>Occupied</div>
+                    <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '24px', fontWeight: '700' }}>{occupiedTablesCount}</h3>
+                    <div className={`stat-sub-label ${occupiedTablesCount > 0 ? 'red-label' : 'green-label'}`}>{occupiedTablesCount} in session</div>
+                  </div>
+                  <div className="stat-icon-wrapper" style={{ fontSize: '18px' }}>👥</div>
+                </div>
               </div>
-              <div className="table-metric-card">
-                <div className="metric-value">{tables.reduce((acc, t) => acc + (t.seats || 4), 0)}</div>
-                <div className="metric-label">Total Seats</div>
+
+              <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
+                <div className="stat-main-row">
+                  <div className="stat-info">
+                    <div className="stat-label" style={{ color: '#64748b' }}>Total Seats</div>
+                    <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '24px', fontWeight: '700' }}>{tables.reduce((acc, t) => acc + (t.seats || 4), 0)}</h3>
+                    <div className="stat-sub-label green-label">Capacity</div>
+                  </div>
+                  <div className="stat-icon-wrapper" style={{ fontSize: '18px' }}>🪑</div>
+                </div>
               </div>
-              <div className="table-metric-card">
-                <div className="metric-value">{tables.length - occupiedTablesCount}</div>
-                <div className="metric-label">Available</div>
+
+              <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
+                <div className="stat-main-row">
+                  <div className="stat-info">
+                    <div className="stat-label" style={{ color: '#64748b' }}>Available</div>
+                    <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '24px', fontWeight: '700' }}>{tables.length - occupiedTablesCount}</h3>
+                    <div className="stat-sub-label green-label">{tables.length - occupiedTablesCount} free</div>
+                  </div>
+                  <div className="stat-icon-wrapper" style={{ fontSize: '18px' }}>🟢</div>
+                </div>
               </div>
             </div>
 
@@ -795,7 +1124,10 @@ export default function Admin() {
                 <div
                   key={table.id}
                   className={`dining-table-card ${table.status.toLowerCase()} ${selectedTableId === table.id ? 'selected' : ''}`}
-                  onClick={() => setSelectedTableId(table.id)}
+                  onClick={() => {
+                    setSelectedTableId(table.id);
+                    setActivePage('table-profile');
+                  }}
                   style={{ cursor: 'pointer', border: selectedTableId === table.id ? '2px solid var(--primary)' : '1px solid var(--border)' }}
                 >
                   <div className="table-card-header">
@@ -977,22 +1309,49 @@ export default function Admin() {
 
       <div className="staff-dashboard-grid">
         <div className="staff-list-column" style={{ backgroundColor: '#ffffff', border: '1px solid var(--border)', borderRadius: 'var(--border-radius-sm)', padding: '24px', boxShadow: 'var(--card-shadow)' }}>
-          <div className="staff-metrics-row" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
-            <div className="table-metric-card" style={{ backgroundColor: '#fafafa', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
-              <div className="metric-value" style={{ fontSize: '20px', fontWeight: 700, color: 'var(--black)' }}>{staff.length}</div>
-              <div className="metric-label" style={{ fontSize: '11px', fontWeight: 600 }}>Total Staff</div>
+          <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
+            <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
+              <div className="stat-main-row">
+                <div className="stat-info">
+                  <div className="stat-label" style={{ color: '#64748b' }}>Total Staff</div>
+                  <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.length}</h3>
+                  <div className="stat-sub-label green-label">Registered team</div>
+                </div>
+                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>👥</div>
+              </div>
             </div>
-            <div className="table-metric-card" style={{ backgroundColor: '#fafafa', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
-              <div className="metric-value" style={{ fontSize: '20px', fontWeight: 700, color: 'var(--success)' }}>{staff.filter(s => s.status === 'On Duty').length}</div>
-              <div className="metric-label" style={{ fontSize: '11px', fontWeight: 600 }}>On Duty</div>
+
+            <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
+              <div className="stat-main-row">
+                <div className="stat-info">
+                  <div className="stat-label" style={{ color: '#64748b' }}>On Duty</div>
+                  <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.status === 'On Duty').length}</h3>
+                  <div className="stat-sub-label green-label">Active duty</div>
+                </div>
+                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🟢</div>
+              </div>
             </div>
-            <div className="table-metric-card" style={{ backgroundColor: '#fafafa', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
-              <div className="metric-value" style={{ fontSize: '20px', fontWeight: 700, color: 'var(--primary)' }}>{staff.filter(s => s.role === 'Kitchen').length}</div>
-              <div className="metric-label" style={{ fontSize: '11px', fontWeight: 600 }}>Kitchen Staff</div>
+
+            <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
+              <div className="stat-main-row">
+                <div className="stat-info">
+                  <div className="stat-label" style={{ color: '#64748b' }}>Kitchen Staff</div>
+                  <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.role === 'Kitchen').length}</h3>
+                  <div className="stat-sub-label green-label">Culinary team</div>
+                </div>
+                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🍳</div>
+              </div>
             </div>
-            <div className="table-metric-card" style={{ backgroundColor: '#fafafa', border: '1px solid var(--border)', borderRadius: '8px', padding: '12px', textAlign: 'center' }}>
-              <div className="metric-value" style={{ fontSize: '20px', fontWeight: 700, color: '#1e40af' }}>{staff.filter(s => s.role === 'Waiter').length}</div>
-              <div className="metric-label" style={{ fontSize: '11px', fontWeight: 600 }}>Waitstaff</div>
+
+            <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
+              <div className="stat-main-row">
+                <div className="stat-info">
+                  <div className="stat-label" style={{ color: '#64748b' }}>Waitstaff</div>
+                  <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.role === 'Waiter').length}</h3>
+                  <div className="stat-sub-label green-label">Service team</div>
+                </div>
+                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🍽️</div>
+              </div>
             </div>
           </div>
 
@@ -1247,6 +1606,237 @@ export default function Admin() {
         </div>
       </div>
     );
+
+    if (activePage === 'order-edit-form' && activeEditOrder) {
+      const waitersList = staff.filter(s => s.role === 'Waiter').map(s => s.name);
+      return (
+        <section>
+          <PageHeader subtitle={`Modify details for order #ORD-${activeEditOrder.id}`} />
+          <div style={{ ...sty.pageCard, maxWidth: '600px' }}>
+            <form onSubmit={(e) => {
+              e.preventDefault();
+              updateOrder(activeRestaurant.id, activeEditOrder.id, {
+                table: editOrderForm.table,
+                notes: editOrderForm.notes,
+                waiter: editOrderForm.waiter
+              });
+              setActiveEditOrder(null);
+              setActivePage(null);
+              setActiveTab('orders');
+              alert('Order updated successfully!');
+            }}>
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: '#000000' }}>Table Number</label>
+                <input 
+                  type="text" 
+                  value={editOrderForm.table}
+                  onChange={e => setEditOrderForm({ ...editOrderForm, table: e.target.value })}
+                  required
+                  style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid var(--border)' }}
+                />
+              </div>
+              <div className="form-group" style={{ marginBottom: '16px' }}>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: '#000000' }}>Assigned Waiter</label>
+                <select
+                  value={editOrderForm.waiter}
+                  onChange={e => setEditOrderForm({ ...editOrderForm, waiter: e.target.value })}
+                  style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid var(--border)', background: 'white' }}
+                >
+                  <option value="Unassigned">Unassigned</option>
+                  {waitersList.map(name => (
+                    <option key={name} value={name}>{name}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group" style={{ marginBottom: '20px' }}>
+                <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: '#000000' }}>Notes</label>
+                <textarea 
+                  value={editOrderForm.notes}
+                  onChange={e => setEditOrderForm({ ...editOrderForm, notes: e.target.value })}
+                  rows="3"
+                  style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid var(--border)' }}
+                />
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
+                <button 
+                  type="button" 
+                  className="btn btn-outline" 
+                  onClick={() => {
+                    setActiveEditOrder(null);
+                    setActivePage(null);
+                  }}
+                  style={{ padding: '10px 24px' }}
+                >
+                  Cancel
+                </button>
+                <button 
+                  type="submit" 
+                  className="btn btn-black"
+                  style={{ padding: '10px 24px' }}
+                >
+                  💾 Save Changes
+                </button>
+              </div>
+            </form>
+          </div>
+        </section>
+      );
+    }
+
+    if (activePage === 'table-profile') {
+      const currentTable = tables.find(t => t.id === selectedTableId) || { id: selectedTableId, status: 'Free', seats: 4 };
+      const tableNum = currentTable.id.replace('T-', '');
+      const activeTableOrder = orders.find(o => (o.table === tableNum || parseInt(o.table) === parseInt(tableNum)) && o.billingStatus === 'unpaid');
+
+      return (
+        <section>
+          {/* Header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', paddingBottom: '16px', borderBottom: '2px solid var(--primary-light)' }}>
+            <button 
+              style={{ 
+                background: '#fff', 
+                border: '1.5px solid var(--border)', 
+                borderRadius: '50%', 
+                width: '38px', 
+                height: '38px', 
+                display: 'inline-flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                cursor: 'pointer', 
+                fontSize: '16px', 
+                transition: 'all 0.2s', 
+                flexShrink: 0 
+              }} 
+              onClick={() => setActivePage(null)}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'inherit'; }}
+            >
+              ←
+            </button>
+            <div>
+              <span style={{ fontSize: '11px', fontWeight: 800, color: '#64748b', letterSpacing: '0.5px', textTransform: 'uppercase' }}>Tables Registry</span>
+              <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: 'var(--black)' }}>Table Showcase & QR Profile</h2>
+            </div>
+          </div>
+
+          {/* Main Card Container */}
+          <div style={{ 
+            background: '#ffffff', 
+            borderRadius: '16px', 
+            padding: '32px', 
+            border: '1px solid var(--border)', 
+            boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
+            display: 'grid',
+            gridTemplateColumns: '1.8fr 1fr',
+            gap: '32px'
+          }}>
+            {/* Left Side: Connection Profile */}
+            <div>
+              <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '20px', color: '#000000' }}>Terminal Connection Profile</h3>
+              
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: '12px' }}>
+                  <span style={{ color: '#64748b', fontSize: '14px' }}>Display Name</span>
+                  <strong style={{ color: '#000000', fontSize: '14px' }}>Table {tableNum}</strong>
+                </div>
+                
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: '12px' }}>
+                  <span style={{ color: '#64748b', fontSize: '14px' }}>Seating Capacity</span>
+                  <strong style={{ color: '#000000', fontSize: '14px' }}>{currentTable.seats || 4} seats</strong>
+                </div>
+
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: '12px', alignItems: 'center' }}>
+                  <span style={{ color: '#64748b', fontSize: '14px' }}>Current Status</span>
+                  <span style={{ 
+                    padding: '4px 12px', 
+                    borderRadius: '12px', 
+                    fontSize: '12px', 
+                    fontWeight: 700, 
+                    backgroundColor: currentTable.status === 'Occupied' ? '#fef3c7' : '#dcfce7', 
+                    color: currentTable.status === 'Occupied' ? '#d97706' : '#15803d' 
+                  }}>
+                    {currentTable.status}
+                  </span>
+                </div>
+              </div>
+
+              {/* Active Session details */}
+              <div style={{ 
+                background: '#f8fafc', 
+                border: '1.5px solid #e2e8f0', 
+                borderRadius: '12px', 
+                padding: '20px', 
+                marginBottom: '32px' 
+              }}>
+                <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--primary)', letterSpacing: '0.5px', textTransform: 'uppercase', display: 'block', marginBottom: '12px' }}>Active Table Session</span>
+                
+                {activeTableOrder ? (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span style={{ color: '#64748b', fontSize: '13px' }}>Order ID:</span>
+                      <strong style={{ color: '#000000', fontSize: '13px' }}>#ORD-{activeTableOrder.id}</strong>
+                    </div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                      <span style={{ color: '#64748b', fontSize: '13px' }}>Assigned Waiter:</span>
+                      <strong style={{ color: '#000000', fontSize: '13px' }}>{activeTableOrder.waiter || 'Unassigned'}</strong>
+                    </div>
+                  </div>
+                ) : (
+                  <div style={{ color: '#64748b', fontSize: '13px', fontStyle: 'italic' }}>No active order session for this table.</div>
+                )}
+              </div>
+
+              <button 
+                className="btn btn-black" 
+                onClick={() => setActivePage(null)}
+                style={{ padding: '10px 24px', fontSize: '14px', borderRadius: '8px', fontWeight: 'bold' }}
+              >
+                Back to Registry
+              </button>
+            </div>
+
+            {/* Right Side: QR Sticker and Print controls */}
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderLeft: '1px solid #e2e8f0', paddingLeft: '32px' }}>
+              <div style={{ 
+                border: '1.5px dashed #cbd5e1', 
+                borderRadius: '16px', 
+                padding: '24px', 
+                width: '100%', 
+                maxWidth: '240px', 
+                textAlign: 'center', 
+                background: '#ffffff', 
+                boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
+                marginBottom: '20px'
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', marginBottom: '16px' }}>
+                  <div style={{ width: '20px', height: '20px', background: 'var(--primary)', borderRadius: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', fontSize: '11px', fontWeight: 'bold' }}>S</div>
+                  <strong style={{ fontSize: '14px', color: '#000000' }}>Serviq</strong>
+                </div>
+                <div style={{ fontSize: '11px', color: '#64748b', marginBottom: '16px' }}>Scan to View Menu & Order</div>
+                
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+                  <div style={{ width: '130px', height: '130px', background: '#000000', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', borderRadius: '8px', padding: '10px', position: 'relative' }}>
+                    QR CODE
+                    <div style={{ position: 'absolute', width: '24px', height: '24px', background: 'var(--primary)', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', border: '2px solid #000' }}>S</div>
+                  </div>
+                </div>
+
+                <div style={{ fontSize: '16px', fontWeight: '800', color: '#000000' }}>Table {tableNum}</div>
+                <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>{currentTable.seats || 4} Seats</div>
+              </div>
+
+              <button 
+                className="btn btn-outline" 
+                onClick={() => alert('Printing QR code sticker...')}
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '13px' }}
+              >
+                🖨️ Print QR code
+              </button>
+            </div>
+          </div>
+        </section>
+      );
+    }
 
     if (activePage === 'menu-form') {
       return (

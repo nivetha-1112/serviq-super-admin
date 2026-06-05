@@ -44,7 +44,7 @@ Built inside a beautiful smartphone device mockup that can be toggled on/off, al
 ---
 
 ## 💻 How to Run
-1. Open the project folder `d:\nivi folder\serviq-super-admin`.
+1. Open the project folder `D:\Nivi folder\serviq-super-admin`.
 2. Open `index.html` in any web browser of your choice, or run a local development server.
 3. Log in using:
    - **Email**: `admin@serviq.com`

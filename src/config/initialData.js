@@ -35,15 +35,15 @@ export const initialRestaurantsData = {
       { id: "menu-mini-meals", name: "Mini Meals", category: "Rice Meals", price: 90, desc: "Rice, sambar, 1 curry, papad & pickle", image: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false },
       { id: "menu-5", name: "Gulab Jamun", category: "Desserts", price: 80, desc: "Golden fried milk-solid dumplings dipped in warm cardamom-scented sugar syrup.", image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false },
       { id: "menu-6", name: "Masala Chai", category: "Drinks", price: 40, desc: "Traditional brewed black tea infused with cardamom, ginger, cloves, and milk.", image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false },
-      { id: "menu-7", name: "Butter Naan", category: "Rotis", price: 40, desc: "Soft leavened tandoori flatbread brushed with generous butter.", image: "https://images.unsplash.com/photo-1601050690597-df056fb4ce78?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false },
+      { id: "menu-7", name: "Butter Naan", category: "Rotis", price: 40, desc: "Soft leavened tandoori flatbread brushed with generous butter.", image: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false },
       { id: "menu-8", name: "Lassi", category: "Drinks", price: 60, desc: "Chilled yogurt beverage blended sweet with cardamom and rose water.", image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false }
     ],
     orders: [
-      { id: "847", table: "03", time: "1:28 PM", timeAgo: "2 min ago", items: [{ name: "Chicken Biryani", qty: 1, price: 320 }, { name: "Masala Chai", qty: 2, price: 40 }], notes: "Less spicy please", subtotal: 400, tax: 10, charge: 0, total: 420, status: "new", billingStatus: "unpaid" },
-      { id: "846", table: "07", time: "1:22 PM", timeAgo: "8 min ago", items: [{ name: "Paneer Tikka", qty: 2, price: 180 }, { name: "Butter Naan", qty: 3, price: 40 }, { name: "Lassi", qty: 1, price: 60 }], notes: "", subtotal: 540, tax: 27, charge: 0, total: 567, status: "preparing", billingStatus: "unpaid" },
-      { id: "845", table: "01", time: "1:15 PM", timeAgo: "15 min ago", items: [{ name: "Masala Dosa", qty: 3, price: 120 }, { name: "Filter Coffee", qty: 2, price: 40 }], notes: "Allergy: peanuts", subtotal: 440, tax: 22, charge: 0, total: 462, status: "preparing", billingStatus: "unpaid" },
-      { id: "844", table: "05", time: "1:08 PM", timeAgo: "22 min ago", items: [{ name: "Paneer Tikka", qty: 2, price: 180 }, { name: "Chicken Biryani", qty: 1, price: 320 }, { name: "Butter Naan", qty: 3, price: 40 }, { name: "Masala Chai", qty: 2, price: 40 }], notes: "", subtotal: 880, tax: 44, charge: 0, total: 924, status: "ready", billingStatus: "unpaid" },
-      { id: "843", table: "02", time: "1:00 PM", timeAgo: "30 min ago", items: [{ name: "Veg Thali", qty: 2, price: 120 }, { name: "Masala Chai", qty: 3, price: 40 }], notes: "", subtotal: 360, tax: 18, charge: 0, total: 378, status: "done", billingStatus: "paid" }
+      { id: "847", table: "03", time: "1:28 PM", timeAgo: "2 min ago", items: [{ name: "Chicken Biryani", qty: 1, price: 320 }, { name: "Masala Chai", qty: 2, price: 40 }], notes: "Less spicy please", subtotal: 400, tax: 10, charge: 0, total: 420, status: "new", billingStatus: "unpaid", waiter: "Unassigned" },
+      { id: "846", table: "07", time: "1:22 PM", timeAgo: "8 min ago", items: [{ name: "Paneer Tikka", qty: 2, price: 180 }, { name: "Butter Naan", qty: 3, price: 40 }, { name: "Lassi", qty: 1, price: 60 }], notes: "", subtotal: 540, tax: 27, charge: 0, total: 567, status: "preparing", billingStatus: "unpaid", waiter: "Ravi M." },
+      { id: "845", table: "01", time: "1:15 PM", timeAgo: "15 min ago", items: [{ name: "Masala Dosa", qty: 3, price: 120 }, { name: "Filter Coffee", qty: 2, price: 40 }], notes: "Allergy: peanuts", subtotal: 440, tax: 22, charge: 0, total: 462, status: "preparing", billingStatus: "unpaid", waiter: "Rahul S." },
+      { id: "844", table: "05", time: "1:08 PM", timeAgo: "22 min ago", items: [{ name: "Paneer Tikka", qty: 2, price: 180 }, { name: "Chicken Biryani", qty: 1, price: 320 }, { name: "Butter Naan", qty: 3, price: 40 }, { name: "Masala Chai", qty: 2, price: 40 }], notes: "", subtotal: 880, tax: 44, charge: 0, total: 924, status: "ready", billingStatus: "unpaid", waiter: "Arjun K." },
+      { id: "843", table: "02", time: "1:00 PM", timeAgo: "30 min ago", items: [{ name: "Veg Thali", qty: 2, price: 120 }, { name: "Masala Chai", qty: 3, price: 40 }], notes: "", subtotal: 360, tax: 18, charge: 0, total: 378, status: "done", billingStatus: "paid", waiter: "Ravi M." }
     ],
     tables: [
       { id: "T-01", status: "Occupied", seats: 4 },
@@ -64,7 +64,10 @@ export const initialRestaurantsData = {
       { id: "S-02", name: "Suresh Pillai", role: "Kitchen", phone: "9876543211", email: "suresh@serviq.com", status: "On Duty", password: "chef123" },
       { id: "S-03", name: "Anitha Selvam", role: "Waiter", phone: "9876543212", email: "anitha@serviq.com", status: "On Duty", password: "waiter123" },
       { id: "S-04", name: "Vikram Rathore", role: "Waiter", phone: "9876543213", email: "vikram@serviq.com", status: "Off Duty", password: "waiter456" },
-      { id: "S-05", name: "Priya Patel", role: "Kitchen", phone: "9876543214", email: "priya@serviq.com", status: "On Duty", password: "chef456" }
+      { id: "S-05", name: "Priya Patel", role: "Kitchen", phone: "9876543214", email: "priya@serviq.com", status: "On Duty", password: "chef456" },
+      { id: "S-06", name: "Ravi M.", role: "Waiter", phone: "9876543215", email: "ravi@serviq.com", status: "On Duty", password: "waiter123" },
+      { id: "S-07", name: "Rahul S.", role: "Waiter", phone: "9876543216", email: "rahul@serviq.com", status: "On Duty", password: "waiter123" },
+      { id: "S-08", name: "Arjun K.", role: "Waiter", phone: "9876543217", email: "arjun@serviq.com", status: "On Duty", password: "waiter123" }
     ],
     kitchenLogin: {
       email: "kitchen@saravana.com",

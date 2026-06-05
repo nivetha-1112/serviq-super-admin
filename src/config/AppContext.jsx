@@ -8,19 +8,11 @@ export const AppProvider = ({ children }) => {
   const [restaurantsData, setRestaurantsData] = useState(initialRestaurantsData);
   const [currentUser, setCurrentUser] = useState(null);
   const [currentRestaurantId, setCurrentRestaurantId] = useState(null);
-  const [isImpersonating, setIsImpersonating] = useState(false);
-  
-  // SaaS States
-  const [saasSettings, setSaasSettings] = useState(initialState.saasSettings);
-  const [saasPlans, setSaasPlans] = useState(initialState.saasPlans);
-  const [saasAdmins, setSaasAdmins] = useState(initialState.saasAdmins);
-  const [saasLogs, setSaasLogs] = useState(initialState.saasLogs);
-  const [saasInvoices, setSaasInvoices] = useState(initialState.saasInvoices);
-  
   // Active Tenant settings overrides / defaults
   const [darkMode, setDarkMode] = useState(false);
   const [accentColor, setAccentColor] = useState('#ff7a00');
   const [qrCustomizer, setQrCustomizer] = useState({ color: '#ff7a00', showLogo: true });
+
 
   // Customer Simulator States
   const [cart, setCart] = useState([]);
@@ -47,17 +39,8 @@ export const AppProvider = ({ children }) => {
   // Actions
   const login = (email, password, role) => {
     const cleanEmail = email.trim().toLowerCase();
-    
-    // 1. Check SuperAdmin
-    if (cleanEmail === 'superadmin@serviq.com' && password === 'super123') {
-      const user = { name: 'SaaS Owner', email: cleanEmail, role: 'SuperAdmin' };
-      setCurrentUser(user);
-      setCurrentRestaurantId(null);
-      setIsImpersonating(false);
-      return { success: true, user };
-    }
 
-    // 2. Check Admin / staff
+    // Check Admin / staff
     for (let id in restaurantsData) {
       const rest = restaurantsData[id];
       
@@ -69,7 +52,6 @@ export const AppProvider = ({ children }) => {
         const user = { name: rest.name + ' Admin', email: cleanEmail, role: 'Admin' };
         setCurrentUser(user);
         setCurrentRestaurantId(id);
-        setIsImpersonating(false);
         // Load settings values
         if (rest.settings) {
           setAccentColor(rest.settings.accentColor || '#ff7a00');
@@ -86,7 +68,6 @@ export const AppProvider = ({ children }) => {
         const user = { name: 'Kitchen Station', email: cleanEmail, role: 'Kitchen' };
         setCurrentUser(user);
         setCurrentRestaurantId(id);
-        setIsImpersonating(false);
         return { success: true, user };
       }
 
@@ -99,7 +80,6 @@ export const AppProvider = ({ children }) => {
         const user = { name: staffMember.name, email: staffMember.email, role: staffMember.role };
         setCurrentUser(user);
         setCurrentRestaurantId(id);
-        setIsImpersonating(false);
         return { success: true, user };
       }
     }
@@ -110,41 +90,10 @@ export const AppProvider = ({ children }) => {
   const logout = () => {
     setCurrentUser(null);
     setCurrentRestaurantId(null);
-    setIsImpersonating(false);
     setCart([]);
     setActiveCustomerOrder(null);
   };
 
-  const addPlatformLog = (text) => {
-    const now = new Date();
-    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-    setSaasLogs(prev => [{ time: timeStr, text }, ...prev]);
-  };
-
-  const clearPlatformLogs = () => {
-    setSaasLogs([]);
-  };
-
-  const impersonateRestaurant = (id) => {
-    const rest = restaurantsData[id];
-    if (!rest) return;
-    
-    // Switch to restaurant context
-    setCurrentRestaurantId(id);
-    setIsImpersonating(true);
-    setCurrentUser({ name: rest.name + ' Admin', email: rest.email, role: 'Admin' });
-    
-    if (rest.settings) {
-      setAccentColor(rest.settings.accentColor || '#ff7a00');
-      setDarkMode(rest.settings.darkMode || false);
-    }
-  };
-
-  const exitImpersonation = () => {
-    setIsImpersonating(false);
-    setCurrentRestaurantId(null);
-    setCurrentUser({ name: 'SaaS Owner', email: 'superadmin@serviq.com', role: 'SuperAdmin' });
-  };
 
   // Restaurant Admin actions
   const saveRestaurantSettings = (id, settings) => {
@@ -358,6 +307,54 @@ export const AppProvider = ({ children }) => {
     });
   };
 
+  const assignWaiterToOrder = (id, orderId, waiterName) => {
+    setRestaurantsData(prev => {
+      const rest = prev[id];
+      if (!rest) return prev;
+      const updatedOrders = rest.orders.map(order => {
+        if (order.id === orderId) {
+          return { ...order, waiter: waiterName };
+        }
+        return order;
+      });
+      return {
+        ...prev,
+        [id]: {
+          ...rest,
+          orders: updatedOrders
+        }
+      };
+    });
+  };
+
+  const deleteOrder = (id, orderId) => {
+    setRestaurantsData(prev => {
+      const rest = prev[id];
+      if (!rest) return prev;
+      return {
+        ...prev,
+        [id]: {
+          ...rest,
+          orders: rest.orders.filter(order => order.id !== orderId)
+        }
+      };
+    });
+  };
+
+  const updateOrder = (id, orderId, updatedFields) => {
+    setRestaurantsData(prev => {
+      const rest = prev[id];
+      if (!rest) return prev;
+      return {
+        ...prev,
+        [id]: {
+          ...rest,
+          orders: rest.orders.map(order => order.id === orderId ? { ...order, ...updatedFields } : order)
+        }
+      };
+    });
+  };
+
   const markBillAsPaid = (id, tableLabel) => {
     const rawNum = tableLabel.replace('Table ', '');
     const cleanTableId = rawNum.length === 1 ? `T-0${rawNum}` : `T-${rawNum}`;
@@ -401,137 +398,8 @@ export const AppProvider = ({ children }) => {
       };
     });
   };
-
-  // SaaS Super Admin functions
-  const addRestaurant = (rest) => {
-    setRestaurantsData(prev => ({
-      ...prev,
-      [rest.id]: rest
-    }));
-    
-    // Auto register platform admin reference
-    setSaasAdmins(prev => [
-      ...prev,
-      {
-        id: `ADM-${Date.now().toString().slice(-3)}`,
-        name: rest.ownerName,
-        email: rest.owner,
-        phone: rest.phone,
-        restaurantName: rest.name,
-        role: 'Owner',
-        status: rest.status,
-        lastLogin: 'Never'
-      }
-    ]);
-  };
-
-  const deleteRestaurant = (id) => {
-    setRestaurantsData(prev => {
-      const newData = { ...prev };
-      delete newData[id];
-      return newData;
-    });
-    // Also remove associated admin if needed
-    setSaasAdmins(prev => prev.filter(admin => admin.restaurantName !== restaurantsData[id]?.name));
-  };
-
-  const updateRestaurant = (id, updatedFields) => {
-    setRestaurantsData(prev => {
-      const rest = prev[id];
-      if (!rest) return prev;
-      return {
-        ...prev,
-        [id]: {
-          ...rest,
-          ...updatedFields,
-          settings: {
-            ...rest.settings,
-            name: updatedFields.name || rest.name
-          }
-        }
-      };
-    });
-
-    // Sync admin entry if email changes
-    setSaasAdmins(prev => prev.map(admin => {
-      const rest = restaurantsData[id];
-      if (admin.restaurantName === rest?.name) {
-        return {
-          ...admin,
-          name: updatedFields.ownerName || admin.name,
-          email: updatedFields.owner || admin.email,
-          phone: updatedFields.phone || admin.phone,
-          restaurantName: updatedFields.name || admin.restaurantName,
-          status: updatedFields.status || admin.status
-        };
-      }
-      return admin;
-    }));
-  };
-
-  const createAdmin = (admin) => {
-    setSaasAdmins(prev => [...prev, admin]);
-  };
-
-  const updateAdmin = (id, updatedFields) => {
-    setSaasAdmins(prev => prev.map(admin => admin.id === id ? { ...admin, ...updatedFields } : admin));
-  };
-
-  const resetAdminPassword = (id, newPassword) => {
-    // In a real app this would call an API. We'll just log it.
-    addPlatformLog(`Password reset for Admin ID ${id}`);
-  };
-
-  const addSaaSPlan = (plan) => {
-    setSaasPlans(prev => [...prev, plan]);
-  };
-
-  const updateSaaSPlan = (planId, updatedPlan) => {
-    setSaasPlans(prev => prev.map(p => p.id === planId ? updatedPlan : p));
-  };
-
-  const upgradeRestaurantPlan = (restId, planId) => {
-    const plan = saasPlans.find(p => p.id === planId);
-    if (!plan) return;
-
-    setRestaurantsData(prev => {
-      const rest = prev[restId];
-      if (!rest) return prev;
-      return {
-        ...prev,
-        [restId]: {
-          ...rest,
-          plan: plan.name
-        }
-      };
-    });
-
-    // Record invoice
-    const now = new Date();
-    const cleanDate = now.toISOString().split('T')[0];
-    const newInvoice = {
-      id: `INV-2026-${Math.floor(100 + Math.random() * 900)}`,
-      restaurant: restaurantsData[restId]?.name || 'Restaurant',
-      plan: plan.name,
-      amount: plan.monthlyPrice,
-      paymentMethod: 'Credit Card',
-      date: cleanDate,
-      paymentDate: cleanDate,
-      dueDate: new Date(now.setMonth(now.getMonth() + 1)).toISOString().split('T')[0],
-      status: 'Paid'
-    };
-    setSaasInvoices(prev => [newInvoice, ...prev]);
-  };
-
-  const generateInvoice = (invoice) => {
-    setSaasInvoices(prev => [invoice, ...prev]);
-  };
-
-  const refundInvoice = (invoiceId) => {
-    setSaasInvoices(prev => prev.map(inv => inv.id === invoiceId ? { ...inv, status: 'Refunded' } : inv));
-  };
-
   // Customer Simulator Placement
+
   const placeCustomerOrder = (notes) => {
     if (cart.length === 0 || !currentRestaurantId) return;
 
@@ -619,12 +487,6 @@ export const AppProvider = ({ children }) => {
         restaurantsData,
         currentUser,
         currentRestaurantId,
-        isImpersonating,
-        saasSettings,
-        saasPlans,
-        saasAdmins,
-        saasLogs,
-        saasInvoices,
         darkMode,
         accentColor,
         qrCustomizer,
@@ -635,10 +497,6 @@ export const AppProvider = ({ children }) => {
         
         login,
         logout,
-        addPlatformLog,
-        clearPlatformLogs,
-        impersonateRestaurant,
-        exitImpersonation,
         saveRestaurantSettings,
         addMenuItem,
         updateMenuItem,
@@ -650,18 +508,10 @@ export const AppProvider = ({ children }) => {
         deleteStaff,
         updateKitchenPassword,
         updateOrderStatus,
+        assignWaiterToOrder,
+        deleteOrder,
+        updateOrder,
         markBillAsPaid,
-        addRestaurant,
-        updateRestaurant,
-        deleteRestaurant,
-        createAdmin,
-        updateAdmin,
-        resetAdminPassword,
-        addSaaSPlan,
-        updateSaaSPlan,
-        upgradeRestaurantPlan,
-        generateInvoice,
-        refundInvoice,
         setDarkMode,
         setAccentColor,
         setQrCustomizer,
@@ -677,3 +527,4 @@ export const AppProvider = ({ children }) => {
 };
 
 export const useAppState = () => useContext(AppContext);
+

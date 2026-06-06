@@ -35,7 +35,7 @@ let restaurantsData = {
       { id: "menu-mini-meals", name: "Mini Meals", category: "Rice Meals", price: 90, desc: "Rice, sambar, 1 curry, papad & pickle", image: "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false },
       { id: "menu-5", name: "Gulab Jamun", category: "Desserts", price: 80, desc: "Golden fried milk-solid dumplings dipped in warm cardamom-scented sugar syrup.", image: "https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false },
       { id: "menu-6", name: "Masala Chai", category: "Drinks", price: 40, desc: "Traditional brewed black tea infused with cardamom, ginger, cloves, and milk.", image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false },
-      { id: "menu-7", name: "Butter Naan", category: "Rotis", price: 40, desc: "Soft leavened tandoori flatbread brushed with generous butter.", image: , available: true, veg: true, bestseller: false },
+      { id: "menu-7", name: "Butter Naan", category: "Rotis", price: 40, desc: "Soft leavened tandoori flatbread brushed with generous butter.", image:  "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=60",available: true, veg: true, bestseller: false },
       { id: "menu-8", name: "Lassi", category: "Drinks", price: 60, desc: "Chilled yogurt beverage blended sweet with cardamom and rose water.", image: "https://images.unsplash.com/photo-1553530666-ba11a7da3888?w=500&auto=format&fit=crop&q=60", available: true, veg: true, bestseller: false }
     ],
     orders: [
@@ -1148,13 +1148,13 @@ function setupEventListeners() {
   }
 
   // Accent Color Theme dots click handler
-  const themeDots = document.querySelectorAll(".theme-dot");
-  themeDots.forEach(dot => {
-    dot.addEventListener("click", () => {
-      themeDots.forEach(d => d.classList.remove("active"));
-      dot.classList.add("active");
-    });
-  });
+  // const themeDots = document.querySelectorAll(".theme-dot");
+  // themeDots.forEach(dot => {
+  //   dot.addEventListener("click", () => {
+  //     themeDots.forEach(d => d.classList.remove("active"));
+  //     dot.classList.add("active");
+  //   });
+  // });
 
   // Settings Save Button click handler
   const saveBtn = document.getElementById("settings-save-btn");
@@ -1231,12 +1231,12 @@ function setupEventListeners() {
       }
 
       // Accent Color saving
-      const activeColorDot = document.querySelector(".theme-dot.active");
-      if (activeColorDot) {
-        const chosenColor = activeColorDot.getAttribute("data-color");
-        document.documentElement.style.setProperty('--primary', chosenColor);
-        document.documentElement.style.setProperty('--primary-light', chosenColor + "15");
-      }
+      // const activeColorDot = document.querySelector(".theme-dot.active");
+      // if (activeColorDot) {
+      //   const chosenColor = activeColorDot.getAttribute("data-color");
+      //   document.documentElement.style.setProperty('--primary', chosenColor);
+      // document.documentElement.style.setProperty('--primary-light', chosenColor + "15");
+      // }
 
       // Re-render and refresh views
       renderDashboardOverview();
@@ -1580,16 +1580,16 @@ function renderSettingsPanel() {
     darkToggle.checked = document.body.classList.contains("dark-theme");
   }
 
-  // Sync Theme Color dot
-  const currentAccentColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
-  const themeDots = document.querySelectorAll(".theme-dot");
-  themeDots.forEach(dot => {
-    const dotColor = dot.getAttribute("data-color");
-    if (dotColor === currentAccentColor) {
-      themeDots.forEach(d => d.classList.remove("active"));
-      dot.classList.add("active");
-    }
-  });
+  // // Sync Theme Color dot
+  // const currentAccentColor = getComputedStyle(document.documentElement).getPropertyValue('--primary').trim();
+  // const themeDots = document.querySelectorAll(".theme-dot");
+  // themeDots.forEach(dot => {
+  //   const dotColor = dot.getAttribute("data-color");
+  //   if (dotColor === currentAccentColor) {
+  //     themeDots.forEach(d => d.classList.remove("active"));
+  //     dot.classList.add("active");
+  //   }
+  // });
 
   updateSettingsPreview();
 }
@@ -1709,7 +1709,7 @@ function renderIncomingOrders() {
   }
 
   if (filtered.length === 0) {
-    container.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--text-muted);">No orders in ${filter} category.</div>`;
+    container.innerHTML = `<div style="text-align: center; padding: 40px; color: black !important;">No orders in ${filter} category.</div>`;
     return;
   }
 

@@ -575,7 +575,7 @@ textarea:focus {
 
 .header-subtitle-date {
   font-size: 12px;
-  color: var(--text-muted);
+  color:grey;
   margin-top: 4px;
   display: block;
 }
@@ -743,7 +743,7 @@ textarea:focus {
 
 .live-dot-indicator {
   font-size: 12px;
-  color: var(--text-muted);
+  color:black;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -775,7 +775,7 @@ textarea:focus {
 .feed-table td {
   padding: 14px;
   border-bottom: 1px solid var(--border);
-  font-size: 13px;
+  font-size: 10px;
   color: var(--text-main);
 }
 
@@ -978,7 +978,7 @@ textarea:focus {
 
 .order-bar-time {
   font-size: 12px;
-  color: var(--text-muted);
+  color: gray;
 }
 
 .order-bar-content {
@@ -1059,7 +1059,7 @@ textarea:focus {
 .column-header-title {
   font-size: 11px;
   font-weight: 800;
-  color: var(--text-muted);
+  color: black;
   letter-spacing: 0.5px;
   margin-bottom: 12px;
 }
@@ -1504,7 +1504,7 @@ input:checked+.slider:before {
 
 .bill-summary-subtitle {
   font-size: 12px;
-  color: var(--text-muted);
+  color:gray;
   margin-top: 4px;
 }
 
@@ -1534,7 +1534,7 @@ input:checked+.slider:before {
   padding: 10px 8px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-muted);
+  color: black;
   border-bottom: 1.5px solid var(--border);
   text-transform: uppercase;
 }
@@ -2866,7 +2866,7 @@ body.dark-theme .dining-table-card.active {
 .control-section-title {
   font-size: 12px;
   font-weight: 700;
-  color: var(--text-muted);
+  color: black;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 4px;

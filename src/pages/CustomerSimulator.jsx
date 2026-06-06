@@ -180,8 +180,8 @@ export default function CustomerSimulator() {
             {/* SCREEN 1: LANDING */}
             {simScreen === 'landing' && (
               <div className="customer-view active cust-landing" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div className="cust-logo-crossed-box" style={{ border: 'none', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '120px', height: '120px', margin: '16px auto 20px auto', overflow: 'hidden' }}>
-                  <img src="/logo.png" alt="Serviq Logo" style={{ width: '120px', height: '120px', objectFit: 'contain' }} />
+                <div className="cust-logo-crossed-box" style={{ border: 'none', background: 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '120px', height: '120px', margin: '16px auto 20px auto', overflow: 'hidden', borderRadius: '12px' }}>
+                  <img src={settings.logo || activeRestaurant.logo || "/logo.png"} alt="Logo" style={{ width: '120px', height: '120px', objectFit: 'contain' }} />
                 </div>
 
                 <div className="cust-landing-welcome-sub">Welcome to</div>
@@ -201,9 +201,15 @@ export default function CustomerSimulator() {
                   <span className="cust-info-text">Menu and order will be linked to this table.</span>
                 </div>
 
-                <button className="btn-black-full" onClick={handleStartOrdering} style={{ marginTop: 'auto', marginBottom: '20px' }}>
-                  Start Ordering
-                </button>
+                {settings.selfService === false ? (
+                  <div style={{ marginTop: 'auto', marginBottom: '20px', padding: '12px 14px', background: '#fee2e2', border: '1px solid #fca5a5', borderRadius: '10px', textAlign: 'center', color: '#991b1b', fontSize: '11px', fontWeight: 600, lineHeight: 1.4 }}>
+                    ⚠️ Self-Service digital ordering is currently disabled for this restaurant. Please place your order directly with the waitstaff.
+                  </div>
+                ) : (
+                  <button className="btn-black-full" onClick={handleStartOrdering} style={{ marginTop: 'auto', marginBottom: '20px' }}>
+                    Start Ordering
+                  </button>
+                )}
                 <div className="cust-landing-footer" style={{ fontSize: '10px', color: '#94a3b8' }}>Powered by Serviq</div>
               </div>
             )}
@@ -211,7 +217,12 @@ export default function CustomerSimulator() {
             {/* SCREEN 2: DIGITAL MENU */}
             {simScreen === 'menu' && (
               <div className="customer-view active" style={{ display: 'flex', flexDirection: 'column' }}>
-                <div className="cust-menu-header-dark">
+                <div className="cust-menu-header-dark" style={{
+                  backgroundImage: (settings.banner || activeRestaurant.banner) ? `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)), url(${settings.banner || activeRestaurant.banner})` : undefined,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  transition: 'all 0.3s ease'
+                }}>
                   <div className="header-top-row">
                     <div className="table-info-orange">
                       <span className="pin-icon">📍</span>
@@ -375,9 +386,20 @@ export default function CustomerSimulator() {
                         ></textarea>
                       </div>
 
-                      <button className="btn btn-primary" onClick={handleConfirmOrder} style={{ width: '100%', padding: '12px', borderRadius: '8px', fontWeight: 700, marginTop: '15px' }}>
-                        🚀 Confirm & Place Order
-                      </button>
+                      {settings.minOrderAmount > 0 && subtotal < settings.minOrderAmount ? (
+                        <div style={{ marginTop: '15px' }}>
+                          <div style={{ padding: '8px 10px', background: '#fffbeb', border: '1px solid #fcd34d', borderRadius: '8px', color: '#92400e', fontSize: '11px', fontWeight: 600, marginBottom: '8px', textAlign: 'center', lineHeight: 1.4 }}>
+                            ⚠️ Minimum order amount is {settings.currency || '₹'}{settings.minOrderAmount}. Please add {settings.currency || '₹'}{(settings.minOrderAmount - subtotal).toFixed(2)} more to place order.
+                          </div>
+                          <button className="btn btn-primary" disabled style={{ width: '100%', padding: '12px', borderRadius: '8px', fontWeight: 700, opacity: 0.5, cursor: 'not-allowed' }}>
+                            🚀 Confirm & Place Order
+                          </button>
+                        </div>
+                      ) : (
+                        <button className="btn btn-primary" onClick={handleConfirmOrder} style={{ width: '100%', padding: '12px', borderRadius: '8px', fontWeight: 700, marginTop: '15px' }}>
+                          🚀 Confirm & Place Order
+                        </button>
+                      )}
                     </>
                   )}
                 </div>

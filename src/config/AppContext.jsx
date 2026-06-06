@@ -101,18 +101,30 @@ export const AppProvider = ({ children }) => {
       const rest = prev[id];
       if (!rest) return prev;
       
+      const flatSettings = settings.settings || {};
+      
       const updatedRest = {
         ...rest,
-        name: settings.name,
+        name: settings.name || rest.name,
+        logo: flatSettings.logo !== undefined ? flatSettings.logo : rest.logo,
+        banner: flatSettings.banner !== undefined ? flatSettings.banner : rest.banner,
+        phone: flatSettings.phone !== undefined ? flatSettings.phone : rest.phone,
+        address: flatSettings.address !== undefined ? flatSettings.address : rest.address,
+        city: flatSettings.city !== undefined ? flatSettings.city : rest.city,
+        state: flatSettings.state !== undefined ? flatSettings.state : rest.state,
+        gstNumber: flatSettings.gstNumber !== undefined ? flatSettings.gstNumber : rest.gstNumber,
+        openingTime: flatSettings.openingTime !== undefined ? flatSettings.openingTime : rest.openingTime,
+        closingTime: flatSettings.closingTime !== undefined ? flatSettings.closingTime : rest.closingTime,
         settings: {
           ...rest.settings,
-          ...settings
+          ...settings,
+          ...flatSettings
         }
       };
 
       // Handle table count resizing inside the hook
       let tables = [...(rest.tables || [])];
-      const targetCount = settings.tablesCount;
+      const targetCount = flatSettings.tablesCount !== undefined ? flatSettings.tablesCount : (rest.settings?.tablesCount || 5);
       if (targetCount > tables.length) {
         for (let i = tables.length + 1; i <= targetCount; i++) {
           const displayId = i < 10 ? `0${i}` : i;

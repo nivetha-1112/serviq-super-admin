@@ -591,7 +591,7 @@ textarea:focus {
 
 .header-subtitle-date {
   font-size: 12px;
-  color: var(--text-muted);
+  color: grey;
   margin-top: 4px;
   display: block;
 }
@@ -760,7 +760,7 @@ color: #000000;
 
 .live-dot-indicator {
   font-size: 12px;
-  color: var(--text-muted);
+  color: black;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -995,7 +995,7 @@ color: #000000;
 
 .order-bar-time {
   font-size: 12px;
-  color: var(--text-muted);
+  color: gray;
 }
 
 .order-bar-content {
@@ -1076,7 +1076,7 @@ color: #000000;
 .column-header-title {
   font-size: 11px;
   font-weight: 800;
-  color: var(--text-muted);
+  color:black;
   letter-spacing: 0.5px;
   margin-bottom: 12px;
 }
@@ -1197,7 +1197,7 @@ color: #000000;
 
 .menu-items-table thead th {
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
-  color: #ffffff;
+  color: rgb(255, 255, 255);
   padding: 12px 14px !important;
   font-weight: 700;
   font-size: 11px;
@@ -1403,6 +1403,75 @@ input:checked+.slider:before {
   transform: rotate(-25deg);
 }
 
+/* Redesigned Premium Menu Item Cover Banner */
+.menu-item-cover-banner {
+  width: 100%;
+  height: 240px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background-color: #f8fafc;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
+  transition: var(--transition);
+}
+
+.menu-item-cover-banner:hover {
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(255, 122, 0, 0.1);
+}
+
+.menu-item-cover-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.menu-item-cover-banner-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+}
+
+.menu-item-cover-banner-placeholder span.icon {
+  font-size: 36px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+}
+
+.menu-item-cover-banner-placeholder span.text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.menu-item-cover-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.menu-item-cover-banner:hover .menu-item-cover-overlay {
+  opacity: 1;
+}
+
 .form-row-two-col {
   display: flex;
   gap: 12px;
@@ -1520,7 +1589,7 @@ input:checked+.slider:before {
 
 .bill-summary-subtitle {
   font-size: 12px;
-  color: var(--text-muted);
+  color:gray;
   margin-top: 4px;
 }
 
@@ -1550,7 +1619,7 @@ input:checked+.slider:before {
   padding: 10px 8px;
   font-size: 11px;
   font-weight: 700;
-  color: var(--text-muted);
+  color: black;
   border-bottom: 1.5px solid var(--border);
   text-transform: uppercase;
 }
@@ -2888,7 +2957,7 @@ body.dark-theme .dining-table-card.active {
 .control-section-title {
   font-size: 12px;
   font-weight: 700;
-  color: var(--text-muted);
+  color: black;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 4px;

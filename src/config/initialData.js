@@ -14,8 +14,8 @@ export const initialRestaurantsData = {
     createdDate: "2026-01-15",
     openingTime: "08:00",
     closingTime: "22:00",
-    logo: "",
-    banner: "",
+    logo: "/logo.png",
+    banner: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=60",
     plan: "Standard",
     status: "Active",
     settings: {
@@ -88,8 +88,8 @@ export const initialRestaurantsData = {
     createdDate: "2026-02-10",
     openingTime: "11:00",
     closingTime: "23:00",
-    logo: "",
-    banner: "",
+    logo: "/logo.png",
+    banner: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=60",
     plan: "Premium",
     status: "Active",
     settings: {
@@ -149,8 +149,8 @@ export const initialRestaurantsData = {
     createdDate: "2026-03-05",
     openingTime: "10:00",
     closingTime: "22:30",
-    logo: "",
-    banner: "",
+    logo: "/logo.png",
+    banner: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&auto=format&fit=crop&q=60",
     plan: "Basic",
     status: "Active",
     settings: {

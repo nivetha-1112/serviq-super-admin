@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useAppState } from '../config/AppContext';
+import { useAppState } from '../contexts/AppContext';
 import { Badge } from '../components/Badge';
 import { Modal } from '../components/Modal';
+import { GrowthChart } from '../components/GrowthChart';
 
 const EyeIcon = ({ size = 18, color = 'currentColor' }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
@@ -27,6 +28,98 @@ const TrashIcon = ({ size = 18, color = 'currentColor' }) => (
   </svg>
 );
 
+const PrinterIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <polyline points="6 9 6 2 18 2 18 9" />
+    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+    <rect x="6" y="14" width="12" height="8" />
+  </svg>
+);
+
+const DashboardIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <rect width="7" height="9" x="3" y="3" rx="1" />
+    <rect width="7" height="5" x="14" y="3" rx="1" />
+    <rect width="7" height="9" x="14" y="12" rx="1" />
+    <rect width="7" height="5" x="3" y="16" rx="1" />
+  </svg>
+);
+
+const MenuIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
+    <path d="M7 2v20" />
+    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
+  </svg>
+);
+
+const OrdersIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+    <path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Z" />
+    <path d="M12 11h4" />
+    <path d="M12 16h4" />
+    <path d="M8 11h.01" />
+    <path d="M8 16h.01" />
+  </svg>
+);
+
+const BillingIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <rect width="20" height="14" x="2" y="5" rx="2" />
+    <line x1="2" x2="22" y1="10" y2="10" />
+    <path d="M16 14h.01" />
+    <path d="M12 14h.01" />
+    <path d="M8 14h.01" />
+  </svg>
+);
+
+const TablesIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M12 3v18" />
+    <rect width="18" height="18" x="3" y="3" rx="2" />
+    <path d="M3 9h18" />
+    <path d="M3 15h18" />
+  </svg>
+);
+
+const StaffIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
+
+const UsersIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+    <circle cx="12" cy="7" r="4" />
+  </svg>
+);
+
+const SettingsIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <circle cx="12" cy="12" r="3" />
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+  </svg>
+);
+
+
+// Helper to determine the category icon based on food item name keywords
+const getFoodIcon = (name = '') => {
+  const n = name.toLowerCase();
+  if (n.includes('biryani') || n.includes('rice') || n.includes('pulav') || n.includes('meal')) return '🍛';
+  if (n.includes('dosa') || n.includes('idly') || n.includes('tiffin') || n.includes('uthapam') || n.includes('vada') || n.includes('upma')) return '🥞';
+  if (n.includes('rotti') || n.includes('naan') || n.includes('parotta') || n.includes('chapati') || n.includes('bread')) return '🫓';
+  if (n.includes('juice') || n.includes('drink') || n.includes('coke') || n.includes('tea') || n.includes('coffee') || n.includes('water') || n.includes('beverage') || n.includes('lassi') || n.includes('chai') || n.includes('shake')) return '🥤';
+  if (n.includes('dessert') || n.includes('ice cream') || n.includes('sweet') || n.includes('cake') || n.includes('jamun') || n.includes('halva') || n.includes('kheer') || n.includes('pudding')) return '🍰';
+  if (n.includes('soup') || n.includes('manchurian') || n.includes('starter') || n.includes('fry') || n.includes('paneer') || n.includes('tikka') || n.includes('chicken') || n.includes('dry') || n.includes('gravy') || n.includes('curry')) return '🍲';
+  if (n.includes('burger') || n.includes('sandwich') || n.includes('pizza') || n.includes('fries') || n.includes('snack')) return '🍔';
+  return '🍳';
+};
+
 export default function Admin() {
   const {
     currentUser,
@@ -40,6 +133,8 @@ export default function Admin() {
     deleteMenuItem,
     addDiningTable,
     updateDiningTableSeats,
+    updateDiningTable,
+    deleteDiningTable,
     addStaff,
     updateStaff,
     deleteStaff,
@@ -56,7 +151,8 @@ export default function Admin() {
     qrCustomizer,
     setQrCustomizer,
     setActiveCustomerTable,
-    setCart
+    setCart,
+    addToast
   } = useAppState();
 
   const [activeTab, setActiveTab] = useState('overview');
@@ -70,25 +166,52 @@ export default function Admin() {
   const [activeViewOrder, setActiveViewOrder] = useState(null);
   const [activeEditOrder, setActiveEditOrder] = useState(null);
   const [editOrderForm, setEditOrderForm] = useState({ table: '', notes: '', waiter: 'Unassigned' });
+  const [orderSearch, setOrderSearch] = useState('');
+  const [assignWaiterModal, setAssignWaiterModal] = useState({ isOpen: false, orderId: null, selectedWaiter: '' });
+  const [orderSort, setOrderSort] = useState('newest');
+  const [rushOnly, setRushOnly] = useState(false);
+  const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
+  const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+  const [billingSearch, setBillingSearch] = useState('');
 
   // 3. Menu Management states
   const [menuCategory, setMenuCategory] = useState('All Items');
   const [menuSearch, setMenuSearch] = useState('');
   const [menuSort, setMenuSort] = useState('name');
   const [activePage, setActivePage] = useState(null); // 'menu-form' | 'table-form' | 'staff-form' | 'kitchen-form'
-  const [menuForm, setMenuForm] = useState({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '' });
+  const [menuForm, setMenuForm] = useState({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '', veg: true, available: true });
 
   // 4. Billing Panel states
   const [selectedBillingTable, setSelectedBillingTable] = useState('');
   const [billingPaymentMethod, setBillingPaymentMethod] = useState('UPI');
+  const [editBillModal, setEditBillModal] = useState({ isOpen: false, table: null, items: [] });
 
   // 5. Tables & QR Management states
   const [selectedTableId, setSelectedTableId] = useState('');
-  const [addTableForm, setAddTableForm] = useState({ id: '', seats: 4 });
+  const [addTableForm, setAddTableForm] = useState({ id: '', seats: 4, waiter: '' });
+  const [draftSeats, setDraftSeats] = useState(4);
+  const [draftStatus, setDraftStatus] = useState('Free');
+  const [draftWaiter, setDraftWaiter] = useState('');
 
   // 6. Staff states
   const [staffForm, setStaffForm] = useState({ id: '', name: '', role: 'Waiter', phone: '', email: '', password: '', status: 'On Duty' });
   const [kitchenPasswordForm, setKitchenPasswordForm] = useState('');
+
+  // Users & Roles states
+  const [isUsersMenuOpen, setIsUsersMenuOpen] = useState(false);
+  const [rolesList] = useState([
+    { id: 1, name: 'Super Admin', status: 'Active' },
+    { id: 2, name: 'Branch Admin', status: 'Active' },
+    { id: 3, name: 'Branch Manager', status: 'Active' },
+    { id: 4, name: 'Cashier', status: 'Active' },
+    { id: 5, name: 'Waiter', status: 'Active' },
+    { id: 6, name: 'Kitchen Staff', status: 'Active' }
+  ]);
+  const [usersList] = useState([
+    { id: 'ADM-01', name: 'Rajesh Kumar', email: 'rajesh@serviq.com', phone: '+91 98765 43210', restaurant: 'Serviq Grand Bistro', role: 'BRANCH ADMIN', status: 'Active', lastLogin: '2026-06-02 12:45 PM' },
+    { id: 'ADM-02', name: 'Amit Patel', email: 'amit@serviq.com', phone: '+91 98765 11111', restaurant: 'Serviq Express Cafe', role: 'BRANCH MANAGER', status: 'Active', lastLogin: '2026-06-02 11:30 AM' },
+    { id: 'ADM-03', name: 'Vikram Singh', email: 'vikram@serviq.com', phone: '+91 98765 22222', restaurant: 'Serviq Lounge & Bar', role: 'BRANCH ADMIN', status: 'Disabled', lastLogin: '2026-05-30 09:15 PM' }
+  ]);
 
   const pageTitle = {
     'menu-form': menuForm.id ? ' Edit Menu Item' : ' Add New Menu Item',
@@ -176,6 +299,18 @@ export default function Admin() {
     }
   }, [activeRestaurant, darkMode]);
 
+  // Sync draft states for table details editor
+  useEffect(() => {
+    if (activeRestaurant?.tables) {
+      const current = activeRestaurant.tables.find(t => t.id === selectedTableId);
+      if (current) {
+        setDraftSeats(current.seats || 4);
+        setDraftStatus(current.status || 'Free');
+        setDraftWaiter(current.waiter || '');
+      }
+    }
+  }, [selectedTableId, activeRestaurant]);
+
   if (!activeRestaurant) {
     return <div style={{ padding: '40px', textAlign: 'center' }}>No active restaurant loaded. Please log in again.</div>;
   }
@@ -226,9 +361,9 @@ export default function Admin() {
   const IconBtn = ({ icon, tooltip, style, onClick }) => {
     const isDelete = style?.color === '#ef4444';
     return (
-      <button 
-        title={tooltip} 
-        style={style} 
+      <button
+        title={tooltip}
+        style={style}
         onClick={onClick}
         onMouseEnter={e => {
           e.currentTarget.style.transform = 'scale(1.15)';
@@ -308,6 +443,67 @@ export default function Admin() {
         </div>
       </div>
 
+      <div className="analytics-row">
+        <div className="analytics-card" style={{ padding: 0 }}>
+          <div className="analytics-card-header" style={{ padding: '20px 24px 0 24px' }}>
+            <div>
+              <h3 className="analytics-card-title">Revenue Growth</h3>
+              <span className="analytics-card-subtitle">Past 6 Months</span>
+            </div>
+          </div>
+          <div style={{ height: '220px', width: '100%' }}>
+            <GrowthChart />
+          </div>
+        </div>
+
+        <div className="analytics-card">
+          <div className="analytics-card-header">
+            <div>
+              <h3 className="analytics-card-title">Order Breakdown</h3>
+              <span className="analytics-card-subtitle">By Menu Category</span>
+            </div>
+          </div>
+          <div className="breakdown-list">
+            <div className="breakdown-item">
+              <div className="breakdown-item-header">
+                <span className="breakdown-category">Starters</span>
+                <span className="breakdown-value">45%</span>
+              </div>
+              <div className="breakdown-bar-bg">
+                <div className="breakdown-bar-fill color-1" style={{ width: '45%' }}></div>
+              </div>
+            </div>
+            <div className="breakdown-item">
+              <div className="breakdown-item-header">
+                <span className="breakdown-category">Main Course</span>
+                <span className="breakdown-value">30%</span>
+              </div>
+              <div className="breakdown-bar-bg">
+                <div className="breakdown-bar-fill color-2" style={{ width: '30%' }}></div>
+              </div>
+            </div>
+            <div className="breakdown-item">
+              <div className="breakdown-item-header">
+                <span className="breakdown-category">Beverages</span>
+                <span className="breakdown-value">15%</span>
+              </div>
+              <div className="breakdown-bar-bg">
+                <div className="breakdown-bar-fill color-3" style={{ width: '15%' }}></div>
+              </div>
+            </div>
+            <div className="breakdown-item">
+              <div className="breakdown-item-header">
+                <span className="breakdown-category">Desserts</span>
+                <span className="breakdown-value">10%</span>
+              </div>
+              <div className="breakdown-bar-bg">
+                <div className="breakdown-bar-fill color-4" style={{ width: '10%' }}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="dashboard-inner-grid">
         <div className="feed-card">
           <div className="feed-header">
@@ -375,250 +571,210 @@ export default function Admin() {
 
   const renderOrders = () => {
     const waitersList = staff.filter(s => s.role === 'Waiter').map(s => s.name);
-    
-    let filteredOrders = [...orders].reverse();
-    if (orderFilter !== 'All') {
-      filteredOrders = filteredOrders.filter(o => o.status === orderFilter.toLowerCase());
-    }
+
+    let filteredOrders = [...orders];
+
+    // 1. Waiter filter
     if (selectedWaiterFilter !== 'All Waiters') {
       filteredOrders = filteredOrders.filter(o => o.waiter === selectedWaiterFilter);
     }
 
-    return (
-      <section className="panel-view active">
-        <div className="panel-header-flex" style={{ alignItems: 'center' }}>
-          <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Incoming Orders</h2>
-            <p className="panel-inner-desc">Manage and process all live orders</p>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            {/* Waiter Option Dropdown Filter */}
-            <div style={{ position: 'relative' }}>
-              <button 
-                onClick={() => setWaiterDropdownOpen(!waiterDropdownOpen)}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  gap: '12px',
-                  padding: '8px 16px',
-                  backgroundColor: '#ffffff',
-                  border: '1.5px solid var(--border)',
-                  borderRadius: '10px',
-                  fontSize: '14px',
-                  fontWeight: '600',
-                  color: 'var(--text-main)',
-                  cursor: 'pointer',
-                  minWidth: '150px',
-                  boxShadow: '0 2px 4px rgba(0,0,0,0.02)'
-                }}
-              >
-                <span>{selectedWaiterFilter}</span>
-                <span style={{ fontSize: '10px', transition: 'transform 0.2s', transform: waiterDropdownOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>▼</span>
-              </button>
-              {waiterDropdownOpen && (
-                <div style={{
-                  position: 'absolute',
-                  top: 'calc(100% + 6px)',
-                  left: 0,
-                  width: '100%',
-                  backgroundColor: '#ffffff',
-                  border: '1.5px solid var(--border)',
-                  borderRadius: '10px',
-                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.08)',
-                  zIndex: 1000,
-                  overflow: 'hidden'
-                }}>
-                  {['All Waiters', ...waitersList].map((w, idx) => {
-                    const isSelected = selectedWaiterFilter === w;
-                    return (
-                      <div
-                        key={idx}
-                        onClick={() => {
-                          setSelectedWaiterFilter(w);
-                          setWaiterDropdownOpen(false);
-                        }}
-                        style={{
-                          padding: '10px 16px',
-                          fontSize: '13px',
-                          fontWeight: '500',
-                          backgroundColor: isSelected ? '#3b82f6' : '#ffffff',
-                          color: isSelected ? '#ffffff' : 'var(--text-main)',
-                          cursor: 'pointer',
-                          transition: 'background-color 0.15s, color 0.15s'
-                        }}
-                        onMouseEnter={(e) => {
-                          if (!isSelected) e.currentTarget.style.backgroundColor = '#f3f4f6';
-                        }}
-                        onMouseLeave={(e) => {
-                          if (!isSelected) e.currentTarget.style.backgroundColor = '#ffffff';
-                        }}
-                      >
-                        {w}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
+    // 2. Status filter
+    if (orderFilter !== 'All') {
+      filteredOrders = filteredOrders.filter(o => o.status === orderFilter.toLowerCase());
+    }
 
-            <div className="filter-tabs-row">
-              {['All', 'New', 'Preparing', 'Ready', 'Done'].map(tab => (
-                <button
-                  key={tab}
-                  className={`filter-btn ${orderFilter === tab ? 'active' : ''}`}
-                  onClick={() => setOrderFilter(tab)}
-                >
-                  {tab}
-                </button>
-              ))}
+    // 3. Search filter
+    if (orderSearch) {
+      const query = orderSearch.toLowerCase().trim();
+      filteredOrders = filteredOrders.filter(o =>
+        o.id.toLowerCase().includes(query) ||
+        o.table.toLowerCase().includes(query) ||
+        o.items.some(item => item.name.toLowerCase().includes(query))
+      );
+    }
+
+    // 4. Delay Risk (Rush Only) filter
+    if (rushOnly) {
+      filteredOrders = filteredOrders.filter(o => {
+        const minutesElapsed = parseInt(o.timeAgo.replace(/[^0-9]/g, '')) || 0;
+        return ((o.status === 'new' || o.status === 'preparing') && minutesElapsed >= 20);
+      });
+    }
+
+    return (
+      <section className="panel-view active" style={{ padding: 0 }}>
+        {/* V2 KPI Cards Grid */}
+        <div className="mockup2-kpi-grid">
+          <div className="mockup2-kpi-card">
+            <div className="mockup2-kpi-icon orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            </div>
+            <div className="mockup2-kpi-info">
+              <span className="mockup2-kpi-label">TOTAL ACTIVE ORDERS</span>
+              <div className="mockup2-kpi-value-row">
+                <h3 className="mockup2-kpi-value">{orders.filter(o => o.status !== 'done').length}</h3>
+                <span className="mockup2-kpi-sub up">+12%</span>
+              </div>
+            </div>
+          </div>
+          <div className="mockup2-kpi-card">
+            <div className="mockup2-kpi-icon grey">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <div className="mockup2-kpi-info">
+              <span className="mockup2-kpi-label">AVG. PREPARATION</span>
+              <div className="mockup2-kpi-value-row">
+                <h3 className="mockup2-kpi-value">18m</h3>
+                <span className="mockup2-kpi-sub down">-2m</span>
+              </div>
+            </div>
+          </div>
+          <div className="mockup2-kpi-card">
+            <div className="mockup2-kpi-icon grey">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+            </div>
+            <div className="mockup2-kpi-info">
+              <span className="mockup2-kpi-label">TABLES OCCUPIED</span>
+              <div className="mockup2-kpi-value-row">
+                <h3 className="mockup2-kpi-value">{occupiedTablesCount}/{tables.length || 22}</h3>
+                <span className="mockup2-kpi-sub neutral">85% Capacity</span>
+              </div>
+            </div>
+          </div>
+          <div className="mockup2-kpi-card">
+            <div className="mockup2-kpi-icon orange">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <div className="mockup2-kpi-info">
+              <span className="mockup2-kpi-label">STAFF ONLINE</span>
+              <div className="mockup2-kpi-value-row">
+                <h3 className="mockup2-kpi-value">{staff.filter(s => s.status === 'On Duty').length}</h3>
+                <span className="mockup2-kpi-sub pill">ACTIVE</span>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="incoming-orders-list-wrapper">
-          {filteredOrders.map(ord => (
-            <div key={ord.id} className="incoming-order-bar">
-              <div className="order-bar-header">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '16px', flexWrap: 'wrap' }}>
-                  <span className="order-bar-id">#ORD-{ord.id}</span>
-                  <span className="order-bar-table">📍 Table {ord.table}</span>
-                  <span className="order-bar-time">🕒 {ord.time} · {ord.timeAgo}</span>
-                  
-                  {/* Waiter Name Text Option (plain text style) */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '12px', background: '#f3f4f6', padding: '4px 10px', borderRadius: '6px', border: '1px solid var(--border)' }}>
-                    <span style={{ fontSize: '13px' }}>👤</span>
-                    <span style={{ fontWeight: '600', color: 'var(--text-main)' }}>{ord.waiter || 'Unassigned'}</span>
-                  </div>
-                </div>
-                <Badge status={ord.status} />
-              </div>
-              <div className="order-bar-content">
-                <div className="order-bar-details">
-                  <div style={{ fontSize: '11px', fontWeight: 700, color: 'var(--primary)', textTransform: 'uppercase', marginBottom: '6px' }}>Items</div>
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
-                    {ord.items.map((item, idx) => (
-                      <span key={idx} className="order-item-pill">{item.name} × {item.qty}</span>
-                    ))}
-                  </div>
-                  {ord.notes && <div className="order-item-note">📝 Note: {ord.notes}</div>}
-                </div>
-                <div className="order-bar-actions" style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
-                  {/* Action Icons: View, Edit, Delete */}
-                  <IconBtn
-                    icon={<EyeIcon size={18} />}
-                    tooltip="View Details"
-                    style={{ ...iconBtnViewStyle, marginRight: 0 }}
-                    onClick={() => { setActiveViewOrder(ord); setActivePage('order-view'); }}
-                  />
-                  <IconBtn
-                    icon={<PencilIcon size={18} />}
-                    tooltip="Edit Order"
-                    style={{ ...iconBtnEditStyle, marginRight: 0 }}
-                    onClick={() => {
-                      setActiveEditOrder(ord);
-                      setEditOrderForm({
-                        table: ord.table,
-                        notes: ord.notes || '',
-                        waiter: ord.waiter || 'Unassigned'
-                      });
-                      setActivePage('order-edit-form');
-                    }}
-                  />
-                  <IconBtn
-                    icon={<TrashIcon size={18} />}
-                    tooltip="Delete Order"
-                    style={iconBtnDeleteStyle}
-                    onClick={() => {
-                      if (window.confirm(`Are you sure you want to cancel/delete order #ORD-${ord.id}?`)) {
-                        deleteOrder(activeRestaurant.id, ord.id);
-                      }
-                    }}
-                  />
+        {/* V2 Stream Header */}
+        <div className="mockup2-stream-header">
+          <h2 className="mockup2-stream-title">Live Order Stream</h2>
+          <span className="mockup2-stream-badge">4 NEW</span>
 
-                  {/* Print and Status controls */}
-                  {ord.status === 'done' ? (
-                    <span style={{ fontSize: '13px', color: 'var(--success)', fontWeight: 600, display: 'inline-flex', alignItems: 'center' }}>✔️ Served</span>
-                  ) : (
-                    <>
-                      {plan === 'Standard' ? (
-                        <>
-                          <button 
-                            title="Print Receipt"
-                            onClick={() => alert(`Print receipt ORD-${ord.id}`)}
-                            style={{
-                              width: '36px',
-                              height: '36px',
-                              borderRadius: '8px',
-                              border: '1.5px solid var(--border)',
-                              background: '#f3f4f6',
-                              color: '#374151',
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              cursor: 'pointer',
-                              fontSize: '16px',
-                              transition: 'transform 0.15s'
-                            }}
-                            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                          >
-                            🖨️
-                          </button>
-                          <button
-                            title={
-                              ord.status === 'new' ? 'Prepare' :
-                              ord.status === 'preparing' ? 'Set Ready' :
-                              'Serve / Done'
-                            }
-                            onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
-                            style={{
-                              width: '36px',
-                              height: '36px',
-                              borderRadius: '8px',
-                              border: '1.5px solid #16a34a',
-                              background: '#f0fdf4',
-                              color: '#16a34a',
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              justifyContent: 'center',
-                              cursor: 'pointer',
-                              fontSize: '16px',
-                              transition: 'transform 0.15s'
-                            }}
-                            onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.1)'}
-                            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                          >
-                            {ord.status === 'new' && '🍳'}
-                            {ord.status === 'preparing' && '🔔'}
-                            {ord.status === 'ready' && '🍽️'}
-                          </button>
-                        </>
-                      ) : (
-                        <>
-                          <button className="btn-print" onClick={() => alert(`Print receipt ORD-${ord.id}`)}>🖨️ Print</button>
-                          <button
-                            className="btn-mark-complete"
-                            onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
-                          >
-                            {ord.status === 'new' && '🍳 Prepare'}
-                            {ord.status === 'preparing' && '🔔 Set Ready'}
-                            {ord.status === 'ready' && '🍽️ Serve / Done'}
-                          </button>
-                        </>
-                      )}
-                    </>
+          <div className="mockup2-stream-controls">
+            <div className="mockup2-segmented-control">
+              <button className="mockup2-segment-btn active">All Orders</button>
+              <button className="mockup2-segment-btn">Rush Only</button>
+            </div>
+            <button className="mockup2-outline-dropdown">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+              Filter by Status
+            </button>
+            <button className="mockup2-outline-dropdown">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+              Sort by Time
+            </button>
+          </div>
+        </div>
+
+        {/* V3 Minimalist Order Grid */}
+        <div className="minimal-orders-grid">
+          {filteredOrders.map(ord => {
+            const minutesElapsed = parseInt((ord.timeAgo || '').replace(/[^0-9]/g, '')) || 0;
+            const itemSummary = ord.items.map(i => `${i.qty}x ${i.name}`).join(', ');
+
+            return (
+              <div key={ord.id} className="minimal-order-card">
+                <div className={`minimal-icon-box ${ord.status}`}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+                </div>
+                <div>
+                  <h3 className="minimal-heading">Table {ord.table} • #{ord.id}</h3>
+                  <p className="minimal-desc">{itemSummary}{ord.notes ? ` (Note: ${ord.notes})` : ''}</p>
+                  <div style={{ marginTop: '8px', fontSize: '12px' }}>
+                    <span 
+                      style={{ color: 'var(--primary)', fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+                      onClick={() => setAssignWaiterModal({ isOpen: true, orderId: ord.id, selectedWaiter: ord.waiter || '' })}
+                    >
+                      👤 {ord.waiter ? `Waiter: ${ord.waiter}` : 'Assign Waiter'}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="minimal-btn-row">
+                  <button className="minimal-btn minimal-btn-outline" onClick={() => { setActiveViewOrder(ord); setActivePage('order-view'); }}>View Details</button>
+                  {ord.status === 'new' && (
+                    <button className="minimal-btn minimal-btn-solid" onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Accept Order</button>
+                  )}
+                  {ord.status === 'preparing' && (
+                    <button className="minimal-btn minimal-btn-solid" onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Mark as Ready</button>
+                  )}
+                  {ord.status === 'ready' && (
+                    <button className="minimal-btn minimal-btn-solid" style={{ background: '#16a34a', borderColor: '#16a34a' }} onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Serve Order</button>
+                  )}
+                  {ord.status === 'done' && (
+                    <button className="minimal-btn minimal-btn-solid" style={{ background: '#000', borderColor: '#000', cursor: 'default' }} disabled>Served</button>
                   )}
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
+
           {filteredOrders.length === 0 && (
-            <div style={{ textAlign: 'center', padding: '40px', color: 'black' }}>No orders in {orderFilter} status.</div>
+            <div className="mockup2-empty-state">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px' }}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+              <h3 style={{ fontSize: '15px', color: '#64748b', marginBottom: '8px' }}>Monitoring kitchen traffic...</h3>
+              <p style={{ fontSize: '13px', margin: 0, maxWidth: '200px' }}>New orders will appear here in real-time.</p>
+            </div>
           )}
         </div>
+
+        {assignWaiterModal.isOpen && (
+          <div className="modal-overlay">
+            <div className="modal-card" style={{ maxWidth: '400px', padding: 0, overflow: 'hidden' }}>
+              <div className="modal-header-flex" style={{ padding: '24px 24px 0 24px', borderBottom: 'none', marginBottom: '16px' }}>
+                <h3 style={{ margin: 0, fontSize: '20px', fontWeight: 800, fontFamily: 'Outfit, sans-serif', color: 'var(--text-main)', background: 'none', WebkitTextFillColor: 'initial' }}>Assign Waiter</h3>
+                <button className="modal-close" style={{ background: 'none', border: 'none', fontSize: '20px' }} onClick={() => setAssignWaiterModal({ isOpen: false, orderId: null, selectedWaiter: '' })}>✕</button>
+              </div>
+              <div style={{ padding: '0 24px 24px 24px' }}>
+                <div className="form-group">
+                  <label style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '8px', display: 'block' }}>Select Waiter for Order #{assignWaiterModal.orderId}</label>
+                  <select
+                    style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center', backgroundSize: '14px', width: '100%', padding: '12px 14px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', background: 'var(--bg-primary)', color: 'var(--text-main)', fontSize: '14px', cursor: 'pointer' }}
+                    value={assignWaiterModal.selectedWaiter}
+                    onChange={(e) => setAssignWaiterModal({ ...assignWaiterModal, selectedWaiter: e.target.value })}
+                  >
+                    <option value="">Select Waiter...</option>
+                    {activeRestaurant?.staff?.filter(s => s.role === 'Waiter').map(s => (
+                      <option key={s.id} value={s.name}>{s.name}</option>
+                    ))}
+                    {(!activeRestaurant?.staff || activeRestaurant.staff.filter(s => s.role === 'Waiter').length === 0) && (
+                      <>
+                        <option value="Arjun K.">Arjun K.</option>
+                        <option value="Priya M.">Priya M.</option>
+                        <option value="Rahul S.">Rahul S.</option>
+                        <option value="Anita D.">Anita D.</option>
+                        <option value="Vikram S.">Vikram S.</option>
+                      </>
+                    )}
+                  </select>
+                </div>
+                <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', marginTop: '24px' }}>
+                  <button type="button" className="btn btn-outline" onClick={() => setAssignWaiterModal({ isOpen: false, orderId: null, selectedWaiter: '' })} style={{ padding: '10px 24px', fontSize: '14px', borderRadius: '8px' }}>Cancel</button>
+                  <button type="button" className="btn" style={{ background: 'var(--primary)', color: 'white', border: 'none', fontWeight: 700, padding: '10px 24px', fontSize: '14px', borderRadius: '8px' }} onClick={() => {
+                    assignWaiterToOrder(activeRestaurant.id, assignWaiterModal.orderId, assignWaiterModal.selectedWaiter);
+                    setAssignWaiterModal({ isOpen: false, orderId: null, selectedWaiter: '' });
+                    addToast(`Waiter assigned to Order #${assignWaiterModal.orderId}`);
+                  }}>Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
     );
+
+
   };
 
   // 3. RENDER MENU MANAGEMENT
@@ -629,7 +785,7 @@ export default function Admin() {
         ...menuForm,
         price: parseFloat(menuForm.price) || 0
       });
-      alert('Menu item updated!');
+      addToast('Menu item updated!');
     } else {
       addMenuItem(activeRestaurant.id, {
         id: 'menu-' + Date.now(),
@@ -638,15 +794,16 @@ export default function Admin() {
         price: parseFloat(menuForm.price) || 0,
         category: menuForm.category,
         image: menuForm.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop&q=60',
-        available: true
+        veg: menuForm.veg,
+        available: menuForm.available
       });
-      alert('New dish added to menu!');
+      addToast('New dish added to menu!');
     }
     setActivePage(null);
   };
 
   const openAddMenuModal = () => {
-    setMenuForm({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '' });
+    setMenuForm({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '', veg: true, available: true });
     setActivePage('menu-form');
   };
 
@@ -657,7 +814,9 @@ export default function Admin() {
       desc: item.desc || '',
       price: item.price.toString(),
       category: item.category,
-      image: item.image || ''
+      image: item.image || '',
+      veg: item.veg ?? true,
+      available: item.available ?? true
     });
     setActivePage('menu-form');
   };
@@ -690,107 +849,134 @@ export default function Admin() {
 
     return (
       <section className="panel-view active">
-        <div className="panel-header-flex" style={{ marginBottom: '20px' }}>
+        {/* Title flex box */}
+        <div className="panel-header-flex" style={{ marginBottom: '24px', alignItems: 'flex-start' }}>
           <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Menu Management</h2>
-            <p className="panel-inner-desc">Add, edit, and manage your menu items</p>
+            <h2 className="panel-inner-title" style={{ fontSize: '26px', fontWeight: 800 }}>Menu Management</h2>
+            <p className="panel-inner-desc" style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '4px' }}>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#ff7a00', display: 'inline-block' }}></span>
+              {menu.length} items actively listed
+            </p>
           </div>
-          <button className="btn btn-black" onClick={openAddMenuModal}>
+          <button
+            className="btn btn-black"
+            onClick={openAddMenuModal}
+            style={{
+              background: 'var(--orange-gradient)',
+              borderColor: '#ff7a00',
+              padding: '10px 20px',
+              borderRadius: '8px',
+              fontWeight: 700
+            }}
+          >
             ➕ Add New Item
           </button>
         </div>
 
-        <div className="menu-manager-grid">
-          {/* Categories Side Navigation */}
-          <div className="menu-categories-column">
-            <div className="column-header-title">CATEGORIES</div>
-            <ul className="categories-list-menu">
-              {categoriesList.map(cat => {
-                const count = cat === 'All Items' ? menu.length : menu.filter(i => i.category === cat).length;
-                return (
-                  <li
-                    key={cat}
-                    className={menuCategory === cat ? 'active' : ''}
-                    onClick={() => setMenuCategory(cat)}
-                  >
-                    <span>{cat}</span>
-                    <span className="category-count-badge">{count}</span>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+        {/* Categories Horizontal Pills */}
+        <div className="menu-categories-horizontal-pills">
+          {categoriesList.map(cat => {
+            const displayName = cat === 'All Items' ? 'All' : cat;
+            const isActive = menuCategory === cat;
+            return (
+              <button
+                key={cat}
+                className={`menu-category-pill-btn ${isActive ? 'active' : ''}`}
+                onClick={() => setMenuCategory(cat)}
+              >
+                {displayName}
+              </button>
+            );
+          })}
+        </div>
 
-          {/* Items Listing */}
-          <div className="menu-items-column">
-            <div className="menu-search-sort-row">
-              <div className="menu-search-wrapper">
-                <span className="search-input-icon">🔍</span>
-                <input
-                  type="text"
-                  placeholder="Search menu items..."
-                  value={menuSearch}
-                  onChange={(e) => setMenuSearch(e.target.value)}
-                />
-              </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <span style={{ fontSize: '13px', color: 'black' }}>Sort by</span>
-                <select
-                  value={menuSort}
-                  onChange={(e) => setMenuSort(e.target.value)}
-                  style={{ padding: '6px 12px', fontSize: '13px', borderRadius: '6px', background: 'white' }}
-                >
-                  <option value="name">Name</option>
-                  <option value="price-asc">Price: Low to High</option>
-                  <option value="price-desc">Price: High to Low</option>
-                </select>
-              </div>
-            </div>
-
-            <div className="menu-table-wrapper">
-              <table className="menu-items-table">
-                <tbody>
-                  {filteredMenu.map(item => (
-                    <tr key={item.id}>
-                      <td style={{ width: '60px', padding: '12px' }}>
-                        {item.image ? (
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            style={{ width: '48px', height: '48px', borderRadius: '6px', objectFit: 'cover', display: 'block' }}
-                          />
-                        ) : (
-                          <div style={{ width: '48px', height: '48px', background: '#f1f5f9', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '20px' }}>
-                            🍴
-                          </div>
-                        )}
-                      </td>
-                      <td style={{ padding: '12px' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                          <strong style={{ fontSize: '15px' }}>{item.name}</strong>
-                          {item.veg ? <span style={{ color: '#16a34a', fontSize: '12px' }}>🟢 Veg</span> : <span style={{ color: '#dc2626', fontSize: '12px' }}>🔴 Non-Veg</span>}
-                        </div>
-                        <div style={{ fontSize: '12px', color: '#000000', marginTop: '4px', maxWidth: '300px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                          {item.desc || 'No description provided.'}
-                        </div>
-                      </td>
-                      <td style={{ padding: '12px', color: '#000000', fontSize: '13px' }}>{item.category}</td>
-                      <td style={{ padding: '12px', fontWeight: 700, fontSize: '15px' }}>₹{item.price}</td>
-                      <td style={{ padding: '12px', textAlign: 'right' }}>
-                        <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditMenuModal(item)} />
-                        <IconBtn icon={<TrashIcon size={18} />} tooltip="Delete" style={iconBtnDeleteStyle} onClick={() => handleDeleteMenu(item.id)} />
-                      </td>
-                    </tr>
-                  ))}
-                  {filteredMenu.length === 0 && (
-                    <tr>
-                      <td colSpan="5" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>No menu dishes found.</td>
-                    </tr>
-                  )}
-                </tbody>
-              </table>
-            </div>
+        {/* Search & Sort Filters */}
+        <div className="menu-search-sort-row" style={{ justifyContent: 'flex-end' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Sort by</span>
+            <select
+              value={menuSort}
+              onChange={(e) => setMenuSort(e.target.value)}
+              style={{ padding: '6px 12px', fontSize: '13px', borderRadius: '6px', background: 'var(--bg-secondary)', border: '1px solid var(--border)', color: 'var(--text-main)' }}
+            >
+              <option value="name">Name</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+            </select>
           </div>
+        </div>
+
+        {/* Menu Items List Table */}
+        <div className="menu-table-wrapper" style={{ overflowX: 'auto', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: '12px', padding: '20px', boxShadow: 'var(--card-shadow)' }}>
+          <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid var(--border)' }}>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Image</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Name</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Category</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Price</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Type</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Status</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredMenu.map(item => (
+                <tr key={item.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                  <td style={{ padding: '12px 14px' }}>
+                    {item.image ? (
+                      <img
+                        src={item.image}
+                        alt={item.name}
+                        style={{ width: '40px', height: '40px', borderRadius: '8px', objectFit: 'cover', display: 'block' }}
+                      />
+                    ) : (
+                      <div style={{ width: '40px', height: '40px', borderRadius: '8px', backgroundColor: 'var(--bg-secondary)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px' }}>🍴</div>
+                    )}
+                  </td>
+                  <td style={{ padding: '12px 14px' }}>
+                    <div style={{ fontWeight: 600, color: 'var(--text-main)', fontSize: '14px' }}>{item.name}</div>
+                    {item.desc && (
+                      <div style={{ fontSize: '12px', color: 'var(--text-muted)', marginTop: '2px', maxWidth: '280px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                        {item.desc}
+                      </div>
+                    )}
+                  </td>
+                  <td style={{ padding: '12px 14px', fontWeight: 500, color: 'var(--text-main)', fontSize: '14px' }}>{item.category}</td>
+                  <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-main)', fontSize: '14px' }}>₹{item.price}</td>
+                  <td style={{ padding: '12px 14px' }}>
+                    <span style={{ 
+                      fontSize: '10px', 
+                      fontWeight: 700, 
+                      color: item.veg ? '#16a34a' : '#ef4444',
+                      background: item.veg ? '#dcfce7' : '#fef2f2',
+                      padding: '3px 8px',
+                      borderRadius: '12px',
+                      display: 'inline-block',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.5px'
+                    }}>
+                      {item.veg ? 'VEG' : 'NON-VEG'}
+                    </span>
+                  </td>
+                  <td style={{ padding: '12px 14px' }}>
+                    <Badge status={item.available ? 'Active' : 'Inactive'} />
+                  </td>
+                  <td style={{ padding: '12px 14px', textAlign: 'right' }}>
+                    <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditMenuModal(item)} />
+                    <IconBtn icon={<TrashIcon size={18} />} tooltip="Delete" style={iconBtnDeleteStyle} onClick={() => handleDeleteMenu(item.id)} />
+                  </td>
+                </tr>
+              ))}
+              {filteredMenu.length === 0 && (
+                <tr>
+                  <td colSpan="7" style={{ textAlign: 'center', padding: '24px', color: 'var(--text-muted)' }}>
+                    No menu dishes found.
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
       </section>
     );
@@ -800,7 +986,7 @@ export default function Admin() {
   const handleMarkAsPaid = () => {
     if (!selectedBillingTable) return;
     markBillAsPaid(activeRestaurant.id, selectedBillingTable);
-    alert(`Marked bill as paid for ${selectedBillingTable}!`);
+    addToast(`Marked bill as paid for ${selectedBillingTable}!`);
   };
 
   const renderBilling = () => {
@@ -825,288 +1011,385 @@ export default function Admin() {
     });
 
     const taxRate = activeRestaurant.settings?.taxRate || 0.025; // split tax
-    const serviceRate = activeRestaurant.settings?.serviceChargeRate || 0;
+    const serviceRate = activeRestaurant.settings?.serviceChargeRate !== undefined ? activeRestaurant.settings?.serviceChargeRate : 0.10; // default 10% if not set
 
     const subtotal = billingItems.reduce((acc, curr) => acc + curr.amount, 0);
     const taxAmt = parseFloat((subtotal * taxRate * 2).toFixed(2));
     const serviceAmt = parseFloat((subtotal * serviceRate).toFixed(2));
     const totalAmt = subtotal + taxAmt + serviceAmt;
 
+    // Filters tables list by search
+    let filteredBillingData = billingData;
+    if (billingSearch) {
+      filteredBillingData = filteredBillingData.filter(b => b.table.toLowerCase().includes(billingSearch.toLowerCase().trim()));
+    }
+
+    const getTableGuests = (tableLabel) => {
+      const num = tableLabel.replace('Table ', '');
+      const cleanId = num.length === 1 ? `T-0${num}` : `T-${num}`;
+      const t = tables.find(x => x.id === cleanId);
+      return t ? t.seats : 3;
+    };
+
+    const getTableDuration = (tableLabel) => {
+      const num = parseInt(tableLabel.replace('Table ', '')) || 1;
+      if (num === 1) return '45 mins';
+      if (num === 5) return '12 mins';
+      if (num === 12) return '1 hour';
+      return '30 mins';
+    };
+
+    const isVegItem = (itemName) => {
+      const menuItem = menu.find(m => m.name.toLowerCase() === itemName.toLowerCase());
+      return menuItem ? menuItem.veg : !itemName.toLowerCase().includes('chicken') && !itemName.toLowerCase().includes('keema') && !itemName.toLowerCase().includes('fish');
+    };
+
+    const getItemOptions = (itemName) => {
+      if (itemName.includes('Dosa') && !itemName.includes('Keema')) return 'Extra Butter, Sambar separate';
+      if (itemName.includes('Coffee')) return 'Strong, Less Sugar';
+      if (itemName.includes('Idli')) return 'Ghee Roast, Podi';
+      return '';
+    };
+
+    // Find the latest order ID for this table
+    const latestOrderId = activeTableOrders.length > 0 ? `#ORD-${activeTableOrders[0].id}` : 'N/A';
+
     return (
       <section className="panel-view active">
-        <div className="panel-header-flex" style={{ marginBottom: '20px' }}>
-          <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Billing Panel</h2>
-            <p className="panel-inner-desc">Manage table bills, GST and payment status</p>
-          </div>
-        </div>
+        <div className="billing-panel-grid-new">
+          {/* Column 1: Active Tables List */}
+          <div className="billing-tables-column-new">
+            <div className="active-tables-title-row">
+              <h3>Active Tables</h3>
+              <span className="active-tables-badge-new">
+                {billingData.filter(b => b.status !== 'Paid').length} ACTIVE
+              </span>
+            </div>
 
-        <div className="billing-panel-grid">
-          {/* Tables List */}
-          <div className="billing-tables-column">
-            <div className="column-header-title">TABLES</div>
-            <div className="billing-tables-list-container">
-              {billingData.map(b => (
-                <div
-                  key={b.table}
-                  className={`table-selection-row ${selectedBillingTable === b.table ? 'active' : ''}`}
-                  onClick={() => setSelectedBillingTable(b.table)}
-                >
-                  <div>
-                    <strong style={{ display: 'block', fontSize: '14px' }}>{b.table}</strong>
-                    <span style={{ fontSize: '11px', color: 'var(--text-muted)' }}>{b.orders} orders</span>
+            <div style={{ display: 'flex', flexDirection: 'row', gap: '16px', marginTop: '4px', overflowX: 'auto', paddingBottom: '12px' }}>
+              {filteredBillingData.map(b => {
+                const isActive = selectedBillingTable === b.table;
+                const isPaid = b.status === 'Paid';
+                const guests = getTableGuests(b.table);
+                const duration = getTableDuration(b.table);
+
+                return (
+                  <div
+                    key={b.table}
+                    onClick={() => setSelectedBillingTable(b.table)}
+                    className={`billing-table-select-card-new ${isActive ? 'active' : ''} ${isPaid ? 'settled' : ''}`}
+                    style={{ minWidth: '240px' }}
+                  >
+                    <div className="billing-table-card-top">
+                      <span className="billing-table-name-new">{b.table}</span>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span className={`billing-table-badge-new ${b.status.toLowerCase()}`}>
+                          {b.status.toUpperCase()}
+                        </span>
+                        {!isPaid && (
+                          <button
+                            className="btn btn-outline"
+                            style={{ padding: '4px', borderRadius: '4px', fontSize: '12px', border: 'none', background: 'var(--bg-primary)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              const tNum = b.table.replace('Table ', '');
+                              const tableOrders = orders.filter(o => (o.table === tNum || parseInt(o.table) === parseInt(tNum)) && o.billingStatus === 'unpaid');
+                              if (tableOrders.length > 0) {
+                                setActiveEditOrder(tableOrders[0]);
+                                setEditOrderForm({
+                                  table: tableOrders[0].table,
+                                  notes: tableOrders[0].notes || '',
+                                  waiter: tableOrders[0].waiter || 'Unassigned'
+                                });
+                                setActivePage('order-edit-form');
+                              } else {
+                                addToast('No active orders to edit.');
+                              }
+                            }}
+                            title="Edit Order Details"
+                          >
+                            ✏️
+                          </button>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className="billing-table-card-mid">
+                      <span>{guests} Guests</span>
+                      <span>•</span>
+                      <span>{isPaid ? 'Checkout' : `🕒 ${duration}`}</span>
+                    </div>
+
+                    <div className={`billing-table-card-bottom ${isPaid ? 'settled' : ''}`}>
+                      ₹{b.total.toLocaleString('en-IN')}
+                    </div>
                   </div>
-                  <div style={{ textAlign: 'right' }}>
-                    <div style={{ fontSize: '14px', fontWeight: 700 }}>₹{b.total}</div>
-                    <Badge status={b.status} />
-                  </div>
+                );
+              })}
+
+              {filteredBillingData.length === 0 && (
+                <div style={{ textAlign: 'center', padding: '20px', color: 'var(--text-muted)', fontSize: '13px' }}>
+                  No active tables found.
                 </div>
-              ))}
-              {billingData.length === 0 && (
-                <div style={{ textAlign: 'center', padding: '20px', color: '#94a3b8' }}>No dining transactions available.</div>
               )}
             </div>
           </div>
 
-          {/* Bill Summary details */}
-          <div className="billing-summary-column">
-            <div className="bill-summary-header-row">
-              <div>
-                <h3 className="bill-summary-title">{selectedBillingTable} — Bill Summary</h3>
-                <p className="bill-summary-subtitle">{activeTableOrders.length} active orders</p>
+          {/* Column 2: Bill Summary Details */}
+          <div className="billing-summary-card-new">
+            <div>
+              <div className="bill-summary-header-row-new">
+                <div>
+                  <h3>Bill Summary</h3>
+                  <p>Order ID: {latestOrderId} • {selectedBillingTable}</p>
+                </div>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                  <button
+                    className="btn btn-outline"
+                    style={{ padding: '8px 10px', borderRadius: '8px' }}
+                    onClick={() => {
+                      if (activeTableOrders.length > 0) {
+                        setEditBillModal({ isOpen: true, table: selectedBillingTable, items: JSON.parse(JSON.stringify(billingItems)) });
+                      } else {
+                        addToast('No active orders to edit.');
+                      }
+                    }}
+                    title="Edit Bill Items"
+                  >
+                    ✏️
+                  </button>
+
+                  <button
+                    className="btn btn-outline"
+                    style={{ padding: '8px 10px', borderRadius: '8px' }}
+                    onClick={() => {
+                      if (activeTableOrders.length > 0) {
+                        if (window.confirm(`Are you sure you want to cancel the active orders for ${selectedBillingTable}?`)) {
+                          activeTableOrders.forEach(o => deleteOrder(activeRestaurant.id, o.id));
+                          addToast('Orders deleted successfully.');
+                        }
+                      } else {
+                        addToast('No active orders to cancel.');
+                      }
+                    }}
+                    title="Delete Active Orders"
+                  >
+                    🗑️
+                  </button>
+                </div>
               </div>
-              <div style={{ display: 'flex', gap: '10px' }}>
-                <button className="btn btn-outline btn-bill-action" onClick={() => alert('Sending to printing queue...')}>🖨️ Print Receipt</button>
-                <button className="btn btn-outline btn-bill-action" onClick={() => alert('Invoice link copied!')}>🔗 Share</button>
-              </div>
+
+              <table className="bill-items-table-new">
+                <thead>
+                  <tr>
+                    <th style={{ width: '55%' }}>ITEM DESCRIPTION</th>
+                    <th style={{ textAlign: 'center', width: '12%' }}>QTY</th>
+                    <th style={{ textAlign: 'right', width: '15%' }}>RATE</th>
+                    <th style={{ textAlign: 'right', width: '18%' }}>AMOUNT</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {billingItems.map((item, idx) => {
+                    const isVeg = isVegItem(item.name);
+                    const options = getItemOptions(item.name);
+                    return (
+                      <tr key={idx}>
+                        <td>
+                          <div className="item-name-cell-new">
+                            <span className={`item-status-dot ${isVeg ? 'veg' : 'non-veg'}`}></span>
+                            <div className="item-name-text-wrapper">
+                              <span className="item-name-bold">{item.name}</span>
+                              {options && <span className="item-desc-subtitle">{options}</span>}
+                            </div>
+                          </div>
+                        </td>
+                        <td style={{ textAlign: 'center', fontWeight: '600' }}>{item.qty}</td>
+                        <td style={{ textAlign: 'right', fontWeight: '500', color: 'var(--text-muted)' }}>
+                          ₹{item.rate.toFixed(2)}
+                        </td>
+                        <td style={{ textAlign: 'right', fontWeight: '700', color: 'var(--black)' }}>
+                          ₹{item.amount.toFixed(2)}
+                        </td>
+                      </tr>
+                    );
+                  })}
+
+                  {billingItems.length === 0 && (
+                    <tr>
+                      <td colSpan="4" style={{ textAlign: 'center', padding: '40px', color: 'var(--text-muted)', fontWeight: 500 }}>
+                        No unpaid items found. This bill has been settled.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
             </div>
 
-            <div className="billing-split-inner">
-              <div className="bill-items-table-wrapper">
-                <table className="bill-items-table">
+            {subtotal > 0 && (
+              <div className="bill-receipt-summary-new">
+                <div className="bill-receipt-row-new">
+                  <span>Subtotal</span>
+                  <strong style={{ color: 'var(--text-main)' }}>₹{subtotal.toFixed(2)}</strong>
+                </div>
+                <div className="bill-receipt-row-new">
+                  <span>GST ({(taxRate * 100 * 2).toFixed(0)}%)</span>
+                  <strong style={{ color: 'var(--text-main)' }}>₹{taxAmt.toFixed(2)}</strong>
+                </div>
+                <div className="bill-receipt-row-new">
+                  <span>Service Charge ({(serviceRate * 100).toFixed(0)}%)</span>
+                  <strong style={{ color: 'var(--text-main)' }}>₹{serviceAmt.toFixed(2)}</strong>
+                </div>
+                <div className="bill-receipt-row-new grand-total-row">
+                  <span className="label">Grand Total</span>
+                  <span className="val">₹{totalAmt.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Column 3: Payment details selection & Actions */}
+          <div className="billing-payment-card-new">
+            <div className="payment-header-new">
+              <h3>Payment Method</h3>
+              <p>Select preference for {selectedBillingTable}</p>
+            </div>
+
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+              {[
+                { id: 'UPI', label: 'UPI / QR Code', icon: '🔳', desc: 'Instant digital payment' },
+                { id: 'Card', label: 'Credit / Debit Card', icon: '💳', desc: 'Visa, Mastercard, RuPay' },
+                { id: 'Cash', label: 'Cash', icon: '💵', desc: 'Manual reconciliation' }
+              ].map(method => {
+                const isSelected = billingPaymentMethod === method.id;
+                return (
+                  <div
+                    key={method.id}
+                    onClick={() => {
+                      if (subtotal > 0) setBillingPaymentMethod(method.id);
+                    }}
+                    className={`billing-pay-option-card-new ${isSelected ? 'active' : ''}`}
+                    style={{ opacity: subtotal === 0 ? 0.6 : 1, cursor: subtotal === 0 ? 'not-allowed' : 'pointer' }}
+                  >
+                    <div className="pay-option-icon-box">
+                      <span style={{ fontSize: '18px' }}>{method.icon}</span>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+                      <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--black)' }}>{method.label}</span>
+                      <span style={{ fontSize: '10px', color: 'var(--text-muted)', marginTop: '2px' }}>{method.desc}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            <button
+              className="btn btn-black"
+              onClick={handleMarkAsPaid}
+              disabled={subtotal === 0}
+              style={{
+                width: '100%',
+                padding: '12px 20px',
+                fontSize: '14px',
+                fontWeight: '700',
+                borderRadius: '8px',
+                background: 'var(--primary)',
+                color: 'white',
+                border: 'none',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                cursor: subtotal === 0 ? 'not-allowed' : 'pointer',
+                boxShadow: '0 2px 8px rgba(255, 122, 0, 0.2)'
+              }}
+            >
+              <span>✓</span> Mark as Paid
+            </button>
+
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button
+                className="btn btn-outline"
+                onClick={() => addToast('Sending receipt print command...')}
+                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px' }}
+              >
+                🖨️ Print
+              </button>
+              <button
+                className="btn btn-outline"
+                onClick={() => addToast('Invoice sharing link generated!')}
+                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px' }}
+              >
+                🔗 Share
+              </button>
+            </div>
+
+            <div className="billing-tip-box-new">
+              💡 <strong>BILLING TIP</strong>
+              <p style={{ margin: '4px 0 0 0', fontSize: '10px', color: 'inherit', fontWeight: '500', lineHeight: 1.4, textAlign: 'left' }}>
+                Ensure QR codes are generated per bill for faster reconciliation in daily reports.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {editBillModal.isOpen && (
+          <div className="modal-overlay">
+            <div className="modal-card" style={{ maxWidth: '600px', padding: 0, overflow: 'hidden' }}>
+              <div className="modal-header-flex" style={{ padding: '24px 24px 0 24px', borderBottom: 'none', marginBottom: '16px' }}>
+                <h3 style={{ margin: 0, fontSize: '20px', fontWeight: 800, fontFamily: 'Outfit, sans-serif', color: 'var(--text-main)', background: 'none', WebkitTextFillColor: 'initial' }}>Edit Bill Items</h3>
+                <button className="modal-close" style={{ background: 'none', border: 'none', fontSize: '20px' }} onClick={() => setEditBillModal({ isOpen: false, table: null, items: [] })}>✕</button>
+              </div>
+              <div style={{ padding: '0 24px 24px 24px', maxHeight: '60vh', overflowY: 'auto' }}>
+                <table className="bill-items-table-new" style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '16px' }}>
                   <thead>
-                    <tr>
-                      <th style={{ textAlign: 'left' }}>ITEM</th>
-                      <th style={{ textAlign: 'center' }}>QTY</th>
-                      <th style={{ textAlign: 'right' }}>RATE</th>
-                      <th style={{ textAlign: 'right' }}>AMOUNT</th>
+                    <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                      <th style={{ textAlign: 'left', paddingBottom: '8px', fontSize: '11px', color: 'var(--text-muted)' }}>ITEM NAME</th>
+                      <th style={{ textAlign: 'center', paddingBottom: '8px', fontSize: '11px', color: 'var(--text-muted)' }}>QTY</th>
+                      <th style={{ textAlign: 'right', paddingBottom: '8px', fontSize: '11px', color: 'var(--text-muted)' }}>RATE</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {billingItems.map((item, idx) => (
+                    {editBillModal.items.map((item, idx) => (
                       <tr key={idx}>
-                        <td style={{ textAlign: 'left' }}>{item.name}</td>
-                        <td style={{ textAlign: 'center' }}>{item.qty}</td>
-                        <td style={{ textAlign: 'right' }}>₹{item.rate}</td>
-                        <td style={{ textAlign: 'right', fontWeight: 600 }}>₹{item.amount}</td>
+                        <td style={{ padding: '12px 0' }}>
+                          <input type="text" value={item.name} onChange={(e) => {
+                            const newItems = [...editBillModal.items];
+                            newItems[idx].name = e.target.value;
+                            setEditBillModal({ ...editBillModal, items: newItems });
+                          }} style={{ width: '100%', padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', fontSize: '13px', background: 'var(--bg-primary)', color: 'var(--text-main)' }} />
+                        </td>
+                        <td style={{ padding: '12px 12px' }}>
+                          <input type="number" min="1" value={item.qty} onChange={(e) => {
+                            const newItems = [...editBillModal.items];
+                            newItems[idx].qty = parseInt(e.target.value) || 1;
+                            setEditBillModal({ ...editBillModal, items: newItems });
+                          }} style={{ width: '60px', padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', fontSize: '13px', textAlign: 'center', background: 'var(--bg-primary)', color: 'var(--text-main)' }} />
+                        </td>
+                        <td style={{ padding: '12px 0', textAlign: 'right' }}>
+                          <input type="number" min="0" step="0.01" value={item.rate} onChange={(e) => {
+                            const newItems = [...editBillModal.items];
+                            newItems[idx].rate = parseFloat(e.target.value) || 0;
+                            setEditBillModal({ ...editBillModal, items: newItems });
+                          }} style={{ width: '80px', padding: '8px', borderRadius: '6px', border: '1px solid var(--border)', fontSize: '13px', textAlign: 'right', background: 'var(--bg-primary)', color: 'var(--text-main)' }} />
+                        </td>
                       </tr>
                     ))}
-                    {billingItems.length === 0 && (
-                      <tr>
-                        <td colSpan="4" style={{ textAlign: 'center', padding: '20px', color: '#94a3b8' }}>No unpaid items found. This bill is settled.</td>
-                      </tr>
+                    {editBillModal.items.length === 0 && (
+                      <tr><td colSpan="3" style={{ textAlign: 'center', padding: '20px', color: 'var(--text-muted)' }}>No items to edit</td></tr>
                     )}
                   </tbody>
                 </table>
-
-                {subtotal > 0 && (
-                  <div style={{
-                    background: '#fafafa',
-                    border: '1.5px dashed var(--border)',
-                    borderRadius: '12px',
-                    padding: '24px',
-                    position: 'relative',
-                    overflow: 'hidden',
-                    fontFamily: 'monospace',
-                  }}>
-                    {/* Thermal receipt header indicator */}
-                    <div style={{
-                      textAlign: 'center',
-                      fontSize: '11px',
-                      fontWeight: '800',
-                      letterSpacing: '1px',
-                      color: '#64748b',
-                      marginBottom: '16px',
-                      textTransform: 'uppercase',
-                      borderBottom: '1px dashed #cbd5e1',
-                      paddingBottom: '8px'
-                    }}>
-                      Receipt Details
-                    </div>
-                    
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px', color: '#334155' }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>Subtotal:</span>
-                        <span>₹{subtotal.toFixed(2)}</span>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>CGST ({(taxRate * 100).toFixed(1)}%):</span>
-                        <span>₹{(taxAmt / 2).toFixed(2)}</span>
-                      </div>
-                      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <span>SGST ({(taxRate * 100).toFixed(1)}%):</span>
-                        <span>₹{(taxAmt / 2).toFixed(2)}</span>
-                      </div>
-                      {serviceAmt > 0 && (
-                        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                          <span>Service Charge ({(serviceRate * 100).toFixed(1)}%):</span>
-                          <span>₹{serviceAmt.toFixed(2)}</span>
-                        </div>
-                      )}
-                      
-                      <div style={{ 
-                        display: 'flex', 
-                        justifyContent: 'space-between', 
-                        borderTop: '2px dashed #94a3b8', 
-                        paddingTop: '12px', 
-                        marginTop: '12px', 
-                        fontSize: '18px', 
-                        fontWeight: 'bold', 
-                        color: 'var(--black)',
-                        fontFamily: "'Outfit', sans-serif"
-                      }}>
-                        <span>Total Due:</span>
-                        <span>₹{totalAmt.toFixed(2)}</span>
-                      </div>
-                    </div>
-                    
-                    {/* Thermal cut decoration at bottom */}
-                    <div style={{
-                      position: 'absolute',
-                      bottom: '-6px',
-                      left: 0,
-                      width: '100%',
-                      height: '12px',
-                      background: 'radial-gradient(circle, transparent, transparent 50%, #fafafa 50%, #fafafa 100%)',
-                      backgroundSize: '12px 12px'
-                    }} />
-                  </div>
-                )}
-              </div>
-
-              {/* Payment details status check */}
-              {subtotal > 0 && (
-                <div className="payment-status-wrapper">
-                  <div style={{
-                    background: '#ffffff',
-                    border: '1px solid var(--border)',
-                    borderRadius: '16px',
-                    padding: '20px',
-                    boxShadow: '0 4px 12px rgba(0,0,0,0.03)'
-                  }}>
-                    <div style={{ 
-                      fontSize: '11px', 
-                      fontWeight: 800, 
-                      color: 'var(--black)', 
-                      letterSpacing: '0.5px', 
-                      textTransform: 'uppercase', 
-                      marginBottom: '16px',
-                      borderBottom: '1.5px solid var(--border)',
-                      paddingBottom: '8px'
-                    }}>
-                      PAYMENT METHOD
-                    </div>
-
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      {[
-                        { id: 'Cash', label: 'Cash Payment', icon: '💵', desc: 'Direct cash settlement' },
-                        { id: 'UPI', label: 'UPI / QR Code', icon: '📱', desc: 'GPay, PhonePe, Paytm' },
-                        { id: 'Card', label: 'Credit/Debit Card', icon: '💳', desc: 'Visa, MasterCard' }
-                      ].map(method => {
-                        const isSelected = billingPaymentMethod === method.id;
-                        return (
-                          <div
-                            key={method.id}
-                            onClick={() => setBillingPaymentMethod(method.id)}
-                            style={{
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: '10px',
-                              padding: '10px 12px',
-                              borderRadius: '10px',
-                              border: isSelected ? '2px solid #000000' : '1.5px solid var(--border)',
-                              background: isSelected ? '#f8fafc' : '#ffffff',
-                              cursor: 'pointer',
-                              transition: 'all 0.15s',
-                              position: 'relative'
-                            }}
-                            onMouseEnter={e => {
-                              if (!isSelected) e.currentTarget.style.borderColor = '#94a3b8';
-                            }}
-                            onMouseLeave={e => {
-                              if (!isSelected) e.currentTarget.style.borderColor = 'var(--border)';
-                            }}
-                          >
-                            <span style={{ fontSize: '20px' }}>{method.icon}</span>
-                            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                              <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--black)' }}>{method.label}</span>
-                              <span style={{ fontSize: '10px', color: '#64748b', marginTop: '1px' }}>{method.desc}</span>
-                            </div>
-                            
-                            {/* Checkmark indicator for selected */}
-                            {isSelected && (
-                              <div style={{ 
-                                marginLeft: 'auto', 
-                                width: '16px', 
-                                height: '16px', 
-                                borderRadius: '50%', 
-                                background: '#000000', 
-                                color: '#ffffff', 
-                                display: 'flex', 
-                                alignItems: 'center', 
-                                justifyContent: 'center',
-                                fontSize: '9px',
-                                fontWeight: 'bold'
-                              }}>
-                                ✓
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <button 
-                      className="btn btn-black" 
-                      onClick={handleMarkAsPaid} 
-                      style={{ 
-                        width: '100%', 
-                        marginTop: '20px', 
-                        padding: '10px 20px', 
-                        fontSize: '13px', 
-                        fontWeight: '700',
-                        borderRadius: '8px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <span>💾</span> Mark as Paid
-                    </button>
-                    <button 
-                      className="btn btn-outline" 
-                      onClick={() => alert('PDF invoice downloaded!')}
-                      style={{ 
-                        width: '100%', 
-                        marginTop: '8px', 
-                        padding: '10px 20px', 
-                        fontSize: '13px', 
-                        borderRadius: '8px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        gap: '6px'
-                      }}
-                    >
-                      <span>🖨️</span> Receipt PDF
-                    </button>
-                  </div>
+                <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', marginTop: '24px' }}>
+                  <button type="button" className="btn btn-outline" onClick={() => setEditBillModal({ isOpen: false, table: null, items: [] })} style={{ padding: '10px 24px', fontSize: '14px', borderRadius: '8px' }}>Cancel</button>
+                  <button type="button" className="btn" style={{ background: 'var(--primary)', color: 'white', border: 'none', fontWeight: 700, padding: '10px 24px', fontSize: '14px', borderRadius: '8px' }} onClick={() => {
+                    addToast('Bill items updated! (Simulated)');
+                    setEditBillModal({ isOpen: false, table: null, items: [] });
+                  }}>Save changes</button>
                 </div>
-              )}
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </section>
     );
   };
@@ -1122,10 +1405,10 @@ export default function Admin() {
       seats: parseInt(addTableForm.seats) || 4
     });
     if (success) {
-      alert(`Created Table ${cleanId}!`);
+      addToast(`Created Table ${cleanId}!`);
       setActivePage(null);
     } else {
-      alert('Table ID already exists!');
+      addToast('Table ID already exists!');
     }
   };
 
@@ -1149,153 +1432,276 @@ export default function Admin() {
 
     return (
       <section className="panel-view active">
-        <div className="panel-header-flex" style={{ marginBottom: '20px' }}>
-          <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Dining Tables & QR Management</h2>
-            <p className="panel-inner-desc">Monitor real-time table status, view active orders, and customize QR stickers for contactless ordering.</p>
+        {/* Header Row */}
+        <div className="panel-header-flex" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
+          <h2 className="panel-inner-title" style={{ fontSize: '22px', fontWeight: '800', margin: 0, color: 'var(--black)', fontFamily: 'Outfit, sans-serif' }}>Dining Tables & QR Management</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+            <button className="btn-bell-mock" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', display: 'flex', alignItems: 'center', color: 'var(--black)', padding: '6px' }}>
+              🔔
+            </button>
+            <button
+              className="btn"
+              onClick={() => { setAddTableForm({ id: '', seats: 4, waiter: '' }); setActivePage('table-form'); }}
+              style={{ background: 'var(--primary)', color: 'white', border: 'none', fontWeight: '700', padding: '10px 18px', borderRadius: '8px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
+            >
+              + Add Dining Table
+            </button>
           </div>
-          <button className="btn btn-black" onClick={() => { setAddTableForm({ id: '', seats: 4 }); setActivePage('table-form'); }}>
-            ➕ Add Dining Table
-          </button>
         </div>
 
-        <div className="tables-dashboard-grid">
-          {/* Tables Grid */}
-          <div className="tables-list-column">
-            <div className="stats-grid" style={{ gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
-              <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
-                <div className="stat-main-row">
-                  <div className="stat-info">
-                    <div className="stat-label" style={{ color: '#64748b' }}>Total Tables</div>
-                    <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '24px', fontWeight: '700' }}>{tables.length}</h3>
-                    <div className="stat-sub-label green-label">Active terminals</div>
+        {/* Top: 5-column Dining Table Cards */}
+        <div className="tables-row-grid-new">
+          {tables.map(table => {
+            const isSelected = selectedTableId === table.id;
+            const isOccupied = table.status.toLowerCase() === 'occupied';
+            return (
+              <div
+                key={table.id}
+                className={`table-card-new ${isSelected ? 'selected' : ''}`}
+                onClick={() => {
+                  setSelectedTableId(table.id);
+                }}
+              >
+                {isSelected && <div className="table-card-checkmark-badge">✓</div>}
+
+                <div className="table-card-header-new">
+                  <span className={`table-card-id-box-new ${isOccupied ? 'occupied' : ''}`}>
+                    {table.id}
+                  </span>
+                  <span className={`table-card-status-new ${isOccupied ? 'occupied' : 'free'}`}>
+                    <span className="status-dot-new"></span>
+                    {table.status.toUpperCase()}
+                  </span>
+                </div>
+
+                <div className="table-card-body-new" style={{ color: isOccupied ? 'var(--black)' : 'var(--success)' }}>
+                  <svg width="50" height="34" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 16C6 14.8954 6.89543 14 8 14H52C53.1046 14 54 14.8954 54 16V18C54 19.1046 53.1046 20 52 20H8C6.89543 20 6 19.1046 6 18V16Z" fill="currentColor" />
+                    <rect x="16" y="20" width="4" height="14" rx="1" fill="currentColor" />
+                    <rect x="40" y="20" width="4" height="14" rx="1" fill="currentColor" />
+                    <path d="M12 34H48" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.3" />
+                  </svg>
+                </div>
+
+                {table.waiter && (
+                  <div style={{ fontSize: '12px', fontWeight: 600, color: '#475569', textAlign: 'center', marginBottom: '8px' }}>
+                    Waiter: {table.waiter}
                   </div>
-                  <div className="stat-icon-wrapper" style={{ fontSize: '18px' }}>📋</div>
+                )}
+
+                <div className="table-card-footer-new">
+                  <span>Capacity: {table.seats || 4}</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.7 }}>
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                  </svg>
                 </div>
               </div>
+            );
+          })}
+        </div>
 
-              <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
-                <div className="stat-main-row">
-                  <div className="stat-info">
-                    <div className="stat-label" style={{ color: '#64748b' }}>Occupied</div>
-                    <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '24px', fontWeight: '700' }}>{occupiedTablesCount}</h3>
-                    <div className={`stat-sub-label ${occupiedTablesCount > 0 ? 'red-label' : 'green-label'}`}>{occupiedTablesCount} in session</div>
-                  </div>
-                  <div className="stat-icon-wrapper" style={{ fontSize: '18px' }}>👥</div>
+        {/* Bottom Details Grid */}
+        <div className="tables-details-split-new">
+          {/* Column 1: QR Preview */}
+          <div className="qr-preview-card-new">
+            <h3 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: '800', color: 'var(--black)', fontFamily: 'Outfit, sans-serif' }}>QR Preview</h3>
+
+            <div className="qr-dashed-container-new">
+              <div className="qr-slate-box-new" style={{ backgroundColor: '#9aaaba' }}>
+                <div style={{ background: '#fff', padding: '8px', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}>
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://${window.location.hostname}:3001/table/${currentTable.id}`}
+                    alt={`QR code for Table ${currentTable.id}`}
+                    style={{ width: '100%', height: '100%' }}
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                    }}
+                  />
                 </div>
               </div>
-
-              <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
-                <div className="stat-main-row">
-                  <div className="stat-info">
-                    <div className="stat-label" style={{ color: '#64748b' }}>Total Seats</div>
-                    <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '24px', fontWeight: '700' }}>{tables.reduce((acc, t) => acc + (t.seats || 4), 0)}</h3>
-                    <div className="stat-sub-label green-label">Capacity</div>
-                  </div>
-                  <div className="stat-icon-wrapper" style={{ fontSize: '18px' }}>🪑</div>
-                </div>
-              </div>
-
-              <div className="stat-card" style={{ borderLeft: '5px solid var(--primary)' }}>
-                <div className="stat-main-row">
-                  <div className="stat-info">
-                    <div className="stat-label" style={{ color: '#64748b' }}>Available</div>
-                    <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '24px', fontWeight: '700' }}>{tables.length - occupiedTablesCount}</h3>
-                    <div className="stat-sub-label green-label">{tables.length - occupiedTablesCount} free</div>
-                  </div>
-                  <div className="stat-icon-wrapper" style={{ fontSize: '18px' }}>🟢</div>
-                </div>
+              <div className="qr-active-badge-new">
+                ACTIVE: {currentTable.id}
               </div>
             </div>
 
-            <div className="dining-tables-grid">
-              {tables.map(table => (
-                <div
-                  key={table.id}
-                  className={`dining-table-card ${table.status.toLowerCase()} ${selectedTableId === table.id ? 'selected' : ''}`}
-                  onClick={() => {
-                    setSelectedTableId(table.id);
-                    setActivePage('table-profile');
-                  }}
-                  style={{ cursor: 'pointer', border: selectedTableId === table.id ? '2px solid var(--primary)' : '1px solid var(--border)' }}
-                >
-                  <div className="table-card-header">
-                    <span className="table-label-tag">{table.id}</span>
-                    <span className={`table-status-dot ${table.status.toLowerCase()}`}></span>
-                  </div>
+            <button
+              className="btn"
+              onClick={() => launchSimulatorTable(currentTable.id)}
+              style={{
+                width: '100%',
+                background: '#eaeef2',
+                color: '#334155',
+                border: 'none',
+                fontWeight: '750',
+                fontSize: '13px',
+                padding: '12px 20px',
+                borderRadius: '8px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px',
+                marginTop: 'auto',
+                cursor: 'pointer'
+              }}
+            >
+              🚀 Open in Customer Simulator
+            </button>
 
-                  <div className="table-seating-row">
-                    <span className="seats-icon">👥</span>
-                    <span className="seats-count">{table.seats || 4} Seats</span>
-                  </div>
-
-                  <div className="table-status-label">{table.status}</div>
-                </div>
-              ))}
+            <div style={{ display: 'flex', gap: '10px' }}>
+              <button
+                className="btn btn-outline"
+                onClick={() => addToast('Sending QR template to printer...')}
+                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+              >
+                🖨️ Print Sticker
+              </button>
+              <button
+                className="btn btn-outline"
+                onClick={() => addToast('SVG QR sticker generated & downloaded!')}
+                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
+              >
+                📥 Download SVG
+              </button>
             </div>
           </div>
 
-          {/* QR Customizer & Details */}
-          <div className="qr-customizer-column">
-            <div className="customizer-header">Table {currentTable.id} Details</div>
-
-            {/* Sticker Preview */}
-            <div className="sticker-preview-card" style={{ borderColor: qrCustomizer.color }}>
-              <div className="sticker-restaurant-name" style={{ color: qrCustomizer.color }}>{name}</div>
-              <div className="sticker-subtitle">SCAN TO ORDER</div>
-
-              <div className="sticker-qr-wrapper">
-                <div className="fancy-qr-code" style={{ borderColor: qrCustomizer.color }}>
-                  {/* Mock QR graphic */}
-                  <div style={{ width: '80px', height: '80px', background: '#000', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#fff', borderRadius: '4px', fontSize: '9px', fontWeight: 'bold', padding: '4px', textAlign: 'center', position: 'relative' }}>
-                    QR CODE
-                    {qrCustomizer.showLogo && (
-                      <div style={{ position: 'absolute', width: '20px', height: '20px', background: '#ff7a00', color: '#fff', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '10px', border: '2px solid #000' }}>
-                        S
-                      </div>
-                    )}
-                  </div>
-                </div>
+          {/* Column 2: Selected Table Details Form */}
+          <div className="table-details-card-new">
+            <div className="table-details-header-new">
+              <div>
+                <h3>Table {currentTable.id} Details</h3>
+                <p>Update seating and availability for this table.</p>
               </div>
-
-              <div className="sticker-table-label" style={{
-                backgroundColor: '#ffffff',
-                color: '#000000',
-                border: `2px solid ${qrCustomizer.color}`,
-                borderRadius: '8px',
-                padding: '6px 18px',
-                boxShadow: '0 4px 10px rgba(0, 0, 0, 0.08)',
-                display: 'inline-block'
-              }}>Table {currentTable.id}</div>
-             <br></br>
-              <div className="sticker-footer-instructions">Powered by Serviq</div>
+              <div className="table-details-header-right-new">
+                {currentTable.status.toLowerCase() === 'occupied' && (
+                  <span>Active Since: 11:45 AM</span>
+                )}
+                <button
+                  className="btn-trash-mock"
+                  onClick={() => {
+                    if (window.confirm(`Are you sure you want to delete Table ${currentTable.id}?`)) {
+                      deleteDiningTable(activeRestaurant.id, currentTable.id);
+                      addToast(`Deleted Table ${currentTable.id}`);
+                      const remaining = tables.filter(t => t.id !== currentTable.id);
+                      if (remaining.length > 0) {
+                        setSelectedTableId(remaining[0].id);
+                      }
+                    }
+                  }}
+                  style={{
+                    background: 'none',
+                    border: 'none',
+                    cursor: 'pointer',
+                    color: '#ef4444',
+                    fontSize: '18px',
+                    padding: '4px',
+                    display: 'flex',
+                    alignItems: 'center'
+                  }}
+                  title="Delete Table"
+                >
+                  🗑️
+                </button>
+              </div>
             </div>
 
-            {/* controls */}
-            <div className="customizer-controls-card">
-              <div className="control-section-title">Table Settings</div>
+            <div className="divider-new"></div>
 
-              <div className="form-group" style={{ marginBottom: '20px' }}>
-                <label>Seating Capacity</label>
-                <input
-                  type="number"
-                  min="1"
-                  max="12"
-                  value={currentTable.seats || 4}
-                  onChange={(e) => handleSeatsUpdate(e.target.value)}
-                  style={{ padding: '8px 12px', fontSize: '13px' }}
-                />
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                <button className="btn btn-black" style={{ width: '100%' }} onClick={() => launchSimulatorTable(currentTable.id)}>
-                  📱 Open in Customer Simulator
+            <div>
+              <div className="details-section-label-new">Seating Capacity</div>
+              <div className="capacity-control-new">
+                <button
+                  type="button"
+                  className="capacity-btn-new"
+                  onClick={() => setDraftSeats(prev => Math.max(1, prev - 1))}
+                >
+                  −
                 </button>
-                <div style={{ display: 'flex', gap: '10px' }}>
-                  <button className="btn btn-outline" style={{ flex: 1, fontSize: '13px' }} onClick={() => alert('Sticker template print sent!')}>🖨️ Print Sticker</button>
-                  <button className="btn btn-outline" style={{ flex: 1, fontSize: '13px' }} onClick={() => alert('SVG downloaded!')}>💾 Download SVG</button>
+                <span className="capacity-value-new">{draftSeats}</span>
+                <button
+                  type="button"
+                  className="capacity-btn-new"
+                  onClick={() => setDraftSeats(prev => Math.min(12, prev + 1))}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="details-section-label-new">Current Status</div>
+              <div className="status-segmented-control-new">
+                <div
+                  className={`status-segment-new ${draftStatus === 'Free' ? 'active free' : ''}`}
+                  onClick={() => setDraftStatus('Free')}
+                >
+                  FREE
+                </div>
+                <div
+                  className={`status-segment-new ${draftStatus === 'Occupied' ? 'active occupied' : ''}`}
+                  onClick={() => setDraftStatus('Occupied')}
+                >
+                  OCCUPIED
                 </div>
               </div>
+            </div>
+
+            <div className="divider-new"></div>
+
+            <div>
+              <div className="details-section-label-new">Assigned Waiter (Optional)</div>
+              <select
+                style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center', backgroundSize: '14px', width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', background: 'var(--bg-primary)', color: 'var(--text-main)', fontSize: '14px', cursor: 'pointer' }}
+                value={draftWaiter}
+                onChange={(e) => setDraftWaiter(e.target.value)}
+              >
+                <option value="">Select Waiter...</option>
+                <option value="Arjun K.">Arjun K.</option>
+                <option value="Priya M.">Priya M.</option>
+                <option value="Rahul S.">Rahul S.</option>
+                <option value="Anita D.">Anita D.</option>
+                <option value="Vikram S.">Vikram S.</option>
+              </select>
+            </div>
+
+            <div className="divider-new"></div>
+
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', marginTop: '10px' }}>
+              <button
+                type="button"
+                className="btn btn-outline"
+                onClick={() => {
+                  setDraftSeats(currentTable.seats || 4);
+                  setDraftStatus(currentTable.status || 'Free');
+                  setDraftWaiter(currentTable.waiter || '');
+                }}
+                style={{ padding: '10px 24px', fontSize: '13px', borderRadius: '8px' }}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btn"
+                onClick={() => {
+                  updateDiningTable(activeRestaurant.id, currentTable.id, { seats: draftSeats, status: draftStatus, waiter: draftWaiter });
+                  addToast(`Saved changes for Table ${currentTable.id}!`);
+                }}
+                style={{
+                  padding: '10px 24px',
+                  fontSize: '13px',
+                  borderRadius: '8px',
+                  background: 'var(--primary)',
+                  color: 'white',
+                  border: 'none',
+                  fontWeight: '700',
+                  cursor: 'pointer'
+                }}
+              >
+                Save Changes
+              </button>
             </div>
           </div>
         </div>
@@ -1308,7 +1714,7 @@ export default function Admin() {
     e.preventDefault();
     if (staffForm.id) {
       updateStaff(activeRestaurant.id, staffForm);
-      alert('Staff details updated!');
+      addToast('Staff details updated!');
     } else {
       const nextNum = staff.length + 1;
       const newId = `S-${nextNum < 10 ? '0' + nextNum : nextNum}`;
@@ -1316,7 +1722,7 @@ export default function Admin() {
         ...staffForm,
         id: newId
       });
-      alert('New staff member added!');
+      addToast('New staff member added!');
     }
     setActivePage(null);
   };
@@ -1325,7 +1731,7 @@ export default function Admin() {
     e.preventDefault();
     if (!kitchenPasswordForm) return;
     updateKitchenPassword(activeRestaurant.id, kitchenPasswordForm);
-    alert('Kitchen Shared Login Password updated!');
+    addToast('Kitchen Shared Login Password updated!');
     setActivePage(null);
   };
 
@@ -1358,9 +1764,7 @@ export default function Admin() {
           <p className="panel-inner-desc">Manage your restaurant staff, roles, contact details, and duty status.</p>
         </div>
         <div style={{ display: 'flex', gap: '8px' }}>
-          <button className="btn btn-outline" onClick={openKitchenModal}>
-            🔑 Kitchen Credentials
-          </button>
+         
           <button className="btn btn-black" onClick={openAddStaffModal}>
             ➕ Add New Staff
           </button>
@@ -1418,21 +1822,21 @@ export default function Admin() {
           <div className="menu-table-wrapper" style={{ overflowX: 'auto' }}>
             <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
-                <tr style={{ borderBottom: '1.5px solid var(--border)', backgroundColor: 'var(--bg-secondary)' }}>
-                  <th style={{ padding: '12px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>STAFF ID</th>
-                  <th style={{ padding: '12px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>NAME</th>
-                  <th style={{ padding: '12px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>ROLE</th>
-                  <th style={{ padding: '12px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>PHONE</th>
-                  <th style={{ padding: '12px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>LOGIN EMAIL</th>
-                  <th style={{ padding: '12px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)' }}>STATUS</th>
-                  <th style={{ padding: '12px 14px', fontSize: '11px', fontWeight: 700, color: 'var(--text-muted)', textAlign: 'right' }}>ACTIONS</th>
+                <tr>
+                  <th>STAFF ID</th>
+                  <th>NAME</th>
+                  <th>ROLE</th>
+                  <th>PHONE</th>
+                  <th>LOGIN EMAIL</th>
+                  <th>STATUS</th>
+                  <th style={{ textAlign: 'right' }}>ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
                 {staff.map(s => (
                   <tr key={s.id} style={{ borderBottom: '1px solid var(--border)' }}>
                     <td style={{ padding: '12px 14px', fontFamily: 'monospace' }}>{s.id}</td>
-                    <td style={{ padding: '12px 14px', fontWeight: 600 }}>{s.name}</td>
+                    <td style={{ padding: '12px 14px', fontWeight: 500, color: 'var(--text-main)' }}>{s.name}</td>
                     <td style={{ padding: '12px 14px' }}>{s.role}</td>
                     <td style={{ padding: '12px 14px' }}>{s.phone}</td>
                     <td style={{ padding: '12px 14px' }}>{s.email}</td>
@@ -1478,358 +1882,305 @@ export default function Admin() {
       }
     });
     setDarkMode(settingsForm.darkMode);
-    alert('Restaurant configuration saved successfully!');
+    addToast('Restaurant configuration saved successfully!');
   };
 
-  const renderSettings = () => (
-    <section className="panel-view active">
-      <div className="panel-header-flex" style={{ marginBottom: '20px' }}>
-        <div className="panel-title-desc">
-          <h2 className="panel-inner-title">Restaurant Settings</h2>
-          <p className="panel-inner-desc">Manage store branding, operations, tax policies, and dashboard appearance</p>
+  // ==========================================
+  // USERS & ROLES MODULES
+  // ==========================================
+
+  const renderRoles = () => (
+    <section className="panel-view active" style={{ padding: 0 }}>
+      <div className="admin-card-container">
+        <div className="admin-inner-header" style={{ marginBottom: '20px' }}>
+          <h3 className="admin-inner-title" style={{ fontSize: '15px' }}>Roles & Permissions</h3>
+          <button className="btn" style={{ background: '#000', color: '#fff', borderRadius: '8px', padding: '10px 20px', fontWeight: 600 }} onClick={() => setActiveTab('roles-add')}>
+            + Add Role
+          </button>
         </div>
-      </div>
-
-      <div className="settings-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '24px', alignItems: 'start' }}>
-        <form onSubmit={handleSettingsSubmit} className="settings-forms-column" style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-
-          {/* CARD 1: RESTAURANT PROFILE & BRANDING */}
-          <div className="settings-card">
-            <h3 style={{ fontSize: '15px', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)', borderBottom: '1px solid var(--border)', paddingBottom: '8px', marginTop: 0 }}>
-              <span>🏪</span> Profile & Branding
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Restaurant Name</label>
-                <input
-                  type="text"
-                  value={settingsForm.name}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, name: e.target.value })}
-                  required
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Tagline / Subtitle</label>
-                <input
-                  type="text"
-                  value={settingsForm.tagline}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, tagline: e.target.value })}
-                  placeholder="e.g. Scan, Order & Enjoy!"
-                />
-              </div>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginBottom: '16px' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Logo Image URL</label>
-                <input
-                  type="text"
-                  value={settingsForm.logo}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, logo: e.target.value })}
-                  placeholder="e.g. https://domain.com/logo.png"
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Banner Image URL</label>
-                <input
-                  type="text"
-                  value={settingsForm.banner}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, banner: e.target.value })}
-                  placeholder="e.g. https://domain.com/banner.jpg"
-                />
-              </div>
-            </div>
-            {/* BRANDING PREVIEWS */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '16px', marginTop: '12px', padding: '12px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border)' }}>
-              <div>
-                <span style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: 'black', marginBottom: '6px', textTransform: 'uppercase' }}>Logo Preview</span>
-                <div style={{ width: '80px', height: '80px', borderRadius: '8px', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'white', overflow: 'hidden' }}>
-                  {settingsForm.logo ? (
-                    <img src={settingsForm.logo} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />
-                  ) : (
-                    <span style={{ fontSize: '24px' }}>🏪</span>
-                  )}
-                </div>
-              </div>
-              <div>
-                <span style={{ display: 'block', fontSize: '11px', fontWeight: 700, color: 'black', marginBottom: '6px', textTransform: 'uppercase' }}>Banner Preview</span>
-                <div style={{ width: '100%', height: '80px', borderRadius: '8px', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'white', overflow: 'hidden' }}>
-                  {settingsForm.banner ? (
-                    <img src={settingsForm.banner} alt="Banner" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; }} />
-                  ) : (
-                    <span style={{ fontSize: '12px', color: 'grey' }}>No banner image set</span>
-                  )}
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* CARD 2: CONTACT & LOCATION */}
-          <div className="settings-card">
-            <h3 style={{ fontSize: '15px', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)', borderBottom: '1px solid var(--border)', paddingBottom: '8px', marginTop: 0 }}>
-              <span>📞</span> Contact & Location
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.5fr', gap: '16px', marginBottom: '16px' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Contact Phone Number</label>
-                <input
-                  type="text"
-                  value={settingsForm.phone}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, phone: e.target.value })}
-                  placeholder="e.g. 9876543210"
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Support / Owner Email</label>
-                <input
-                  type="email"
-                  value={activeRestaurant.owner}
-                  readOnly
-                  style={{ background: '#f1f5f9', cursor: 'not-allowed' }}
-                />
-              </div>
-            </div>
-            <div style={{ display: 'grid', gridTemplateColumns: '1.5fr 1fr 1fr', gap: '16px' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Street Address</label>
-                <input
-                  type="text"
-                  value={settingsForm.address}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, address: e.target.value })}
-                  placeholder="e.g. 12 Connaught Place"
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>City</label>
-                <input
-                  type="text"
-                  value={settingsForm.city}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, city: e.target.value })}
-                  placeholder="e.g. New Delhi"
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>State</label>
-                <input
-                  type="text"
-                  value={settingsForm.state}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, state: e.target.value })}
-                  placeholder="e.g. Delhi"
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* CARD 3: OPERATIONS & TAX POLICIES */}
-          <div className="settings-card">
-            <h3 style={{ fontSize: '15px', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)', borderBottom: '1px solid var(--border)', paddingBottom: '8px', marginTop: 0 }}>
-              <span>⚙️</span> Operations & Charges
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1.5fr', gap: '16px', marginBottom: '16px' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Currency Symbol</label>
-                <select
-                  value={settingsForm.currency}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, currency: e.target.value })}
-                >
-                  <option value="₹">₹ (Indian Rupee)</option>
-                  <option value="$">$ (US Dollar)</option>
-                  <option value="€">€ (Euro)</option>
-                  <option value="£">£ (British Pound)</option>
-                  <option value="AED">AED (UAE Dirham)</option>
-                </select>
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Dining Tables Count</label>
-                <input
-                  type="number"
-                  min="1"
-                  max="50"
-                  value={settingsForm.tablesCount}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, tablesCount: parseInt(e.target.value) || 1 })}
-                  required
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>GST / Tax Identification Number</label>
-                <input
-                  type="text"
-                  value={settingsForm.gstNumber}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, gstNumber: e.target.value })}
-                  placeholder="e.g. 07AAACS1234A1ZX"
-                  style={{ fontFamily: 'monospace', textTransform: 'uppercase' }}
-                />
-              </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr 1fr', gap: '16px' }}>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Total Tax Rate (%)</label>
-                <input
-                  type="number"
-                  min="0"
-                  max="30"
-                  step="0.1"
-                  value={settingsForm.taxRate}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, taxRate: parseFloat(e.target.value) || 0 })}
-                  required
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Service Charge (%)</label>
-                <input
-                  type="number"
-                  min="0"
-                  max="25"
-                  step="0.5"
-                  value={settingsForm.serviceChargeRate}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, serviceChargeRate: parseFloat(e.target.value) || 0 })}
-                  required
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Opening Time</label>
-                <input
-                  type="time"
-                  value={settingsForm.openingTime}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, openingTime: e.target.value })}
-                  required
-                />
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Closing Time</label>
-                <input
-                  type="time"
-                  value={settingsForm.closingTime}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, closingTime: e.target.value })}
-                  required
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* CARD 4: SELF-SERVICE & LIMITS */}
-          <div className="settings-card">
-            <h3 style={{ fontSize: '15px', fontWeight: 700, marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '8px', color: 'var(--text-main)', borderBottom: '1px solid var(--border)', paddingBottom: '8px', marginTop: 0 }}>
-              <span>🛡️</span> Ordering & Service Controls
-            </h3>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <input
-                  type="checkbox"
-                  id="selfService"
-                  checked={settingsForm.selfService}
-                  onChange={(e) => setSettingsForm({ ...settingsForm, selfService: e.target.checked })}
-                  style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: 'var(--primary)' }}
-                />
-                <label htmlFor="selfService" style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-main)', cursor: 'pointer', margin: 0, userSelect: 'none' }}>
-                  Enable Self-Service Ordering
-                </label>
-              </div>
-              <div className="form-group" style={{ marginBottom: 0 }}>
-                <label>Minimum Order Amount ({settingsForm.currency})</label>
-                <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
-                  <span style={{ position: 'absolute', left: '12px', color: 'var(--text-muted)', fontSize: '13px', fontWeight: 600 }}>{settingsForm.currency}</span>
-                  <input
-                    type="number"
-                    min="0"
-                    value={settingsForm.minOrderAmount}
-                    onChange={(e) => setSettingsForm({ ...settingsForm, minOrderAmount: parseFloat(e.target.value) || 0 })}
-                    style={{ paddingLeft: '28px', width: '100%' }}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '8px' }}>
-            <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setSettingsForm({ ...settingsForm })}>Reset Defaults</button>
-            <button type="submit" className="btn" style={{ padding: '10px 32px', background: 'var(--primary)', color: 'white', border: 'none', fontWeight: 600 }}>Save Settings</button>
-          </div>
-        </form>
-
-        {/* Preview block */}
-        <div className="settings-preview-column" style={{ position: 'sticky', top: '24px' }}>
-          <div className="settings-card">
-            <h3 style={{ fontSize: '15px', fontWeight: 700, marginBottom: '14px', color: 'var(--text-main)', borderBottom: '1px solid var(--border)', paddingBottom: '8px', marginTop: 0 }}>Store Profile Summary</h3>
-            
-            {/* Banner & Logo Preview Badge */}
-            <div style={{ width: '100%', height: '100px', borderRadius: '8px', overflow: 'hidden', marginBottom: '16px', position: 'relative', border: '1px solid var(--border)', background: '#f1f5f9' }}>
-              {settingsForm.banner ? (
-                <img src={settingsForm.banner} alt="Banner Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} onError={(e) => { e.target.style.display = 'none'; }} />
-              ) : (
-                <div style={{ width: '100%', height: '100%', background: 'linear-gradient(135deg, var(--primary) 0%, var(--black) 100%)', opacity: 0.15 }}></div>
-              )}
-              {/* Logo floating inside banner preview */}
-              <div style={{ position: 'absolute', bottom: '8px', left: '8px', width: '40px', height: '40px', borderRadius: '6px', border: '2px solid white', background: 'white', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden', boxShadow: '0 2px 6px rgba(0,0,0,0.15)' }}>
-                {settingsForm.logo ? (
-                  <img src={settingsForm.logo} alt="Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display = 'none'; }} />
-                ) : (
-                  <span style={{ fontSize: '16px' }}>🏪</span>
-                )}
-              </div>
-            </div>
-
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', fontSize: '13px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Current Name</span>
-                <strong style={{ color: 'var(--text-main)' }}>{settingsForm.name || 'Serviq'}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Tagline</span>
-                <span style={{ color: 'var(--text-main)', fontWeight: 600, maxWidth: '65%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={settingsForm.tagline}>{settingsForm.tagline || 'Scan · Order · Enjoy'}</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Contact Phone</span>
-                <strong style={{ color: 'var(--text-main)' }}>{settingsForm.phone || '--'}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Location</span>
-                <span style={{ color: 'var(--text-main)', fontWeight: 600, maxWidth: '65%', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }} title={`${settingsForm.address}, ${settingsForm.city}, ${settingsForm.state}`}>
-                  {settingsForm.address ? `${settingsForm.address}, ${settingsForm.city}` : '--'}
-                </span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>GST/Tax ID</span>
-                <strong style={{ color: 'var(--text-main)', fontFamily: 'monospace' }}>{settingsForm.gstNumber || '--'}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Timings</span>
-                <strong style={{ color: 'var(--text-main)' }}>{settingsForm.openingTime} - {settingsForm.closingTime}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Self-Service</span>
-                <strong style={{ color: settingsForm.selfService ? '#16a34a' : '#dc2626' }}>{settingsForm.selfService ? 'Enabled' : 'Disabled'}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Min Order</span>
-                <strong style={{ color: 'var(--text-main)' }}>{settingsForm.currency}{settingsForm.minOrderAmount}</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Active Tables</span>
-                <strong style={{ color: 'var(--text-main)' }}>{settingsForm.tablesCount || 5} Tables</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Tax Setup</span>
-                <strong style={{ color: 'var(--text-main)' }}>{settingsForm.taxRate || 0}% (GST)</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Service Charge</span>
-                <strong style={{ color: 'var(--text-main)' }}>{settingsForm.serviceChargeRate || 0}%</strong>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
-                <span style={{ color: 'var(--text-muted)' }}>Currency</span>
-                <strong style={{ color: 'var(--text-main)' }}>{settingsForm.currency}</strong>
-              </div>
-
-              <div style={{ marginTop: '10px', backgroundColor: 'var(--primary-light)', color: 'var(--primary)', padding: '12px', borderRadius: '8px', fontSize: '12px', lineHeight: 1.5, fontWeight: 500 }}>
-                💡 Saving these settings will dynamically update the customer menu simulator, billing receipts, and dining table counts.
-              </div>
-            </div>
-          </div>
+        <div style={{ overflowX: 'auto' }}>
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>S.NO</th>
+                <th>ROLE NAME</th>
+                <th>STATUS</th>
+                <th style={{ textAlign: 'right' }}>ACTIONS</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rolesList.map((r, i) => (
+                <tr key={r.id}>
+                  <td>{i + 1}</td>
+                  <td style={{ fontWeight: 600 }}>{r.name}</td>
+                  <td><span className="status-pill-active">{r.status}</span></td>
+                  <td style={{ textAlign: 'right', display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
+                    <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                    <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
   );
+
+  const renderAddRole = () => {
+    const modulesList = ['Dashboard', 'Incoming Orders', 'Menu Management', 'Billing', 'Tables', 'Staff', 'Users', 'Settings'];
+    return (
+      <section className="panel-view active" style={{ padding: 0 }}>
+        <div className="admin-card-container">
+          <div className="admin-inner-header" style={{ marginBottom: '24px' }}>
+            <h3 className="admin-inner-title" style={{ fontSize: '18px' }}>Add New Role</h3>
+            <button className="btn btn-outline" style={{ borderRadius: '8px' }} onClick={() => setActiveTab('roles')}>Back to Roles</button>
+          </div>
+
+          <div className="admin-form-grid">
+            <div className="admin-form-group">
+              <label className="admin-form-label">Role Name <span className="req">*</span></label>
+              <input type="text" className="admin-input" placeholder="E.g. Sales Manager" />
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Slug</label>
+              <input type="text" className="admin-input" placeholder="e.g. sales-manager" />
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Role Status</label>
+              <select className="admin-input">
+                <option>Active</option>
+                <option>Disabled</option>
+              </select>
+            </div>
+          </div>
+
+          <div style={{ marginTop: '30px' }}>
+            <h3 className="admin-inner-title" style={{ fontSize: '14px', marginBottom: '16px' }}>Access Permissions</h3>
+            <div style={{ overflowX: 'auto', border: '1px solid var(--border)', borderRadius: '8px' }}>
+              <table className="admin-table permissions-matrix-table" style={{ margin: 0 }}>
+                <thead>
+                  <tr>
+                    <th>MODULES</th>
+                    <th style={{ textAlign: 'center' }}>VIEW</th>
+                    <th style={{ textAlign: 'center' }}>ADD</th>
+                    <th style={{ textAlign: 'center' }}>EDIT</th>
+                    <th style={{ textAlign: 'center' }}>DELETE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {modulesList.map((mod, idx) => (
+                    <tr key={idx}>
+                      <td style={{ fontWeight: 600 }}>{mod}</td>
+                      {['view', 'add', 'edit', 'delete'].map(action => (
+                        <td key={action} style={{ textAlign: 'center' }}>
+                          <label className="circle-checkbox-wrapper">
+                            <input type="checkbox" className="circle-checkbox-input" />
+                            <span className="circle-checkbox-custom"></span>
+                          </label>
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="admin-form-footer">
+            <button className="btn btn-outline" style={{ borderRadius: '8px', padding: '10px 24px' }} onClick={() => setActiveTab('roles')}>Cancel</button>
+            <button className="btn" style={{ background: '#000', color: '#fff', borderRadius: '8px', padding: '10px 24px', fontWeight: 600 }}>Create Role</button>
+          </div>
+        </div>
+      </section>
+    );
+  };
+
+  const renderUsersList = () => (
+    <section className="panel-view active" style={{ padding: 0 }}>
+      <div className="admin-card-container">
+        <div className="admin-inner-header" style={{ marginBottom: '20px' }}>
+          <h3 className="admin-inner-title" style={{ fontSize: '15px' }}>Users List</h3>
+          <button className="btn" style={{ background: '#000', color: '#fff', borderRadius: '8px', padding: '10px 20px', fontWeight: 600 }} onClick={() => setActiveTab('users-add')}>
+            + Create User
+          </button>
+        </div>
+        <div style={{ overflowX: 'auto' }}>
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>S.NO.</th>
+                <th>USER ID</th>
+                <th>FULL NAME</th>
+                <th>EMAIL ADDRESS</th>
+                <th>PHONE NUMBER</th>
+                <th>ACCESS ROLE</th>
+                <th>ACCOUNT STATUS</th>
+                <th>LAST LOGIN</th>
+              </tr>
+            </thead>
+            <tbody>
+              {usersList.map((u, i) => (
+                <tr key={u.id}>
+                  <td>{i + 1}</td>
+                  <td>{u.id}</td>
+                  <td style={{ fontWeight: 700 }}>{u.name}</td>
+                  <td>{u.email}</td>
+                  <td>{u.phone}</td>
+                  <td><span className="role-pill-grey">{u.role}</span></td>
+                  <td><span className={u.status === 'Active' ? 'status-pill-active' : 'status-pill-disabled'}>{u.status}</span></td>
+                  <td style={{ color: 'var(--text-muted)' }}>{u.lastLogin}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  );
+
+  const renderAddUser = () => (
+    <section className="panel-view active" style={{ padding: 0 }}>
+      <div className="admin-card-container">
+        <div className="admin-inner-header" style={{ marginBottom: '24px' }}>
+          <h3 className="admin-inner-title" style={{ fontSize: '18px' }}>Create New Restaurant User</h3>
+          <button className="btn btn-outline" style={{ borderRadius: '8px' }} onClick={() => setActiveTab('users-list')}>Back to Users</button>
+        </div>
+
+        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+          <label className="admin-form-label">Full Name <span className="req">*</span></label>
+          <input type="text" className="admin-input" placeholder="e.g. Ramesh Kumar" />
+        </div>
+        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+          <label className="admin-form-label">Email Address <span className="req">*</span></label>
+          <input type="email" className="admin-input" placeholder="e.g. ramesh@serviq.com" />
+        </div>
+        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+          <label className="admin-form-label">Phone Number <span className="req">*</span></label>
+          <input type="tel" className="admin-input" placeholder="e.g. +91 98765 43210" />
+        </div>
+        <div className="admin-form-group" style={{ marginBottom: '20px' }}>
+          <label className="admin-form-label">Access Role <span className="req">*</span></label>
+          <select className="admin-input">
+            <option>Branch Admin</option>
+            <option>Branch Manager</option>
+            <option>Cashier</option>
+          </select>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+          <div className="admin-form-group">
+            <label className="admin-form-label">Account Status <span className="req">*</span></label>
+            <select className="admin-input">
+              <option>Active</option>
+              <option>Disabled</option>
+            </select>
+          </div>
+          <div className="admin-form-group">
+            <label className="admin-form-label">Security Password</label>
+            <input type="text" className="admin-input" placeholder="Default: Serviq@123" />
+          </div>
+        </div>
+
+        <div className="admin-form-footer">
+          <button className="btn btn-outline" style={{ borderRadius: '8px', padding: '10px 24px' }} onClick={() => setActiveTab('users-list')}>Cancel</button>
+          <button className="btn" style={{ background: '#000', color: '#fff', borderRadius: '8px', padding: '10px 24px', fontWeight: 600 }}>Create Account</button>
+        </div>
+      </div>
+    </section>
+  );
+
+
+  const renderSettings = () => (
+    <section className="panel-view active profile-settings-wrapper" style={{ padding: 0 }}>
+      {/* Top Header Row with Orange Border */}
+      <div className="profile-settings-top-bar">
+        <h2 className="profile-settings-page-title">Settings</h2>
+        <p className="profile-settings-page-subtitle">Configure your restaurant dashboard</p>
+      </div>
+
+      <div className="profile-settings-container">
+        <div className="profile-settings-section-header">
+          <h2 className="profile-settings-section-title">Profile Settings</h2>
+          <p className="profile-settings-section-subtitle">Manage your personal profile, security credentials, and preferences</p>
+        </div>
+
+        {/* Card 1: Profile Information */}
+        <div className="profile-card">
+          <div className="profile-card-header">
+            <span className="profile-card-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+            </span>
+            <h3 className="profile-card-title">Profile Information</h3>
+          </div>
+
+          <div className="profile-grid-layout">
+            <div className="profile-avatar-column">
+              <div className="profile-avatar-box">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              </div>
+              <button type="button" className="profile-btn-choose" onClick={() => addToast('Avatar upload clicked')}>Choose</button>
+            </div>
+
+            <div className="profile-form-grid">
+              <div className="profile-form-group">
+                <label className="profile-form-label">Full Name <span className="asterisk">*</span></label>
+                <input type="text" className="profile-form-input" defaultValue="Admin User" />
+              </div>
+              <div className="profile-form-group">
+                <label className="profile-form-label">Email Address <span className="asterisk">*</span></label>
+                <input type="email" className="profile-form-input" defaultValue="admin@serveiq.com" />
+              </div>
+              <div className="profile-form-group">
+                <label className="profile-form-label">Username <span className="asterisk">*</span></label>
+                <input type="text" className="profile-form-input" defaultValue="superadmin" />
+              </div>
+              <div className="profile-form-group">
+                <label className="profile-form-label">Mobile Number <span className="asterisk">*</span></label>
+                <input type="text" className="profile-form-input" defaultValue="+91 9876543210" />
+              </div>
+              <div className="profile-form-group full-width">
+                <label className="profile-form-label">Designation</label>
+                <input type="text" className="profile-form-input disabled" value="Super Admin" readOnly />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Card 2: Login & Security */}
+        <div className="profile-card">
+          <div className="profile-card-header">
+            <span className="profile-card-icon" style={{ color: '#f59e0b' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" /></svg>
+            </span>
+            <h3 className="profile-card-title">Login & Security</h3>
+          </div>
+
+          <div className="profile-form-grid">
+            <div className="profile-form-group full-width">
+              <label className="profile-form-label">Current Password</label>
+              <input type="password" className="profile-form-input disabled" placeholder="Enter current password" readOnly />
+            </div>
+            <div className="profile-form-group">
+              <label className="profile-form-label">New Password</label>
+              <input type="password" className="profile-form-input" placeholder="Enter new password" />
+            </div>
+            <div className="profile-form-group">
+              <label className="profile-form-label">Confirm Password</label>
+              <input type="password" className="profile-form-input" placeholder="Confirm new password" />
+            </div>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="profile-actions-row">
+          <button type="button" className="profile-btn-reset" onClick={() => addToast('Defaults restored')}>Reset Defaults</button>
+          <button type="button" className="profile-btn-save" onClick={() => addToast('Profile settings saved successfully!')}>Save Settings</button>
+        </div>
+      </div>
+    </section>
+  );
+
 
   const renderActivePage = () => {
     const PageHeader = ({ subtitle }) => (
@@ -1837,7 +2188,7 @@ export default function Admin() {
         <button style={sty.pageBackBtn} onClick={() => setActivePage(null)}
           onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
           onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'inherit'; }}
-        >→</button>
+        >←</button>
         <div>
           <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, fontFamily: "'Outfit', sans-serif" }}>{pageTitle[activePage]}</h2>
           {subtitle && <span style={{ fontSize: '12px', color: '#64748b' }}>{subtitle}</span>}
@@ -1879,18 +2230,18 @@ export default function Admin() {
                 setActiveEditOrder(null);
                 setActivePage(null);
                 setActiveTab('orders');
-                alert('Order updated successfully!');
+                addToast('Order updated successfully!');
               }} style={{ width: '100%' }}>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Table Number</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     value={editOrderForm.table}
                     readOnly
-                    style={{ 
-                      width: '100%', 
-                      padding: '10px', 
-                      borderRadius: '8px', 
+                    style={{
+                      width: '100%',
+                      padding: '10px',
+                      borderRadius: '8px',
                       border: '1px solid var(--border)',
                       backgroundColor: 'var(--bg-tertiary)',
                       color: 'var(--text-main)',
@@ -1916,7 +2267,7 @@ export default function Admin() {
                 </div>
                 <div className="form-group" style={{ marginBottom: '20px' }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Notes</label>
-                  <textarea 
+                  <textarea
                     value={editOrderForm.notes}
                     onChange={e => setEditOrderForm({ ...editOrderForm, notes: e.target.value })}
                     rows="3"
@@ -1924,9 +2275,9 @@ export default function Admin() {
                   />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
-                  <button 
-                    type="button" 
-                    className="btn btn-outline" 
+                  <button
+                    type="button"
+                    className="btn btn-outline"
                     onClick={() => {
                       setActiveEditOrder(null);
                       setActivePage(null);
@@ -1935,8 +2286,8 @@ export default function Admin() {
                   >
                     Cancel
                   </button>
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="btn btn-black"
                     style={{ padding: '10px 24px' }}
                   >
@@ -1962,21 +2313,21 @@ export default function Admin() {
           <div style={{ width: '100%' }}>
             {/* Header */}
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '24px', paddingBottom: '16px', borderBottom: '2px solid var(--primary-light)' }}>
-              <button 
-                style={{ 
-                  background: '#fff', 
-                  border: '1.5px solid var(--border)', 
-                  borderRadius: '50%', 
-                  width: '38px', 
-                  height: '38px', 
-                  display: 'inline-flex', 
-                  alignItems: 'center', 
-                  justifyContent: 'center', 
-                  cursor: 'pointer', 
-                  fontSize: '16px', 
-                  transition: 'all 0.2s', 
-                  flexShrink: 0 
-                }} 
+              <button
+                style={{
+                  background: '#fff',
+                  border: '1.5px solid var(--border)',
+                  borderRadius: '50%',
+                  width: '38px',
+                  height: '38px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  transition: 'all 0.2s',
+                  flexShrink: 0
+                }}
                 onClick={() => setActivePage(null)}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'inherit'; }}
@@ -1990,11 +2341,11 @@ export default function Admin() {
             </div>
 
             {/* Main Card Container */}
-            <div style={{ 
-              background: '#ffffff', 
-              borderRadius: '16px', 
-              padding: '32px', 
-              border: '1px solid var(--border)', 
+            <div style={{
+              background: '#ffffff',
+              borderRadius: '16px',
+              padding: '32px',
+              border: '1px solid var(--border)',
               boxShadow: '0 4px 20px rgba(0,0,0,0.06)',
               display: 'grid',
               gridTemplateColumns: '1.8fr 1fr',
@@ -2003,13 +2354,13 @@ export default function Admin() {
               {/* Left Side: Connection Profile */}
               <div>
                 <h3 style={{ fontSize: '16px', fontWeight: 700, marginBottom: '20px', color: '#000000' }}>Terminal Connection Profile</h3>
-                
+
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '24px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: '12px' }}>
                     <span style={{ color: '#64748b', fontSize: '14px' }}>Display Name</span>
                     <strong style={{ color: '#000000', fontSize: '14px' }}>Table {tableNum}</strong>
                   </div>
-                  
+
                   <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: '12px' }}>
                     <span style={{ color: '#64748b', fontSize: '14px' }}>Seating Capacity</span>
                     <strong style={{ color: '#000000', fontSize: '14px' }}>{currentTable.seats || 4} seats</strong>
@@ -2017,13 +2368,13 @@ export default function Admin() {
 
                   <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: '12px', alignItems: 'center' }}>
                     <span style={{ color: '#64748b', fontSize: '14px' }}>Current Status</span>
-                    <span style={{ 
-                      padding: '4px 12px', 
-                      borderRadius: '12px', 
-                      fontSize: '12px', 
-                      fontWeight: 700, 
-                      backgroundColor: currentTable.status === 'Occupied' ? '#fef3c7' : '#dcfce7', 
-                      color: currentTable.status === 'Occupied' ? '#d97706' : '#15803d' 
+                    <span style={{
+                      padding: '4px 12px',
+                      borderRadius: '12px',
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      backgroundColor: currentTable.status === 'Occupied' ? '#fef3c7' : '#dcfce7',
+                      color: currentTable.status === 'Occupied' ? '#d97706' : '#15803d'
                     }}>
                       {currentTable.status}
                     </span>
@@ -2031,15 +2382,15 @@ export default function Admin() {
                 </div>
 
                 {/* Active Session details */}
-                <div style={{ 
-                  background: '#f8fafc', 
-                  border: '1.5px solid #e2e8f0', 
-                  borderRadius: '12px', 
-                  padding: '20px', 
-                  marginBottom: '32px' 
+                <div style={{
+                  background: '#f8fafc',
+                  border: '1.5px solid #e2e8f0',
+                  borderRadius: '12px',
+                  padding: '20px',
+                  marginBottom: '32px'
                 }}>
                   <span style={{ fontSize: '11px', fontWeight: 800, color: 'var(--primary)', letterSpacing: '0.5px', textTransform: 'uppercase', display: 'block', marginBottom: '12px' }}>Active Table Session</span>
-                  
+
                   {activeTableOrder ? (
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -2056,8 +2407,8 @@ export default function Admin() {
                   )}
                 </div>
 
-                <button 
-                  className="btn btn-black" 
+                <button
+                  className="btn btn-black"
                   onClick={() => setActivePage(null)}
                   style={{ padding: '10px 24px', fontSize: '14px', borderRadius: '8px', fontWeight: 'bold' }}
                 >
@@ -2067,14 +2418,14 @@ export default function Admin() {
 
               {/* Right Side: QR Sticker and Print controls */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', borderLeft: '1px solid #e2e8f0', paddingLeft: '32px' }}>
-                <div style={{ 
-                  border: '1.5px dashed #cbd5e1', 
-                  borderRadius: '16px', 
-                  padding: '24px', 
-                  width: '100%', 
-                  maxWidth: '240px', 
-                  textAlign: 'center', 
-                  background: '#ffffff', 
+                <div style={{
+                  border: '1.5px dashed #cbd5e1',
+                  borderRadius: '16px',
+                  padding: '24px',
+                  width: '100%',
+                  maxWidth: '240px',
+                  textAlign: 'center',
+                  background: '#ffffff',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.03)',
                   marginBottom: '20px'
                 }}>
@@ -2083,7 +2434,7 @@ export default function Admin() {
                     <strong style={{ fontSize: '14px', color: '#000000' }}>Serviq</strong>
                   </div>
                   <div style={{ fontSize: '11px', color: '#64748b', marginBottom: '16px' }}>Scan to View Menu & Order</div>
-                  
+
                   <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
                     <div style={{ width: '130px', height: '130px', background: '#000000', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', borderRadius: '8px', padding: '10px', position: 'relative' }}>
                       QR CODE
@@ -2095,9 +2446,9 @@ export default function Admin() {
                   <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>{currentTable.seats || 4} Seats</div>
                 </div>
 
-                <button 
-                  className="btn btn-outline" 
-                  onClick={() => alert('Printing QR code sticker...')}
+                <button
+                  className="btn btn-outline"
+                  onClick={() => addToast('Printing QR code sticker...')}
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '10px 20px', fontSize: '13px' }}
                 >
                   🖨️ Print QR code
@@ -2116,120 +2467,135 @@ export default function Admin() {
             <PageHeader subtitle={menuForm.id ? 'Modify menu item details' : 'Create a new dish for the menu'} />
             <div style={sty.pageCard}>
               <form onSubmit={handleMenuSubmit} style={{ width: '100%' }}>
-                <div 
-                  className="menu-item-cover-banner"
-                  onClick={() => document.getElementById('menu-item-image-file').click()}
-                  style={{ cursor: 'pointer' }}
-                >
-                  {menuForm.image ? (
-                    <>
-                      <img src={menuForm.image} alt={menuForm.name} />
-                      <div className="menu-item-cover-overlay">
-                        <span>📷 Change Cover Photo</span>
-                      </div>
-                    </>
-                  ) : (
-                    <div className="menu-item-cover-banner-placeholder">
-                      <span className="icon">🍴</span>
-                      <span className="text">Click to upload cover photo</span>
-                    </div>
-                  )}
-                </div>
+                {/* Hidden File Input */}
+                <input
+                  id="menu-item-image-file"
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        setMenuForm({ ...menuForm, image: reader.result });
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  }}
+                  style={{ display: 'none' }}
+                />
 
-                <div className="form-group" style={{ marginBottom: '16px' }}>
-                  <label>Item Name</label>
-                  <input
-                    type="text"
-                    value={menuForm.name}
-                    onChange={(e) => setMenuForm({ ...menuForm, name: e.target.value })}
-                    required
-                    placeholder="e.g. Chicken Biryani"
-                  />
-                </div>
-
-                <div className="form-group" style={{ marginBottom: '16px' }}>
-                  <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: '#000000' }}>Item Image</label>
-                  <div 
-                    onClick={() => document.getElementById('menu-item-image-file').click()}
-                    style={{
-                      border: '2px dashed var(--border)',
-                      borderRadius: '12px',
-                      padding: '24px 20px',
-                      textAlign: 'center',
-                      background: '#f8fafc',
-                      cursor: 'pointer',
-                      transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.background = 'var(--primary-light)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.background = '#f8fafc'; }}
-                  >
-                    <input 
-                      id="menu-item-image-file"
-                      type="file"
-                      accept="image/*"
-                      onChange={(e) => {
-                        const file = e.target.files[0];
-                        if (file) {
-                          const reader = new FileReader();
-                          reader.onloadend = () => {
-                            setMenuForm({ ...menuForm, image: reader.result });
-                          };
-                          reader.readAsDataURL(file);
-                        }
-                      }}
-                      style={{ display: 'none' }}
-                    />
-                    <div style={{ fontSize: '28px', marginBottom: '8px' }}>📁</div>
-                    <div style={{ fontSize: '13px', fontWeight: 600, color: 'var(--black)' }}>
-                      {menuForm.image ? '📁 Change Selected Image' : 'Upload from folder'}
-                    </div>
-                    <div style={{ fontSize: '11px', color: '#64748b', marginTop: '4px' }}>
-                      Supports JPG, JPEG, PNG, GIF
-                    </div>
-                  </div>
-                </div>
-
-                <div className="form-group" style={{ marginBottom: '16px' }}>
-                  <label>Description</label>
-                  <textarea
-                    rows="3"
-                    value={menuForm.desc}
-                    onChange={(e) => setMenuForm({ ...menuForm, desc: e.target.value })}
-                    placeholder="Item description..."
-                  ></textarea>
-                </div>
-
-                <div style={sty.formGrid2}>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label>Price (₹)</label>
-                    <input
-                      type="number"
-                      value={menuForm.price}
-                      onChange={(e) => setMenuForm({ ...menuForm, price: e.target.value })}
-                      required
-                      placeholder="320"
-                    />
-                  </div>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label>Category</label>
-                    <select
-                      value={menuForm.category}
-                      onChange={(e) => setMenuForm({ ...menuForm, category: e.target.value })}
-                      required
+                <div className="menu-form-grid">
+                  {/* Left Column: Image Uploader */}
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', color: 'var(--text-main)' }}>Item Image</label>
+                    <div
+                      className="menu-item-image-uploader"
+                      onClick={() => document.getElementById('menu-item-image-file').click()}
                     >
-                      <option value="Starters">Starters</option>
-                      <option value="Rice Meals">Rice Meals</option>
-                      <option value="Tiffin">Tiffin</option>
-                      <option value="Rotis">Rotis</option>
-                      <option value="Desserts">Desserts</option>
-                      <option value="Drinks">Drinks</option>
-                    </select>
+                      {menuForm.image ? (
+                        <>
+                          <img src={menuForm.image} alt={menuForm.name || 'Dish preview'} />
+                          <div className="menu-item-image-uploader-overlay">
+                            📷 Change Photo
+                          </div>
+                        </>
+                      ) : (
+                        <div className="menu-item-image-uploader-placeholder">
+                          <span className="icon">🍳</span>
+                          <span className="text">Upload Dish Photo</span>
+                          <span className="subtext">Supports JPG, JPEG, PNG, GIF</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
 
-                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
-                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage(null)}>Cancel</button>
-                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>💾 Save Changes</button>
+                  {/* Right Column: Form Fields */}
+                  <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      <div className="form-group" style={{ marginBottom: 0 }}>
+                        <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Item Name</label>
+                        <input
+                          type="text"
+                          value={menuForm.name}
+                          onChange={(e) => setMenuForm({ ...menuForm, name: e.target.value })}
+                          required
+                          placeholder="e.g. Chicken Biryani"
+                        />
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                        <div className="form-group" style={{ marginBottom: 0 }}>
+                          <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Category</label>
+                          <select
+                            value={menuForm.category}
+                            onChange={(e) => setMenuForm({ ...menuForm, category: e.target.value })}
+                            required
+                          >
+                            <option value="Starters">Starters</option>
+                            <option value="Rice Meals">Rice Meals</option>
+                            <option value="Tiffin">Tiffin</option>
+                            <option value="Rotis">Rotis</option>
+                            <option value="Desserts">Desserts</option>
+                            <option value="Drinks">Drinks</option>
+                          </select>
+                        </div>
+
+                        <div className="form-group" style={{ marginBottom: 0 }}>
+                          <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Price (₹)</label>
+                          <input
+                            type="number"
+                            value={menuForm.price}
+                            onChange={(e) => setMenuForm({ ...menuForm, price: e.target.value })}
+                            required
+                            placeholder="320"
+                          />
+                        </div>
+                      </div>
+
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                        <div className="form-group" style={{ marginBottom: 0 }}>
+                          <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Food Type</label>
+                          <select
+                            value={menuForm.veg ? 'veg' : 'non-veg'}
+                            onChange={(e) => setMenuForm({ ...menuForm, veg: e.target.value === 'veg' })}
+                            required
+                          >
+                            <option value="veg">Veg</option>
+                            <option value="non-veg">Non-Veg</option>
+                          </select>
+                        </div>
+
+                        <div className="form-group" style={{ marginBottom: 0 }}>
+                          <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Status</label>
+                          <select
+                            value={menuForm.available ? 'active' : 'inactive'}
+                            onChange={(e) => setMenuForm({ ...menuForm, available: e.target.value === 'active' })}
+                            required
+                          >
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="form-group" style={{ marginBottom: 0 }}>
+                        <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Description</label>
+                        <textarea
+                          rows="4"
+                          value={menuForm.desc}
+                          onChange={(e) => setMenuForm({ ...menuForm, desc: e.target.value })}
+                          placeholder="Provide a delicious description of this menu item..."
+                          style={{ resize: 'none' }}
+                        ></textarea>
+                      </div>
+                    </div>
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
+                      <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage(null)}>Cancel</button>
+                      <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>💾 Save Changes</button>
+                    </div>
+                  </div>
                 </div>
               </form>
             </div>
@@ -2266,6 +2632,21 @@ export default function Admin() {
                     onChange={(e) => setAddTableForm({ ...addTableForm, seats: parseInt(e.target.value) || 4 })}
                     required
                   />
+                </div>
+                <div className="form-group" style={{ marginBottom: '20px' }}>
+                  <label>Assigned Waiter (Optional)</label>
+                  <select
+                    style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center', backgroundSize: '14px', width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', background: 'var(--bg-primary)', color: 'var(--text-main)', fontSize: '14px', cursor: 'pointer' }}
+                    value={addTableForm.waiter || ''}
+                    onChange={(e) => setAddTableForm({ ...addTableForm, waiter: e.target.value })}
+                  >
+                    <option value="">Select Waiter...</option>
+                    <option value="Arjun K.">Arjun K.</option>
+                    <option value="Priya M.">Priya M.</option>
+                    <option value="Rahul S.">Rahul S.</option>
+                    <option value="Anita D.">Anita D.</option>
+                    <option value="Vikram S.">Vikram S.</option>
+                  </select>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
                   <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage(null)}>Cancel</button>
@@ -2387,56 +2768,87 @@ export default function Admin() {
         <ul className="sidebar-menu">
           {isTabAllowed('overview') && (
             <li className={`sidebar-item ${activeTab === 'overview' ? 'active' : ''}`} onClick={() => { setActiveTab('overview'); setActivePage(null); }}>
-              <a href="#">🎛️ Dashboard</a>
-            </li>
-          )}
-          {isTabAllowed('orders') && (
-            <li className={`sidebar-item ${activeTab === 'orders' ? 'active' : ''}`} onClick={() => { setActiveTab('orders'); setActivePage(null); }}>
               <a href="#">
-                📝 Incoming Orders
-                {pendingOrdersCount > 0 && <span className="pulse-indicator" style={{ marginLeft: 'auto' }}></span>}
+                <DashboardIcon size={18} />
+                <span>Dashboard</span>
               </a>
             </li>
           )}
           {isTabAllowed('menu') && (
             <li className={`sidebar-item ${activeTab === 'menu' ? 'active' : ''}`} onClick={() => { setActiveTab('menu'); setActivePage(null); }}>
-              <a href="#">🍴 Menu Management</a>
+              <a href="#">
+                <MenuIcon size={18} />
+                <span>Menu Management</span>
+              </a>
+            </li>
+          )}
+          {isTabAllowed('orders') && (
+            <li className={`sidebar-item ${activeTab === 'orders' ? 'active' : ''}`} onClick={() => { setActiveTab('orders'); setActivePage(null); }}>
+              <a href="#">
+                <OrdersIcon size={18} />
+                <span>Incoming Orders</span>
+                {pendingOrdersCount > 0 && <span className="pulse-indicator" style={{ marginLeft: 'auto' }}></span>}
+              </a>
             </li>
           )}
           {isTabAllowed('billing') && (
             <li className={`sidebar-item ${activeTab === 'billing' ? 'active' : ''}`} onClick={() => { setActiveTab('billing'); setActivePage(null); }}>
-              <a href="#">💵 Billing</a>
+              <a href="#">
+                <BillingIcon size={18} />
+                <span>Billing</span>
+              </a>
             </li>
           )}
           {isTabAllowed('saas') && (
             <li className={`sidebar-item ${activeTab === 'saas' ? 'active' : ''}`} onClick={() => { setActiveTab('saas'); setActivePage(null); }}>
-              <a href="#">📋 Tables</a>
+              <a href="#">
+                <TablesIcon size={18} />
+                <span>Tables</span>
+              </a>
             </li>
           )}
           {isTabAllowed('staff') && (
             <li className={`sidebar-item ${activeTab === 'staff' ? 'active' : ''}`} onClick={() => { setActiveTab('staff'); setActivePage(null); }}>
-              <a href="#">👥 Staff</a>
+              <a href="#">
+                <StaffIcon size={18} />
+                <span>Staff</span>
+              </a>
+            </li>
+          )}
+          {isTabAllowed('users') && (
+            <li className={`sidebar-item has-dropdown ${['roles', 'roles-add', 'users-list', 'users-add'].includes(activeTab) ? 'active' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsUsersMenuOpen(!isUsersMenuOpen); }}>
+                <UsersIcon size={18} />
+                <span>Users</span>
+                <span style={{ marginLeft: 'auto', transition: 'transform 0.2s', transform: isUsersMenuOpen ? 'rotate(180deg)' : 'rotate(0)' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+              </a>
+              <ul className={`sidebar-dropdown-menu ${isUsersMenuOpen ? 'open' : ''}`}>
+                <li>
+                  <a href="#" className={`sidebar-sub-item ${['roles', 'roles-add'].includes(activeTab) ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('roles'); setActivePage(null); }}>
+                    Roles & Permissions
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className={`sidebar-sub-item ${['users-list', 'users-add'].includes(activeTab) ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('users-list'); setActivePage(null); }}>
+                    User Lists
+                  </a>
+                </li>
+              </ul>
             </li>
           )}
           {isTabAllowed('settings') && (
             <li className={`sidebar-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => { setActiveTab('settings'); setActivePage(null); }}>
-              <a href="#">⚙️ Settings</a>
+              <a href="#">
+                <SettingsIcon size={18} />
+                <span>Settings</span>
+              </a>
             </li>
           )}
         </ul>
 
-        <div className="sidebar-footer">
-          <div className="user-info">
-            <div className="user-avatar" id="avatar-letter">{name.charAt(0).toUpperCase()}</div>
-            <div className="user-details">
-              <div className="user-name" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '120px' }}>{currentUser?.name || 'QRMenu Admin'}</div>
-              <div className="user-role" style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', maxWidth: '120px' }}>{currentUser?.email || 'admin@restaurant.com'}</div>
-            </div>
-          </div>
-          <button id="logout-btn" className="btn btn-outline" style={{ width: '100%', borderColor: 'var(--border)' }} onClick={logout}>
-            🔒 Log Out
-          </button>
-        </div>
+       
       </aside>
 
       {/* MAIN CONTENT */}
@@ -2456,24 +2868,24 @@ export default function Admin() {
 
         {/* HEADER */}
         {(!activePage || activePage === 'order-view') && (
-          <header className="main-header">
-            <div className="header-title-container">
-              <h1 className="header-title" style={{ textTransform: 'capitalize' }}>{activeTab}</h1>
-              <span className="header-subtitle-date">{dateTimeStr}</span>
+          <header className="main-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 32px' }}>
+            <div className="header-title-container" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+              <h1 className="header-title" style={{ textTransform: 'capitalize', fontSize: '22px', fontWeight: 800 }}>
+                {activeTab === 'orders' ? 'Incoming Orders' : 
+                 activeTab.includes('users') ? 'Users' : 
+                 activeTab.includes('roles') ? 'Roles & Permissions' : 
+                 activeTab}
+              </h1>
+              {activeTab !== 'orders' && <span className="header-subtitle-date">{dateTimeStr}</span>}
             </div>
-            <div className="header-actions">
-              <button className="simulator-toggle-btn" onClick={() => {
-                const simPanel = document.getElementById('simulator-panel');
-                if (simPanel) simPanel.classList.toggle('collapsed');
-              }}>
-                📱 Toggle Simulator
-              </button>
-              <button className="btn btn-notify" onClick={() => alert('No new notifications.')}>
-                🔔 {pendingOrdersCount > 0 ? `${pendingOrdersCount} notifications` : '0 notifications'}
-              </button>
-              <button className="btn btn-user-profile" onClick={() => alert('Profile menu')}>
+
+
+
+            <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <button className="btn btn-user-profile" onClick={() => { setActiveTab('settings'); setActivePage(null); }}>
                 👤 {currentUser?.role || 'Admin'}
               </button>
+           
             </div>
           </header>
         )}
@@ -2488,6 +2900,10 @@ export default function Admin() {
               {activeTab === 'billing' && renderBilling()}
               {activeTab === 'saas' && renderTables()}
               {activeTab === 'staff' && renderStaff()}
+              {activeTab === 'roles' && renderRoles()}
+              {activeTab === 'roles-add' && renderAddRole()}
+              {activeTab === 'users-list' && renderUsersList()}
+              {activeTab === 'users-add' && renderAddUser()}
               {activeTab === 'settings' && renderSettings()}
             </>
           )}
@@ -2495,43 +2911,11 @@ export default function Admin() {
 
         {/* MODAL OVERLAY FOR ORDER VIEW */}
         {activePage === 'order-view' && activeViewOrder && (
-          <div style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            width: '100vw',
-            height: '100vh',
-            backgroundColor: 'rgba(0, 0, 0, 0.4)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            zIndex: 9999,
-            backdropFilter: 'blur(4px)'
-          }}>
-            <div style={{
-              background: '#ffffff',
-              borderRadius: '16px',
-              padding: '32px',
-              border: '1px solid var(--border)',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.15)',
-              width: '90%',
-              maxWidth: '500px',
-              maxHeight: '90vh',
-              overflowY: 'auto',
-              position: 'relative'
-            }}>
+          <div className="order-view-modal-overlay">
+            <div className="order-view-modal-container">
               {/* Close Button Top Right */}
-              <button 
-                style={{
-                  position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  background: 'transparent',
-                  border: 'none',
-                  fontSize: '20px',
-                  cursor: 'pointer',
-                  color: '#64748b'
-                }}
+              <button
+                className="order-view-modal-close-btn"
                 onClick={() => {
                   setActiveViewOrder(null);
                   setActivePage(null);
@@ -2539,54 +2923,116 @@ export default function Admin() {
               >
                 ✕
               </button>
-              
-              <h2 style={{ margin: '0 0 4px 0', fontSize: '20px', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: 'var(--black)' }}>
-                Order Details
-              </h2>
-              <span style={{ fontSize: '12px', color: '#64748b', display: 'block', marginBottom: '20px' }}>
-                View details for order #ORD-{activeViewOrder.id}
-              </span>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', fontSize: '14px', marginBottom: '20px', color: '#000000' }}>
-                <div><strong>Table:</strong> Table {activeViewOrder.table}</div>
-                <div><strong>Time:</strong> {activeViewOrder.time} ({activeViewOrder.timeAgo})</div>
-                <div><strong>Status:</strong> <Badge status={activeViewOrder.status} /></div>
-                <div><strong>Assigned Waiter:</strong> {activeViewOrder.waiter || 'Unassigned'}</div>
-                {activeViewOrder.notes && <div><strong>Notes:</strong> {activeViewOrder.notes}</div>}
-                
-                <div style={{ borderTop: '1px dashed var(--border)', paddingTop: '12px', marginTop: '8px' }}>
-                  <strong style={{ display: 'block', marginBottom: '8px' }}>Items Summary:</strong>
-                  <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+              {/* Header */}
+              <div className="order-view-modal-header">
+                <div className="order-view-modal-title-row">
+                  <h2 className="order-view-modal-title">Order Details</h2>
+                  <span className="order-view-modal-id-badge">#ORD-{activeViewOrder.id}</span>
+                </div>
+                <span className="order-view-modal-subtitle">
+                  Detailed breakdown and ticket information for receipt
+                </span>
+              </div>
+
+              {/* Body */}
+              <div className="order-view-modal-body">
+                {/* 2x2 Meta Grid */}
+                <div className="order-view-meta-grid">
+                  <div className="order-view-meta-card">
+                    <span className="order-view-meta-label">Dining Table</span>
+                    <span className="order-view-meta-value">Table {activeViewOrder.table}</span>
+                  </div>
+                  <div className="order-view-meta-card">
+                    <span className="order-view-meta-label">Waiter Assigned</span>
+                    <span className="order-view-meta-value">{activeViewOrder.waiter || 'Unassigned'}</span>
+                  </div>
+                  <div className="order-view-meta-card">
+                    <span className="order-view-meta-label">Order Time</span>
+                    <span className="order-view-meta-value">{activeViewOrder.time}</span>
+                  </div>
+                  <div className="order-view-meta-card">
+                    <span className="order-view-meta-label">Wait Time</span>
+                    <span className="order-view-meta-value highlight-orange">{activeViewOrder.timeAgo}</span>
+                  </div>
+                </div>
+
+                {/* Status Badge Block */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
+                  <span style={{ fontWeight: 600, color: 'var(--text-muted)' }}>Status:</span>
+                  <Badge status={activeViewOrder.status} />
+                  {activeViewOrder.billingStatus && (
+                    <span className={`order-card-status-badge-premium billing-${activeViewOrder.billingStatus === 'paid' ? 'paid' : 'unpaid'}`} style={{ fontSize: '9px', marginLeft: 'auto' }}>
+                      💰 {activeViewOrder.billingStatus.toUpperCase()}
+                    </span>
+                  )}
+                </div>
+
+                {/* Notes Block */}
+                {activeViewOrder.notes && (
+                  <div className="order-view-note-box">
+                    <strong>Special Request Note:</strong> "{activeViewOrder.notes}"
+                  </div>
+                )}
+
+                {/* Items Table */}
+                <div className="order-view-items-section">
+                  <span className="order-view-items-title">Dishes Summary</span>
+                  <table className="order-view-items-table">
                     <thead>
-                      <tr style={{ borderBottom: '1px solid var(--border)', textAlign: 'left', fontSize: '12px', color: '#64748b' }}>
-                        <th style={{ padding: '6px 0' }}>Item Name</th>
-                        <th style={{ padding: '6px 0', textAlign: 'center' }}>Qty</th>
-                        <th style={{ padding: '6px 0', textAlign: 'right' }}>Price</th>
+                      <tr>
+                        <th>Item Name</th>
+                        <th style={{ textAlign: 'center' }}>Qty</th>
+                        <th style={{ textAlign: 'right' }}>Price</th>
                       </tr>
                     </thead>
                     <tbody>
                       {activeViewOrder.items.map((item, idx) => (
-                        <tr key={idx} style={{ borderBottom: '1px solid #f1f5f9', fontSize: '13px' }}>
-                          <td style={{ padding: '8px 0' }}>{item.name}</td>
-                          <td style={{ padding: '8px 0', textAlign: 'center' }}>{item.qty}</td>
-                          <td style={{ padding: '8px 0', textAlign: 'right' }}>₹{item.price * item.qty}</td>
+                        <tr key={idx}>
+                          <td>
+                            <div className="order-view-item-name-cell">
+                              <span>{item.name}</span>
+                            </div>
+                          </td>
+                          <td style={{ textAlign: 'center' }}>
+                            <span className="order-view-item-qty-badge">x {item.qty}</span>
+                          </td>
+                          <td className="order-view-item-price">₹{item.price * item.qty}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
                 </div>
-                
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px', borderTop: '1px dashed var(--border)', paddingTop: '12px', marginTop: '8px', alignItems: 'flex-end' }}>
-                  <div>Subtotal: <strong>₹{activeViewOrder.subtotal}</strong></div>
-                  <div>Tax: <strong>₹{activeViewOrder.tax}</strong></div>
-                  <div>Total: <strong style={{ fontSize: '16px', color: 'var(--primary)' }}>₹{activeViewOrder.total}</strong></div>
+
+                {/* Billing Summary Panel */}
+                <div className="order-view-billing-summary">
+                  <div className="order-view-billing-row">
+                    <span>Subtotal</span>
+                    <strong style={{ color: 'var(--text-main)' }}>₹{activeViewOrder.subtotal}</strong>
+                  </div>
+                  <div className="order-view-billing-row">
+                    <span>Tax (GST & SC)</span>
+                    <strong style={{ color: 'var(--text-main)' }}>₹{activeViewOrder.tax}</strong>
+                  </div>
+                  <div className="order-view-billing-row total-row">
+                    <span style={{ fontWeight: 700, color: 'var(--text-main)' }}>Grand Total</span>
+                    <span className="order-view-billing-total">₹{activeViewOrder.total}</span>
+                  </div>
                 </div>
               </div>
-              
-              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '20px' }}>
-                <button 
-                  className="btn btn-black" 
-                  style={{ padding: '10px 24px' }}
+
+              {/* Footer Buttons */}
+              <div className="order-view-modal-footer">
+                <button
+                  className="btn btn-outline"
+                  style={{ padding: '10px 20px', fontSize: '13px' }}
+                  onClick={() => addToast(`Print receipt ORD-${activeViewOrder.id}`)}
+                >
+                  🖨️ Print Receipt
+                </button>
+                <button
+                  className="btn btn-black"
+                  style={{ padding: '10px 24px', fontSize: '13px' }}
                   onClick={() => {
                     setActiveViewOrder(null);
                     setActivePage(null);

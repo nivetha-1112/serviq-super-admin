@@ -43,14 +43,15 @@ export const initialRestaurantsData = {
       { id: "846", table: "07", time: "1:22 PM", timeAgo: "8 min ago", items: [{ name: "Paneer Tikka", qty: 2, price: 180 }, { name: "Butter Naan", qty: 3, price: 40 }, { name: "Lassi", qty: 1, price: 60 }], notes: "", subtotal: 540, tax: 27, charge: 0, total: 567, status: "preparing", billingStatus: "unpaid", waiter: "Ravi M." },
       { id: "845", table: "01", time: "1:15 PM", timeAgo: "15 min ago", items: [{ name: "Masala Dosa", qty: 3, price: 120 }, { name: "Filter Coffee", qty: 2, price: 40 }], notes: "Allergy: peanuts", subtotal: 440, tax: 22, charge: 0, total: 462, status: "preparing", billingStatus: "unpaid", waiter: "Rahul S." },
       { id: "844", table: "05", time: "1:08 PM", timeAgo: "22 min ago", items: [{ name: "Paneer Tikka", qty: 2, price: 180 }, { name: "Chicken Biryani", qty: 1, price: 320 }, { name: "Butter Naan", qty: 3, price: 40 }, { name: "Masala Chai", qty: 2, price: 40 }], notes: "", subtotal: 880, tax: 44, charge: 0, total: 924, status: "ready", billingStatus: "unpaid", waiter: "Arjun K." },
-      { id: "843", table: "02", time: "1:00 PM", timeAgo: "30 min ago", items: [{ name: "Veg Thali", qty: 2, price: 120 }, { name: "Masala Chai", qty: 3, price: 40 }], notes: "", subtotal: 360, tax: 18, charge: 0, total: 378, status: "done", billingStatus: "paid", waiter: "Ravi M." }
+      { id: "843", table: "02", time: "1:00 PM", timeAgo: "30 min ago", items: [{ name: "Veg Thali", qty: 2, price: 120 }, { name: "Masala Chai", qty: 3, price: 40 }], notes: "", subtotal: 360, tax: 18, charge: 0, total: 378, status: "done", billingStatus: "paid", waiter: "Ravi M." },
+      { id: "842", table: "04", time: "12:55 PM", timeAgo: "35 min ago", items: [{ name: "Mini Meals", qty: 2, price: 90 }, { name: "Lassi", qty: 2, price: 60 }], notes: "Pack pickles separately", subtotal: 300, tax: 15, charge: 0, total: 315, status: "ready", billingStatus: "unpaid", waiter: "Anitha Selvam" }
     ],
     tables: [
-      { id: "T-01", status: "Occupied", seats: 4 },
-      { id: "T-02", status: "Occupied", seats: 2 },
-      { id: "T-03", status: "Occupied", seats: 4 },
-      { id: "T-04", status: "Free", seats: 6 },
-      { id: "T-05", status: "Occupied", seats: 2 }
+      { id: "T-01", status: "Occupied", seats: 4, waiter: "Rahul S." },
+      { id: "T-02", status: "Occupied", seats: 2, waiter: "Arjun K." },
+      { id: "T-03", status: "Occupied", seats: 4, waiter: "Ravi M." },
+      { id: "T-04", status: "Free", seats: 6, waiter: "" },
+      { id: "T-05", status: "Occupied", seats: 2, waiter: "Priya M." }
     ],
     billingData: [
       { table: "Table 01", orders: 2, total: 756, status: "Unpaid" },

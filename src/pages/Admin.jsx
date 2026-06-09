@@ -180,6 +180,7 @@ export default function Admin() {
   const [menuSort, setMenuSort] = useState('name');
   const [activePage, setActivePage] = useState(null); // 'menu-form' | 'table-form' | 'staff-form' | 'kitchen-form'
   const [menuForm, setMenuForm] = useState({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '', veg: true, available: true });
+  const [assignWaiterForm, setAssignWaiterForm] = useState({ selectedWaiter: '', selectedTables: [] });
 
   // 4. Billing Panel states
   const [selectedBillingTable, setSelectedBillingTable] = useState('');
@@ -220,6 +221,8 @@ export default function Admin() {
     'kitchen-form': ' Kitchen Shared Credentials',
     'order-edit-form': ' Edit Order Details',
     'order-view': activeViewOrder ? `Order Details - #ORD-${activeViewOrder.id}` : 'Order Details',
+    'waiter-list': ' Waiter Live Directory',
+    'assign-waiter-page': ' Assign Waiter to Tables',
   };
 
   const sty = {
@@ -911,13 +914,13 @@ export default function Admin() {
           <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid var(--border)' }}>
-                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Image</th>
-                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Name</th>
-                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Category</th>
-                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Price</th>
-                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Type</th>
-                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase' }}>Status</th>
-                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: 'var(--text-muted)', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Image</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Name</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Category</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Price</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Type</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Status</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -1438,6 +1441,23 @@ export default function Admin() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
             <button className="btn-bell-mock" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', display: 'flex', alignItems: 'center', color: 'var(--black)', padding: '6px' }}>
               🔔
+            </button>
+            <button
+              className="btn btn-outline"
+              onClick={() => setActivePage('waiter-list')}
+              style={{
+                padding: '10px 18px',
+                borderRadius: '8px',
+                fontSize: '13px',
+                fontWeight: '700',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '6px'
+              }}
+            >
+              <StaffIcon size={14} />
+              Waiter List
             </button>
             <button
               className="btn"
@@ -2743,6 +2763,457 @@ export default function Admin() {
                 </div>
               </form>
             </div>
+          </div>
+        </section>
+      );
+    }
+    if (activePage === 'waiter-list') {
+      const waiters = staff.filter(s => s.role === 'Waiter');
+      const activeOrders = orders.filter(o => o.status !== 'done');
+
+      return (
+        <section>
+          <div style={{ width: '100%' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '24px', paddingBottom: '16px', borderBottom: '2px solid var(--primary-light)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                <button
+                  style={{
+                    background: '#fff',
+                    border: '1.5px solid var(--border)',
+                    borderRadius: '50%',
+                    width: '38px',
+                    height: '38px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                    fontSize: '16px',
+                    transition: 'all 0.2s',
+                    flexShrink: 0
+                  }}
+                  onClick={() => setActivePage(null)}
+                >
+                  ←
+                </button>
+                <div>
+                  <h2 style={{ margin: 0, fontSize: '20px', fontWeight: 800, fontFamily: "'Outfit', sans-serif", color: 'var(--black)' }}>Waiter Live Directory</h2>
+                  <span style={{ fontSize: '12px', color: '#64748b' }}>Live directory of waitstaff, their current duty status, and assigned tables</span>
+                </div>
+              </div>
+              <button
+                className="btn"
+                onClick={() => {
+                  setAssignWaiterForm({ selectedWaiter: '', selectedTables: [] });
+                  setActivePage('assign-waiter-page');
+                }}
+                style={{
+                  background: 'var(--primary)',
+                  color: 'white',
+                  border: 'none',
+                  fontWeight: '700',
+                  padding: '10px 18px',
+                  borderRadius: '8px',
+                  fontSize: '13px',
+                  cursor: 'pointer',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px'
+                }}
+              >
+                <StaffIcon size={14} />
+                Assign Waiter
+              </button>
+            </div>
+            
+            <div style={sty.pageCard}>
+              <div className="menu-table-wrapper" style={{ overflowX: 'auto' }}>
+                <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                  <thead>
+                    <tr style={{ borderBottom: '2px solid var(--border)' }}>
+                      <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Waiter ID</th>
+                      <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Name</th>
+                      <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Phone</th>
+                      <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Duty Status</th>
+                      <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Assigned Tables</th>
+                      <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Active Orders</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {waiters.map(w => {
+                      const assignedTables = activeOrders
+                        .filter(o => o.waiter === w.name)
+                        .map(o => `Table ${o.table}`);
+                      const uniqueTables = [...new Set(assignedTables)];
+                      
+                      return (
+                        <tr key={w.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                          <td style={{ padding: '12px 14px', fontFamily: 'monospace', color: 'var(--text-main)', fontSize: '14px' }}>{w.id}</td>
+                          <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-main)', fontSize: '14px' }}>{w.name}</td>
+                          <td style={{ padding: '12px 14px', color: 'var(--text-main)', fontSize: '14px' }}>{w.phone}</td>
+                          <td style={{ padding: '12px 14px' }}>
+                            <Badge status={w.status} />
+                          </td>
+                          <td style={{ padding: '12px 14px', color: 'var(--text-main)', fontSize: '14px' }}>
+                            {uniqueTables.length > 0 ? (
+                              <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
+                                {uniqueTables.map(t => (
+                                  <span key={t} style={{
+                                    fontSize: '11px',
+                                    fontWeight: 700,
+                                    color: 'var(--primary)',
+                                    background: 'rgba(255, 122, 0, 0.1)',
+                                    border: '1px solid var(--primary)',
+                                    padding: '2px 8px',
+                                    borderRadius: '12px'
+                                  }}>
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            ) : (
+                              <span style={{ color: 'var(--text-muted)', fontSize: '13px', fontStyle: 'italic' }}>None</span>
+                            )}
+                          </td>
+                          <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-main)', fontSize: '14px' }}>
+                            {activeOrders.filter(o => o.waiter === w.name).length} orders
+                          </td>
+                        </tr>
+                      );
+                    })}
+                    {waiters.length === 0 && (
+                      <tr>
+                        <td colSpan="6" style={{ textAlign: 'center', padding: '24px', color: 'var(--text-muted)' }}>
+                          No waitstaff registered yet.
+                        </td>
+                      </tr>
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (activePage === 'assign-waiter-page') {
+      const waiters = staff.filter(s => s.role === 'Waiter');
+      const activeOrders = orders.filter(o => o.status !== 'done');
+
+      const handleAssignSubmit = (e) => {
+        e.preventDefault();
+        const { selectedWaiter, selectedTables } = assignWaiterForm;
+        
+        if (!selectedWaiter) {
+          addToast('Please select a waiter first.');
+          return;
+        }
+        if (selectedTables.length === 0) {
+          addToast('Please select at least one table.');
+          return;
+        }
+        
+        // Loop through selected tables
+        selectedTables.forEach(tableId => {
+          // 1. Update the table assignment
+          updateDiningTable(activeRestaurant.id, tableId, { waiter: selectedWaiter });
+          
+          // 2. Find active orders for this table and update waiter assignment
+          const tableNum = tableId.replace('T-', '');
+          const activeTableOrders = orders.filter(o => 
+            (o.table === tableNum || parseInt(o.table) === parseInt(tableNum)) && 
+            o.billingStatus === 'unpaid'
+          );
+          
+          activeTableOrders.forEach(ord => {
+            assignWaiterToOrder(activeRestaurant.id, ord.id, selectedWaiter);
+          });
+        });
+        
+        addToast(`Successfully assigned ${selectedWaiter} to ${selectedTables.length} table(s)!`);
+        setAssignWaiterForm({ selectedWaiter: '', selectedTables: [] });
+        setActivePage('waiter-list'); // Go back to waiter directory
+      };
+
+      const handleWaiterSelect = (waiterName) => {
+        setAssignWaiterForm(prev => ({
+          ...prev,
+          selectedWaiter: waiterName
+        }));
+      };
+
+      const handleTableToggle = (tableId) => {
+        setAssignWaiterForm(prev => {
+          const isSelected = prev.selectedTables.includes(tableId);
+          const newTables = isSelected 
+            ? prev.selectedTables.filter(id => id !== tableId)
+            : [...prev.selectedTables, tableId];
+          return {
+            ...prev,
+            selectedTables: newTables
+          };
+        });
+      };
+
+      const handleSelectAllTables = () => {
+        setAssignWaiterForm(prev => {
+          const allTableIds = tables.map(t => t.id);
+          const areAllSelected = prev.selectedTables.length === tables.length;
+          return {
+            ...prev,
+            selectedTables: areAllSelected ? [] : allTableIds
+          };
+        });
+      };
+
+      return (
+        <section style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>
+          <div style={{
+            width: '100%',
+            maxWidth: '1000px',
+            backgroundColor: '#ffffff',
+            borderRadius: '8px',
+            border: '1px solid #e5e7eb',
+            boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+            overflow: 'hidden'
+          }}>
+            {/* Header Block */}
+            <div style={{
+              padding: '18px 24px',
+              borderBottom: '1px solid #e5e7eb',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '14px'
+            }}>
+              <button
+                type="button"
+                style={{
+                  background: '#fff',
+                  border: '1.5px solid var(--border)',
+                  borderRadius: '50%',
+                  width: '36px',
+                  height: '36px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                  transition: 'all 0.2s',
+                  flexShrink: 0,
+                  color: 'inherit'
+                }}
+                onClick={() => {
+                  setAssignWaiterForm({ selectedWaiter: '', selectedTables: [] });
+                  setActivePage('waiter-list');
+                }}
+                title="Back to Waiter Directory"
+              >
+                ←
+              </button>
+              <h2 style={{
+                margin: 0,
+                fontSize: '20px',
+                fontWeight: '700',
+                color: '#002b5c',
+                fontFamily: "'Outfit', sans-serif"
+              }}>
+                Assign Waiter to Tables
+              </h2>
+            </div>
+
+            {/* Form Block */}
+            <form onSubmit={handleAssignSubmit} style={{ padding: '24px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+              
+              {/* Dropdown 1: Select Waiter */}
+              <div className="form-group" style={{ marginBottom: '20px' }}>
+                <label style={{
+                  display: 'block',
+                  fontSize: '14px',
+                  fontWeight: '600',
+                  color: '#374151',
+                  marginBottom: '8px'
+                }}>
+                  Select Waiter <span style={{ color: '#ef4444' }}>*</span>
+                </label>
+                <select
+                  value={assignWaiterForm.selectedWaiter}
+                  onChange={(e) => handleWaiterSelect(e.target.value)}
+                  required
+                  style={{
+                    width: '100%',
+                    padding: '10px 12px',
+                    borderRadius: '6px',
+                    border: '1px solid #d1d5db',
+                    fontSize: '14px',
+                    color: '#1f2937',
+                    backgroundColor: '#ffffff',
+                    outline: 'none',
+                    fontFamily: 'inherit',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="">Select Waiter</option>
+                  {waiters.map(w => (
+                    <option key={w.id} value={w.name}>
+                      {w.name} ({w.status === 'On Duty' ? 'On Duty' : 'Off Duty'})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Input 2: Select Tables */}
+              <div className="form-group" style={{ marginBottom: '24px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                  <label style={{
+                    display: 'block',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    color: '#374151'
+                  }}>
+                    Select Tables <span style={{ color: '#ef4444' }}>*</span>
+                  </label>
+                  {tables.length > 0 && (
+                    <button
+                      type="button"
+                      onClick={handleSelectAllTables}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        fontSize: '12px',
+                        fontWeight: '600',
+                        color: '#002b5c',
+                        cursor: 'pointer',
+                        padding: 0
+                      }}
+                    >
+                      {assignWaiterForm.selectedTables.length === tables.length ? 'Deselect All' : 'Select All'}
+                    </button>
+                  )}
+                </div>
+
+                <div style={{
+                  border: '1px solid #d1d5db',
+                  borderRadius: '6px',
+                  padding: '16px',
+                  backgroundColor: '#ffffff',
+                  maxHeight: '220px',
+                  overflowY: 'auto'
+                }}>
+                  <div style={{
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
+                    gap: '12px'
+                  }}>
+                    {tables.map(table => {
+                      const isSelected = assignWaiterForm.selectedTables.includes(table.id);
+                      return (
+                        <label
+                          key={table.id}
+                          style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '8px',
+                            cursor: 'pointer',
+                            fontSize: '13.5px',
+                            color: '#374151',
+                            padding: '6px 8px',
+                            borderRadius: '4px',
+                            backgroundColor: isSelected ? '#f3f4f6' : 'transparent',
+                            transition: 'background-color 0.15s',
+                            whiteSpace: 'nowrap'
+                          }}
+                        >
+                          <input
+                            type="checkbox"
+                            checked={isSelected}
+                            onChange={() => handleTableToggle(table.id)}
+                            style={{
+                              width: '16px',
+                              height: '16px',
+                              accentColor: '#002b5c',
+                              cursor: 'pointer',
+                              flexShrink: 0
+                            }}
+                          />
+                          <span style={{ whiteSpace: 'nowrap' }}>
+                            {table.id} <span style={{ fontSize: '11px', color: '#9ca3af', marginLeft: '2px' }}>({table.seats} seats)</span>
+                          </span>
+                        </label>
+                      );
+                    })}
+                    {tables.length === 0 && (
+                      <div style={{ gridColumn: '1 / -1', textAlign: 'center', color: '#9ca3af', fontSize: '13px', padding: '10px 0' }}>
+                        No dining tables registered.
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Buttons Row */}
+              <div style={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                gap: '12px',
+                marginTop: '32px'
+              }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setAssignWaiterForm({ selectedWaiter: '', selectedTables: [] });
+                    setActivePage('waiter-list');
+                  }}
+                  style={{
+                    backgroundColor: '#ffffff',
+                    border: '1px solid #ef4444',
+                    color: '#ef4444',
+                    padding: '10px 24px',
+                    borderRadius: '6px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: 'pointer',
+                    transition: 'all 0.15s ease',
+                    minWidth: '90px',
+                    textAlign: 'center'
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.backgroundColor = '#fef2f2'; }}
+                  onMouseLeave={e => { e.currentTarget.style.backgroundColor = '#ffffff'; }}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={!assignWaiterForm.selectedWaiter || assignWaiterForm.selectedTables.length === 0}
+                  style={{
+                    backgroundColor: '#002b5c',
+                    border: '1px solid #002b5c',
+                    color: '#ffffff',
+                    padding: '10px 28px',
+                    borderRadius: '6px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    cursor: (!assignWaiterForm.selectedWaiter || assignWaiterForm.selectedTables.length === 0) ? 'not-allowed' : 'pointer',
+                    opacity: (!assignWaiterForm.selectedWaiter || assignWaiterForm.selectedTables.length === 0) ? 0.6 : 1,
+                    transition: 'all 0.15s ease',
+                    minWidth: '90px',
+                    textAlign: 'center'
+                  }}
+                  onMouseEnter={e => {
+                    if (assignWaiterForm.selectedWaiter && assignWaiterForm.selectedTables.length > 0) {
+                      e.currentTarget.style.backgroundColor = '#001e40';
+                    }
+                  }}
+                  onMouseLeave={e => {
+                    if (assignWaiterForm.selectedWaiter && assignWaiterForm.selectedTables.length > 0) {
+                      e.currentTarget.style.backgroundColor = '#002b5c';
+                    }
+                  }}
+                >
+                  Save
+                </button>
+              </div>
+
+            </form>
           </div>
         </section>
       );

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { initialRestaurantsData, initialState } from './initialData';
+import { initialRestaurantsData, initialState } from '../constants/initialData';
 
 const AppContext = createContext();
 
@@ -18,6 +18,17 @@ export const AppProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [activeCustomerTable, setActiveCustomerTable] = useState('01');
   const [activeCustomerOrder, setActiveCustomerOrder] = useState(null);
+
+  // Global Toasts State
+  const [toasts, setToasts] = useState([]);
+  const addToast = (message, type = 'success') => {
+    const id = Date.now() + Math.random();
+    setToasts(prev => [...prev, { id, message, type }]);
+    setTimeout(() => {
+      setToasts(prev => prev.filter(t => t.id !== id));
+    }, 3000);
+  };
+
 
   // Active computed tenant info
   const activeRestaurant = currentRestaurantId ? restaurantsData[currentRestaurantId] : null;
@@ -223,6 +234,38 @@ export const AppProvider = ({ children }) => {
         [id]: {
           ...rest,
           tables: rest.tables.map(t => t.id === tableId ? { ...t, seats } : t)
+        }
+      };
+    });
+  };
+
+  const updateDiningTable = (id, tableId, updatedFields) => {
+    setRestaurantsData(prev => {
+      const rest = prev[id];
+      if (!rest) return prev;
+      return {
+        ...prev,
+        [id]: {
+          ...rest,
+          tables: rest.tables.map(t => t.id === tableId ? { ...t, ...updatedFields } : t)
+        }
+      };
+    });
+  };
+
+  const deleteDiningTable = (id, tableId) => {
+    setRestaurantsData(prev => {
+      const rest = prev[id];
+      if (!rest) return prev;
+      return {
+        ...prev,
+        [id]: {
+          ...rest,
+          tables: rest.tables.filter(t => t.id !== tableId),
+          settings: {
+            ...rest.settings,
+            tablesCount: Math.max(0, rest.tables.length - 1)
+          }
         }
       };
     });
@@ -515,6 +558,8 @@ export const AppProvider = ({ children }) => {
         deleteMenuItem,
         addDiningTable,
         updateDiningTableSeats,
+        updateDiningTable,
+        deleteDiningTable,
         addStaff,
         updateStaff,
         deleteStaff,
@@ -530,7 +575,9 @@ export const AppProvider = ({ children }) => {
         setCart,
         setActiveCustomerTable,
         setActiveCustomerOrder,
-        placeCustomerOrder
+        placeCustomerOrder,
+        toasts,
+        addToast
       }}
     >
       {children}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useAppState } from '../config/AppContext';
+import { useAppState } from '../contexts/AppContext';
 
 export default function Login() {
   const { login } = useAppState();

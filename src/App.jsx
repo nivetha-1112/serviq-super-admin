@@ -1,8 +1,9 @@
 import React from 'react';
-import { useAppState } from './config/AppContext';
+import { useAppState } from './contexts/AppContext';
 import Login from './pages/Login';
 import Admin from './pages/Admin';
 import CustomerSimulator from './pages/CustomerSimulator';
+import ToastContainer from './components/ToastContainer';
 
 function AppContent() {
   const { currentUser } = useAppState();
@@ -17,6 +18,9 @@ function AppContent() {
 
       {/* 3. Customer Smartphone Simulator */}
       <CustomerSimulator />
+      
+      {/* 4. Global Toast Notifications */}
+      <ToastContainer />
     </div>
   );
 }

@@ -2,11 +2,30 @@ import React from 'react';
 
 export const Badge = ({ children, status }) => {
   let extraClass = '';
-  if (status === 'Active' || status === 'Paid' || status === 'On Duty' || status === 'delivered' || status === 'done') {
+  const normalizedStatus = (status || '').toLowerCase();
+
+  if (
+    normalizedStatus === 'active' ||
+    normalizedStatus === 'paid' ||
+    normalizedStatus === 'on duty' ||
+    normalizedStatus === 'delivered' ||
+    normalizedStatus === 'done' ||
+    normalizedStatus === 'ready'
+  ) {
     extraClass = 'badge-ready'; // custom ready styles or green
-  } else if (status === 'Pending' || status === 'new' || status === 'preparing' || status === 'Partial') {
+  } else if (
+    normalizedStatus === 'pending' ||
+    normalizedStatus === 'new' ||
+    normalizedStatus === 'preparing' ||
+    normalizedStatus === 'partial'
+  ) {
     extraClass = 'badge-preparing'; // custom preparing styles or yellow/orange
-  } else if (status === 'Suspended' || status === 'Disabled' || status === 'Off Duty') {
+  } else if (
+    normalizedStatus === 'suspended' ||
+    normalizedStatus === 'disabled' ||
+    normalizedStatus === 'off duty' ||
+    normalizedStatus === 'inactive'
+  ) {
     extraClass = 'badge-suspended'; // custom suspended/red styles
   }
 
@@ -16,3 +35,4 @@ export const Badge = ({ children, status }) => {
     </span>
   );
 };
+

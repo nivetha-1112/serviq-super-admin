@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useAppState } from '../config/AppContext';
+import { useAppState } from '../contexts/AppContext';
 
 export default function CustomerSimulator() {
   const {

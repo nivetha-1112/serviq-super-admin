@@ -3,7 +3,7 @@ import { IconBtn } from '../../components/IconBtn';
 
 export default function Roles() {
   const [activeTab, setActiveTab] = useState('roles');
-  
+
   const [rolesList] = useState([
     { id: 1, name: 'Super Admin', status: 'Active' },
     { id: 2, name: 'Branch Admin', status: 'Active' },
@@ -17,9 +17,9 @@ export default function Roles() {
     <section className="panel-view active">
       <div className="admin-card-container">
         <div className="admin-inner-header" style={{ marginBottom: '20px' }}>
-          <h3 className="admin-inner-title" style={{ fontSize: '15px' }}>Roles & Permissions</h3>
+          <h3 className="admin-inner-title" style={{ fontSize: '15px' }}>Roles & Permissions2</h3>
           <button className="btn" style={{ background: '#000', color: '#fff', borderRadius: '8px', padding: '10px 20px', fontWeight: 600 }} onClick={() => setActiveTab('roles-add')}>
-            + Add Role
+            + Add Role22
           </button>
         </div>
         <div style={{ overflowX: 'auto' }}>
@@ -119,7 +119,7 @@ export default function Roles() {
           </div>
         </div>
       </section>
-  );
+    );
   };
   return (
     <>

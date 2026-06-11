@@ -36,6 +36,15 @@ const PrinterIcon = ({ size = 18, color = 'currentColor' }) => (
   </svg>
 );
 
+const FilterIcon = ({ size = 16, color = '#ff7a00' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+  </svg>
+);
+
+// ─── Professional Sidebar Icons (Lucide-style) ───────────────────────────────
+
+// Dashboard: LayoutDashboard
 const DashboardIcon = ({ size = 18, color = 'currentColor' }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
     <rect width="7" height="9" x="3" y="3" rx="1" />
@@ -45,87 +54,17 @@ const DashboardIcon = ({ size = 18, color = 'currentColor' }) => (
   </svg>
 );
 
-const MenuIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" />
-    <path d="M7 2v20" />
-    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" />
-  </svg>
-);
-
-const OrdersIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
-    <path d="M15 2H9a1 1 0 0 0-1 1v2a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Z" />
-    <path d="M12 11h4" />
-    <path d="M12 16h4" />
-    <path d="M8 11h.01" />
-    <path d="M8 16h.01" />
-  </svg>
-);
-
-const BillingIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <rect width="20" height="14" x="2" y="5" rx="2" />
-    <line x1="2" x2="22" y1="10" y2="10" />
-    <path d="M16 14h.01" />
-    <path d="M12 14h.01" />
-    <path d="M8 14h.01" />
-  </svg>
-);
-
+// Table Management: TableProperties (grid with header row)
 const TablesIcon = ({ size = 18, color = 'currentColor' }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <path d="M12 3v18" />
-    <rect width="18" height="18" x="3" y="3" rx="2" />
+    <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
     <path d="M3 9h18" />
-    <path d="M3 15h18" />
+    <path d="M12 3v6" />
+    <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z" />
   </svg>
 );
 
-const StaffIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-    <circle cx="9" cy="7" r="4" />
-    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-  </svg>
-);
-
-const UsersIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-    <circle cx="12" cy="7" r="4" />
-  </svg>
-);
-
-const SettingsIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <circle cx="12" cy="12" r="3" />
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
-  </svg>
-);
-
-const CreditCardIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <rect width="20" height="14" x="2" y="5" rx="2" />
-    <line x1="2" x2="22" y1="10" y2="10" />
-    <line x1="7" x2="11" y1="15" y2="15" />
-    <line x1="15" x2="17" y1="15" y2="15" />
-  </svg>
-);
-
-const ListIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <line x1="8" y1="6" x2="21" y2="6" />
-    <line x1="8" y1="12" x2="21" y2="12" />
-    <line x1="8" y1="18" x2="21" y2="18" />
-    <line x1="3" y1="6" x2="3.01" y2="6" />
-    <line x1="3" y1="12" x2="3.01" y2="12" />
-    <line x1="3" y1="18" x2="3.01" y2="18" />
-  </svg>
-);
-
+// QR Code: QrCode
 const QrIcon = ({ size = 18, color = 'currentColor' }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
     <rect width="5" height="5" x="3" y="3" rx="1" />
@@ -143,6 +82,110 @@ const QrIcon = ({ size = 18, color = 'currentColor' }) => (
   </svg>
 );
 
+// Menu Management: BookOpen (restaurant menu book)
+const MenuIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+  </svg>
+);
+
+// Order Management: ShoppingBag
+const OrdersIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+    <line x1="3" x2="21" y1="6" y2="6" />
+    <path d="M16 10a4 4 0 0 1-8 0" />
+  </svg>
+);
+
+// Billing: Receipt
+const BillingIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z" />
+    <path d="M14 8H8" />
+    <path d="M16 12H8" />
+    <path d="M13 16H8" />
+  </svg>
+);
+
+// Waiter Management: ConciergeBell (a serving bell)
+const WaiterIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M3 20a1 1 0 0 1 0-2h18a1 1 0 0 1 0 2Z" />
+    <path d="M20 16a8 8 0 1 0-16 0" />
+    <path d="M12 4v4" />
+    <path d="M10 4h4" />
+  </svg>
+);
+
+// Kitchen Management: ChefHat
+const KitchenIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
+    <line x1="6" x2="18" y1="17" y2="17" />
+  </svg>
+);
+
+// Users: Users2 (two people)
+const UsersIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M14 19a6 6 0 0 0-12 0" />
+    <circle cx="8" cy="9" r="4" />
+    <path d="M22 19a6 6 0 0 0-6-6 4 4 0 0 0 0-8" />
+  </svg>
+);
+
+// Reports: BarChart3
+const ReportsIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M3 3v18h18" />
+    <path d="M18 17V9" />
+    <path d="M13 17V5" />
+    <path d="M8 17v-3" />
+  </svg>
+);
+
+// Settings: Settings2 (sliders)
+const SettingsIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M20 7h-9" />
+    <path d="M14 17H5" />
+    <circle cx="17" cy="17" r="3" />
+    <circle cx="7" cy="7" r="3" />
+  </svg>
+);
+
+// Staff (generic)
+const StaffIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+  </svg>
+);
+
+const CreditCardIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <rect width="20" height="14" x="2" y="5" rx="2" />
+    <line x1="2" x2="22" y1="10" y2="10" />
+    <line x1="7" x2="11" y1="15" y2="15" />
+    <line x1="15" x2="17" y1="15" y2="17" />
+  </svg>
+);
+
+const ListIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <line x1="8" y1="6" x2="21" y2="6" />
+    <line x1="8" y1="12" x2="21" y2="12" />
+    <line x1="8" y1="18" x2="21" y2="18" />
+    <line x1="3" y1="6" x2="3.01" y2="6" />
+    <line x1="3" y1="12" x2="3.01" y2="12" />
+    <line x1="3" y1="18" x2="3.01" y2="18" />
+  </svg>
+);
+
 const CustomerIcon = ({ size = 18, color = 'currentColor' }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -151,31 +194,6 @@ const CustomerIcon = ({ size = 18, color = 'currentColor' }) => (
     <path d="M16 3.13a4 4 0 0 1 0 7.75" />
     <line x1="19" y1="8" x2="21" y2="10" />
     <line x1="21" y1="8" x2="19" y2="10" />
-  </svg>
-);
-
-const WaiterIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <circle cx="12" cy="6" r="3" />
-    <path d="M12 9v5" />
-    <path d="M6.5 14.5C7.5 13 9.6 12 12 12s4.5 1 5.5 2.5" />
-    <path d="M5 21h14" />
-    <path d="M7 17h10l-1 4H8l-1-4z" />
-  </svg>
-);
-
-const KitchenIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
-    <line x1="6" x2="18" y1="17" y2="17" />
-  </svg>
-);
-
-const ReportsIcon = ({ size = 18, color = 'currentColor' }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
-    <line x1="18" x2="18" y1="20" y2="10" />
-    <line x1="12" x2="12" y1="20" y2="4" />
-    <line x1="6" x2="6" y1="20" y2="14" />
   </svg>
 );
 
@@ -245,6 +263,7 @@ export default function Admin() {
   const [rushOnly, setRushOnly] = useState(false);
   const [statusDropdownOpen, setStatusDropdownOpen] = useState(false);
   const [sortDropdownOpen, setSortDropdownOpen] = useState(false);
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
   const [billingSearch, setBillingSearch] = useState('');
 
   // 3. Menu Management states
@@ -272,6 +291,7 @@ export default function Admin() {
   // 5. Tables & QR Management states
   const [selectedTableId, setSelectedTableId] = useState('');
   const [addTableForm, setAddTableForm] = useState({ id: '', seats: 4, waiter: '' });
+  const [tableFormErrors, setTableFormErrors] = useState({});
   const [draftSeats, setDraftSeats] = useState(4);
   const [draftStatus, setDraftStatus] = useState('Available');
   const [draftWaiter, setDraftWaiter] = useState('');
@@ -279,11 +299,17 @@ export default function Admin() {
   const [draftArea, setDraftArea] = useState('Main Dining');
   const [isTableDetailsOpen, setIsTableDetailsOpen] = useState(false);
   const [isGenerateQrOpen, setIsGenerateQrOpen] = useState(false);
-  const [genQrForm, setGenQrForm] = useState({ id: '', name: '', seats: 4, area: 'Main Dining', waiter: '' });
+  const [genQrForm, setGenQrForm] = useState({ id: '', status: 'Free' });
+  const [genQrFormErrors, setGenQrFormErrors] = useState({});
+  const [menuFormErrors, setMenuFormErrors] = useState({});
+  const [categoryFormErrors, setCategoryFormErrors] = useState({});
+  const [deleteMenuItemId, setDeleteMenuItemId] = useState(null);
 
   // 6. Staff states
   const [staffForm, setStaffForm] = useState({ id: '', name: '', role: 'Waiter', phone: '', email: '', password: '', status: 'On Duty' });
+  const [staffFormErrors, setStaffFormErrors] = useState({});
   const [kitchenPasswordForm, setKitchenPasswordForm] = useState('');
+  const [kitchenPasswordError, setKitchenPasswordError] = useState('');
 
   // Users & Roles states
   const [isUsersMenuOpen, setIsUsersMenuOpen] = useState(false);
@@ -338,6 +364,8 @@ export default function Admin() {
     'order-view': activeViewOrder ? `Order Details - #ORD-${activeViewOrder.id}` : 'Order Details',
     'waiter-list': ' Waiter Live Directory',
     'assign-waiter-page': ' Assign Waiter to Tables',
+    'category-form': categoryForm.id ? ' Edit Category' : ' Add New Category',
+    'categories-manager': ' Menu Categories',
   };
 
   const sty = {
@@ -450,15 +478,12 @@ export default function Admin() {
   };
 
   const iconBtnStyle = {
-    width: '32px',
-    height: '32px',
-    borderRadius: '50%',
     border: 'none',
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
-    padding: 0,
+    padding: '4px',
     transition: 'all 0.2s ease',
     position: 'relative',
     background: 'transparent',
@@ -467,13 +492,13 @@ export default function Admin() {
   const iconBtnViewStyle = {
     ...iconBtnStyle,
     color: '#475569',
-    marginRight: '6px'
+    marginRight: '12px'
   };
 
   const iconBtnEditStyle = {
     ...iconBtnStyle,
     color: '#475569',
-    marginRight: '6px'
+    marginRight: '12px'
   };
 
   const iconBtnDeleteStyle = {
@@ -489,17 +514,15 @@ export default function Admin() {
         style={style}
         onClick={onClick}
         onMouseEnter={e => {
-          e.currentTarget.style.transform = 'scale(1.15)';
-          e.currentTarget.style.backgroundColor = isDelete ? '#fef2f2' : '#f1f5f9';
+          e.currentTarget.style.transform = 'scale(1.2)';
           if (isDelete) {
             e.currentTarget.style.color = '#dc2626';
           } else {
-            e.currentTarget.style.color = '#1e293b';
+            e.currentTarget.style.color = '#0f172a';
           }
         }}
         onMouseLeave={e => {
           e.currentTarget.style.transform = 'scale(1)';
-          e.currentTarget.style.backgroundColor = 'transparent';
           e.currentTarget.style.color = style?.color;
         }}
       >
@@ -790,7 +813,7 @@ export default function Admin() {
     }
 
     return (
-      <section className="panel-view active" style={{ padding: 0 }}>
+      <section className="panel-view active">
         {/* V2 KPI Cards Grid */}
         <div className="mockup2-kpi-grid">
           <div className="mockup2-kpi-card">
@@ -845,8 +868,8 @@ export default function Admin() {
 
         {/* V2 Stream Header */}
         <div className="mockup2-stream-header">
-          <h2 className="mockup2-stream-title">Live Order Stream</h2>
-          <span className="mockup2-stream-badge">4 NEW</span>
+          <h2 className="mockup2-stream-title">Incoming orders</h2>
+
 
           <div className="mockup2-stream-controls">
             <div className="mockup2-segmented-control">
@@ -864,127 +887,182 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* Premium Order Cards Grid */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px', padding: '0 0 24px 0' }}>
-          {filteredOrders.map(ord => {
-            const minutesElapsed = parseInt((ord.timeAgo || '').replace(/[^0-9]/g, '')) || 0;
-            const isRush = (ord.status === 'new' || ord.status === 'preparing') && minutesElapsed >= 20;
-            const statusLabels = { new: 'NEW', preparing: 'PREPARING', ready: 'READY', done: 'COMPLETED' };
-            const statusLabel = statusLabels[ord.status] || ord.status?.toUpperCase();
+        {/* Responsive Orders Table */}
+        <div className="menu-table-wrapper" style={{ overflowX: 'auto', backgroundColor: 'var(--bg-primary)', border: '1px solid var(--border)', borderRadius: '12px', padding: '20px', boxShadow: 'var(--card-shadow)', marginBottom: '24px' }}>
+          <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid var(--border)' }}>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Order ID</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Table</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Items & Notes</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Time</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Waiter</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Total</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Status</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Payment</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredOrders.map(ord => {
+                const minutesElapsed = parseInt((ord.timeAgo || '').replace(/[^0-9]/g, '')) || 0;
+                const isRush = (ord.status === 'new' || ord.status === 'preparing') && minutesElapsed >= 20;
+                const statusLabels = { new: 'NEW', preparing: 'PREPARING', ready: 'READY', done: 'COMPLETED' };
+                const statusLabel = statusLabels[ord.status] || ord.status?.toUpperCase();
 
-            return (
-              <div key={ord.id} style={{ background: '#fff', borderRadius: '16px', overflow: 'hidden', border: '1px solid #e8e8e8', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column' }}>
-                {/* Card Header — black bg, orange icon, orange status badge */}
-                <div style={{ background: '#111', padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#ff7a00', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
-                    </div>
-                    <span style={{ color: '#fff', fontWeight: 800, fontSize: '15px', fontFamily: 'Outfit, sans-serif' }}>Table {ord.table}</span>
-                    {isRush && <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 7px', borderRadius: '20px', background: '#ff4d00', color: '#fff' }}>RUSH</span>}
-                  </div>
-                  <span style={{
-                    fontSize: '11px',
-                    fontWeight: 700,
-                    padding: '5px 12px',
-                    borderRadius: '20px',
-                    letterSpacing: '0.5px',
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    background: 'rgba(255,255,255,0.07)',
-                    border: `1px solid ${ord.status === 'done' ? 'rgba(34,197,94,0.4)' : 'rgba(255,122,0,0.4)'}`,
-                    color: ord.status === 'done' ? '#4ade80' : '#ff9a3c',
-                  }}>
-                    <span style={{
-                      width: '7px', height: '7px', borderRadius: '50%',
-                      background: ord.status === 'done' ? '#22c55e' : '#ff7a00',
-                      boxShadow: ord.status === 'done' ? '0 0 6px #22c55e' : '0 0 6px #ff7a00',
-                      display: 'inline-block', flexShrink: 0
-                    }} />
-                    {statusLabel}
-                  </span>
-                </div>
-
-                {/* Card Body */}
-                <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  {/* Order items */}
-                  <div style={{ background: '#fafafa', borderRadius: '10px', padding: '12px', border: '1px solid #f0f0f0' }}>
-                    {ord.items.map((item, idx) => (
-                      <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: idx < ord.items.length - 1 ? '6px' : 0, marginBottom: idx < ord.items.length - 1 ? '6px' : 0, borderBottom: idx < ord.items.length - 1 ? '1px dashed #ebebeb' : 'none' }}>
-                        <span style={{ fontSize: '13px', color: '#222', fontWeight: 600 }}>{item.name}</span>
-                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#ff7a00', background: 'rgba(255,122,0,0.09)', padding: '2px 9px', borderRadius: '6px' }}>×{item.qty}</span>
+                return (
+                  <tr key={ord.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                    {/* Order ID */}
+                    <td style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--text-main)', fontSize: '13px', fontFamily: 'monospace' }}>
+                      #ORD-{ord.id}
+                      {isRush && (
+                        <span style={{ marginLeft: '6px', fontSize: '9px', fontWeight: 700, padding: '2px 6px', borderRadius: '12px', background: '#ff4d00', color: '#fff', display: 'inline-block', verticalAlign: 'middle' }}>
+                          RUSH
+                        </span>
+                      )}
+                    </td>
+                    {/* Table */}
+                    <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-main)', fontSize: '13px' }}>
+                      Table {ord.table}
+                    </td>
+                    {/* Items & Notes */}
+                    <td style={{ padding: '12px 14px', fontSize: '13px', whiteSpace: 'normal', minWidth: '180px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        {ord.items.map((item, idx) => (
+                          <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <span style={{ fontWeight: 600, color: 'var(--text-main)' }}>{item.name}</span>
+                            <span style={{ fontSize: '11px', fontWeight: 700, color: '#ff7a00', background: 'rgba(255,122,0,0.09)', padding: '1px 6px', borderRadius: '4px' }}>×{item.qty}</span>
+                          </div>
+                        ))}
+                        {ord.notes && (
+                          <div style={{ fontSize: '11px', color: '#888', fontStyle: 'italic', marginTop: '4px' }}>
+                            📝 {ord.notes}
+                          </div>
+                        )}
                       </div>
-                    ))}
-                    {ord.notes && <div style={{ marginTop: '8px', fontSize: '11px', color: '#888', borderTop: '1px dashed #ebebeb', paddingTop: '6px' }}>📝 {ord.notes}</div>}
-                  </div>
-
-                  {/* Order ID row */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#aaa', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Order ID</span>
-                    <span style={{ fontSize: '13px', fontWeight: 800, color: '#111', fontFamily: 'monospace' }}>#ORD-{ord.id}</span>
-                  </div>
-
-                  {/* Time + Assign Waiter row */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#fafafa', border: '1px solid #ebebeb', borderRadius: '8px', padding: '8px 12px' }}>
-                    <span style={{ flex: 1, fontSize: '12px', color: '#888', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    </td>
+                    {/* Time */}
+                    <td style={{ padding: '12px 14px', color: 'var(--text-muted)', fontSize: '13px' }}>
                       {ord.timeAgo ? `${ord.timeAgo} ago` : 'Just now'}
-                    </span>
-                    <button
-                      style={{ background: '#ff7a00', color: '#fff', border: 'none', borderRadius: '6px', padding: '5px 12px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', whiteSpace: 'nowrap' }}
-                      onClick={() => setAssignWaiterModal({ isOpen: true, orderId: ord.id, selectedWaiter: ord.waiter || '' })}
-                    >
-                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                      {ord.waiter ? ord.waiter.split(' ')[0] : 'Unassigned'}
-                    </button>
-                  </div>
+                    </td>
+                    {/* Waiter */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <button
+                        style={{ background: 'var(--bg-secondary)', color: 'var(--text-main)', border: '1px solid var(--border)', borderRadius: '6px', padding: '5px 10px', fontSize: '12px', fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '5px' }}
+                        onClick={() => setAssignWaiterModal({ isOpen: true, orderId: ord.id, selectedWaiter: ord.waiter || '' })}
+                      >
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: '2px' }}><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                        {ord.waiter ? ord.waiter.split(' ')[0] : 'Unassigned'}
+                      </button>
+                    </td>
+                    {/* Total */}
+                    <td style={{ padding: '12px 14px', fontWeight: 700, color: 'var(--text-main)', fontSize: '13px' }}>
+                      ₹{ord.total}
+                    </td>
+                    {/* Status */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <span style={{
+                        fontSize: '10px',
+                        fontWeight: 700,
+                        padding: '4px 10px',
+                        borderRadius: '12px',
+                        letterSpacing: '0.5px',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '4px',
+                        background: ord.status === 'done' ? '#dcfce7' : 'rgba(255,122,0,0.09)',
+                        border: `1px solid ${ord.status === 'done' ? 'rgba(34,197,94,0.4)' : 'rgba(255,122,0,0.3)'}`,
+                        color: ord.status === 'done' ? '#16a34a' : '#ff7a00',
+                        textTransform: 'uppercase'
+                      }}>
+                        <span style={{
+                          width: '6px', height: '6px', borderRadius: '50%',
+                          background: ord.status === 'done' ? '#16a34a' : '#ff7a00',
+                          display: 'inline-block'
+                        }} />
+                        {statusLabel}
+                      </span>
+                    </td>
+                    {/* Payment Status */}
+                    <td style={{ padding: '12px 14px' }}>
+                      <button
+                        style={{
+                          padding: '4px 10px',
+                          borderRadius: '6px',
+                          border: '1px solid var(--border)',
+                          background: ord.billingStatus === 'paid' ? '#dcfce7' : 'rgba(255,122,0,0.05)',
+                          color: ord.billingStatus === 'paid' ? '#16a34a' : '#ff7a00',
+                          fontSize: '12px',
+                          fontWeight: 700,
+                          cursor: 'pointer',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: '4px'
+                        }}
+                        onClick={() => handlePaymentStatusToggle(ord.id)}
+                      >
+                        💰 {ord.billingStatus === 'paid' ? 'Paid' : 'Pending'}
+                      </button>
+                    </td>
+                    {/* Actions */}
+                    <td style={{ padding: '12px 14px', textAlign: 'right' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', gap: '8px' }}>
+                        <IconBtn
+                          icon={<EyeIcon size={18} />}
+                          tooltip="View Details"
+                          style={{ ...iconBtnViewStyle, marginRight: 0 }}
+                          onClick={() => { setActiveViewOrder(ord); setActivePage('order-view'); }}
+                        />
+                        {ord.status !== 'done' ? (
+                          <button
+                            className="btn"
+                            style={{
+                              background: 'var(--orange-gradient)',
+                              borderColor: '#ff7a00',
+                              color: '#fff',
+                              fontWeight: 700,
+                              width: '100px',
+                              fontSize: '12px',
+                              borderRadius: '6px',
+                              height: '32px',
+                              display: 'inline-flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              cursor: 'pointer',
+                              boxSizing: 'border-box'
+                            }}
+                            onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
+                          >
+                            {ord.status === 'new' && 'Accept'}
+                            {ord.status === 'preparing' && 'Ready'}
+                            {ord.status === 'ready' && 'Complete'}
+                          </button>
+                        ) : (
+                          <button
+                            className="btn btn-black"
+                            style={{ width: '100px', fontSize: '12px', borderRadius: '6px', height: '32px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', opacity: 0.6, cursor: 'default', boxSizing: 'border-box' }}
+                            disabled
+                          >
+                            Completed
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
 
-                  {/* View Details + Payment toggle */}
-                  <div style={{ display: 'flex', gap: '8px' }}>
-                    <button
-                      style={{ flex: 1, padding: '8px', borderRadius: '8px', border: '1.5px solid #e8e8e8', background: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer', color: '#444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
-                      onClick={() => { setActiveViewOrder(ord); setActivePage('order-view'); }}
-                    >
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
-                      View Details
-                    </button>
-                    <button
-                      style={{ flex: 1, padding: '8px', borderRadius: '8px', border: '1.5px solid #e8e8e8', background: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer', color: '#444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
-                      onClick={() => handlePaymentStatusToggle(ord.id)}
-                    >
-                      💰 {ord.billingStatus === 'paid' ? 'Paid' : 'Pending'}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Card Footer CTA — always orange, disabled black for done */}
-                <div style={{ padding: '0 16px 16px 16px' }}>
-                  {ord.status !== 'done' ? (
-                    <button
-                      style={{ width: '100%', padding: '12px', borderRadius: '10px', background: 'linear-gradient(135deg, #ff7a00, #ff4d00)', border: 'none', color: '#fff', fontWeight: 800, fontSize: '14px', cursor: 'pointer', fontFamily: 'Outfit, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
-                      onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
-                    >
-                      {ord.status === 'new' && '✅ Accept Order'}
-                      {ord.status === 'preparing' && '🍳 Mark as Ready'}
-                      {ord.status === 'ready' && '🚀 Complete Order'}
-                    </button>
-                  ) : (
-                    <button style={{ width: '100%', padding: '12px', borderRadius: '10px', background: '#111', border: 'none', color: '#fff', fontWeight: 800, fontSize: '14px', cursor: 'default', fontFamily: 'Outfit, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }} disabled>
-                      ✓ Order Completed
-                    </button>
-                  )}
-                </div>
-              </div>
-            );
-          })}
-
-          {filteredOrders.length === 0 && (
-            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '60px 20px', color: '#aaa' }}>
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px', opacity: 0.3 }}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
-              <h3 style={{ fontSize: '15px', color: '#666', marginBottom: '8px' }}>No orders found</h3>
-              <p style={{ fontSize: '13px', margin: 0 }}>New orders will appear here in real-time.</p>
-            </div>
-          )}
+              {filteredOrders.length === 0 && (
+                <tr>
+                  <td colSpan="9" style={{ textAlign: 'center', padding: '40px 20px', color: '#aaa' }}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '12px', opacity: 0.3 }}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2" /><path d="M7 2v20" /><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7" /></svg>
+                    <h3 style={{ fontSize: '15px', color: '#666', marginBottom: '4px' }}>No orders found</h3>
+                    <p style={{ fontSize: '13px', margin: 0 }}>New orders will appear here in real-time.</p>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
         </div>
 
 
@@ -1036,15 +1114,60 @@ export default function Admin() {
 
   };
 
+  const handleCategorySubmit = (e) => {
+    e.preventDefault();
+    const errors = {};
+    if (!categoryForm.name || !categoryForm.name.trim()) {
+      errors.name = "Category Name is required";
+    }
+    if (Object.keys(errors).length > 0) {
+      setCategoryFormErrors(errors);
+      return;
+    }
+    setCategoryFormErrors({});
+
+    if (categoryForm.id) {
+      setCategoriesListState(prev => prev.map(c => c.id === categoryForm.id ? { ...categoryForm, name: categoryForm.name.trim() } : c));
+      addToast("Category Updated Successfully");
+    } else {
+      const newId = Date.now();
+      setCategoriesListState(prev => [...prev, { ...categoryForm, id: newId, name: categoryForm.name.trim() }]);
+      addToast("Category Created Successfully");
+    }
+    setActivePage('categories-manager');
+  };
+
   // 3. RENDER MENU MANAGEMENT
   const handleMenuSubmit = (e) => {
     e.preventDefault();
+    const errors = {};
+    if (!menuForm.name || !menuForm.name.trim()) {
+      errors.name = "Item Name is required";
+    }
+    if (!menuForm.price || !menuForm.price.toString().trim()) {
+      errors.price = "Price is required";
+    } else {
+      const priceVal = parseFloat(menuForm.price);
+      if (isNaN(priceVal) || priceVal <= 0) {
+        errors.price = "Price must be a positive number";
+      }
+    }
+    if (!menuForm.prepTime || !menuForm.prepTime.trim()) {
+      errors.prepTime = "Preparation Time is required";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setMenuFormErrors(errors);
+      return;
+    }
+    setMenuFormErrors({});
+
     if (menuForm.id) {
       updateMenuItem(activeRestaurant.id, {
         ...menuForm,
         price: parseFloat(menuForm.price) || 0
       });
-      addToast('Menu item updated!');
+      addToast("Menu Item Updated Successfully");
     } else {
       addMenuItem(activeRestaurant.id, {
         id: 'menu-' + Date.now(),
@@ -1053,16 +1176,18 @@ export default function Admin() {
         price: parseFloat(menuForm.price) || 0,
         category: menuForm.category,
         image: menuForm.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format&fit=crop&q=60',
+        prepTime: menuForm.prepTime,
         veg: menuForm.veg,
         available: menuForm.available
       });
-      addToast('New dish added to menu!');
+      addToast("Menu Item Created Successfully");
     }
     setActivePage(null);
   };
 
   const openAddMenuModal = () => {
-    setMenuForm({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '', veg: true, available: true });
+    setMenuForm({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '', prepTime: '15 mins', veg: true, available: true });
+    setMenuFormErrors({});
     setActivePage('menu-form');
   };
 
@@ -1074,16 +1199,16 @@ export default function Admin() {
       price: item.price.toString(),
       category: item.category,
       image: item.image || '',
+      prepTime: item.prepTime || '15 mins',
       veg: item.veg ?? true,
       available: item.available ?? true
     });
+    setMenuFormErrors({});
     setActivePage('menu-form');
   };
 
   const handleDeleteMenu = (itemId) => {
-    if (window.confirm('Are you sure you want to delete this menu item?')) {
-      deleteMenuItem(activeRestaurant.id, itemId);
-    }
+    setDeleteMenuItemId(itemId);
   };
 
   const renderMenu = () => {
@@ -1111,7 +1236,7 @@ export default function Admin() {
         {/* Title flex box */}
         <div className="panel-header-flex" style={{ marginBottom: '24px', alignItems: 'flex-start' }}>
           <div className="panel-title-desc">
-            <h2 className="panel-inner-title" style={{ fontSize: '26px', fontWeight: 800 }}>Menu Management</h2>
+            <h2 className="panel-inner-title">Menu list</h2>
             <p className="panel-inner-desc" style={{ display: 'flex', alignItems: 'center', gap: '6px', marginTop: '4px' }}>
               <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#ff7a00', display: 'inline-block' }}></span>
               {menu.length} items actively listed
@@ -1127,7 +1252,7 @@ export default function Admin() {
                 fontWeight: 700
               }}
             >
-              ⚙️ Manage Categories
+              Manage Categories
             </button>
             <button
               className="btn btn-black"
@@ -1140,38 +1265,39 @@ export default function Admin() {
                 fontWeight: 700
               }}
             >
-              ➕ Add Menu Item
+              Add Menu Item
             </button>
           </div>
         </div>
 
-        {/* Categories Horizontal Pills */}
-        <div className="menu-categories-horizontal-pills">
-          {categoriesList.map(cat => {
-            const displayName = cat === 'All Items' ? 'All' : cat;
-            const isActive = menuCategory === cat;
-            return (
-              <button
-                key={cat}
-                className={`menu-category-pill-btn ${isActive ? 'active' : ''}`}
-                onClick={() => setMenuCategory(cat)}
-              >
-                {displayName}
-              </button>
-            );
-          })}
-        </div>
+        {/* Menu Category pills and Sort by Filter Row */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '16px', marginBottom: '20px', flexWrap: 'wrap' }}>
+          {/* Categories Horizontal Pills */}
+          <div className="menu-categories-horizontal-pills" style={{ margin: 0, display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            {categoriesList.map(cat => {
+              const displayName = cat === 'All Items' ? 'All' : cat;
+              const isActive = menuCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  className={`menu-category-pill-btn ${isActive ? 'active' : ''}`}
+                  onClick={() => setMenuCategory(cat)}
+                >
+                  {displayName}
+                </button>
+              );
+            })}
+          </div>
 
-        {/* Search & Sort Filters */}
-        <div className="menu-search-sort-row" style={{ justifyContent: 'flex-end' }}>
+          {/* Search & Sort Filters */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Sort by</span>
+            <label style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>Sort by</label>
             <select
               value={menuSort}
               onChange={(e) => setMenuSort(e.target.value)}
-              style={{ padding: '6px 12px', fontSize: '13px', borderRadius: '6px', background: 'var(--bg-secondary)', border: '1px solid var(--border)', color: 'var(--text-main)' }}
+              style={{ padding: '7px 12px', fontSize: '13px', borderRadius: '8px', background: 'var(--bg-secondary)', border: '1px solid var(--border)', color: 'var(--text-main)', cursor: 'pointer', outline: 'none' }}
             >
-              <option value="name">Name</option>
+              <option value="name">Name (A–Z)</option>
               <option value="price-asc">Price: Low to High</option>
               <option value="price-desc">Price: High to Low</option>
             </select>
@@ -1183,6 +1309,7 @@ export default function Admin() {
           <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
             <thead>
               <tr style={{ borderBottom: '2px solid var(--border)' }}>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>S.No</th>
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Image</th>
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Name</th>
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Category</th>
@@ -1194,8 +1321,9 @@ export default function Admin() {
               </tr>
             </thead>
             <tbody>
-              {filteredMenu.map(item => (
+              {filteredMenu.map((item, index) => (
                 <tr key={item.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                  <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-main)', fontSize: '14px' }}>{index + 1}</td>
                   <td style={{ padding: '12px 14px' }}>
                     {item.image ? (
                       <img
@@ -1682,18 +1810,41 @@ export default function Admin() {
   // 5. RENDER TABLES & QR MANAGEMENT
   const handleAddTableSubmit = (e) => {
     e.preventDefault();
-    if (!addTableForm.id) return;
+    const errors = {};
+    if (!addTableForm.id || !addTableForm.id.trim()) {
+      errors.id = "Table Number / ID is required";
+    }
+    if (!addTableForm.seats) {
+      errors.seats = "Seating capacity is required";
+    } else if (addTableForm.seats < 1 || addTableForm.seats > 20) {
+      errors.seats = "Seating capacity must be between 1 and 20";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setTableFormErrors(errors);
+      return;
+    }
+
     const cleanId = addTableForm.id.trim();
+    const exists = tables.some(t => t.id.toLowerCase() === cleanId.toLowerCase());
+    if (exists) {
+      setTableFormErrors({ id: "Table ID already exists!" });
+      return;
+    }
+
     const success = addDiningTable(activeRestaurant.id, {
       id: cleanId,
       status: 'Free',
-      seats: parseInt(addTableForm.seats) || 4
+      seats: parseInt(addTableForm.seats) || 4,
+      area: addTableForm.area || 'Main Dining'
     });
     if (success) {
-      addToast(`Created Table ${cleanId}!`);
+      addToast("Table Created Successfully");
+      setAddTableForm({ id: '', seats: 4, waiter: '' });
+      setTableFormErrors({});
       setActivePage(null);
     } else {
-      addToast('Table ID already exists!');
+      setTableFormErrors({ id: "Table ID already exists!" });
     }
   };
 
@@ -1720,8 +1871,8 @@ export default function Admin() {
         {/* Header Row */}
         <div className="panel-header-flex" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
           <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Dining Tables & QR Management</h2>
-            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Manage your dining tables, status and assignments</p>
+            <h2 className="panel-inner-title">Tables list</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px', display: 'none' }}></p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <button
@@ -1804,7 +1955,7 @@ export default function Admin() {
 
                 {/* Capacity */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#64748b', fontSize: '13px', minWidth: '90px' }}>
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg>
                   <span>{table.seats || 4} seats</span>
                 </div>
 
@@ -1812,7 +1963,7 @@ export default function Admin() {
                 <div style={{ flex: 1, fontSize: '13px', color: '#475569' }}>
                   {table.waiter ? (
                     <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="6" r="3"/><path d="M12 9v5"/><path d="M6.5 14.5C7.5 13 9.6 12 12 12s4.5 1 5.5 2.5"/><path d="M5 21h14"/><path d="M7 17h10l-1 4H8l-1-4z"/></svg>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="6" r="3" /><path d="M12 9v5" /><path d="M6.5 14.5C7.5 13 9.6 12 12 12s4.5 1 5.5 2.5" /><path d="M5 21h14" /><path d="M7 17h10l-1 4H8l-1-4z" /></svg>
                       {table.waiter}
                     </span>
                   ) : (
@@ -1822,32 +1973,25 @@ export default function Admin() {
 
                 {/* QR & Actions */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
-                  <button
-                    title="Edit Table"
+                  <IconBtn
+                    icon={<PencilIcon size={18} />}
+                    tooltip="Edit Table"
+                    style={iconBtnEditStyle}
                     onClick={() => { setSelectedTableId(table.id); setIsTableDetailsOpen(true); }}
-                    style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 14px', borderRadius: '8px', border: '1px solid var(--border)', background: '#f8fafc', color: '#334155', fontSize: '12px', fontWeight: '700', cursor: 'pointer', transition: 'all 0.2s' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = '#f8fafc'; e.currentTarget.style.color = '#334155'; e.currentTarget.style.borderColor = 'var(--border)'; }}
-                  >
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-                    Edit
-                  </button>
-                  <button
-                    title="Delete Table"
+                  />
+                  <IconBtn
+                    icon={<TrashIcon size={18} />}
+                    tooltip="Delete Table"
+                    style={iconBtnDeleteStyle}
                     onClick={() => {
                       if (window.confirm(`Are you sure you want to delete Table ${table.id}?`)) {
                         deleteDiningTable(activeRestaurant.id, table.id);
-                        addToast(`Deleted Table ${table.id}`);
+                        addToast("Table Deleted Successfully");
                         const remaining = tables.filter(t => t.id !== table.id);
                         if (remaining.length > 0) setSelectedTableId(remaining[0].id);
                       }
                     }}
-                    style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '34px', height: '34px', borderRadius: '8px', border: '1px solid #fecaca', background: '#fef2f2', color: '#ef4444', cursor: 'pointer', transition: 'all 0.2s' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = '#ef4444'; e.currentTarget.style.color = '#fff'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = '#fef2f2'; e.currentTarget.style.color = '#ef4444'; }}
-                  >
-                    <TrashIcon size={14} />
-                  </button>
+                  />
                 </div>
               </div>
             );
@@ -1865,7 +2009,7 @@ export default function Admin() {
               <div style={{ background: 'var(--orange-gradient)', padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
                   <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
                   </div>
                   <div>
                     <h3 style={{ margin: 0, fontSize: '17px', fontWeight: '800', color: '#fff', fontFamily: 'Outfit, sans-serif' }}>Edit Table — {currentTable.id}</h3>
@@ -1880,69 +2024,43 @@ export default function Admin() {
 
               {/* Modal Body - Form Fields Only */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '24px' }}>
-                  <div className="form-group">
-                    <label className="form-label">Table Name</label>
-                    <input
-                      type="text"
-                      className="admin-input"
-                      value={draftName}
-                      onChange={(e) => setDraftName(e.target.value)}
-                      placeholder="e.g. Window Seat"
-                    />
+                <div className="form-group">
+                  <label className="form-label">Area / Section</label>
+                  <select
+                    className="admin-input"
+                    value={draftArea}
+                    onChange={(e) => setDraftArea(e.target.value)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <option value="Main Dining">Main Dining</option>
+                    <option value="Patio">Patio</option>
+                    <option value="Bar">Bar</option>
+                    <option value="Private Room">Private Room</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Seating Capacity</label>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#f8fafc', border: '1px solid var(--border)', borderRadius: '8px', padding: '8px 14px' }}>
+                    <button type="button" onClick={() => setDraftSeats(prev => Math.max(1, prev - 1))} style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid var(--border)', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '700', color: 'var(--primary)' }}>−</button>
+                    <span style={{ minWidth: '30px', textAlign: 'center', fontWeight: '700', fontSize: '16px', color: 'var(--black)' }}>{draftSeats}</span>
+                    <button type="button" onClick={() => setDraftSeats(prev => Math.min(12, prev + 1))} style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid var(--border)', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '700', color: 'var(--primary)' }}>+</button>
+                    <span style={{ fontSize: '13px', color: '#64748b', marginLeft: '4px' }}>seats</span>
                   </div>
-                  <div className="form-group">
-                    <label className="form-label">Area / Section</label>
-                    <select
-                      className="admin-input"
-                      value={draftArea}
-                      onChange={(e) => setDraftArea(e.target.value)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <option value="Main Dining">Main Dining</option>
-                      <option value="Patio">Patio</option>
-                      <option value="Bar">Bar</option>
-                      <option value="Private Room">Private Room</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Seating Capacity</label>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#f8fafc', border: '1px solid var(--border)', borderRadius: '8px', padding: '8px 14px' }}>
-                      <button type="button" onClick={() => setDraftSeats(prev => Math.max(1, prev - 1))} style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid var(--border)', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '700', color: 'var(--primary)' }}>−</button>
-                      <span style={{ minWidth: '30px', textAlign: 'center', fontWeight: '700', fontSize: '16px', color: 'var(--black)' }}>{draftSeats}</span>
-                      <button type="button" onClick={() => setDraftSeats(prev => Math.min(12, prev + 1))} style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid var(--border)', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '700', color: 'var(--primary)' }}>+</button>
-                      <span style={{ fontSize: '13px', color: '#64748b', marginLeft: '4px' }}>seats</span>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Current Status</label>
-                    <select
-                      className="admin-input"
-                      value={draftStatus}
-                      onChange={(e) => setDraftStatus(e.target.value)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <option value="Available">Available</option>
-                      <option value="Occupied">Occupied</option>
-                      <option value="Reserved">Reserved</option>
-                      <option value="Inactive">Inactive</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <label className="form-label">Assigned Waiter (Optional)</label>
-                    <select
-                      className="admin-input"
-                      value={draftWaiter}
-                      onChange={(e) => setDraftWaiter(e.target.value)}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <option value="">Select Waiter...</option>
-                      <option value="Arjun K.">Arjun K.</option>
-                      <option value="Priya M.">Priya M.</option>
-                      <option value="Rahul S.">Rahul S.</option>
-                      <option value="Anita D.">Anita D.</option>
-                      <option value="Vikram S.">Vikram S.</option>
-                    </select>
-                  </div>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Current Status</label>
+                  <select
+                    className="admin-input"
+                    value={draftStatus}
+                    onChange={(e) => setDraftStatus(e.target.value)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <option value="Available">Available</option>
+                    <option value="Occupied">Occupied</option>
+                    <option value="Reserved">Reserved</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </div>
               </div>
 
               {/* Modal Footer */}
@@ -1966,15 +2084,15 @@ export default function Admin() {
                 <button
                   type="button"
                   onClick={() => {
-                    updateDiningTable(activeRestaurant.id, currentTable.id, { name: draftName, area: draftArea, seats: draftSeats, status: draftStatus, waiter: draftWaiter });
-                    addToast(`Saved changes for Table ${currentTable.id}!`);
+                    updateDiningTable(activeRestaurant.id, currentTable.id, { area: draftArea, seats: draftSeats, status: draftStatus });
+                    addToast("Table Updated Successfully");
                     setIsTableDetailsOpen(false);
                   }}
                   style={{ padding: '10px 24px', fontSize: '13px', borderRadius: '8px', background: 'var(--orange-gradient)', color: 'white', border: 'none', fontWeight: '700', cursor: 'pointer', boxShadow: '0 4px 12px rgba(255,122,0,0.28)', transition: 'all 0.2s' }}
                   onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 18px rgba(255,122,0,0.38)'; }}
                   onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,122,0,0.28)'; }}
                 >
-                  💾 Save Changes
+                  Update
                 </button>
               </div>
             </div>
@@ -1987,9 +2105,34 @@ export default function Admin() {
   // 6. RENDER STAFF PANEL
   const handleStaffSubmit = (e) => {
     e.preventDefault();
+    const errors = {};
+    if (!staffForm.name || !staffForm.name.trim()) {
+      errors.name = "Full Name is required";
+    }
+    if (!staffForm.phone || !staffForm.phone.trim()) {
+      errors.phone = "Phone Number is required";
+    }
+    if (!staffForm.email || !staffForm.email.trim()) {
+      errors.email = "Email Address is required";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(staffForm.email)) {
+        errors.email = "Please enter a valid email address";
+      }
+    }
+    if (!staffForm.password || !staffForm.password.trim()) {
+      errors.password = "Password is required";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      setStaffFormErrors(errors);
+      return;
+    }
+    setStaffFormErrors({});
+
     if (staffForm.id) {
       updateStaff(activeRestaurant.id, staffForm);
-      addToast('Staff details updated!');
+      addToast("Staff Updated Successfully");
     } else {
       const nextNum = staff.length + 1;
       const newId = `S-${nextNum < 10 ? '0' + nextNum : nextNum}`;
@@ -1997,37 +2140,45 @@ export default function Admin() {
         ...staffForm,
         id: newId
       });
-      addToast('New staff member added!');
+      addToast("Staff Created Successfully");
     }
     setActivePage(null);
   };
 
   const handleKitchenPasswordSubmit = (e) => {
     e.preventDefault();
-    if (!kitchenPasswordForm) return;
-    updateKitchenPassword(activeRestaurant.id, kitchenPasswordForm);
+    if (!kitchenPasswordForm || !kitchenPasswordForm.trim()) {
+      setKitchenPasswordError("Kitchen Login Password is required");
+      return;
+    }
+    setKitchenPasswordError('');
+    updateKitchenPassword(activeRestaurant.id, kitchenPasswordForm.trim());
     addToast('Kitchen Shared Login Password updated!');
     setActivePage(null);
   };
 
   const openAddStaffModal = (defaultRole = 'Waiter') => {
     setStaffForm({ id: '', name: '', role: defaultRole, phone: '', email: '', password: '', status: 'On Duty' });
+    setStaffFormErrors({});
     setActivePage('staff-form');
   };
 
   const openEditStaffModal = (s) => {
     setStaffForm(s);
+    setStaffFormErrors({});
     setActivePage('staff-form');
   };
 
   const openKitchenModal = () => {
     setKitchenPasswordForm(kitchenLogin.password);
+    setKitchenPasswordError('');
     setActivePage('kitchen-form');
   };
 
   const handleDeleteStaff = (sId) => {
     if (window.confirm('Delete staff member?')) {
       deleteStaff(activeRestaurant.id, sId);
+      addToast("Staff Deleted Successfully");
     }
   };
 
@@ -2117,8 +2268,8 @@ export default function Admin() {
                     <td style={{ padding: '10px 14px', fontSize: '14px' }}>{s.email}</td>
                     <td style={{ padding: '10px 14px' }}><Badge status={s.status} /></td>
                     <td style={{ padding: '10px 14px', textAlign: 'right' }}>
-                      <IconBtn icon={<PencilIcon size={16} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditStaffModal(s)} />
-                      <IconBtn icon={<TrashIcon size={16} />} tooltip="Delete" style={iconBtnDeleteStyle} onClick={() => handleDeleteStaff(s.id)} />
+                      <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditStaffModal(s)} />
+                      <IconBtn icon={<TrashIcon size={18} />} tooltip="Delete" style={iconBtnDeleteStyle} onClick={() => handleDeleteStaff(s.id)} />
                     </td>
                   </tr>
                 ))}
@@ -2191,8 +2342,8 @@ export default function Admin() {
                   <td><span className="status-pill-active">{r.status}</span></td>
                   <td style={{ textAlign: 'right' }}>
                     <div style={{ display: 'inline-flex', gap: '12px', justifyContent: 'flex-end' }}>
-                      <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
-                      <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                      <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} />
+                      <IconBtn icon={<TrashIcon size={18} />} tooltip="Delete" style={iconBtnDeleteStyle} />
                     </div>
                   </td>
                 </tr>
@@ -2371,7 +2522,7 @@ export default function Admin() {
   const renderSettings = () => (
     <section className="panel-view active profile-settings-wrapper" style={{ padding: 0 }}>
       {/* Top Header Row with Orange Border */}
-      
+
 
       <div className="profile-settings-container">
 
@@ -2459,7 +2610,7 @@ export default function Admin() {
             </span>
             <h3 className="profile-card-title">User Management</h3>
           </div>
-          
+
           <div className="menu-table-wrapper" style={{ overflowX: 'auto', margin: '0 24px 24px 24px', border: '1px solid var(--border)', borderRadius: '10px' }}>
             <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
@@ -2495,7 +2646,7 @@ export default function Admin() {
             </table>
           </div>
           <div style={{ padding: '0 24px 24px 24px', display: 'flex', justifyContent: 'flex-end' }}>
-             <button className="btn btn-black" style={{ padding: '8px 16px', fontSize: '13px' }} onClick={() => addToast('Add user modal clicked')}>➕ Add User</button>
+            <button className="btn btn-black" style={{ padding: '8px 16px', fontSize: '13px' }} onClick={() => addToast('Add user modal clicked')}>➕ Add User</button>
           </div>
         </div>
 
@@ -2577,21 +2728,7 @@ export default function Admin() {
                     }}
                   />
                 </div>
-                <div className="form-group" style={{ marginBottom: '16px' }}>
-                  <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Assigned Waiter</label>
-                  <select
-                    value={editOrderForm.waiter}
-                    onChange={e => setEditOrderForm({ ...editOrderForm, waiter: e.target.value })}
-                    style={{ width: '100%', padding: '10px', borderRadius: '8px', border: '1px solid var(--border)', background: 'white', color: 'black' }}
-                  >
-                    <option value="Unassigned">Unassigned</option>
-                    {staff.filter(s => s.role === 'Waiter').map(s => (
-                      <option key={s.id} value={s.name} disabled={s.status === 'Off Duty'}>
-                        {getWaiterLabel(s)}
-                      </option>
-                    ))}
-                  </select>
-                </div>
+
                 <div className="form-group" style={{ marginBottom: '20px' }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Notes</label>
                   <textarea
@@ -2793,15 +2930,15 @@ export default function Admin() {
           <div style={{ width: '100%' }}>
             <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
               <div className="panel-title-desc">
-                <h2 className="panel-inner-title" style={{ fontSize: '26px', fontWeight: 800 }}>Menu Categories</h2>
+                <h2 className="panel-inner-title">Menu Categories</h2>
                 <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Manage the categories that organize your menu items.</p>
               </div>
               <div style={{ display: 'flex', gap: '8px' }}>
                 <button className="btn btn-outline" style={{ padding: '10px 20px', borderRadius: '8px', fontWeight: 700 }} onClick={() => setActivePage(null)}>
                   ← Back to Menu
                 </button>
-                <button className="btn btn-black" style={{ background: 'var(--orange-gradient)', borderColor: '#ff7a00', padding: '10px 20px', borderRadius: '8px', fontWeight: 700 }} onClick={() => { setCategoryForm({ id: '', name: '', desc: '', status: 'Available' }); setActivePage('category-form'); }}>
-                  ➕ Add Category
+                <button className="btn btn-black" style={{ background: 'var(--orange-gradient)', borderColor: '#ff7a00', padding: '10px 20px', borderRadius: '8px', fontWeight: 700 }} onClick={() => { setCategoryForm({ id: '', name: '', desc: '', status: 'Available' }); setCategoryFormErrors({}); setActivePage('category-form'); }}>
+                  Add Category
                 </button>
               </div>
             </div>
@@ -2809,15 +2946,17 @@ export default function Admin() {
               <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
                 <thead>
                   <tr style={{ borderBottom: '2px solid var(--border)' }}>
-                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase' }}>Category Name</th>
-                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase' }}>Description</th>
-                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase' }}>Status</th>
-                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase', width: '60px' }}>S.No</th>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Category Name</th>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Description</th>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Status</th>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {categoriesListState.map(cat => (
+                  {categoriesListState.map((cat, index) => (
                     <tr key={cat.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                      <td style={{ padding: '12px 14px', color: 'var(--text-muted)', fontSize: '13px' }}>{index + 1}</td>
                       <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-main)', fontSize: '14px' }}>{cat.name}</td>
                       <td style={{ padding: '12px 14px', color: 'var(--text-muted)', fontSize: '13px' }}>{cat.desc}</td>
                       <td style={{ padding: '12px 14px' }}>
@@ -2836,13 +2975,13 @@ export default function Admin() {
                         </span>
                       </td>
                       <td style={{ padding: '12px 14px', textAlign: 'right' }}>
-                        <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => { setCategoryForm(cat); setActivePage('category-form'); }} />
+                        <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => { setCategoryForm(cat); setCategoryFormErrors({}); setActivePage('category-form'); }} />
                       </td>
                     </tr>
                   ))}
                   {categoriesListState.length === 0 && (
                     <tr>
-                      <td colSpan="4" style={{ textAlign: 'center', padding: '24px', color: 'var(--text-muted)' }}>No categories found.</td>
+                      <td colSpan="5" style={{ textAlign: 'center', padding: '24px', color: 'var(--text-muted)' }}>No categories found.</td>
                     </tr>
                   )}
                 </tbody>
@@ -2859,22 +2998,28 @@ export default function Admin() {
           <div style={{ width: '100%' }}>
             <PageHeader subtitle={categoryForm.id ? 'Modify category details' : 'Create a new menu category'} />
             <div style={sty.pageCard}>
-              <form onSubmit={handleCategorySubmit} style={{ width: '100%' }}>
+              <form onSubmit={handleCategorySubmit} style={{ width: '100%' }} noValidate>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Category Name</label>
                   <input
                     type="text"
-                    value={categoryForm.name}
-                    onChange={(e) => setCategoryForm({ ...categoryForm, name: e.target.value })}
+                    value={categoryForm.name || ''}
+                    onChange={(e) => {
+                      setCategoryForm({ ...categoryForm, name: e.target.value });
+                      if (categoryFormErrors.name) {
+                        setCategoryFormErrors({ ...categoryFormErrors, name: null });
+                      }
+                    }}
                     required
                     placeholder="e.g. Desserts"
                   />
+                  {categoryFormErrors.name && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{categoryFormErrors.name}</p>}
                 </div>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Description</label>
                   <textarea
                     rows="3"
-                    value={categoryForm.desc}
+                    value={categoryForm.desc || ''}
                     onChange={(e) => setCategoryForm({ ...categoryForm, desc: e.target.value })}
                     placeholder="Short description of this category..."
                     style={{ resize: 'none' }}
@@ -2883,7 +3028,7 @@ export default function Admin() {
                 <div className="form-group" style={{ marginBottom: '24px' }}>
                   <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Status</label>
                   <select
-                    value={categoryForm.status}
+                    value={categoryForm.status || 'Available'}
                     onChange={(e) => setCategoryForm({ ...categoryForm, status: e.target.value })}
                     required
                     style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', width: '100%' }}
@@ -2893,8 +3038,8 @@ export default function Admin() {
                   </select>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
-                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage('categories-manager')}>Cancel</button>
-                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>💾 Save Category</button>
+                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => { setActivePage('categories-manager'); setCategoryFormErrors({}); }}>Cancel</button>
+                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>Save Category</button>
                 </div>
               </form>
             </div>
@@ -2909,7 +3054,7 @@ export default function Admin() {
           <div style={{ width: '100%' }}>
             <PageHeader subtitle={menuForm.id ? 'Modify menu item details' : 'Create a new dish for the menu'} />
             <div style={sty.pageCard}>
-              <form onSubmit={handleMenuSubmit} style={{ width: '100%' }}>
+              <form onSubmit={handleMenuSubmit} style={{ width: '100%' }} noValidate>
                 {/* Hidden File Input */}
                 <input
                   id="menu-item-image-file"
@@ -2960,18 +3105,24 @@ export default function Admin() {
                         <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Item Name</label>
                         <input
                           type="text"
-                          value={menuForm.name}
-                          onChange={(e) => setMenuForm({ ...menuForm, name: e.target.value })}
+                          value={menuForm.name || ''}
+                          onChange={(e) => {
+                            setMenuForm({ ...menuForm, name: e.target.value });
+                            if (menuFormErrors.name) {
+                              setMenuFormErrors({ ...menuFormErrors, name: null });
+                            }
+                          }}
                           required
                           placeholder="e.g. Chicken Biryani"
                         />
+                        {menuFormErrors.name && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{menuFormErrors.name}</p>}
                       </div>
 
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                         <div className="form-group" style={{ marginBottom: 0 }}>
                           <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Category</label>
                           <select
-                            value={menuForm.category}
+                            value={menuForm.category || ''}
                             onChange={(e) => setMenuForm({ ...menuForm, category: e.target.value })}
                             required
                           >
@@ -2985,11 +3136,17 @@ export default function Admin() {
                           <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Price (₹)</label>
                           <input
                             type="number"
-                            value={menuForm.price}
-                            onChange={(e) => setMenuForm({ ...menuForm, price: e.target.value })}
+                            value={menuForm.price || ''}
+                            onChange={(e) => {
+                              setMenuForm({ ...menuForm, price: e.target.value });
+                              if (menuFormErrors.price) {
+                                setMenuFormErrors({ ...menuFormErrors, price: null });
+                              }
+                            }}
                             required
                             placeholder="320"
                           />
+                          {menuFormErrors.price && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{menuFormErrors.price}</p>}
                         </div>
                       </div>
 
@@ -3024,17 +3181,23 @@ export default function Admin() {
                         <input
                           type="text"
                           value={menuForm.prepTime || ''}
-                          onChange={(e) => setMenuForm({ ...menuForm, prepTime: e.target.value })}
+                          onChange={(e) => {
+                            setMenuForm({ ...menuForm, prepTime: e.target.value });
+                            if (menuFormErrors.prepTime) {
+                              setMenuFormErrors({ ...menuFormErrors, prepTime: null });
+                            }
+                          }}
                           required
                           placeholder="e.g. 15 mins"
                         />
+                        {menuFormErrors.prepTime && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{menuFormErrors.prepTime}</p>}
                       </div>
 
                       <div className="form-group" style={{ marginBottom: 0 }}>
                         <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Description</label>
                         <textarea
                           rows="4"
-                          value={menuForm.desc}
+                          value={menuForm.desc || ''}
                           onChange={(e) => setMenuForm({ ...menuForm, desc: e.target.value })}
                           placeholder="Provide a delicious description of this menu item..."
                           style={{ resize: 'none' }}
@@ -3043,8 +3206,8 @@ export default function Admin() {
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
-                      <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage(null)}>Cancel</button>
-                      <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>💾 Save Changes</button>
+                      <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => { setActivePage(null); setMenuFormErrors({}); }}>Cancel</button>
+                      <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>Save Changes</button>
                     </div>
                   </div>
                 </div>
@@ -3061,7 +3224,7 @@ export default function Admin() {
           <div style={{ width: '100%' }}>
             <PageHeader subtitle="Create a new physical dining table with capacity" />
             <div style={sty.pageCard}>
-              <form onSubmit={handleAddTableSubmit} style={{ width: '100%' }}>
+              <form onSubmit={handleAddTableSubmit} style={{ width: '100%' }} noValidate>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
                   <label>Table Number / ID</label>
                   <input
@@ -3069,8 +3232,8 @@ export default function Admin() {
                     value={addTableForm.id}
                     onChange={(e) => setAddTableForm({ ...addTableForm, id: e.target.value })}
                     placeholder="e.g. T-06"
-                    required
                   />
+                  {tableFormErrors.id && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{tableFormErrors.id}</p>}
                   <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>Recommended format: T-XX (e.g. T-06, T-07)</p>
                 </div>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
@@ -3090,9 +3253,9 @@ export default function Admin() {
                       min="1"
                       max="20"
                       value={addTableForm.seats}
-                      onChange={(e) => setAddTableForm({ ...addTableForm, seats: parseInt(e.target.value) || 4 })}
-                      required
+                      onChange={(e) => setAddTableForm({ ...addTableForm, seats: parseInt(e.target.value) || 0 })}
                     />
+                    {tableFormErrors.seats && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{tableFormErrors.seats}</p>}
                   </div>
                   <div className="form-group" style={{ marginBottom: '20px' }}>
                     <label>Area / Section</label>
@@ -3108,24 +3271,9 @@ export default function Admin() {
                     </select>
                   </div>
                 </div>
-                <div className="form-group" style={{ marginBottom: '20px' }}>
-                  <label>Assigned Waiter (Optional)</label>
-                  <select
-                    style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center', backgroundSize: '14px', width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', background: 'var(--bg-primary)', color: 'var(--text-main)', fontSize: '14px', cursor: 'pointer' }}
-                    value={addTableForm.waiter || ''}
-                    onChange={(e) => setAddTableForm({ ...addTableForm, waiter: e.target.value })}
-                  >
-                    <option value="">Select Waiter...</option>
-                    <option value="Arjun K.">Arjun K.</option>
-                    <option value="Priya M.">Priya M.</option>
-                    <option value="Rahul S.">Rahul S.</option>
-                    <option value="Anita D.">Anita D.</option>
-                    <option value="Vikram S.">Vikram S.</option>
-                  </select>
-                </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
-                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage(null)}>Cancel</button>
-                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>💾 Create Table</button>
+                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => { setTableFormErrors({}); setActivePage(null); }}>Cancel</button>
+                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>Create Table</button>
                 </div>
               </form>
             </div>
@@ -3140,35 +3288,73 @@ export default function Admin() {
           <div style={{ width: '100%' }}>
             <PageHeader subtitle={staffForm.id ? 'Update employee profile' : 'Add a new member to the restaurant staff'} />
             <div style={sty.pageCard}>
-              <form onSubmit={handleStaffSubmit} style={{ width: '100%' }}>
-                <div style={sty.formGrid2}>
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label>Full Name</label>
-                    <input type="text" value={staffForm.name} onChange={(e) => setStaffForm({ ...staffForm, name: e.target.value })} required placeholder="e.g. Ramesh Kumar" />
-                  </div>
-
-                  <div className="form-group" style={{ marginBottom: 0 }}>
-                    <label>Role</label>
-                    <select value={staffForm.role} onChange={(e) => setStaffForm({ ...staffForm, role: e.target.value })} required>
-                      <option value="Waiter">Waiter</option>
-                      <option value="Kitchen">Kitchen</option>
-                    </select>
-                  </div>
+              <form onSubmit={handleStaffSubmit} style={{ width: '100%' }} noValidate>
+                <div className="form-group" style={{ marginBottom: '16px' }}>
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    value={staffForm.name || ''}
+                    onChange={(e) => {
+                      setStaffForm({ ...staffForm, name: e.target.value });
+                      if (staffFormErrors.name) {
+                        setStaffFormErrors({ ...staffFormErrors, name: null });
+                      }
+                    }}
+                    required
+                    placeholder="e.g. Ramesh Kumar"
+                  />
+                  {staffFormErrors.name && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{staffFormErrors.name}</p>}
                 </div>
 
-                <div className="form-group" style={{ marginBottom: '16px', marginTop: '16px' }}>
+                <div className="form-group" style={{ marginBottom: '16px' }}>
                   <label>Phone Number</label>
-                  <input type="tel" value={staffForm.phone} onChange={(e) => setStaffForm({ ...staffForm, phone: e.target.value })} required placeholder="e.g. 9876543210" />
+                  <input
+                    type="tel"
+                    value={staffForm.phone || ''}
+                    onChange={(e) => {
+                      setStaffForm({ ...staffForm, phone: e.target.value });
+                      if (staffFormErrors.phone) {
+                        setStaffFormErrors({ ...staffFormErrors, phone: null });
+                      }
+                    }}
+                    required
+                    placeholder="e.g. 9876543210"
+                  />
+                  {staffFormErrors.phone && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{staffFormErrors.phone}</p>}
                 </div>
 
                 <div style={sty.formGrid2}>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label>Email Address</label>
-                    <input type="email" value={staffForm.email} onChange={(e) => setStaffForm({ ...staffForm, email: e.target.value })} required placeholder="e.g. ramesh@serviq.com" />
+                    <input
+                      type="email"
+                      value={staffForm.email || ''}
+                      onChange={(e) => {
+                        setStaffForm({ ...staffForm, email: e.target.value });
+                        if (staffFormErrors.email) {
+                          setStaffFormErrors({ ...staffFormErrors, email: null });
+                        }
+                      }}
+                      required
+                      placeholder="e.g. ramesh@serviq.com"
+                    />
+                    {staffFormErrors.email && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{staffFormErrors.email}</p>}
                   </div>
                   <div className="form-group" style={{ marginBottom: 0 }}>
                     <label>Password</label>
-                    <input type="text" value={staffForm.password} onChange={(e) => setStaffForm({ ...staffForm, password: e.target.value })} required placeholder="e.g. waiter123" />
+                    <input
+                      type="text"
+                      value={staffForm.password || ''}
+                      onChange={(e) => {
+                        setStaffForm({ ...staffForm, password: e.target.value });
+                        if (staffFormErrors.password) {
+                          setStaffFormErrors({ ...staffFormErrors, password: null });
+                        }
+                      }}
+                      required
+                      placeholder="e.g. waiter123"
+                    />
+                    {staffFormErrors.password && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{staffFormErrors.password}</p>}
                   </div>
                 </div>
 
@@ -3181,8 +3367,8 @@ export default function Admin() {
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
-                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage(null)}>Cancel</button>
-                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>💾 Save Changes</button>
+                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => { setActivePage(null); setStaffFormErrors({}); }}>Cancel</button>
+                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>Save Changes</button>
                 </div>
               </form>
             </div>
@@ -3197,7 +3383,7 @@ export default function Admin() {
           <div style={{ width: '100%' }}>
             <PageHeader subtitle="Update the password shared by kitchen station screens" />
             <div style={sty.pageCard}>
-              <form onSubmit={handleKitchenPasswordSubmit} style={{ width: '100%' }}>
+              <form onSubmit={handleKitchenPasswordSubmit} style={{ width: '100%' }} noValidate>
                 <div className="form-group" style={{ marginBottom: '16px' }}>
                   <label>Kitchen Login Email</label>
                   <input type="email" value={kitchenLogin.email} readOnly style={{ backgroundColor: 'var(--bg-tertiary)', cursor: 'not-allowed' }} />
@@ -3206,15 +3392,21 @@ export default function Admin() {
                   <label>Kitchen Login Password</label>
                   <input
                     type="text"
-                    value={kitchenPasswordForm}
-                    onChange={(e) => setKitchenPasswordForm(e.target.value)}
+                    value={kitchenPasswordForm || ''}
+                    onChange={(e) => {
+                      setKitchenPasswordForm(e.target.value);
+                      if (kitchenPasswordError) {
+                        setKitchenPasswordError('');
+                      }
+                    }}
                     required
                     placeholder="e.g. kitchen123"
                   />
+                  {kitchenPasswordError && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{kitchenPasswordError}</p>}
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
-                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage(null)}>Cancel</button>
-                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>💾 Update Password</button>
+                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => { setActivePage(null); setKitchenPasswordError(''); }}>Cancel</button>
+                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>Update Password</button>
                 </div>
               </form>
             </div>
@@ -3685,8 +3877,8 @@ export default function Admin() {
     <section className="panel-view active">
       <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
         <div className="panel-title-desc">
-          <h2 className="panel-inner-title">QR Code Management</h2>
-          <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Generate, customize and manage QR codes for all dining tables.</p>
+          <h2 className="panel-inner-title">QR lists</h2>
+          <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px', display: 'none' }}></p>
         </div>
         <div style={{ display: 'flex', gap: '12px' }}>
           <button
@@ -3709,11 +3901,9 @@ export default function Admin() {
 
               setGenQrForm({
                 id: nextId,
-                name: '',
-                seats: 4,
-                area: 'Main Dining',
-                waiter: ''
+                status: 'Free'
               });
+              setGenQrFormErrors({});
               setIsGenerateQrOpen(true);
             }}
           >
@@ -3735,11 +3925,62 @@ export default function Admin() {
               <div style={{ width: '100%', background: 'linear-gradient(135deg, #000 0%, #1a1a1a 100%)', padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
                   <div style={{ width: '34px', height: '34px', borderRadius: '8px', background: 'var(--orange-gradient)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 3px 8px rgba(255,122,0,0.35)' }}>
-                    <svg width="16" height="12" viewBox="0 0 60 40" fill="none"><path d="M6 16C6 14.9 6.9 14 8 14H52C53.1 14 54 14.9 54 16V18C54 19.1 53.1 20 52 20H8C6.9 20 6 19.1 6 18V16Z" fill="white"/><rect x="16" y="20" width="4" height="14" rx="1" fill="white"/><rect x="40" y="20" width="4" height="14" rx="1" fill="white"/></svg>
+                    <svg width="16" height="12" viewBox="0 0 60 40" fill="none"><path d="M6 16C6 14.9 6.9 14 8 14H52C53.1 14 54 14.9 54 16V18C54 19.1 53.1 20 52 20H8C6.9 20 6 19.1 6 18V16Z" fill="white" /><rect x="16" y="20" width="4" height="14" rx="1" fill="white" /><rect x="40" y="20" width="4" height="14" rx="1" fill="white" /></svg>
                   </div>
                   <span style={{ fontWeight: '800', fontSize: '15px', color: '#fff', fontFamily: 'Outfit, sans-serif', letterSpacing: '0.03em' }}>Table {table.id}</span>
                 </div>
-                <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: 'rgba(46,189,89,0.18)', color: '#2ebd59', border: '1px solid rgba(46,189,89,0.4)', letterSpacing: '0.05em' }}>● ACTIVE</span>
+                {(() => {
+                  const s = (table.status || 'Free').toLowerCase();
+                  let col = '#22c55e'; // Free = green
+                  let borderCol = '#22c55e';
+                  if (s === 'occupied') {
+                    col = '#ef4444'; // red
+                    borderCol = '#ef4444';
+                  } else if (s === 'reserved') {
+                    col = '#3b82f6'; // blue
+                    borderCol = '#3b82f6';
+                  } else if (s === 'inactive') {
+                    col = '#94a3b8'; // gray
+                    borderCol = '#94a3b8';
+                  }
+
+                  return (
+                    <select
+                      value={table.status || 'Free'}
+                      onChange={(e) => {
+                        updateDiningTable(activeRestaurant.id, table.id, { ...table, status: e.target.value });
+                        addToast('Table Updated Successfully');
+                      }}
+                      style={{
+                        fontSize: '12px',
+                        fontWeight: 800,
+                        width: '110px',
+                        padding: '6px 24px 6px 12px',
+                        borderRadius: '20px',
+                        backgroundColor: '#ffffff',
+                        color: col,
+                        border: `1.5px solid ${borderCol}`,
+                        letterSpacing: '0.05em',
+                        cursor: 'pointer',
+                        outline: 'none',
+                        appearance: 'none',
+                        WebkitAppearance: 'none',
+                        MozAppearance: 'none',
+                        textAlign: 'left',
+                        backgroundImage: `url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='${encodeURIComponent(col)}' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")`,
+                        backgroundRepeat: 'no-repeat',
+                        backgroundPosition: 'right 10px center',
+                        backgroundSize: '10px',
+                        lineHeight: '1.2'
+                      }}
+                    >
+                      <option value="Free" style={{ color: '#22c55e', fontWeight: 800 }}>FREE</option>
+                      <option value="Occupied" style={{ color: '#ef4444', fontWeight: 800 }}>OCCUPIED</option>
+                      <option value="Reserved" style={{ color: '#3b82f6', fontWeight: 800 }}>RESERVED</option>
+                      <option value="Inactive" style={{ color: '#94a3b8', fontWeight: 800 }}>INACTIVE</option>
+                    </select>
+                  );
+                })()}
               </div>
 
               {/* QR Preview */}
@@ -3766,7 +4007,7 @@ export default function Admin() {
                       style={{ flex: 1, padding: 0, fontSize: '10px', border: 'none', background: 'transparent', color: '#64748b', outline: 'none', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: 500 }}
                     />
                     <button
-                      onClick={() => { navigator.clipboard.writeText(qrUrl).catch(() => {}); addToast('URL copied to clipboard!'); }}
+                      onClick={() => { navigator.clipboard.writeText(qrUrl).catch(() => { }); addToast('URL copied to clipboard!'); }}
                       style={{ padding: '4px 8px', borderRadius: '6px', background: 'var(--orange-gradient)', border: 'none', color: '#fff', fontSize: '11px', fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
                       title="Copy URL"
                     >
@@ -3864,14 +4105,14 @@ export default function Admin() {
       <section className="panel-view active">
         <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
           <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Waiter Management</h2>
-            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Manage waiter accounts, table assignments and monitor performance.</p>
+            <h2 className="panel-inner-title">waiters list</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px', display: 'none' }}></p>
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
             <button className="btn btn-outline" style={{ padding: '10px 18px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }}
-              onClick={() => { setActivePage('assign-waiter-page'); }}>🔗 Assign Tables</button>
+              onClick={() => { setActivePage('assign-waiter-page'); }}>Assign Tables</button>
             <button className="btn btn-black" style={{ background: 'var(--orange-gradient)', borderColor: '#ff7a00', padding: '10px 18px', borderRadius: '8px', fontWeight: 700 }}
-              onClick={() => openAddStaffModal('Waiter')}>➕ Add Waiter</button>
+              onClick={() => openAddStaffModal('Waiter')}>Add Waiter</button>
           </div>
         </div>
         <div className="admin-card-container">
@@ -3924,9 +4165,7 @@ export default function Admin() {
                         </span>
                       </td>
                       <td style={{ textAlign: 'right' }}>
-                        <button className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px', borderRadius: '6px', fontWeight: 700 }} onClick={() => openEditStaffModal(w)}>
-                          Edit Waiter
-                        </button>
+                        <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit Waiter" style={iconBtnEditStyle} onClick={() => openEditStaffModal(w)} />
                       </td>
                     </tr>
                   );
@@ -3955,12 +4194,12 @@ export default function Admin() {
       <section className="panel-view active">
         <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
           <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Kitchen Management</h2>
-            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Manage kitchen staff accounts and monitor performance.</p>
+            <h2 className="panel-inner-title">Kitchen list</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px', display: 'none' }}></p>
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
             <button className="btn btn-black" style={{ background: 'var(--orange-gradient)', borderColor: '#ff7a00', padding: '10px 18px', borderRadius: '8px', fontWeight: 700 }}
-              onClick={() => openAddStaffModal('Kitchen')}>➕ Add Kitchen Staff</button>
+              onClick={() => openAddStaffModal('Kitchen')}>Add Kitchen Staff</button>
           </div>
         </div>
         <div className="admin-card-container">
@@ -4014,9 +4253,7 @@ export default function Admin() {
                         </span>
                       </td>
                       <td style={{ textAlign: 'right' }}>
-                        <button className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px', borderRadius: '6px', fontWeight: 700 }} onClick={() => openEditStaffModal(k)}>
-                          Edit Staff
-                        </button>
+                        <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit Staff" style={iconBtnEditStyle} onClick={() => openEditStaffModal(k)} />
                       </td>
                     </tr>
                   );
@@ -4139,16 +4376,24 @@ export default function Admin() {
         <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
           <div className="panel-title-desc">
             <h2 className="panel-inner-title">Waiter Report</h2>
-            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Track order history, source, status, payments, and detailed service timelines.</p>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px', display: 'none' }}></p>
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
-            <button className="btn btn-outline" style={{ padding: '10px 18px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('Waiter Report exported!')}>📊 Export Report</button>
+            <button className="btn btn-outline" style={{ padding: '10px 18px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('Waiter Report Exported Successfully')}>Export Report</button>
           </div>
         </div>
 
         {/* Filters Section */}
-        <div className="admin-card-container" style={{ marginBottom: '24px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: 800, marginBottom: '16px', color: 'var(--text-main)' }}>Waiter Filters</h3>
+        <div className="admin-card-container" style={{
+          marginBottom: '24px',
+          borderLeft: '4px solid #ff7a00',
+          background: 'linear-gradient(to right, #fffaf5, #ffffff)',
+          boxShadow: '0 4px 20px rgba(255, 122, 0, 0.05)'
+        }}>
+          <h3 style={{ fontSize: '14px', fontWeight: 800, marginBottom: '16px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <FilterIcon size={16} color="#ff7a00" />
+            Waiter Filters
+          </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
             <div className="admin-form-group">
               <label className="admin-form-label">Date From</label>
@@ -4211,7 +4456,29 @@ export default function Admin() {
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-            <button className="btn btn-outline" style={{ fontSize: '13px', padding: '8px 16px', borderRadius: '6px' }} onClick={resetFilters}>Reset Filters</button>
+            <button
+              className="btn btn-outline"
+              style={{
+                fontSize: '13px',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                borderColor: '#e2e8f0',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = '#ff7a00';
+                e.currentTarget.style.color = '#ff7a00';
+                e.currentTarget.style.background = '#fff8f2';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = '#e2e8f0';
+                e.currentTarget.style.color = 'inherit';
+                e.currentTarget.style.background = 'transparent';
+              }}
+              onClick={resetFilters}
+            >
+              Reset Filters
+            </button>
           </div>
         </div>
 
@@ -4230,8 +4497,7 @@ export default function Admin() {
                   <th>PAYMENT MODE</th>
                   <th>PAYMENT STATUS</th>
                   <th>TOTAL AMOUNT</th>
-                  <th style={{ textAlign: 'center' }}>VIEW</th>
-                  <th style={{ textAlign: 'center' }}>OFFLINE PAYMENT</th>
+                  <th style={{ textAlign: 'center' }}>ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
@@ -4263,21 +4529,21 @@ export default function Admin() {
                       </td>
                       <td style={{ fontWeight: 700, color: isPaid ? '#16a34a' : 'inherit' }}>₹{o.total.toLocaleString('en-IN')}</td>
                       <td style={{ textAlign: 'center' }}>
-                        <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveReportViewOrder(o)}>
-                          <EyeIcon size={14} color="var(--primary)" />
-                        </button>
-                      </td>
-                      <td style={{ textAlign: 'center' }}>
-                        <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px', opacity: isPaid ? 0.5 : 1, cursor: isPaid ? 'not-allowed' : 'pointer' }} onClick={() => !isPaid && setActiveReportOfflinePaymentOrder(o)} disabled={isPaid}>
-                          <CreditCardIcon size={14} color="var(--primary)" />
-                        </button>
+                        <div style={{ display: 'inline-flex', gap: '8px', justifyContent: 'center' }}>
+                          <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveReportViewOrder(o)} title="View Timeline">
+                            <EyeIcon size={14} color="var(--primary)" />
+                          </button>
+                          <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px', opacity: isPaid ? 0.5 : 1, cursor: isPaid ? 'not-allowed' : 'pointer' }} onClick={() => !isPaid && setActiveReportOfflinePaymentOrder(o)} disabled={isPaid} title="Offline Payment">
+                            <CreditCardIcon size={14} color="var(--primary)" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   );
                 })}
                 {filteredOrders.length === 0 && (
                   <tr>
-                    <td colSpan="11" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>No matching report data found.</td>
+                    <td colSpan="10" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>No matching report data found.</td>
                   </tr>
                 )}
               </tbody>
@@ -4448,17 +4714,25 @@ export default function Admin() {
         {/* Header */}
         <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
           <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Kitchen Operational Report</h2>
+            <h2 className="panel-inner-title">Kitchen Report</h2>
             <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Review kitchen preparation load, preparation duration, and delay details.</p>
           </div>
           <div style={{ display: 'flex', gap: '8px' }}>
-            <button className="btn btn-outline" style={{ padding: '10px 18px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('Kitchen Report exported!')}>📊 Export Report</button>
+            <button className="btn btn-outline" style={{ padding: '10px 18px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('Kitchen Report Exported Successfully')}>Export Report</button>
           </div>
         </div>
 
         {/* Filters Section */}
-        <div className="admin-card-container" style={{ marginBottom: '24px' }}>
-          <h3 style={{ fontSize: '14px', fontWeight: 800, marginBottom: '16px', color: 'var(--text-main)' }}>Kitchen Filters</h3>
+        <div className="admin-card-container" style={{
+          marginBottom: '24px',
+          borderLeft: '4px solid #ff7a00',
+          background: 'linear-gradient(to right, #fffaf5, #ffffff)',
+          boxShadow: '0 4px 20px rgba(255, 122, 0, 0.05)'
+        }}>
+          <h3 style={{ fontSize: '14px', fontWeight: 800, marginBottom: '16px', color: 'var(--text-main)', display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <FilterIcon size={16} color="#ff7a00" />
+            Kitchen Filters
+          </h3>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
             <div className="admin-form-group">
               <label className="admin-form-label">Date From</label>
@@ -4492,7 +4766,29 @@ export default function Admin() {
             </div>
           </div>
           <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-            <button className="btn btn-outline" style={{ fontSize: '13px', padding: '8px 16px', borderRadius: '6px' }} onClick={resetKitchenFilters}>Reset Filters</button>
+            <button
+              className="btn btn-outline"
+              style={{
+                fontSize: '13px',
+                padding: '8px 16px',
+                borderRadius: '6px',
+                borderColor: '#e2e8f0',
+                transition: 'all 0.2s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = '#ff7a00';
+                e.currentTarget.style.color = '#ff7a00';
+                e.currentTarget.style.background = '#fff8f2';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = '#e2e8f0';
+                e.currentTarget.style.color = 'inherit';
+                e.currentTarget.style.background = 'transparent';
+              }}
+              onClick={resetKitchenFilters}
+            >
+              Reset Filters
+            </button>
           </div>
         </div>
 
@@ -4508,8 +4804,7 @@ export default function Admin() {
                   <th>TABLE NUMBER</th>
                   <th>WAITER NAME</th>
                   <th>KITCHEN STAFF NAME</th>
-                  <th style={{ textAlign: 'center' }}>VIEW</th>
-                  <th style={{ textAlign: 'center' }}>ITEM DETAILS</th>
+                  <th style={{ textAlign: 'center' }}>ACTIONS</th>
                 </tr>
               </thead>
               <tbody>
@@ -4524,21 +4819,21 @@ export default function Admin() {
                       <td style={{ fontWeight: 600 }}>{o.waiter}</td>
                       <td style={{ fontWeight: 600 }}>{assignedChef}</td>
                       <td style={{ textAlign: 'center' }}>
-                        <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveKitchenReportViewOrder(o)}>
-                          <EyeIcon size={14} color="var(--primary)" />
-                        </button>
-                      </td>
-                      <td style={{ textAlign: 'center' }}>
-                        <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveKitchenReportItemOrder(o)}>
-                          <CreditCardIcon size={14} color="var(--primary)" />
-                        </button>
+                        <div style={{ display: 'inline-flex', gap: '8px', justifyContent: 'center' }}>
+                          <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveKitchenReportViewOrder(o)} title="View Timeline">
+                            <EyeIcon size={14} color="var(--primary)" />
+                          </button>
+                          <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveKitchenReportItemOrder(o)} title="Item Details">
+                            <CreditCardIcon size={14} color="var(--primary)" />
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   );
                 })}
                 {filteredOrders.length === 0 && (
                   <tr>
-                    <td colSpan="8" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>No matching kitchen report data found.</td>
+                    <td colSpan="7" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>No matching kitchen report data found.</td>
                   </tr>
                 )}
               </tbody>
@@ -4624,7 +4919,7 @@ export default function Admin() {
                           </span>
                         </div>
                       </div>
-                      
+
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                         <div className="admin-form-group">
                           <label className="admin-form-label" style={{ fontSize: '13px', fontWeight: 800 }}>Quantity</label>
@@ -4726,22 +5021,88 @@ export default function Admin() {
       .map(([name, data]) => ({ name, visits: data.visits, spending: data.spending }))
       .sort((a, b) => b.spending - a.spending);
 
-    const thStyle = { textAlign: 'left' };
-    const tdStyle = { padding: '12px 16px', fontSize: '13px', color: 'var(--text-main)', textAlign: 'left', borderBottom: '1px solid var(--border)' };
+    const thStyle = { padding: '12px 14px', textAlign: 'left' };
+    const tdStyle = { padding: '12px 14px', fontSize: '13px', color: 'var(--text-main)', textAlign: 'left', borderBottom: '1px solid var(--border)' };
 
     return (
       <section className="panel-view active">
         <div className="panel-header-flex" style={{ marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <div className="panel-title-desc">
-            <h2 className="panel-inner-title">Reports</h2>
+            <h2 className="panel-inner-title">Report list</h2>
             <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Provide operational and sales insights.</p>
           </div>
           <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
-            <input type="date" style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '13px', color: 'var(--text-main)', background: '#fff' }} />
+            <input
+              type="date"
+              style={{
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid var(--border)',
+                fontSize: '13px',
+                color: 'var(--text-main)',
+                background: '#ffffff',
+                height: '38px',
+                boxSizing: 'border-box',
+                fontFamily: 'Outfit, sans-serif'
+              }}
+            />
             <span style={{ fontSize: '13px', color: '#94a3b8' }}>to</span>
-            <input type="date" style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '13px', color: 'var(--text-main)', background: '#fff' }} />
-            <button className="btn btn-outline" style={{ padding: '8px 16px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('Excel report exported!')}>📊 Export Excel</button>
-            <button className="btn btn-outline" style={{ padding: '8px 16px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('PDF report exported!')}>📄 Export PDF</button>
+            <input
+              type="date"
+              style={{
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid var(--border)',
+                fontSize: '13px',
+                color: 'var(--text-main)',
+                background: '#ffffff',
+                height: '38px',
+                boxSizing: 'border-box',
+                fontFamily: 'Outfit, sans-serif'
+              }}
+            />
+            <button
+              style={{
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid var(--border)',
+                fontSize: '13px',
+                color: 'var(--text-main)',
+                background: '#ffffff',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '38px',
+                boxSizing: 'border-box',
+                fontFamily: 'Outfit, sans-serif'
+              }}
+              onClick={() => addToast('Excel Report Exported Successfully')}
+            >
+              Export Excel
+            </button>
+            <button
+              style={{
+                padding: '8px 12px',
+                borderRadius: '8px',
+                border: '1px solid var(--border)',
+                fontSize: '13px',
+                color: 'var(--text-main)',
+                background: '#ffffff',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                height: '38px',
+                boxSizing: 'border-box',
+                fontFamily: 'Outfit, sans-serif'
+              }}
+              onClick={() => addToast('PDF Report Exported Successfully')}
+            >
+              Export PDF
+            </button>
           </div>
         </div>
 
@@ -5059,12 +5420,18 @@ export default function Admin() {
           <header className="main-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 32px' }}>
             <div className="header-title-container" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               <h1 className="header-title" style={{ textTransform: 'capitalize', fontSize: '22px', fontWeight: 800 }}>
-                {activeTab === 'orders' ? 'Incoming Orders' :
-                  activeTab === 'waiter-report' ? 'Waiter Report' :
-                    activeTab === 'kitchen-report' ? 'Kitchen Report' :
-                      activeTab.includes('users') ? 'Users' :
-                        activeTab.includes('roles') ? 'Roles & Permissions' :
-                          activeTab}
+                {activeTab === 'orders' ? 'Order management' :
+                  activeTab === 'waiter-report' ? 'Waiter management' :
+                    activeTab === 'kitchen-report' ? 'Kitchen management' :
+                      activeTab === 'saas' ? 'Table Management' :
+                        activeTab === 'qr' ? 'QR Code Management' :
+                          activeTab === 'menu' ? 'Menu management' :
+                            activeTab === 'overview' ? 'Dashboard' :
+                              activeTab === 'waiters' ? 'Waiter management' :
+                                activeTab === 'kitchen' ? 'Kitchen management' :
+                                  activeTab.includes('users') ? 'Users' :
+                                    activeTab.includes('roles') ? 'Users' :
+                                      activeTab}
               </h1>
               {activeTab !== 'orders' && <span className="header-subtitle-date">{dateTimeStr}</span>}
             </div>
@@ -5072,10 +5439,144 @@ export default function Admin() {
 
 
             <div className="header-actions" style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <button className="btn btn-user-profile" onClick={() => { setActiveTab('settings'); setActivePage(null); }}>
-                👤 {currentUser?.role || 'Admin'}
-              </button>
-
+              <div style={{ position: 'relative' }}>
+                <button
+                  onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '50%',
+                    border: '2px solid #ff7a00',
+                    background: '#ffffff',
+                    boxShadow: '0 2px 8px rgba(255,122,0,0.15)',
+                    cursor: 'pointer',
+                    transition: 'all 0.25s ease',
+                    outline: 'none',
+                    padding: 0
+                  }}
+                  onMouseEnter={e => {
+                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(255,122,0,0.3)';
+                    e.currentTarget.style.transform = 'translateY(-1px)';
+                    e.currentTarget.style.backgroundColor = '#fff7ed';
+                  }}
+                  onMouseLeave={e => {
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(255,122,0,0.15)';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                  }}
+                >
+                  <span style={{
+                    color: '#ff7a00',
+                    fontSize: '14px',
+                    fontWeight: '800',
+                    fontFamily: 'Outfit, sans-serif',
+                    letterSpacing: '0.03em',
+                    lineHeight: 1
+                  }}>A</span>
+                </button>
+                {profileDropdownOpen && (
+                  <>
+                    <div
+                      style={{ position: 'fixed', inset: 0, zIndex: 998 }}
+                      onClick={() => setProfileDropdownOpen(false)}
+                    />
+                    <div style={{
+                      position: 'absolute',
+                      right: 0,
+                      top: '100%',
+                      marginTop: '8px',
+                      background: '#ffffff',
+                      border: '1.5px solid #ff7a00',
+                      borderRadius: '10px',
+                      boxShadow: '0 8px 24px rgba(255,122,0,0.12)',
+                      width: '115px',
+                      zIndex: 999,
+                      overflow: 'hidden',
+                      animation: 'fadeIn 0.2s ease-out',
+                      padding: '4px 0'
+                    }}>
+                      <button
+                        onClick={() => {
+                          setActiveTab('settings');
+                          setActivePage(null);
+                          setProfileDropdownOpen(false);
+                        }}
+                        style={{
+                          width: '100%',
+                          padding: '8px 12px',
+                          border: 'none',
+                          background: 'none',
+                          textAlign: 'left',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          color: '#334155',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          transition: 'all 0.2s',
+                          fontFamily: 'Outfit, sans-serif'
+                        }}
+                        onMouseEnter={e => {
+                          e.currentTarget.style.backgroundColor = '#fff7ed';
+                          e.currentTarget.style.color = '#ff7a00';
+                        }}
+                        onMouseLeave={e => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.color = '#334155';
+                        }}
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ff7a00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
+                          <circle cx="12" cy="7" r="4" />
+                        </svg>
+                        Profile
+                      </button>
+                      <button
+                        onClick={() => {
+                          logout();
+                          setProfileDropdownOpen(false);
+                        }}
+                        style={{
+                          width: '100%',
+                          padding: '8px 12px',
+                          border: 'none',
+                          background: 'none',
+                          textAlign: 'left',
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          color: '#334155',
+                          borderTop: '1px solid rgba(255,122,0,0.12)',
+                          cursor: 'pointer',
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '8px',
+                          transition: 'all 0.2s',
+                          fontFamily: 'Outfit, sans-serif'
+                        }}
+                        onMouseEnter={e => {
+                          e.currentTarget.style.backgroundColor = '#fff7ed';
+                          e.currentTarget.style.color = '#ff7a00';
+                        }}
+                        onMouseLeave={e => {
+                          e.currentTarget.style.backgroundColor = 'transparent';
+                          e.currentTarget.style.color = '#334155';
+                        }}
+                      >
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#ff7a00" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                          <polyline points="16 17 21 12 16 7" />
+                          <line x1="21" y1="12" x2="9" y2="12" />
+                        </svg>
+                        Logout
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
             </div>
           </header>
         )}
@@ -5275,112 +5776,116 @@ export default function Admin() {
                   <p style={{ margin: '4px 0 0', fontSize: '13px', color: '#64748b' }}>Create a new dining table and generate its QR code.</p>
                 </div>
                 <button
-                  onClick={() => setIsGenerateQrOpen(false)}
+                  onClick={() => { setIsGenerateQrOpen(false); setGenQrFormErrors({}); }}
                   style={{ background: '#f1f5f9', border: 'none', borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '18px', color: '#64748b' }}
                 >✕</button>
               </div>
-
               {/* Modal Body */}
               <form onSubmit={(e) => {
                 e.preventDefault();
-                if (!genQrForm.id) return;
+                const errors = {};
+                if (!genQrForm.id || !genQrForm.id.trim()) {
+                  errors.id = "Table Number is required";
+                }
+                if (Object.keys(errors).length > 0) {
+                  setGenQrFormErrors(errors);
+                  return;
+                }
                 const cleanId = genQrForm.id.trim();
+                const exists = (activeRestaurant?.tables || []).some(t => t.id.toLowerCase() === cleanId.toLowerCase());
+                if (exists) {
+                  setGenQrFormErrors({ id: "Table ID already exists!" });
+                  return;
+                }
+
                 const success = addDiningTable(activeRestaurant.id, {
                   id: cleanId,
-                  status: 'Free',
-                  seats: parseInt(genQrForm.seats) || 4,
-                  name: genQrForm.name || '',
-                  area: genQrForm.area || 'Main Dining',
-                  waiter: genQrForm.waiter || ''
+                  status: genQrForm.status || 'Free',
+                  seats: 4
                 });
                 if (success) {
-                  addToast(`Created Table ${cleanId} and generated QR Code successfully!`);
+                  addToast('Table Created Successfully');
                   setIsGenerateQrOpen(false);
                 } else {
-                  addToast('Table ID already exists!');
+                  setGenQrFormErrors({ id: "Table ID already exists!" });
                 }
-              }} style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+              }} style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }} noValidate>
+
+                {/* 1. Table Number */}
                 <div className="form-group">
-                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Table Number / ID</label>
+                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Table Number</label>
                   <input
                     type="text"
                     className="admin-input"
-                    value={genQrForm.id}
-                    onChange={(e) => setGenQrForm({ ...genQrForm, id: e.target.value })}
+                    value={genQrForm.id || ''}
+                    onChange={(e) => {
+                      setGenQrForm({ ...genQrForm, id: e.target.value });
+                      if (genQrFormErrors.id) {
+                        setGenQrFormErrors({ ...genQrFormErrors, id: null });
+                      }
+                    }}
                     placeholder="e.g. T-06"
                     required
                   />
-                  <p style={{ fontSize: '11px', color: '#64748b', marginTop: '4px' }}>Format: T-XX (e.g. T-06, T-07)</p>
+                  {genQrFormErrors.id && <p style={{ color: '#ef4444', fontSize: '12px', marginTop: '4px', fontWeight: '600' }}>{genQrFormErrors.id}</p>}
                 </div>
 
+                {/* 2. QR Code (Preview) */}
                 <div className="form-group">
-                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Table Name (Optional)</label>
+                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>QR Code</label>
+                  <div style={{ display: 'flex', justifyContent: 'center', background: '#f8fafc', padding: '14px', borderRadius: '12px', border: '1.5px dashed rgba(255,122,0,0.15)', boxShadow: '0 2px 10px rgba(255,122,0,0.04)' }}>
+                    {genQrForm.id ? (
+                      <img
+                        src={`https://api.qrserver.com/v1/create-qr-code/?size=120x120&color=000000&bgcolor=FFFFFF&data=${encodeURIComponent(`http://${window.location.hostname}:3001/table/${genQrForm.id.trim()}`)}`}
+                        alt="QR Code Preview"
+                        style={{ width: '120px', height: '120px', display: 'block', borderRadius: '6px' }}
+                      />
+                    ) : (
+                      <div style={{ width: '120px', height: '120px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', color: '#94a3b8', fontSize: '11px', textAlign: 'center' }}>
+                        <span>🍳</span>
+                        <span style={{ marginTop: '8px' }}>Enter Table Number for preview</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                {/* 3. QR URL */}
+                <div className="form-group">
+                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>QR URL</label>
                   <input
                     type="text"
                     className="admin-input"
-                    value={genQrForm.name}
-                    onChange={(e) => setGenQrForm({ ...genQrForm, name: e.target.value })}
-                    placeholder="e.g. Window Seat 1"
+                    readOnly
+                    value={genQrForm.id ? `http://${window.location.hostname}:3001/table/${genQrForm.id.trim()}` : ''}
+                    style={{ backgroundColor: '#f1f5f9', color: '#64748b', cursor: 'not-allowed', fontSize: '12px' }}
                   />
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
-                  <div className="form-group">
-                    <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Seating Capacity</label>
-                    <div style={{ display: 'flex', alignItems: 'center' }}>
-                      <button
-                        type="button"
-                        onClick={() => setGenQrForm({ ...genQrForm, seats: Math.max(1, genQrForm.seats - 1) })}
-                        style={{ border: '1px solid var(--border)', background: '#f8fafc', padding: '8px 14px', borderRadius: '8px 0 0 8px', cursor: 'pointer', fontWeight: 'bold' }}
-                      >-</button>
-                      <input
-                        type="number"
-                        className="admin-input"
-                        min="1"
-                        max="20"
-                        value={genQrForm.seats}
-                        onChange={(e) => setGenQrForm({ ...genQrForm, seats: parseInt(e.target.value) || 4 })}
-                        style={{ textAlign: 'center', borderRadius: 0, borderLeft: 'none', borderRight: 'none', margin: 0 }}
-                        required
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setGenQrForm({ ...genQrForm, seats: Math.min(20, genQrForm.seats + 1) })}
-                        style={{ border: '1px solid var(--border)', background: '#f8fafc', padding: '8px 14px', borderRadius: '0 8px 8px 0', cursor: 'pointer', fontWeight: 'bold' }}
-                      >+</button>
-                    </div>
-                  </div>
-
-                  <div className="form-group">
-                    <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Area / Section</label>
-                    <select
-                      className="admin-input"
-                      value={genQrForm.area}
-                      onChange={(e) => setGenQrForm({ ...genQrForm, area: e.target.value })}
-                      style={{ cursor: 'pointer' }}
-                    >
-                      <option value="Main Dining">Main Dining</option>
-                      <option value="Patio">Patio</option>
-                      <option value="Bar">Bar</option>
-                      <option value="Private Room">Private Room</option>
-                    </select>
-                  </div>
+                {/* 4. Created Date */}
+                <div className="form-group">
+                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Created Date</label>
+                  <input
+                    type="text"
+                    className="admin-input"
+                    readOnly
+                    value={new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                    style={{ backgroundColor: '#f1f5f9', color: '#64748b', cursor: 'not-allowed' }}
+                  />
                 </div>
 
+                {/* 5. Status */}
                 <div className="form-group">
-                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Assigned Waiter (Optional)</label>
+                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Status</label>
                   <select
                     className="admin-input"
-                    value={genQrForm.waiter}
-                    onChange={(e) => setGenQrForm({ ...genQrForm, waiter: e.target.value })}
+                    value={genQrForm.status || 'Free'}
+                    onChange={(e) => setGenQrForm({ ...genQrForm, status: e.target.value })}
                     style={{ cursor: 'pointer' }}
                   >
-                    <option value="">Select Waiter...</option>
-                    <option value="Arjun K.">Arjun K.</option>
-                    <option value="Priya M.">Priya M.</option>
-                    <option value="Rahul S.">Rahul S.</option>
-                    <option value="Anita D.">Anita D.</option>
-                    <option value="Vikram S.">Vikram S.</option>
+                    <option value="Free">Free</option>
+                    <option value="Occupied">Occupied</option>
+                    <option value="Reserved">Reserved</option>
+                    <option value="Inactive">Inactive</option>
                   </select>
                 </div>
 
@@ -5389,7 +5894,7 @@ export default function Admin() {
                   <button
                     type="button"
                     className="btn btn-outline"
-                    onClick={() => setIsGenerateQrOpen(false)}
+                    onClick={() => { setIsGenerateQrOpen(false); setGenQrFormErrors({}); }}
                     style={{ padding: '10px 24px', fontSize: '13px', borderRadius: '8px' }}
                   >
                     Cancel
@@ -5403,6 +5908,50 @@ export default function Admin() {
                   </button>
                 </div>
               </form>
+            </div>
+          </div>
+        )}
+        {/* Custom Delete Menu Item Modal */}
+        {deleteMenuItemId && (
+          <div
+            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
+            onClick={(e) => { if (e.target === e.currentTarget) setDeleteMenuItemId(null); }}
+          >
+            <div style={{ background: '#fff', borderRadius: '16px', width: '100%', maxWidth: '400px', padding: 0, overflow: 'hidden', boxShadow: '0 25px 50px rgba(0,0,0,0.25)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 24px', borderBottom: '1px solid var(--border)' }}>
+                <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '800', color: 'var(--black)', fontFamily: 'Outfit, sans-serif' }}>Delete Menu Item</h3>
+                <button
+                  onClick={() => setDeleteMenuItemId(null)}
+                  style={{ background: '#f1f5f9', border: 'none', borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '18px', color: '#64748b' }}
+                >✕</button>
+              </div>
+              <div style={{ padding: '24px' }}>
+                <p style={{ margin: 0, fontSize: '14px', color: '#64748b', lineHeight: 1.6 }}>
+                  Are you sure you want to delete this menu item? This action is permanent and cannot be undone.
+                </p>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '24px' }}>
+                  <button
+                    type="button"
+                    className="btn btn-outline"
+                    onClick={() => setDeleteMenuItemId(null)}
+                    style={{ padding: '10px 24px', fontSize: '13px', borderRadius: '8px' }}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="button"
+                    className="btn"
+                    style={{ background: '#ef4444', color: '#fff', border: 'none', fontWeight: '700', padding: '10px 24px', borderRadius: '8px', fontSize: '13px', cursor: 'pointer' }}
+                    onClick={() => {
+                      deleteMenuItem(activeRestaurant.id, deleteMenuItemId);
+                      addToast("Menu Item Deleted Successfully");
+                      setDeleteMenuItemId(null);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         )}

@@ -10,15 +10,12 @@ const sty = {
 };
 
 const iconBtnStyle = {
-  width: '32px',
-  height: '32px',
-  borderRadius: '50%',
   border: 'none',
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
   cursor: 'pointer',
-  padding: 0,
+  padding: '4px',
   transition: 'all 0.2s ease',
   position: 'relative',
   background: 'transparent',
@@ -27,7 +24,7 @@ const iconBtnStyle = {
 const iconBtnEditStyle = {
   ...iconBtnStyle,
   color: '#475569',
-  marginRight: '6px'
+  marginRight: '12px'
 };
 
 const iconBtnDeleteStyle = {
@@ -43,17 +40,15 @@ const IconBtn = ({ icon, tooltip, style, onClick }) => {
       style={style}
       onClick={onClick}
       onMouseEnter={e => {
-        e.currentTarget.style.transform = 'scale(1.15)';
-        e.currentTarget.style.backgroundColor = isDelete ? '#fef2f2' : '#f1f5f9';
+        e.currentTarget.style.transform = 'scale(1.2)';
         if (isDelete) {
           e.currentTarget.style.color = '#dc2626';
         } else {
-          e.currentTarget.style.color = '#1e293b';
+          e.currentTarget.style.color = '#0f172a';
         }
       }}
       onMouseLeave={e => {
         e.currentTarget.style.transform = 'scale(1)';
-        e.currentTarget.style.backgroundColor = 'transparent';
         e.currentTarget.style.color = style?.color;
       }}
     >
@@ -77,7 +72,7 @@ export default function Staff() {
     e.preventDefault();
     if (staffForm.id) {
       updateStaff(activeRestaurant.id, staffForm);
-      addToast('Staff details updated!');
+      addToast('Staff Updated Successfully');
     } else {
       const nextNum = staff.length + 1;
       const newId = `S-${nextNum < 10 ? '0' + nextNum : nextNum}`;
@@ -85,7 +80,7 @@ export default function Staff() {
         ...staffForm,
         id: newId
       });
-      addToast('New staff member added!');
+      addToast('Staff Created Successfully');
     }
     setActivePage(null);
   };
@@ -116,6 +111,7 @@ export default function Staff() {
   const handleDeleteStaff = (sId) => {
     if (window.confirm('Delete staff member?')) {
       deleteStaff(activeRestaurant.id, sId);
+      addToast('Staff Deleted Successfully');
     }
   };
 

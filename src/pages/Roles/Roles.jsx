@@ -14,8 +14,7 @@ export default function Roles() {
   ]);
 
   const renderRoles = () => (
-
-    <section className="panel-view active" style={{ padding: 0 }}>
+    <section className="panel-view active">
       <div className="admin-card-container">
         <div className="admin-inner-header" style={{ marginBottom: '20px' }}>
           <h3 className="admin-inner-title" style={{ fontSize: '15px' }}>Roles & Permissions</h3>
@@ -39,9 +38,11 @@ export default function Roles() {
                   <td>{i + 1}</td>
                   <td style={{ fontWeight: 600 }}>{r.name}</td>
                   <td><span className="status-pill-active">{r.status}</span></td>
-                  <td style={{ textAlign: 'right', display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
-                    <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
-                    <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                  <td style={{ textAlign: 'right' }}>
+                    <div style={{ display: 'inline-flex', gap: '12px', justifyContent: 'flex-end' }}>
+                      <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                      <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -55,7 +56,7 @@ export default function Roles() {
   const renderAddRole = () => {
     const modulesList = ['Dashboard', 'Incoming Orders', 'Menu Management', 'Billing', 'Tables', 'Staff', 'Users', 'Settings'];
     return (
-      <section className="panel-view active" style={{ padding: 0 }}>
+      <section className="panel-view active">
         <div className="admin-card-container">
           <div className="admin-inner-header" style={{ marginBottom: '24px' }}>
             <h3 className="admin-inner-title" style={{ fontSize: '18px' }}>Add New Role</h3>

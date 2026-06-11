@@ -434,6 +434,7 @@ textarea:focus {
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 100;
   transition: var(--transition);
+  overflow: hidden;
 }
 
 .sidebar-header-card {
@@ -479,11 +480,15 @@ textarea:focus {
 
 .sidebar-menu {
   list-style: none;
-  padding: 20px 12px;
+  padding: 12px 12px;
   display: flex;
   flex-direction: column;
   gap: 4px;
   flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
 }
 
 .sidebar-item a {
@@ -952,11 +957,7 @@ color: #000000;
   color: var(--text-main);
 }
 
-.panel-inner-desc {
-  font-size: 13px;
-  color: rgb(100, 116, 139);
-  margin-top: 4px;
-}
+
 
 /* Filter pills row */
 .filter-tabs-row {
@@ -1697,6 +1698,7 @@ color: #000000;
 .menu-items-table {
   width: 100%;
   border-collapse: collapse;
+  text-align: left;
 }
 
 .menu-items-table thead th {
@@ -1707,6 +1709,17 @@ color: #000000;
   font-size: 11px;
   text-transform: uppercase;
   border-bottom: 3px solid #ff7a00;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.menu-items-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .menu-items-table tbody tr:hover {
@@ -6935,6 +6948,8 @@ body.dark-theme .minimal-icon-box.done { background: rgba(255,122,0,0.1); color:
   text-transform: uppercase;
   letter-spacing: 0.5px;
   border-bottom: 3px solid var(--primary);
+  text-align: left;
+  white-space: nowrap;
 }
 
 .admin-table th:first-child {
@@ -6951,6 +6966,8 @@ body.dark-theme .minimal-icon-box.done { background: rgba(255,122,0,0.1); color:
   font-size: 13px;
   color: var(--text-main);
   vertical-align: middle;
+  text-align: left;
+  white-space: nowrap;
 }
 
 .admin-table tbody tr:last-child td {

@@ -419,6 +419,7 @@ textarea:focus {
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   z-index: 100;
   transition: var(--transition);
+  overflow: hidden;
 }
 
 .sidebar-header-card {
@@ -461,11 +462,15 @@ textarea:focus {
 
 .sidebar-menu {
   list-style: none;
-  padding: 20px 12px;
+  padding: 12px 12px;
   display: flex;
   flex-direction: column;
   gap: 4px;
   flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,0.15) transparent;
 }
 
 .sidebar-item a {
@@ -908,11 +913,7 @@ textarea:focus {
   background-clip: text;
 }
 
-.panel-inner-desc {
-  font-size: 13px;
-  color: black var(--text-muted);
-  margin-top: 4px;
-}
+
 
 /* Filter pills row */
 .filter-tabs-row {
@@ -1176,7 +1177,7 @@ textarea:focus {
 .menu-items-table {
   width: 100%;
   border-collapse: collapse;
-  
+  text-align: left;
 }
 
 .menu-items-table thead th {
@@ -1187,6 +1188,17 @@ textarea:focus {
   font-size: 11px;
   text-transform: uppercase;
   border-bottom: 3px solid #ff7a00;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.menu-items-table td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
 }
 
 .menu-items-table tbody tr:hover {
@@ -2891,6 +2903,7 @@ body.dark-theme .dining-table-card.active {
 
 .qr-color-dot:hover {
   transform: scale(1.15);
+  
 }
 
 .qr-color-dot.active {
@@ -3368,4 +3381,7 @@ table tbody tr {
 table tbody tr:hover {
   background-color: #fff5f0;
   box-shadow: inset 0 0 8px rgba(255, 122, 0, 0.08);
+}
+.admin-card-container {
+  padding: 24px;
 }

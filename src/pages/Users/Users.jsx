@@ -10,8 +10,7 @@ export default function Users() {
   ]);
 
   const renderUsersList = () => (
-
-    <section className="panel-view active" style={{ padding: 0 }}>
+    <section className="panel-view active">
       <div className="admin-card-container">
         <div className="admin-inner-header" style={{ marginBottom: '20px' }}>
           <h3 className="admin-inner-title" style={{ fontSize: '15px' }}>Users List</h3>
@@ -20,7 +19,7 @@ export default function Users() {
           </button>
         </div>
         <div style={{ overflowX: 'auto' }}>
-          <table className="admin-table">
+          <table className="menu-items-table">
             <thead>
               <tr>
                 <th>S.NO.</th>
@@ -51,8 +50,10 @@ export default function Users() {
         </div>
       </div>
     </section>
-  );\n  const renderAddUser = () => (
-    <section className="panel-view active" style={{ padding: 0 }}>
+  );
+
+  const renderAddUser = () => (
+    <section className="panel-view active">
       <div className="admin-card-container">
         <div className="admin-inner-header" style={{ marginBottom: '24px' }}>
           <h3 className="admin-inner-title" style={{ fontSize: '18px' }}>Create New Restaurant User</h3>

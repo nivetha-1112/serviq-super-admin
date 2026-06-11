@@ -106,6 +106,79 @@ const SettingsIcon = ({ size = 18, color = 'currentColor' }) => (
   </svg>
 );
 
+const CreditCardIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <rect width="20" height="14" x="2" y="5" rx="2" />
+    <line x1="2" x2="22" y1="10" y2="10" />
+    <line x1="7" x2="11" y1="15" y2="15" />
+    <line x1="15" x2="17" y1="15" y2="15" />
+  </svg>
+);
+
+const ListIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <line x1="8" y1="6" x2="21" y2="6" />
+    <line x1="8" y1="12" x2="21" y2="12" />
+    <line x1="8" y1="18" x2="21" y2="18" />
+    <line x1="3" y1="6" x2="3.01" y2="6" />
+    <line x1="3" y1="12" x2="3.01" y2="12" />
+    <line x1="3" y1="18" x2="3.01" y2="18" />
+  </svg>
+);
+
+const QrIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <rect width="5" height="5" x="3" y="3" rx="1" />
+    <rect width="5" height="5" x="16" y="3" rx="1" />
+    <rect width="5" height="5" x="3" y="16" rx="1" />
+    <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+    <path d="M21 21v.01" />
+    <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+    <path d="M3 12h.01" />
+    <path d="M12 3h.01" />
+    <path d="M12 16v.01" />
+    <path d="M16 12h1" />
+    <path d="M21 12v.01" />
+    <path d="M12 21v-1" />
+  </svg>
+);
+
+const CustomerIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+    <line x1="19" y1="8" x2="21" y2="10" />
+    <line x1="21" y1="8" x2="19" y2="10" />
+  </svg>
+);
+
+const WaiterIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <circle cx="12" cy="6" r="3" />
+    <path d="M12 9v5" />
+    <path d="M6.5 14.5C7.5 13 9.6 12 12 12s4.5 1 5.5 2.5" />
+    <path d="M5 21h14" />
+    <path d="M7 17h10l-1 4H8l-1-4z" />
+  </svg>
+);
+
+const KitchenIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
+    <line x1="6" x2="18" y1="17" y2="17" />
+  </svg>
+);
+
+const ReportsIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <line x1="18" x2="18" y1="20" y2="10" />
+    <line x1="12" x2="12" y1="20" y2="4" />
+    <line x1="6" x2="6" y1="20" y2="14" />
+  </svg>
+);
+
 
 // Helper to determine the category icon based on food item name keywords
 const getFoodIcon = (name = '') => {
@@ -178,8 +251,17 @@ export default function Admin() {
   const [menuCategory, setMenuCategory] = useState('All Items');
   const [menuSearch, setMenuSearch] = useState('');
   const [menuSort, setMenuSort] = useState('name');
-  const [activePage, setActivePage] = useState(null); // 'menu-form' | 'table-form' | 'staff-form' | 'kitchen-form'
-  const [menuForm, setMenuForm] = useState({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '', veg: true, available: true });
+  const [activePage, setActivePage] = useState(null); // 'menu-form' | 'table-form' | 'staff-form' | 'kitchen-form' | 'categories-manager' | 'category-form'
+  const [menuForm, setMenuForm] = useState({ id: '', name: '', desc: '', price: '', category: 'Starters', image: '', prepTime: '15 mins', veg: true, available: true });
+  const [categoriesListState, setCategoriesListState] = useState([
+    { id: 1, name: 'Starters', desc: 'Appetizers and quick bites', status: 'Available' },
+    { id: 2, name: 'Rice Meals', desc: 'Main course rice dishes', status: 'Available' },
+    { id: 3, name: 'Tiffin', desc: 'South Indian tiffins', status: 'Available' },
+    { id: 4, name: 'Rotis', desc: 'Indian breads', status: 'Available' },
+    { id: 5, name: 'Desserts', desc: 'Sweets and ice creams', status: 'Available' },
+    { id: 6, name: 'Drinks', desc: 'Beverages', status: 'Available' }
+  ]);
+  const [categoryForm, setCategoryForm] = useState({ id: '', name: '', desc: '', status: 'Available' });
   const [assignWaiterForm, setAssignWaiterForm] = useState({ selectedWaiter: '', selectedTables: [] });
 
   // 4. Billing Panel states
@@ -191,8 +273,13 @@ export default function Admin() {
   const [selectedTableId, setSelectedTableId] = useState('');
   const [addTableForm, setAddTableForm] = useState({ id: '', seats: 4, waiter: '' });
   const [draftSeats, setDraftSeats] = useState(4);
-  const [draftStatus, setDraftStatus] = useState('Free');
+  const [draftStatus, setDraftStatus] = useState('Available');
   const [draftWaiter, setDraftWaiter] = useState('');
+  const [draftName, setDraftName] = useState('');
+  const [draftArea, setDraftArea] = useState('Main Dining');
+  const [isTableDetailsOpen, setIsTableDetailsOpen] = useState(false);
+  const [isGenerateQrOpen, setIsGenerateQrOpen] = useState(false);
+  const [genQrForm, setGenQrForm] = useState({ id: '', name: '', seats: 4, area: 'Main Dining', waiter: '' });
 
   // 6. Staff states
   const [staffForm, setStaffForm] = useState({ id: '', name: '', role: 'Waiter', phone: '', email: '', password: '', status: 'On Duty' });
@@ -200,6 +287,34 @@ export default function Admin() {
 
   // Users & Roles states
   const [isUsersMenuOpen, setIsUsersMenuOpen] = useState(false);
+  const [isWaitersMenuOpen, setIsWaitersMenuOpen] = useState(false);
+  const [isKitchenMenuOpen, setIsKitchenMenuOpen] = useState(false);
+
+  // Waiter Report filter states
+  const [waiterFilterDateStart, setWaiterFilterDateStart] = useState('');
+  const [waiterFilterDateEnd, setWaiterFilterDateEnd] = useState('');
+  const [waiterFilterName, setWaiterFilterName] = useState('All');
+  const [waiterFilterTable, setWaiterFilterTable] = useState('All');
+  const [waiterFilterSource, setWaiterFilterSource] = useState('All');
+  const [waiterFilterPayMode, setWaiterFilterPayMode] = useState('All');
+  const [waiterFilterPayStatus, setWaiterFilterPayStatus] = useState('All');
+  const [waiterFilterOrderStatus, setWaiterFilterOrderStatus] = useState('All');
+
+  // Waiter Report popup states
+  const [activeReportViewOrder, setActiveReportViewOrder] = useState(null);
+  const [activeReportOfflinePaymentOrder, setActiveReportOfflinePaymentOrder] = useState(null);
+  const [offlinePaymentType, setOfflinePaymentType] = useState('Cash');
+
+  // Kitchen Report filter states
+  const [kitchenFilterDateStart, setKitchenFilterDateStart] = useState('');
+  const [kitchenFilterDateEnd, setKitchenFilterDateEnd] = useState('');
+  const [kitchenFilterStaff, setKitchenFilterStaff] = useState('All');
+  const [kitchenFilterDish, setKitchenFilterDish] = useState('All');
+  const [kitchenFilterPriority, setKitchenFilterPriority] = useState('All');
+
+  // Kitchen Report popup states
+  const [activeKitchenReportViewOrder, setActiveKitchenReportViewOrder] = useState(null);
+  const [activeKitchenReportItemOrder, setActiveKitchenReportItemOrder] = useState(null);
   const [rolesList] = useState([
     { id: 1, name: 'Super Admin', status: 'Active' },
     { id: 2, name: 'Branch Admin', status: 'Active' },
@@ -253,6 +368,9 @@ export default function Admin() {
     selfService: true,
     minOrderAmount: 0
   });
+
+  // 9. Reports State
+  const [reportTab, setReportTab] = useState('sales');
 
   // Setup Clock
   useEffect(() => {
@@ -308,8 +426,10 @@ export default function Admin() {
       const current = activeRestaurant.tables.find(t => t.id === selectedTableId);
       if (current) {
         setDraftSeats(current.seats || 4);
-        setDraftStatus(current.status || 'Free');
+        setDraftStatus(current.status || 'Available');
         setDraftWaiter(current.waiter || '');
+        setDraftName(current.name || '');
+        setDraftArea(current.area || 'Main Dining');
       }
     }
   }, [selectedTableId, activeRestaurant]);
@@ -324,8 +444,8 @@ export default function Admin() {
   const role = currentUser?.role || 'Waiter';
   const isTabAllowed = (tab) => {
     if (role === 'Admin') return true;
-    if (role === 'Kitchen') return ['orders'].includes(tab);
-    if (role === 'Waiter') return ['orders', 'saas'].includes(tab);
+    if (role === 'Kitchen') return ['orders', 'kitchen', 'kitchen-report'].includes(tab);
+    if (role === 'Waiter') return ['orders', 'saas', 'waiters', 'waiter-report'].includes(tab);
     return false;
   };
 
@@ -395,7 +515,18 @@ export default function Admin() {
 
   const pendingOrdersCount = orders.filter(o => o.status === 'new').length;
   const preparingOrdersCount = orders.filter(o => o.status === 'preparing').length;
+  const completedOrdersCount = orders.filter(o => o.status === 'done').length;
   const occupiedTablesCount = tables.filter(t => t.status === 'Occupied').length;
+
+  const revenueThisMonth = todayRevenue * 24 + 14500; // Mock calculation for demo
+  const qrScansCount = orders.length * 3 + 12; // Mock calculation for demo
+
+  const topSellingItem = (() => {
+    const counts = {};
+    orders.forEach(o => o.items.forEach(i => { counts[i.name] = (counts[i.name] || 0) + i.qty; }));
+    const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+    return sorted[0] ? sorted[0][0] : 'N/A';
+  })();
 
   // 1. RENDER OVERVIEW PANEL
   const renderOverview = () => (
@@ -404,20 +535,9 @@ export default function Admin() {
         <div className="stat-card">
           <div className="stat-main-row">
             <div className="stat-info">
-              <div className="stat-label">Today's Revenue</div>
-              <h3>₹{todayRevenue.toLocaleString('en-IN')}</h3>
-              <div className="stat-sub-label green-label">+12% from yesterday</div>
-            </div>
-            <div className="stat-icon-wrapper font-rupee">₹</div>
-          </div>
-        </div>
-
-        <div className="stat-card">
-          <div className="stat-main-row">
-            <div className="stat-info">
-              <div className="stat-label">Total Orders</div>
+              <div className="stat-label">Today's Orders</div>
               <h3>{orders.length}</h3>
-              <div className="stat-sub-label green-label">{preparingOrdersCount} in progress</div>
+              <div className="stat-sub-label green-label">Orders received today</div>
             </div>
             <div className="stat-icon-wrapper">📋</div>
           </div>
@@ -427,8 +547,8 @@ export default function Admin() {
           <div className="stat-main-row">
             <div className="stat-info">
               <div className="stat-label">Active Tables</div>
-              <h3>{occupiedTablesCount} / {tables.length}</h3>
-              <div className="stat-sub-label green-label">{tables.length - occupiedTablesCount} tables available</div>
+              <h3>{occupiedTablesCount}</h3>
+              <div className="stat-sub-label green-label">Occupied tables</div>
             </div>
             <div className="stat-icon-wrapper">🪑</div>
           </div>
@@ -437,11 +557,66 @@ export default function Admin() {
         <div className="stat-card">
           <div className="stat-main-row">
             <div className="stat-info">
+              <div className="stat-label">Revenue Today</div>
+              <h3>₹{todayRevenue.toLocaleString('en-IN')}</h3>
+              <div className="stat-sub-label green-label">Daily sales</div>
+            </div>
+            <div className="stat-icon-wrapper font-rupee">₹</div>
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-main-row">
+            <div className="stat-info">
+              <div className="stat-label">Revenue This Month</div>
+              <h3>₹{revenueThisMonth.toLocaleString('en-IN')}</h3>
+              <div className="stat-sub-label green-label">Monthly sales</div>
+            </div>
+            <div className="stat-icon-wrapper font-rupee">₹</div>
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-main-row">
+            <div className="stat-info">
               <div className="stat-label">Pending Orders</div>
               <h3>{pendingOrdersCount}</h3>
-              <div className="stat-sub-label red-label">Needs attention</div>
+              <div className="stat-sub-label red-label">Orders awaiting processing</div>
             </div>
             <div className="stat-icon-wrapper">⏱️</div>
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-main-row">
+            <div className="stat-info">
+              <div className="stat-label">Completed Orders</div>
+              <h3>{completedOrdersCount}</h3>
+              <div className="stat-sub-label green-label">Orders served</div>
+            </div>
+            <div className="stat-icon-wrapper">✅</div>
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-main-row">
+            <div className="stat-info">
+              <div className="stat-label">Top Items</div>
+              <h3 style={{ fontSize: topSellingItem.length > 15 ? '16px' : '20px' }}>{topSellingItem}</h3>
+              <div className="stat-sub-label green-label">Most ordered items</div>
+            </div>
+            <div className="stat-icon-wrapper">⭐</div>
+          </div>
+        </div>
+
+        <div className="stat-card">
+          <div className="stat-main-row">
+            <div className="stat-info">
+              <div className="stat-label">QR Scans</div>
+              <h3>{qrScansCount}</h3>
+              <div className="stat-sub-label green-label">Total table scans</div>
+            </div>
+            <div className="stat-icon-wrapper">📱</div>
           </div>
         </div>
       </div>
@@ -572,6 +747,15 @@ export default function Admin() {
     updateOrderStatus(activeRestaurant.id, orderId, nextStatus);
   };
 
+  const handlePaymentStatusToggle = (orderId) => {
+    const order = orders.find(o => o.id === orderId);
+    if (order) {
+      const newStatus = order.billingStatus === 'paid' ? 'pending' : 'paid';
+      updateOrder(activeRestaurant.id, { ...order, billingStatus: newStatus });
+      addToast(`Payment marked as ${newStatus === 'paid' ? 'Paid' : 'Pending'} for Order #${orderId}`);
+    }
+  };
+
   const renderOrders = () => {
     const waitersList = staff.filter(s => s.role === 'Waiter').map(s => s.name);
 
@@ -680,43 +864,114 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* V3 Minimalist Order Grid */}
-        <div className="minimal-orders-grid">
+        {/* Premium Order Cards Grid */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px', padding: '0 0 24px 0' }}>
           {filteredOrders.map(ord => {
             const minutesElapsed = parseInt((ord.timeAgo || '').replace(/[^0-9]/g, '')) || 0;
-            const itemSummary = ord.items.map(i => `${i.qty}x ${i.name}`).join(', ');
+            const isRush = (ord.status === 'new' || ord.status === 'preparing') && minutesElapsed >= 20;
+            const statusLabels = { new: 'NEW', preparing: 'PREPARING', ready: 'READY', done: 'COMPLETED' };
+            const statusLabel = statusLabels[ord.status] || ord.status?.toUpperCase();
 
             return (
-              <div key={ord.id} className="minimal-order-card">
-                <div className={`minimal-icon-box ${ord.status}`}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+              <div key={ord.id} style={{ background: '#fff', borderRadius: '16px', overflow: 'hidden', border: '1px solid #e8e8e8', boxShadow: '0 4px 16px rgba(0,0,0,0.06)', display: 'flex', flexDirection: 'column' }}>
+                {/* Card Header — black bg, orange icon, orange status badge */}
+                <div style={{ background: '#111', padding: '14px 16px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ width: '32px', height: '32px', borderRadius: '8px', background: '#ff7a00', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+                    </div>
+                    <span style={{ color: '#fff', fontWeight: 800, fontSize: '15px', fontFamily: 'Outfit, sans-serif' }}>Table {ord.table}</span>
+                    {isRush && <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 7px', borderRadius: '20px', background: '#ff4d00', color: '#fff' }}>RUSH</span>}
+                  </div>
+                  <span style={{
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    padding: '5px 12px',
+                    borderRadius: '20px',
+                    letterSpacing: '0.5px',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    background: 'rgba(255,255,255,0.07)',
+                    border: `1px solid ${ord.status === 'done' ? 'rgba(34,197,94,0.4)' : 'rgba(255,122,0,0.4)'}`,
+                    color: ord.status === 'done' ? '#4ade80' : '#ff9a3c',
+                  }}>
+                    <span style={{
+                      width: '7px', height: '7px', borderRadius: '50%',
+                      background: ord.status === 'done' ? '#22c55e' : '#ff7a00',
+                      boxShadow: ord.status === 'done' ? '0 0 6px #22c55e' : '0 0 6px #ff7a00',
+                      display: 'inline-block', flexShrink: 0
+                    }} />
+                    {statusLabel}
+                  </span>
                 </div>
-                <div>
-                  <h3 className="minimal-heading">Table {ord.table} • #{ord.id}</h3>
-                  <p className="minimal-desc">{itemSummary}{ord.notes ? ` (Note: ${ord.notes})` : ''}</p>
-                  <div style={{ marginTop: '8px', fontSize: '12px' }}>
-                    <span 
-                      style={{ color: 'var(--primary)', fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
+
+                {/* Card Body */}
+                <div style={{ padding: '16px', flex: 1, display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                  {/* Order items */}
+                  <div style={{ background: '#fafafa', borderRadius: '10px', padding: '12px', border: '1px solid #f0f0f0' }}>
+                    {ord.items.map((item, idx) => (
+                      <div key={idx} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', paddingBottom: idx < ord.items.length - 1 ? '6px' : 0, marginBottom: idx < ord.items.length - 1 ? '6px' : 0, borderBottom: idx < ord.items.length - 1 ? '1px dashed #ebebeb' : 'none' }}>
+                        <span style={{ fontSize: '13px', color: '#222', fontWeight: 600 }}>{item.name}</span>
+                        <span style={{ fontSize: '12px', fontWeight: 700, color: '#ff7a00', background: 'rgba(255,122,0,0.09)', padding: '2px 9px', borderRadius: '6px' }}>×{item.qty}</span>
+                      </div>
+                    ))}
+                    {ord.notes && <div style={{ marginTop: '8px', fontSize: '11px', color: '#888', borderTop: '1px dashed #ebebeb', paddingTop: '6px' }}>📝 {ord.notes}</div>}
+                  </div>
+
+                  {/* Order ID row */}
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#aaa', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Order ID</span>
+                    <span style={{ fontSize: '13px', fontWeight: 800, color: '#111', fontFamily: 'monospace' }}>#ORD-{ord.id}</span>
+                  </div>
+
+                  {/* Time + Assign Waiter row */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', background: '#fafafa', border: '1px solid #ebebeb', borderRadius: '8px', padding: '8px 12px' }}>
+                    <span style={{ flex: 1, fontSize: '12px', color: '#888', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                      {ord.timeAgo ? `${ord.timeAgo} ago` : 'Just now'}
+                    </span>
+                    <button
+                      style={{ background: '#ff7a00', color: '#fff', border: 'none', borderRadius: '6px', padding: '5px 12px', fontSize: '12px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '5px', whiteSpace: 'nowrap' }}
                       onClick={() => setAssignWaiterModal({ isOpen: true, orderId: ord.id, selectedWaiter: ord.waiter || '' })}
                     >
-                      👤 {ord.waiter ? `Waiter: ${ord.waiter}` : 'Assign Waiter'}
-                    </span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      {ord.waiter ? ord.waiter.split(' ')[0] : 'Unassigned'}
+                    </button>
+                  </div>
+
+                  {/* View Details + Payment toggle */}
+                  <div style={{ display: 'flex', gap: '8px' }}>
+                    <button
+                      style={{ flex: 1, padding: '8px', borderRadius: '8px', border: '1.5px solid #e8e8e8', background: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer', color: '#444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
+                      onClick={() => { setActiveViewOrder(ord); setActivePage('order-view'); }}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                      View Details
+                    </button>
+                    <button
+                      style={{ flex: 1, padding: '8px', borderRadius: '8px', border: '1.5px solid #e8e8e8', background: '#fff', fontSize: '12px', fontWeight: 700, cursor: 'pointer', color: '#444', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px' }}
+                      onClick={() => handlePaymentStatusToggle(ord.id)}
+                    >
+                      💰 {ord.billingStatus === 'paid' ? 'Paid' : 'Pending'}
+                    </button>
                   </div>
                 </div>
-                
-                <div className="minimal-btn-row">
-                  <button className="minimal-btn minimal-btn-outline" onClick={() => { setActiveViewOrder(ord); setActivePage('order-view'); }}>View Details</button>
-                  {ord.status === 'new' && (
-                    <button className="minimal-btn minimal-btn-solid" onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Accept Order</button>
-                  )}
-                  {ord.status === 'preparing' && (
-                    <button className="minimal-btn minimal-btn-solid" onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Mark as Ready</button>
-                  )}
-                  {ord.status === 'ready' && (
-                    <button className="minimal-btn minimal-btn-solid" style={{ background: '#16a34a', borderColor: '#16a34a' }} onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Serve Order</button>
-                  )}
-                  {ord.status === 'done' && (
-                    <button className="minimal-btn minimal-btn-solid" style={{ background: '#000', borderColor: '#000', cursor: 'default' }} disabled>Served</button>
+
+                {/* Card Footer CTA — always orange, disabled black for done */}
+                <div style={{ padding: '0 16px 16px 16px' }}>
+                  {ord.status !== 'done' ? (
+                    <button
+                      style={{ width: '100%', padding: '12px', borderRadius: '10px', background: 'linear-gradient(135deg, #ff7a00, #ff4d00)', border: 'none', color: '#fff', fontWeight: 800, fontSize: '14px', cursor: 'pointer', fontFamily: 'Outfit, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+                      onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}
+                    >
+                      {ord.status === 'new' && '✅ Accept Order'}
+                      {ord.status === 'preparing' && '🍳 Mark as Ready'}
+                      {ord.status === 'ready' && '🚀 Complete Order'}
+                    </button>
+                  ) : (
+                    <button style={{ width: '100%', padding: '12px', borderRadius: '10px', background: '#111', border: 'none', color: '#fff', fontWeight: 800, fontSize: '14px', cursor: 'default', fontFamily: 'Outfit, sans-serif', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }} disabled>
+                      ✓ Order Completed
+                    </button>
                   )}
                 </div>
               </div>
@@ -724,13 +979,14 @@ export default function Admin() {
           })}
 
           {filteredOrders.length === 0 && (
-            <div className="mockup2-empty-state">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px' }}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
-              <h3 style={{ fontSize: '15px', color: '#64748b', marginBottom: '8px' }}>Monitoring kitchen traffic...</h3>
-              <p style={{ fontSize: '13px', margin: 0, maxWidth: '200px' }}>New orders will appear here in real-time.</p>
+            <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '60px 20px', color: '#aaa' }}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px', opacity: 0.3 }}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg>
+              <h3 style={{ fontSize: '15px', color: '#666', marginBottom: '8px' }}>No orders found</h3>
+              <p style={{ fontSize: '13px', margin: 0 }}>New orders will appear here in real-time.</p>
             </div>
           )}
         </div>
+
 
         {assignWaiterModal.isOpen && (
           <div className="modal-overlay">
@@ -832,7 +1088,7 @@ export default function Admin() {
 
   const renderMenu = () => {
     // Unique categories from current menu items
-    const categoriesList = ['All Items', 'Starters', 'Rice Meals', 'Tiffin', 'Rotis', 'Desserts', 'Drinks'];
+    const categoriesList = ['All Items', ...categoriesListState.filter(c => c.status === 'Available').map(c => c.name)];
 
     let filteredMenu = menu;
     if (menuCategory !== 'All Items') {
@@ -861,19 +1117,32 @@ export default function Admin() {
               {menu.length} items actively listed
             </p>
           </div>
-          <button
-            className="btn btn-black"
-            onClick={openAddMenuModal}
-            style={{
-              background: 'var(--orange-gradient)',
-              borderColor: '#ff7a00',
-              padding: '10px 20px',
-              borderRadius: '8px',
-              fontWeight: 700
-            }}
-          >
-            ➕ Add New Item
-          </button>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button
+              className="btn btn-outline"
+              onClick={() => setActivePage('categories-manager')}
+              style={{
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontWeight: 700
+              }}
+            >
+              ⚙️ Manage Categories
+            </button>
+            <button
+              className="btn btn-black"
+              onClick={openAddMenuModal}
+              style={{
+                background: 'var(--orange-gradient)',
+                borderColor: '#ff7a00',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontWeight: 700
+              }}
+            >
+              ➕ Add Menu Item
+            </button>
+          </div>
         </div>
 
         {/* Categories Horizontal Pills */}
@@ -918,6 +1187,7 @@ export default function Admin() {
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Name</th>
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Category</th>
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Price</th>
+                <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Prep Time</th>
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Type</th>
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase' }}>Status</th>
                 <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#ffffff', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
@@ -947,10 +1217,11 @@ export default function Admin() {
                   </td>
                   <td style={{ padding: '12px 14px', fontWeight: 500, color: 'var(--text-main)', fontSize: '14px' }}>{item.category}</td>
                   <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-main)', fontSize: '14px' }}>₹{item.price}</td>
+                  <td style={{ padding: '12px 14px', color: 'var(--text-muted)', fontSize: '13px' }}>{item.prepTime || '15 mins'}</td>
                   <td style={{ padding: '12px 14px' }}>
-                    <span style={{ 
-                      fontSize: '10px', 
-                      fontWeight: 700, 
+                    <span style={{
+                      fontSize: '10px',
+                      fontWeight: 700,
                       color: item.veg ? '#16a34a' : '#ef4444',
                       background: item.veg ? '#dcfce7' : '#fef2f2',
                       padding: '3px 8px',
@@ -963,7 +1234,18 @@ export default function Admin() {
                     </span>
                   </td>
                   <td style={{ padding: '12px 14px' }}>
-                    <Badge status={item.available ? 'Active' : 'Inactive'} />
+                    <span style={{
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      color: item.available ? '#16a34a' : '#ef4444',
+                      background: item.available ? '#dcfce7' : '#fef2f2',
+                      padding: '4px 8px',
+                      borderRadius: '12px',
+                      display: 'inline-block',
+                      textTransform: 'uppercase'
+                    }}>
+                      {item.available ? 'Available' : 'Unavailable'}
+                    </span>
                   </td>
                   <td style={{ padding: '12px 14px', textAlign: 'right' }}>
                     <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditMenuModal(item)} />
@@ -1182,7 +1464,7 @@ export default function Admin() {
                 </div>
               </div>
 
-              <table className="bill-items-table-new">
+              <table className="menu-items-table">
                 <thead>
                   <tr>
                     <th style={{ width: '55%' }}>ITEM DESCRIPTION</th>
@@ -1343,7 +1625,7 @@ export default function Admin() {
                 <button className="modal-close" style={{ background: 'none', border: 'none', fontSize: '20px' }} onClick={() => setEditBillModal({ isOpen: false, table: null, items: [] })}>✕</button>
               </div>
               <div style={{ padding: '0 24px 24px 24px', maxHeight: '60vh', overflowY: 'auto' }}>
-                <table className="bill-items-table-new" style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '16px' }}>
+                <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '16px' }}>
                   <thead>
                     <tr style={{ borderBottom: '1px solid var(--border)' }}>
                       <th style={{ textAlign: 'left', paddingBottom: '8px', fontSize: '11px', color: 'var(--text-muted)' }}>ITEM NAME</th>
@@ -1437,11 +1719,11 @@ export default function Admin() {
       <section className="panel-view active">
         {/* Header Row */}
         <div className="panel-header-flex" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-          <h2 className="panel-inner-title" style={{ fontSize: '22px', fontWeight: '800', margin: 0, color: 'var(--black)', fontFamily: 'Outfit, sans-serif' }}>Dining Tables & QR Management</h2>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
-            <button className="btn-bell-mock" style={{ background: 'none', border: 'none', cursor: 'pointer', fontSize: '20px', display: 'flex', alignItems: 'center', color: 'var(--black)', padding: '6px' }}>
-              🔔
-            </button>
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title">Dining Tables & QR Management</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Manage your dining tables, status and assignments</p>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <button
               className="btn btn-outline"
               onClick={() => setActivePage('waiter-list')}
@@ -1462,269 +1744,242 @@ export default function Admin() {
             <button
               className="btn"
               onClick={() => { setAddTableForm({ id: '', seats: 4, waiter: '' }); setActivePage('table-form'); }}
-              style={{ background: 'var(--primary)', color: 'white', border: 'none', fontWeight: '700', padding: '10px 18px', borderRadius: '8px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
+              style={{ background: 'var(--orange-gradient)', color: 'white', border: 'none', fontWeight: '700', padding: '10px 18px', borderRadius: '8px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer', boxShadow: '0 4px 12px rgba(255, 122, 0, 0.25)', transition: 'all 0.2s' }}
+              onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 16px rgba(255, 122, 0, 0.35)'; }}
+              onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(255, 122, 0, 0.25)'; }}
             >
               + Add Dining Table
             </button>
           </div>
         </div>
 
-        {/* Top: 5-column Dining Table Cards */}
-        <div className="tables-row-grid-new">
+        {/* Table List */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
           {tables.map(table => {
-            const isSelected = selectedTableId === table.id;
             const isOccupied = table.status.toLowerCase() === 'occupied';
+            const isReserved = table.status.toLowerCase() === 'reserved';
+            const isInactive = table.status.toLowerCase() === 'inactive';
+            const statusColor = isOccupied ? '#ef4444' : isReserved ? '#f59e0b' : isInactive ? '#94a3b8' : '#22c55e';
+            const statusBg = isOccupied ? '#fef2f2' : isReserved ? '#fffbeb' : isInactive ? '#f1f5f9' : '#f0fdf4';
             return (
               <div
                 key={table.id}
-                className={`table-card-new ${isSelected ? 'selected' : ''}`}
-                onClick={() => {
-                  setSelectedTableId(table.id);
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '16px',
+                  background: '#fff',
+                  border: '1px solid var(--border)',
+                  borderLeft: `4px solid ${statusColor}`,
+                  borderRadius: '12px',
+                  padding: '16px 20px',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                  transition: 'all 0.2s ease'
                 }}
+                onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 6px 20px rgba(0,0,0,0.08)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                {isSelected && <div className="table-card-checkmark-badge">✓</div>}
+                {/* Table Icon */}
+                <div style={{ width: '44px', height: '44px', borderRadius: '10px', background: statusBg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <svg width="22" height="16" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ color: statusColor }}>
+                    <path d="M6 16C6 14.8954 6.89543 14 8 14H52C53.1046 14 54 14.8954 54 16V18C54 19.1046 53.1046 20 52 20H8C6.89543 20 6 19.1046 6 18V16Z" fill="currentColor" />
+                    <rect x="16" y="20" width="4" height="14" rx="1" fill="currentColor" />
+                    <rect x="40" y="20" width="4" height="14" rx="1" fill="currentColor" />
+                  </svg>
+                </div>
 
-                <div className="table-card-header-new">
-                  <span className={`table-card-id-box-new ${isOccupied ? 'occupied' : ''}`}>
-                    {table.id}
-                  </span>
-                  <span className={`table-card-status-new ${isOccupied ? 'occupied' : 'free'}`}>
-                    <span className="status-dot-new"></span>
+                {/* Table ID & Name */}
+                <div style={{ minWidth: '100px' }}>
+                  <div style={{ fontWeight: '800', fontSize: '15px', color: 'var(--black)', fontFamily: 'Outfit, sans-serif' }}>{table.id}</div>
+                  <div style={{ fontSize: '12px', color: '#64748b', marginTop: '2px' }}>{table.name || table.area || 'Main Dining'}</div>
+                </div>
+
+                {/* Status Badge */}
+                <div style={{ flex: '0 0 auto' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '4px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: '700', background: statusBg, color: statusColor }}>
+                    <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: statusColor, display: 'inline-block' }}></span>
                     {table.status.toUpperCase()}
                   </span>
                 </div>
 
-                <div className="table-card-body-new" style={{ color: isOccupied ? 'var(--black)' : 'var(--success)' }}>
-                  <svg width="50" height="34" viewBox="0 0 60 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M6 16C6 14.8954 6.89543 14 8 14H52C53.1046 14 54 14.8954 54 16V18C54 19.1046 53.1046 20 52 20H8C6.89543 20 6 19.1046 6 18V16Z" fill="currentColor" />
-                    <rect x="16" y="20" width="4" height="14" rx="1" fill="currentColor" />
-                    <rect x="40" y="20" width="4" height="14" rx="1" fill="currentColor" />
-                    <path d="M12 34H48" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.3" />
-                  </svg>
+                {/* Capacity */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: '#64748b', fontSize: '13px', minWidth: '90px' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span>{table.seats || 4} seats</span>
                 </div>
 
-                {table.waiter && (
-                  <div style={{ fontSize: '12px', fontWeight: 600, color: '#475569', textAlign: 'center', marginBottom: '8px' }}>
-                    Waiter: {table.waiter}
-                  </div>
-                )}
+                {/* Waiter */}
+                <div style={{ flex: 1, fontSize: '13px', color: '#475569' }}>
+                  {table.waiter ? (
+                    <span style={{ display: 'inline-flex', alignItems: 'center', gap: '5px' }}>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="6" r="3"/><path d="M12 9v5"/><path d="M6.5 14.5C7.5 13 9.6 12 12 12s4.5 1 5.5 2.5"/><path d="M5 21h14"/><path d="M7 17h10l-1 4H8l-1-4z"/></svg>
+                      {table.waiter}
+                    </span>
+                  ) : (
+                    <span style={{ color: '#94a3b8', fontStyle: 'italic' }}>No waiter assigned</span>
+                  )}
+                </div>
 
-                <div className="table-card-footer-new">
-                  <span>Capacity: {table.seats || 4}</span>
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.7 }}>
-                    <rect x="3" y="3" width="7" height="7" />
-                    <rect x="14" y="3" width="7" height="7" />
-                    <rect x="14" y="14" width="7" height="7" />
-                    <rect x="3" y="14" width="7" height="7" />
-                  </svg>
+                {/* QR & Actions */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexShrink: 0 }}>
+                  <button
+                    title="Edit Table"
+                    onClick={() => { setSelectedTableId(table.id); setIsTableDetailsOpen(true); }}
+                    style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', padding: '8px 14px', borderRadius: '8px', border: '1px solid var(--border)', background: '#f8fafc', color: '#334155', fontSize: '12px', fontWeight: '700', cursor: 'pointer', transition: 'all 0.2s' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = 'var(--primary)'; e.currentTarget.style.color = '#fff'; e.currentTarget.style.borderColor = 'var(--primary)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = '#f8fafc'; e.currentTarget.style.color = '#334155'; e.currentTarget.style.borderColor = 'var(--border)'; }}
+                  >
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                    Edit
+                  </button>
+                  <button
+                    title="Delete Table"
+                    onClick={() => {
+                      if (window.confirm(`Are you sure you want to delete Table ${table.id}?`)) {
+                        deleteDiningTable(activeRestaurant.id, table.id);
+                        addToast(`Deleted Table ${table.id}`);
+                        const remaining = tables.filter(t => t.id !== table.id);
+                        if (remaining.length > 0) setSelectedTableId(remaining[0].id);
+                      }
+                    }}
+                    style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '34px', height: '34px', borderRadius: '8px', border: '1px solid #fecaca', background: '#fef2f2', color: '#ef4444', cursor: 'pointer', transition: 'all 0.2s' }}
+                    onMouseEnter={e => { e.currentTarget.style.background = '#ef4444'; e.currentTarget.style.color = '#fff'; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = '#fef2f2'; e.currentTarget.style.color = '#ef4444'; }}
+                  >
+                    <TrashIcon size={14} />
+                  </button>
                 </div>
               </div>
             );
           })}
         </div>
 
-        {/* Bottom Details Grid */}
-        <div className="tables-details-split-new">
-          {/* Column 1: QR Preview */}
-          <div className="qr-preview-card-new">
-            <h3 style={{ margin: '0 0 4px 0', fontSize: '15px', fontWeight: '800', color: 'var(--black)', fontFamily: 'Outfit, sans-serif' }}>QR Preview</h3>
-
-            <div className="qr-dashed-container-new">
-              <div className="qr-slate-box-new" style={{ backgroundColor: '#9aaaba' }}>
-                <div style={{ background: '#fff', padding: '8px', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', boxShadow: '0 4px 10px rgba(0,0,0,0.1)' }}>
-                  <img
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://${window.location.hostname}:3001/table/${currentTable.id}`}
-                    alt={`QR code for Table ${currentTable.id}`}
-                    style={{ width: '100%', height: '100%' }}
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                    }}
-                  />
+        {/* Table Details Modal Popup */}
+        {isTableDetailsOpen && (
+          <div
+            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(2px)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
+            onClick={(e) => { if (e.target === e.currentTarget) setIsTableDetailsOpen(false); }}
+          >
+            <div style={{ background: '#fff', borderRadius: '18px', width: '100%', maxWidth: '480px', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 30px 60px rgba(0,0,0,0.28)', overflow: 'hidden' }}>
+              {/* Modal Header - Gradient Brand Banner */}
+              <div style={{ background: 'var(--orange-gradient)', padding: '20px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <div style={{ width: '40px', height: '40px', borderRadius: '10px', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 1 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                  </div>
+                  <div>
+                    <h3 style={{ margin: 0, fontSize: '17px', fontWeight: '800', color: '#fff', fontFamily: 'Outfit, sans-serif' }}>Edit Table — {currentTable.id}</h3>
+                    <p style={{ margin: '2px 0 0', fontSize: '12px', color: 'rgba(255,255,255,0.8)' }}>Update seating and availability</p>
+                  </div>
                 </div>
-              </div>
-              <div className="qr-active-badge-new">
-                ACTIVE: {currentTable.id}
-              </div>
-            </div>
-
-            <button
-              className="btn"
-              onClick={() => launchSimulatorTable(currentTable.id)}
-              style={{
-                width: '100%',
-                background: '#eaeef2',
-                color: '#334155',
-                border: 'none',
-                fontWeight: '750',
-                fontSize: '13px',
-                padding: '12px 20px',
-                borderRadius: '8px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '8px',
-                marginTop: 'auto',
-                cursor: 'pointer'
-              }}
-            >
-              🚀 Open in Customer Simulator
-            </button>
-
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button
-                className="btn btn-outline"
-                onClick={() => addToast('Sending QR template to printer...')}
-                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-              >
-                🖨️ Print Sticker
-              </button>
-              <button
-                className="btn btn-outline"
-                onClick={() => addToast('SVG QR sticker generated & downloaded!')}
-                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
-              >
-                📥 Download SVG
-              </button>
-            </div>
-          </div>
-
-          {/* Column 2: Selected Table Details Form */}
-          <div className="table-details-card-new">
-            <div className="table-details-header-new">
-              <div>
-                <h3>Table {currentTable.id} Details</h3>
-                <p>Update seating and availability for this table.</p>
-              </div>
-              <div className="table-details-header-right-new">
-                {currentTable.status.toLowerCase() === 'occupied' && (
-                  <span>Active Since: 11:45 AM</span>
-                )}
                 <button
-                  className="btn-trash-mock"
+                  onClick={() => setIsTableDetailsOpen(false)}
+                  style={{ background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.4)', borderRadius: '8px', width: '34px', height: '34px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '16px', color: '#fff' }}
+                >✕</button>
+              </div>
+
+              {/* Modal Body - Form Fields Only */}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', padding: '24px' }}>
+                  <div className="form-group">
+                    <label className="form-label">Table Name</label>
+                    <input
+                      type="text"
+                      className="admin-input"
+                      value={draftName}
+                      onChange={(e) => setDraftName(e.target.value)}
+                      placeholder="e.g. Window Seat"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Area / Section</label>
+                    <select
+                      className="admin-input"
+                      value={draftArea}
+                      onChange={(e) => setDraftArea(e.target.value)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <option value="Main Dining">Main Dining</option>
+                      <option value="Patio">Patio</option>
+                      <option value="Bar">Bar</option>
+                      <option value="Private Room">Private Room</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Seating Capacity</label>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', background: '#f8fafc', border: '1px solid var(--border)', borderRadius: '8px', padding: '8px 14px' }}>
+                      <button type="button" onClick={() => setDraftSeats(prev => Math.max(1, prev - 1))} style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid var(--border)', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '700', color: 'var(--primary)' }}>−</button>
+                      <span style={{ minWidth: '30px', textAlign: 'center', fontWeight: '700', fontSize: '16px', color: 'var(--black)' }}>{draftSeats}</span>
+                      <button type="button" onClick={() => setDraftSeats(prev => Math.min(12, prev + 1))} style={{ width: '28px', height: '28px', borderRadius: '6px', border: '1px solid var(--border)', background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '16px', fontWeight: '700', color: 'var(--primary)' }}>+</button>
+                      <span style={{ fontSize: '13px', color: '#64748b', marginLeft: '4px' }}>seats</span>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Current Status</label>
+                    <select
+                      className="admin-input"
+                      value={draftStatus}
+                      onChange={(e) => setDraftStatus(e.target.value)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <option value="Available">Available</option>
+                      <option value="Occupied">Occupied</option>
+                      <option value="Reserved">Reserved</option>
+                      <option value="Inactive">Inactive</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label className="form-label">Assigned Waiter (Optional)</label>
+                    <select
+                      className="admin-input"
+                      value={draftWaiter}
+                      onChange={(e) => setDraftWaiter(e.target.value)}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <option value="">Select Waiter...</option>
+                      <option value="Arjun K.">Arjun K.</option>
+                      <option value="Priya M.">Priya M.</option>
+                      <option value="Rahul S.">Rahul S.</option>
+                      <option value="Anita D.">Anita D.</option>
+                      <option value="Vikram S.">Vikram S.</option>
+                    </select>
+                  </div>
+              </div>
+
+              {/* Modal Footer */}
+              <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', padding: '16px 24px', borderTop: '1px solid var(--border)', background: '#fafafa' }}>
+                <button
+                  type="button"
                   onClick={() => {
-                    if (window.confirm(`Are you sure you want to delete Table ${currentTable.id}?`)) {
-                      deleteDiningTable(activeRestaurant.id, currentTable.id);
-                      addToast(`Deleted Table ${currentTable.id}`);
-                      const remaining = tables.filter(t => t.id !== currentTable.id);
-                      if (remaining.length > 0) {
-                        setSelectedTableId(remaining[0].id);
-                      }
-                    }
+                    setDraftSeats(currentTable.seats || 4);
+                    setDraftStatus(currentTable.status || 'Available');
+                    setDraftWaiter(currentTable.waiter || '');
+                    setDraftName(currentTable.name || '');
+                    setDraftArea(currentTable.area || 'Main Dining');
+                    setIsTableDetailsOpen(false);
                   }}
-                  style={{
-                    background: 'none',
-                    border: 'none',
-                    cursor: 'pointer',
-                    color: '#ef4444',
-                    fontSize: '18px',
-                    padding: '4px',
-                    display: 'flex',
-                    alignItems: 'center'
-                  }}
-                  title="Delete Table"
+                  style={{ padding: '10px 24px', fontSize: '13px', borderRadius: '8px', background: '#fff', border: '1.5px solid var(--border)', color: '#475569', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = '#475569'; }}
                 >
-                  🗑️
+                  Cancel
                 </button>
-              </div>
-            </div>
-
-            <div className="divider-new"></div>
-
-            <div>
-              <div className="details-section-label-new">Seating Capacity</div>
-              <div className="capacity-control-new">
                 <button
                   type="button"
-                  className="capacity-btn-new"
-                  onClick={() => setDraftSeats(prev => Math.max(1, prev - 1))}
+                  onClick={() => {
+                    updateDiningTable(activeRestaurant.id, currentTable.id, { name: draftName, area: draftArea, seats: draftSeats, status: draftStatus, waiter: draftWaiter });
+                    addToast(`Saved changes for Table ${currentTable.id}!`);
+                    setIsTableDetailsOpen(false);
+                  }}
+                  style={{ padding: '10px 24px', fontSize: '13px', borderRadius: '8px', background: 'var(--orange-gradient)', color: 'white', border: 'none', fontWeight: '700', cursor: 'pointer', boxShadow: '0 4px 12px rgba(255,122,0,0.28)', transition: 'all 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-1px)'; e.currentTarget.style.boxShadow = '0 6px 18px rgba(255,122,0,0.38)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = '0 4px 12px rgba(255,122,0,0.28)'; }}
                 >
-                  −
-                </button>
-                <span className="capacity-value-new">{draftSeats}</span>
-                <button
-                  type="button"
-                  className="capacity-btn-new"
-                  onClick={() => setDraftSeats(prev => Math.min(12, prev + 1))}
-                >
-                  +
+                  💾 Save Changes
                 </button>
               </div>
-            </div>
-
-            <div>
-              <div className="details-section-label-new">Current Status</div>
-              <div className="status-segmented-control-new">
-                <div
-                  className={`status-segment-new ${draftStatus === 'Free' ? 'active free' : ''}`}
-                  onClick={() => setDraftStatus('Free')}
-                >
-                  FREE
-                </div>
-                <div
-                  className={`status-segment-new ${draftStatus === 'Occupied' ? 'active occupied' : ''}`}
-                  onClick={() => setDraftStatus('Occupied')}
-                >
-                  OCCUPIED
-                </div>
-              </div>
-            </div>
-
-            <div className="divider-new"></div>
-
-            <div>
-              <div className="details-section-label-new">Assigned Waiter (Optional)</div>
-              <select
-                style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center', backgroundSize: '14px', width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', background: 'var(--bg-primary)', color: 'var(--text-main)', fontSize: '14px', cursor: 'pointer' }}
-                value={draftWaiter}
-                onChange={(e) => setDraftWaiter(e.target.value)}
-              >
-                <option value="">Select Waiter...</option>
-                <option value="Arjun K.">Arjun K.</option>
-                <option value="Priya M.">Priya M.</option>
-                <option value="Rahul S.">Rahul S.</option>
-                <option value="Anita D.">Anita D.</option>
-                <option value="Vikram S.">Vikram S.</option>
-              </select>
-            </div>
-
-            <div className="divider-new"></div>
-
-            <div style={{ display: 'flex', gap: '12px', justifyContent: 'flex-end', marginTop: '10px' }}>
-              <button
-                type="button"
-                className="btn btn-outline"
-                onClick={() => {
-                  setDraftSeats(currentTable.seats || 4);
-                  setDraftStatus(currentTable.status || 'Free');
-                  setDraftWaiter(currentTable.waiter || '');
-                }}
-                style={{ padding: '10px 24px', fontSize: '13px', borderRadius: '8px' }}
-              >
-                Cancel
-              </button>
-              <button
-                type="button"
-                className="btn"
-                onClick={() => {
-                  updateDiningTable(activeRestaurant.id, currentTable.id, { seats: draftSeats, status: draftStatus, waiter: draftWaiter });
-                  addToast(`Saved changes for Table ${currentTable.id}!`);
-                }}
-                style={{
-                  padding: '10px 24px',
-                  fontSize: '13px',
-                  borderRadius: '8px',
-                  background: 'var(--primary)',
-                  color: 'white',
-                  border: 'none',
-                  fontWeight: '700',
-                  cursor: 'pointer'
-                }}
-              >
-                Save Changes
-              </button>
             </div>
           </div>
-        </div>
+        )}
       </section>
     );
   };
@@ -1755,8 +2010,8 @@ export default function Admin() {
     setActivePage(null);
   };
 
-  const openAddStaffModal = () => {
-    setStaffForm({ id: '', name: '', role: 'Waiter', phone: '', email: '', password: '', status: 'On Duty' });
+  const openAddStaffModal = (defaultRole = 'Waiter') => {
+    setStaffForm({ id: '', name: '', role: defaultRole, phone: '', email: '', password: '', status: 'On Duty' });
     setActivePage('staff-form');
   };
 
@@ -1784,7 +2039,7 @@ export default function Admin() {
           <p className="panel-inner-desc">Manage your restaurant staff, roles, contact details, and duty status.</p>
         </div>
         <div style={{ display: 'flex', gap: '8px' }}>
-         
+
           <button className="btn btn-black" onClick={openAddStaffModal}>
             ➕ Add New Staff
           </button>
@@ -1855,15 +2110,15 @@ export default function Admin() {
               <tbody>
                 {staff.map(s => (
                   <tr key={s.id} style={{ borderBottom: '1px solid var(--border)' }}>
-                    <td style={{ padding: '12px 14px', fontFamily: 'monospace' }}>{s.id}</td>
-                    <td style={{ padding: '12px 14px', fontWeight: 500, color: 'var(--text-main)' }}>{s.name}</td>
-                    <td style={{ padding: '12px 14px' }}>{s.role}</td>
-                    <td style={{ padding: '12px 14px' }}>{s.phone}</td>
-                    <td style={{ padding: '12px 14px' }}>{s.email}</td>
-                    <td style={{ padding: '12px 14px' }}><Badge status={s.status} /></td>
-                    <td style={{ padding: '12px 14px', textAlign: 'right' }}>
-                      <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditStaffModal(s)} />
-                      <IconBtn icon={<TrashIcon size={18} />} tooltip="Delete" style={iconBtnDeleteStyle} onClick={() => handleDeleteStaff(s.id)} />
+                    <td style={{ padding: '10px 14px', fontFamily: 'monospace', fontSize: '14px' }}>{s.id}</td>
+                    <td style={{ padding: '10px 14px', fontWeight: 500, color: 'var(--text-main)', fontSize: '14px' }}>{s.name}</td>
+                    <td style={{ padding: '10px 14px', fontSize: '14px' }}>{s.role}</td>
+                    <td style={{ padding: '10px 14px', fontSize: '14px' }}>{s.phone}</td>
+                    <td style={{ padding: '10px 14px', fontSize: '14px' }}>{s.email}</td>
+                    <td style={{ padding: '10px 14px' }}><Badge status={s.status} /></td>
+                    <td style={{ padding: '10px 14px', textAlign: 'right' }}>
+                      <IconBtn icon={<PencilIcon size={16} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => openEditStaffModal(s)} />
+                      <IconBtn icon={<TrashIcon size={16} />} tooltip="Delete" style={iconBtnDeleteStyle} onClick={() => handleDeleteStaff(s.id)} />
                     </td>
                   </tr>
                 ))}
@@ -1910,7 +2165,7 @@ export default function Admin() {
   // ==========================================
 
   const renderRoles = () => (
-    <section className="panel-view active" style={{ padding: 0 }}>
+    <section className="panel-view active">
       <div className="admin-card-container">
         <div className="admin-inner-header" style={{ marginBottom: '20px' }}>
           <h3 className="admin-inner-title" style={{ fontSize: '15px' }}>Roles & Permissions</h3>
@@ -1919,7 +2174,7 @@ export default function Admin() {
           </button>
         </div>
         <div style={{ overflowX: 'auto' }}>
-          <table className="admin-table">
+          <table className="menu-items-table">
             <thead>
               <tr>
                 <th>S.NO</th>
@@ -1934,9 +2189,11 @@ export default function Admin() {
                   <td>{i + 1}</td>
                   <td style={{ fontWeight: 600 }}>{r.name}</td>
                   <td><span className="status-pill-active">{r.status}</span></td>
-                  <td style={{ textAlign: 'right', display: 'flex', gap: '12px', justifyContent: 'flex-end' }}>
-                    <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
-                    <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                  <td style={{ textAlign: 'right' }}>
+                    <div style={{ display: 'inline-flex', gap: '12px', justifyContent: 'flex-end' }}>
+                      <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10b981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                      <IconBtn icon={<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>} style={{ border: 'none', background: 'transparent' }} />
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -1950,7 +2207,7 @@ export default function Admin() {
   const renderAddRole = () => {
     const modulesList = ['Dashboard', 'Incoming Orders', 'Menu Management', 'Billing', 'Tables', 'Staff', 'Users', 'Settings'];
     return (
-      <section className="panel-view active" style={{ padding: 0 }}>
+      <section className="panel-view active">
         <div className="admin-card-container">
           <div className="admin-inner-header" style={{ marginBottom: '24px' }}>
             <h3 className="admin-inner-title" style={{ fontSize: '18px' }}>Add New Role</h3>
@@ -1978,7 +2235,7 @@ export default function Admin() {
           <div style={{ marginTop: '30px' }}>
             <h3 className="admin-inner-title" style={{ fontSize: '14px', marginBottom: '16px' }}>Access Permissions</h3>
             <div style={{ overflowX: 'auto', border: '1px solid var(--border)', borderRadius: '8px' }}>
-              <table className="admin-table permissions-matrix-table" style={{ margin: 0 }}>
+              <table className="menu-items-table permissions-matrix-table" style={{ margin: 0 }}>
                 <thead>
                   <tr>
                     <th>MODULES</th>
@@ -2017,7 +2274,7 @@ export default function Admin() {
   };
 
   const renderUsersList = () => (
-    <section className="panel-view active" style={{ padding: 0 }}>
+    <section className="panel-view active">
       <div className="admin-card-container">
         <div className="admin-inner-header" style={{ marginBottom: '20px' }}>
           <h3 className="admin-inner-title" style={{ fontSize: '15px' }}>Users List</h3>
@@ -2026,7 +2283,7 @@ export default function Admin() {
           </button>
         </div>
         <div style={{ overflowX: 'auto' }}>
-          <table className="admin-table">
+          <table className="menu-items-table">
             <thead>
               <tr>
                 <th>S.NO.</th>
@@ -2060,7 +2317,7 @@ export default function Admin() {
   );
 
   const renderAddUser = () => (
-    <section className="panel-view active" style={{ padding: 0 }}>
+    <section className="panel-view active">
       <div className="admin-card-container">
         <div className="admin-inner-header" style={{ marginBottom: '24px' }}>
           <h3 className="admin-inner-title" style={{ fontSize: '18px' }}>Create New Restaurant User</h3>
@@ -2114,88 +2371,138 @@ export default function Admin() {
   const renderSettings = () => (
     <section className="panel-view active profile-settings-wrapper" style={{ padding: 0 }}>
       {/* Top Header Row with Orange Border */}
-      <div className="profile-settings-top-bar">
-        <h2 className="profile-settings-page-title">Settings</h2>
-        <p className="profile-settings-page-subtitle">Configure your restaurant dashboard</p>
-      </div>
+      
 
       <div className="profile-settings-container">
-        <div className="profile-settings-section-header">
-          <h2 className="profile-settings-section-title">Profile Settings</h2>
-          <p className="profile-settings-section-subtitle">Manage your personal profile, security credentials, and preferences</p>
-        </div>
 
-        {/* Card 1: Profile Information */}
+        {/* Card 3: Restaurant Information */}
         <div className="profile-card">
           <div className="profile-card-header">
-            <span className="profile-card-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" /></svg>
+            <span className="profile-card-icon" style={{ color: '#3b82f6' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             </span>
-            <h3 className="profile-card-title">Profile Information</h3>
+            <h3 className="profile-card-title">Restaurant Information</h3>
           </div>
-
-          <div className="profile-grid-layout">
-            <div className="profile-avatar-column">
-              <div className="profile-avatar-box">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              </div>
-              <button type="button" className="profile-btn-choose" onClick={() => addToast('Avatar upload clicked')}>Choose</button>
-            </div>
-
-            <div className="profile-form-grid">
-              <div className="profile-form-group">
-                <label className="profile-form-label">Full Name <span className="asterisk">*</span></label>
-                <input type="text" className="profile-form-input" defaultValue="Admin User" />
-              </div>
-              <div className="profile-form-group">
-                <label className="profile-form-label">Email Address <span className="asterisk">*</span></label>
-                <input type="email" className="profile-form-input" defaultValue="admin@serveiq.com" />
-              </div>
-              <div className="profile-form-group">
-                <label className="profile-form-label">Username <span className="asterisk">*</span></label>
-                <input type="text" className="profile-form-input" defaultValue="superadmin" />
-              </div>
-              <div className="profile-form-group">
-                <label className="profile-form-label">Mobile Number <span className="asterisk">*</span></label>
-                <input type="text" className="profile-form-input" defaultValue="+91 9876543210" />
-              </div>
-              <div className="profile-form-group full-width">
-                <label className="profile-form-label">Designation</label>
-                <input type="text" className="profile-form-input disabled" value="Super Admin" readOnly />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Card 2: Login & Security */}
-        <div className="profile-card">
-          <div className="profile-card-header">
-            <span className="profile-card-icon" style={{ color: '#f59e0b' }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z" /></svg>
-            </span>
-            <h3 className="profile-card-title">Login & Security</h3>
-          </div>
-
           <div className="profile-form-grid">
+            <div className="profile-form-group">
+              <label className="profile-form-label">Restaurant Name</label>
+              <input type="text" className="profile-form-input" defaultValue={activeRestaurant.name} />
+            </div>
+            <div className="profile-form-group">
+              <label className="profile-form-label">Business Name</label>
+              <input type="text" className="profile-form-input" defaultValue={activeRestaurant.name + " Pvt Ltd"} />
+            </div>
+            <div className="profile-form-group">
+              <label className="profile-form-label">Contact Number</label>
+              <input type="text" className="profile-form-input" defaultValue="+91 9999999999" />
+            </div>
+            <div className="profile-form-group">
+              <label className="profile-form-label">Email Address</label>
+              <input type="email" className="profile-form-input" defaultValue={`contact@${activeRestaurant.name.toLowerCase().replace(/\s/g, '')}.com`} />
+            </div>
             <div className="profile-form-group full-width">
-              <label className="profile-form-label">Current Password</label>
-              <input type="password" className="profile-form-input disabled" placeholder="Enter current password" readOnly />
+              <label className="profile-form-label">Address</label>
+              <textarea className="profile-form-input" style={{ resize: 'vertical', minHeight: '80px' }} defaultValue="123 Main Street, Cityville, State, 123456"></textarea>
+            </div>
+          </div>
+        </div>
+
+        {/* Card 4: Tax Configuration */}
+        <div className="profile-card">
+          <div className="profile-card-header">
+            <span className="profile-card-icon" style={{ color: '#10b981' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </span>
+            <h3 className="profile-card-title">Tax Configuration</h3>
+          </div>
+          <div className="profile-form-grid">
+            <div className="profile-form-group">
+              <label className="profile-form-label">GST Percentage (%)</label>
+              <input type="number" className="profile-form-input" defaultValue="5" />
             </div>
             <div className="profile-form-group">
-              <label className="profile-form-label">New Password</label>
-              <input type="password" className="profile-form-input" placeholder="Enter new password" />
+              <label className="profile-form-label">Service Charge (%)</label>
+              <input type="number" className="profile-form-input" defaultValue="0" />
+            </div>
+          </div>
+        </div>
+
+        {/* Card 5: Printer Configuration */}
+        <div className="profile-card">
+          <div className="profile-card-header">
+            <span className="profile-card-icon" style={{ color: '#8b5cf6' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            </span>
+            <h3 className="profile-card-title">Printer Configuration</h3>
+          </div>
+          <div className="profile-form-grid">
+            <div className="profile-form-group">
+              <label className="profile-form-label">Printer Name</label>
+              <input type="text" className="profile-form-input" defaultValue="Epson TM-T82" />
             </div>
             <div className="profile-form-group">
-              <label className="profile-form-label">Confirm Password</label>
-              <input type="password" className="profile-form-input" placeholder="Confirm new password" />
+              <label className="profile-form-label">Printer Type</label>
+              <select className="profile-form-input" defaultValue="Thermal">
+                <option value="Thermal">Thermal Receipt Printer</option>
+                <option value="Laser">Laser Printer</option>
+                <option value="Inked">Inked Printer</option>
+              </select>
             </div>
+          </div>
+        </div>
+
+        {/* Card 6: User Management */}
+        <div className="profile-card">
+          <div className="profile-card-header">
+            <span className="profile-card-icon" style={{ color: '#f43f5e' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            </span>
+            <h3 className="profile-card-title">User Management</h3>
+          </div>
+          
+          <div className="menu-table-wrapper" style={{ overflowX: 'auto', margin: '0 24px 24px 24px', border: '1px solid var(--border)', borderRadius: '10px' }}>
+            <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+              <thead>
+                <tr>
+                  <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase', background: 'var(--black)' }}>User Name</th>
+                  <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase', background: 'var(--black)' }}>Role</th>
+                  <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase', background: 'var(--black)' }}>Status</th>
+                  <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase', background: 'var(--black)', textAlign: 'right' }}>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                  <td style={{ padding: '12px 16px', fontWeight: 600, fontSize: '13px', color: 'var(--text-main)' }}>Admin User</td>
+                  <td style={{ padding: '12px 16px', fontSize: '13px', color: '#64748b' }}>Admin</td>
+                  <td style={{ padding: '12px 16px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 700, padding: '4px 10px', borderRadius: '12px', background: '#dcfce7', color: '#15803d' }}>Active</span>
+                  </td>
+                  <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                    <button className="btn btn-outline" style={{ padding: '4px 8px', fontSize: '11px' }}>Edit</button>
+                  </td>
+                </tr>
+                <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                  <td style={{ padding: '12px 16px', fontWeight: 600, fontSize: '13px', color: 'var(--text-main)' }}>Manager John</td>
+                  <td style={{ padding: '12px 16px', fontSize: '13px', color: '#64748b' }}>Manager</td>
+                  <td style={{ padding: '12px 16px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 700, padding: '4px 10px', borderRadius: '12px', background: '#dcfce7', color: '#15803d' }}>Active</span>
+                  </td>
+                  <td style={{ padding: '12px 16px', textAlign: 'right' }}>
+                    <button className="btn btn-outline" style={{ padding: '4px 8px', fontSize: '11px' }}>Edit</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style={{ padding: '0 24px 24px 24px', display: 'flex', justifyContent: 'flex-end' }}>
+             <button className="btn btn-black" style={{ padding: '8px 16px', fontSize: '13px' }} onClick={() => addToast('Add user modal clicked')}>➕ Add User</button>
           </div>
         </div>
 
         {/* Action Buttons */}
         <div className="profile-actions-row">
           <button type="button" className="profile-btn-reset" onClick={() => addToast('Defaults restored')}>Reset Defaults</button>
-          <button type="button" className="profile-btn-save" onClick={() => addToast('Profile settings saved successfully!')}>Save Settings</button>
+          <button type="button" className="profile-btn-save" onClick={() => addToast('Configuration saved successfully!')}>Save Configuration</button>
         </div>
       </div>
     </section>
@@ -2480,6 +2787,122 @@ export default function Admin() {
       );
     }
 
+    if (activePage === 'categories-manager') {
+      return (
+        <section>
+          <div style={{ width: '100%' }}>
+            <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
+              <div className="panel-title-desc">
+                <h2 className="panel-inner-title" style={{ fontSize: '26px', fontWeight: 800 }}>Menu Categories</h2>
+                <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Manage the categories that organize your menu items.</p>
+              </div>
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <button className="btn btn-outline" style={{ padding: '10px 20px', borderRadius: '8px', fontWeight: 700 }} onClick={() => setActivePage(null)}>
+                  ← Back to Menu
+                </button>
+                <button className="btn btn-black" style={{ background: 'var(--orange-gradient)', borderColor: '#ff7a00', padding: '10px 20px', borderRadius: '8px', fontWeight: 700 }} onClick={() => { setCategoryForm({ id: '', name: '', desc: '', status: 'Available' }); setActivePage('category-form'); }}>
+                  ➕ Add Category
+                </button>
+              </div>
+            </div>
+            <div style={sty.pageCard}>
+              <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+                <thead>
+                  <tr style={{ borderBottom: '2px solid var(--border)' }}>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase' }}>Category Name</th>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase' }}>Description</th>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase' }}>Status</th>
+                    <th style={{ padding: '12px 14px', fontSize: '12px', fontWeight: '700', color: '#64748b', textTransform: 'uppercase', textAlign: 'right' }}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {categoriesListState.map(cat => (
+                    <tr key={cat.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                      <td style={{ padding: '12px 14px', fontWeight: 600, color: 'var(--text-main)', fontSize: '14px' }}>{cat.name}</td>
+                      <td style={{ padding: '12px 14px', color: 'var(--text-muted)', fontSize: '13px' }}>{cat.desc}</td>
+                      <td style={{ padding: '12px 14px' }}>
+                        <span style={{
+                          fontSize: '10px',
+                          fontWeight: 700,
+                          color: cat.status === 'Available' ? '#16a34a' : '#ef4444',
+                          background: cat.status === 'Available' ? '#dcfce7' : '#fef2f2',
+                          padding: '3px 8px',
+                          borderRadius: '12px',
+                          display: 'inline-block',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.5px'
+                        }}>
+                          {cat.status}
+                        </span>
+                      </td>
+                      <td style={{ padding: '12px 14px', textAlign: 'right' }}>
+                        <IconBtn icon={<PencilIcon size={18} />} tooltip="Edit" style={iconBtnEditStyle} onClick={() => { setCategoryForm(cat); setActivePage('category-form'); }} />
+                      </td>
+                    </tr>
+                  ))}
+                  {categoriesListState.length === 0 && (
+                    <tr>
+                      <td colSpan="4" style={{ textAlign: 'center', padding: '24px', color: 'var(--text-muted)' }}>No categories found.</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    if (activePage === 'category-form') {
+      return (
+        <section>
+          <div style={{ width: '100%' }}>
+            <PageHeader subtitle={categoryForm.id ? 'Modify category details' : 'Create a new menu category'} />
+            <div style={sty.pageCard}>
+              <form onSubmit={handleCategorySubmit} style={{ width: '100%' }}>
+                <div className="form-group" style={{ marginBottom: '16px' }}>
+                  <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Category Name</label>
+                  <input
+                    type="text"
+                    value={categoryForm.name}
+                    onChange={(e) => setCategoryForm({ ...categoryForm, name: e.target.value })}
+                    required
+                    placeholder="e.g. Desserts"
+                  />
+                </div>
+                <div className="form-group" style={{ marginBottom: '16px' }}>
+                  <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Description</label>
+                  <textarea
+                    rows="3"
+                    value={categoryForm.desc}
+                    onChange={(e) => setCategoryForm({ ...categoryForm, desc: e.target.value })}
+                    placeholder="Short description of this category..."
+                    style={{ resize: 'none' }}
+                  ></textarea>
+                </div>
+                <div className="form-group" style={{ marginBottom: '24px' }}>
+                  <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Status</label>
+                  <select
+                    value={categoryForm.status}
+                    onChange={(e) => setCategoryForm({ ...categoryForm, status: e.target.value })}
+                    required
+                    style={{ padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', width: '100%' }}
+                  >
+                    <option value="Available">Available</option>
+                    <option value="Unavailable">Unavailable</option>
+                  </select>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px' }}>
+                  <button type="button" className="btn btn-outline" style={{ padding: '10px 24px' }} onClick={() => setActivePage('categories-manager')}>Cancel</button>
+                  <button type="submit" className="btn btn-black" style={{ padding: '10px 24px' }}>💾 Save Category</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
     if (activePage === 'menu-form') {
       return (
         <section>
@@ -2552,12 +2975,9 @@ export default function Admin() {
                             onChange={(e) => setMenuForm({ ...menuForm, category: e.target.value })}
                             required
                           >
-                            <option value="Starters">Starters</option>
-                            <option value="Rice Meals">Rice Meals</option>
-                            <option value="Tiffin">Tiffin</option>
-                            <option value="Rotis">Rotis</option>
-                            <option value="Desserts">Desserts</option>
-                            <option value="Drinks">Drinks</option>
+                            {categoriesListState.map(c => (
+                              <option key={c.id} value={c.name}>{c.name}</option>
+                            ))}
                           </select>
                         </div>
 
@@ -2593,10 +3013,21 @@ export default function Admin() {
                             onChange={(e) => setMenuForm({ ...menuForm, available: e.target.value === 'active' })}
                             required
                           >
-                            <option value="active">Active</option>
-                            <option value="inactive">Inactive</option>
+                            <option value="active">Available</option>
+                            <option value="inactive">Unavailable</option>
                           </select>
                         </div>
+                      </div>
+
+                      <div className="form-group" style={{ marginBottom: 0 }}>
+                        <label style={{ display: 'block', fontSize: '13px', fontWeight: '600', marginBottom: '6px', color: 'var(--text-main)' }}>Preparation Time</label>
+                        <input
+                          type="text"
+                          value={menuForm.prepTime || ''}
+                          onChange={(e) => setMenuForm({ ...menuForm, prepTime: e.target.value })}
+                          required
+                          placeholder="e.g. 15 mins"
+                        />
                       </div>
 
                       <div className="form-group" style={{ marginBottom: 0 }}>
@@ -2642,16 +3073,40 @@ export default function Admin() {
                   />
                   <p style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '4px' }}>Recommended format: T-XX (e.g. T-06, T-07)</p>
                 </div>
-                <div className="form-group" style={{ marginBottom: '20px' }}>
-                  <label>Seating Capacity</label>
+                <div className="form-group" style={{ marginBottom: '16px' }}>
+                  <label>Table Name</label>
                   <input
-                    type="number"
-                    min="1"
-                    max="20"
-                    value={addTableForm.seats}
-                    onChange={(e) => setAddTableForm({ ...addTableForm, seats: parseInt(e.target.value) || 4 })}
-                    required
+                    type="text"
+                    value={addTableForm.name || ''}
+                    onChange={(e) => setAddTableForm({ ...addTableForm, name: e.target.value })}
+                    placeholder="e.g. Window Seat 1"
                   />
+                </div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div className="form-group" style={{ marginBottom: '20px' }}>
+                    <label>Seating Capacity</label>
+                    <input
+                      type="number"
+                      min="1"
+                      max="20"
+                      value={addTableForm.seats}
+                      onChange={(e) => setAddTableForm({ ...addTableForm, seats: parseInt(e.target.value) || 4 })}
+                      required
+                    />
+                  </div>
+                  <div className="form-group" style={{ marginBottom: '20px' }}>
+                    <label>Area / Section</label>
+                    <select
+                      style={{ appearance: 'none', backgroundImage: 'url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'currentColor\' stroke-width=\'2\' stroke-linecap=\'round\' stroke-linejoin=\'round\'%3e%3cpolyline points=\'6 9 12 15 18 9\'%3e%3c/polyline%3e%3c/svg%3e")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 14px center', backgroundSize: '14px', width: '100%', padding: '10px 14px', borderRadius: '8px', border: '1px solid var(--border)', outline: 'none', background: 'var(--bg-primary)', color: 'var(--text-main)', fontSize: '14px', cursor: 'pointer' }}
+                      value={addTableForm.area || 'Main Dining'}
+                      onChange={(e) => setAddTableForm({ ...addTableForm, area: e.target.value })}
+                    >
+                      <option value="Main Dining">Main Dining</option>
+                      <option value="Patio">Patio</option>
+                      <option value="Bar">Bar</option>
+                      <option value="Private Room">Private Room</option>
+                    </select>
+                  </div>
                 </div>
                 <div className="form-group" style={{ marginBottom: '20px' }}>
                   <label>Assigned Waiter (Optional)</label>
@@ -2718,10 +3173,10 @@ export default function Admin() {
                 </div>
 
                 <div className="form-group" style={{ marginBottom: '20px', marginTop: '16px' }}>
-                  <label>Duty Status</label>
-                  <select value={staffForm.status} onChange={(e) => setStaffForm({ ...staffForm, status: e.target.value })} required>
-                    <option value="On Duty">On Duty</option>
-                    <option value="Off Duty">Off Duty</option>
+                  <label>Status</label>
+                  <select value={staffForm.status === 'On Duty' ? 'Active' : staffForm.status === 'Off Duty' ? 'Inactive' : staffForm.status} onChange={(e) => setStaffForm({ ...staffForm, status: e.target.value === 'Active' ? 'On Duty' : 'Off Duty' })} required>
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
                   </select>
                 </div>
 
@@ -2824,7 +3279,7 @@ export default function Admin() {
                 Assign Waiter
               </button>
             </div>
-            
+
             <div style={sty.pageCard}>
               <div className="menu-table-wrapper" style={{ overflowX: 'auto' }}>
                 <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
@@ -2844,7 +3299,7 @@ export default function Admin() {
                         .filter(o => o.waiter === w.name)
                         .map(o => `Table ${o.table}`);
                       const uniqueTables = [...new Set(assignedTables)];
-                      
+
                       return (
                         <tr key={w.id} style={{ borderBottom: '1px solid var(--border)' }}>
                           <td style={{ padding: '12px 14px', fontFamily: 'monospace', color: 'var(--text-main)', fontSize: '14px' }}>{w.id}</td>
@@ -2903,7 +3358,7 @@ export default function Admin() {
       const handleAssignSubmit = (e) => {
         e.preventDefault();
         const { selectedWaiter, selectedTables } = assignWaiterForm;
-        
+
         if (!selectedWaiter) {
           addToast('Please select a waiter first.');
           return;
@@ -2912,24 +3367,24 @@ export default function Admin() {
           addToast('Please select at least one table.');
           return;
         }
-        
+
         // Loop through selected tables
         selectedTables.forEach(tableId => {
           // 1. Update the table assignment
           updateDiningTable(activeRestaurant.id, tableId, { waiter: selectedWaiter });
-          
+
           // 2. Find active orders for this table and update waiter assignment
           const tableNum = tableId.replace('T-', '');
-          const activeTableOrders = orders.filter(o => 
-            (o.table === tableNum || parseInt(o.table) === parseInt(tableNum)) && 
+          const activeTableOrders = orders.filter(o =>
+            (o.table === tableNum || parseInt(o.table) === parseInt(tableNum)) &&
             o.billingStatus === 'unpaid'
           );
-          
+
           activeTableOrders.forEach(ord => {
             assignWaiterToOrder(activeRestaurant.id, ord.id, selectedWaiter);
           });
         });
-        
+
         addToast(`Successfully assigned ${selectedWaiter} to ${selectedTables.length} table(s)!`);
         setAssignWaiterForm({ selectedWaiter: '', selectedTables: [] });
         setActivePage('waiter-list'); // Go back to waiter directory
@@ -2945,7 +3400,7 @@ export default function Admin() {
       const handleTableToggle = (tableId) => {
         setAssignWaiterForm(prev => {
           const isSelected = prev.selectedTables.includes(tableId);
-          const newTables = isSelected 
+          const newTables = isSelected
             ? prev.selectedTables.filter(id => id !== tableId)
             : [...prev.selectedTables, tableId];
           return {
@@ -3023,7 +3478,7 @@ export default function Admin() {
 
             {/* Form Block */}
             <form onSubmit={handleAssignSubmit} style={{ padding: '24px', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-              
+
               {/* Dropdown 1: Select Waiter */}
               <div className="form-group" style={{ marginBottom: '20px' }}>
                 <label style={{
@@ -3222,6 +3677,1213 @@ export default function Admin() {
     return null;
   };
 
+  // ==========================================
+  // NEW MODULE RENDER FUNCTIONS
+  // ==========================================
+
+  const renderQrManagement = () => (
+    <section className="panel-view active">
+      <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
+        <div className="panel-title-desc">
+          <h2 className="panel-inner-title">QR Code Management</h2>
+          <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Generate, customize and manage QR codes for all dining tables.</p>
+        </div>
+        <div style={{ display: 'flex', gap: '12px' }}>
+          <button
+            className="btn btn-outline"
+            onClick={() => { setActiveTab('saas'); setActivePage(null); }}
+            style={{ padding: '10px 18px', borderRadius: '8px', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '6px' }}
+          >
+            ⚙️ Go to Table Setup
+          </button>
+          <button
+            className="btn"
+            style={{ background: 'var(--orange-gradient)', color: '#fff', border: 'none', padding: '10px 20px', borderRadius: '8px', fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px' }}
+            onClick={() => {
+              const tableNums = (tables || [])
+                .map(t => parseInt(t.id.replace('T-', '')))
+                .filter(n => !isNaN(n));
+              const maxNum = tableNums.length > 0 ? Math.max(...tableNums) : 0;
+              const nextNum = maxNum + 1;
+              const nextId = `T-${nextNum < 10 ? '0' + nextNum : nextNum}`;
+
+              setGenQrForm({
+                id: nextId,
+                name: '',
+                seats: 4,
+                area: 'Main Dining',
+                waiter: ''
+              });
+              setIsGenerateQrOpen(true);
+            }}
+          >
+            ➕ Generate QR
+          </button>
+        </div>
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+        {tables.map(table => {
+          const qrUrl = `http://${window.location.hostname}:3001/table/${table.id}`;
+          return (
+            <div
+              key={table.id}
+              style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '16px', padding: '0', display: 'flex', flexDirection: 'column', alignItems: 'center', boxShadow: '0 3px 16px rgba(0,0,0,0.06)', overflow: 'hidden', transition: 'all 0.2s ease' }}
+              onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 8px 28px rgba(255,122,0,0.15)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
+              onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 3px 16px rgba(0,0,0,0.06)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+            >
+              {/* Card Top Header */}
+              <div style={{ width: '100%', background: 'linear-gradient(135deg, #000 0%, #1a1a1a 100%)', padding: '14px 18px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                  <div style={{ width: '34px', height: '34px', borderRadius: '8px', background: 'var(--orange-gradient)', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 3px 8px rgba(255,122,0,0.35)' }}>
+                    <svg width="16" height="12" viewBox="0 0 60 40" fill="none"><path d="M6 16C6 14.9 6.9 14 8 14H52C53.1 14 54 14.9 54 16V18C54 19.1 53.1 20 52 20H8C6.9 20 6 19.1 6 18V16Z" fill="white"/><rect x="16" y="20" width="4" height="14" rx="1" fill="white"/><rect x="40" y="20" width="4" height="14" rx="1" fill="white"/></svg>
+                  </div>
+                  <span style={{ fontWeight: '800', fontSize: '15px', color: '#fff', fontFamily: 'Outfit, sans-serif', letterSpacing: '0.03em' }}>Table {table.id}</span>
+                </div>
+                <span style={{ fontSize: '10px', fontWeight: 700, padding: '3px 10px', borderRadius: '20px', background: 'rgba(46,189,89,0.18)', color: '#2ebd59', border: '1px solid rgba(46,189,89,0.4)', letterSpacing: '0.05em' }}>● ACTIVE</span>
+              </div>
+
+              {/* QR Preview */}
+              <div style={{ padding: '20px 20px 16px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <div style={{ background: 'linear-gradient(135deg, #fff8f0 0%, #fff5eb 100%)', padding: '14px', borderRadius: '12px', marginBottom: '16px', border: '1.5px solid rgba(255,122,0,0.15)', boxShadow: '0 2px 10px rgba(255,122,0,0.08)' }}>
+                  <img
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=140x140&color=000000&bgcolor=FFFFFF&data=${encodeURIComponent(qrUrl)}`}
+                    alt={`QR for Table ${table.id}`}
+                    style={{ width: '140px', height: '140px', display: 'block', borderRadius: '6px' }}
+                  />
+                </div>
+
+                {/* Meta Info */}
+                <div style={{ width: '100%', marginBottom: '14px', display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '8px 12px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border)' }}>
+                    <span style={{ color: '#64748b', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.04em' }}>Created</span>
+                    <span style={{ color: '#000', fontWeight: 700, fontSize: '12px' }}>Oct 24, 2024</span>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 12px', background: '#f8fafc', borderRadius: '8px', border: '1px solid var(--border)' }}>
+                    <input
+                      type="text"
+                      readOnly
+                      value={qrUrl}
+                      style={{ flex: 1, padding: 0, fontSize: '10px', border: 'none', background: 'transparent', color: '#64748b', outline: 'none', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', fontWeight: 500 }}
+                    />
+                    <button
+                      onClick={() => { navigator.clipboard.writeText(qrUrl).catch(() => {}); addToast('URL copied to clipboard!'); }}
+                      style={{ padding: '4px 8px', borderRadius: '6px', background: 'var(--orange-gradient)', border: 'none', color: '#fff', fontSize: '11px', fontWeight: 700, cursor: 'pointer', flexShrink: 0 }}
+                      title="Copy URL"
+                    >
+                      📋 Copy
+                    </button>
+                  </div>
+                </div>
+
+                {/* Action Buttons */}
+                <div style={{ width: '100%', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                  <button
+                    style={{ fontSize: '12px', padding: '9px 8px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', background: '#fff', border: '1.5px solid var(--border)', color: '#334155', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = '#334155'; }}
+                    onClick={() => addToast(`Printing QR for Table ${table.id}...`)}
+                  >
+                    🖨️ Print
+                  </button>
+                  <button
+                    style={{ fontSize: '12px', padding: '9px 8px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '5px', background: '#fff', border: '1.5px solid var(--border)', color: '#334155', fontWeight: '600', cursor: 'pointer', transition: 'all 0.2s' }}
+                    onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--primary)'; e.currentTarget.style.color = 'var(--primary)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = '#334155'; }}
+                    onClick={() => addToast(`QR downloaded for Table ${table.id}`)}
+                  >
+                    📥 Download
+                  </button>
+                  <button
+                    style={{ gridColumn: '1 / -1', fontSize: '12px', padding: '10px 8px', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', background: 'var(--orange-gradient)', border: 'none', color: '#fff', fontWeight: '700', cursor: 'pointer', boxShadow: '0 3px 10px rgba(255,122,0,0.25)', transition: 'all 0.2s' }}
+                    onMouseEnter={e => { e.currentTarget.style.boxShadow = '0 5px 14px rgba(255,122,0,0.38)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.boxShadow = '0 3px 10px rgba(255,122,0,0.25)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                    onClick={() => addToast(`Regenerated QR Code for Table ${table.id}`)}
+                  >
+                    🔄 Regenerate QR Code
+                  </button>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+        {tables.length === 0 && (
+          <div style={{ gridColumn: '1/-1', textAlign: 'center', padding: '60px', color: '#94a3b8' }}>
+            <QrIcon size={40} />
+            <p style={{ marginTop: '12px', fontSize: '14px' }}>No tables found. Add tables first.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+
+  const renderCustomerManagement = () => (
+    <section className="panel-view active">
+      <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
+        <div className="panel-title-desc">
+          <h2 className="panel-inner-title">Customer Management</h2>
+          <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>View customer visit history, feedback, and order patterns.</p>
+        </div>
+      </div>
+      <div style={{ background: '#fff', border: '1px solid var(--border)', borderRadius: '14px', overflow: 'hidden', boxShadow: '0 2px 10px rgba(0,0,0,0.05)' }}>
+        <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr style={{ borderBottom: '2px solid var(--border)' }}>
+              <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase' }}>Table</th>
+              <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase' }}>Order ID</th>
+              <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase' }}>Items Ordered</th>
+              <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase' }}>Total Spent</th>
+              <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase' }}>Status</th>
+              <th style={{ padding: '12px 16px', fontSize: '11px', fontWeight: 700, color: '#fff', textTransform: 'uppercase' }}>Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map(o => (
+              <tr key={o.id} style={{ borderBottom: '1px solid var(--border)' }}>
+                <td style={{ padding: '12px 16px', fontWeight: 600, fontSize: '13px' }}>Table {o.table}</td>
+                <td style={{ padding: '12px 16px', fontFamily: 'monospace', fontSize: '13px', color: 'var(--primary)' }}>#{o.id}</td>
+                <td style={{ padding: '12px 16px', fontSize: '13px', color: '#475569', maxWidth: '240px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{o.items.map(i => `${i.qty}x ${i.name}`).join(', ')}</td>
+                <td style={{ padding: '12px 16px', fontWeight: 700, fontSize: '13px' }}>₹{o.total}</td>
+                <td style={{ padding: '12px 16px' }}><Badge status={o.status} /></td>
+                <td style={{ padding: '12px 16px', fontSize: '12px', color: '#94a3b8' }}>{o.timeAgo}</td>
+              </tr>
+            ))}
+            {orders.length === 0 && (
+              <tr><td colSpan="6" style={{ textAlign: 'center', padding: '40px', color: '#94a3b8', fontSize: '14px' }}>No customer orders yet.</td></tr>
+            )}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+
+  const renderWaiterManagement = () => {
+    const waiters = staff.filter(s => s.role === 'Waiter');
+    const activeOrders = orders.filter(o => o.status !== 'done');
+    const completedOrders = orders.filter(o => o.status === 'done');
+    return (
+      <section className="panel-view active">
+        <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title">Waiter Management</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Manage waiter accounts, table assignments and monitor performance.</p>
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button className="btn btn-outline" style={{ padding: '10px 18px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }}
+              onClick={() => { setActivePage('assign-waiter-page'); }}>🔗 Assign Tables</button>
+            <button className="btn btn-black" style={{ background: 'var(--orange-gradient)', borderColor: '#ff7a00', padding: '10px 18px', borderRadius: '8px', fontWeight: 700 }}
+              onClick={() => openAddStaffModal('Waiter')}>➕ Add Waiter</button>
+          </div>
+        </div>
+        <div className="admin-card-container">
+          <div style={{ overflowX: 'auto' }}>
+            <table className="menu-items-table">
+              <thead>
+                <tr>
+                  <th>S.NO.</th>
+                  <th>WAITER NAME</th>
+                  <th>PHONE NUMBER</th>
+                  <th>EMAIL ADDRESS</th>
+                  <th>ASSIGNED TABLES</th>
+                  <th style={{ textAlign: 'center' }}>ACTIVE ORDERS</th>
+                  <th style={{ textAlign: 'center' }}>COMPLETED ORDERS</th>
+                  <th>STATUS</th>
+                  <th style={{ textAlign: 'right' }}>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {waiters.map((w, i) => {
+                  const myOrders = activeOrders.filter(o => o.waiter === w.name);
+                  const myCompletedOrders = completedOrders.filter(o => o.waiter === w.name);
+                  const myTables = [...new Set(myOrders.map(o => `T-${o.table}`))];
+                  const isActive = w.status === 'On Duty' || w.status === 'Active';
+                  return (
+                    <tr key={w.id}>
+                      <td>{i + 1}</td>
+                      <td>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: isActive ? 'rgba(255,122,0,0.1)' : '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <WaiterIcon size={14} color={isActive ? 'var(--primary)' : '#94a3b8'} />
+                          </div>
+                          <span style={{ fontWeight: 700 }}>{w.name}</span>
+                        </div>
+                      </td>
+                      <td>{w.phone || 'No phone'}</td>
+                      <td>{w.email || 'No email'}</td>
+                      <td>
+                        <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                          {myTables.length > 0 ? myTables.map(t => (
+                            <span key={t} style={{ fontSize: '10px', fontWeight: 700, color: '#fff', background: 'var(--orange-gradient)', padding: '2px 8px', borderRadius: '10px' }}>{t}</span>
+                          )) : <span style={{ fontSize: '12px', color: '#94a3b8', fontStyle: 'italic' }}>None</span>}
+                        </div>
+                      </td>
+                      <td style={{ textAlign: 'center', fontWeight: 700, color: isActive ? 'var(--primary)' : 'inherit' }}>{myOrders.length}</td>
+                      <td style={{ textAlign: 'center', fontWeight: 700 }}>{myCompletedOrders.length}</td>
+                      <td>
+                        <span className={isActive ? 'status-pill-active' : 'status-pill-disabled'}>
+                          {isActive ? 'Active' : 'Inactive'}
+                        </span>
+                      </td>
+                      <td style={{ textAlign: 'right' }}>
+                        <button className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px', borderRadius: '6px', fontWeight: 700 }} onClick={() => openEditStaffModal(w)}>
+                          Edit Waiter
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {waiters.length === 0 && (
+                  <tr>
+                    <td colSpan="9" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>
+                      No waiters registered. Add staff with the Waiter role.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    );
+  };
+
+  const renderKitchenManagement = () => {
+    const kitchenStaff = staff.filter(s => s.role === 'Kitchen');
+    const activeOrders = orders.filter(o => o.status !== 'done');
+    const completedOrders = orders.filter(o => o.status === 'done');
+    const kitchenStaffNames = kitchenStaff.map(ks => ks.name);
+    return (
+      <section className="panel-view active">
+        <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title">Kitchen Management</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Manage kitchen staff accounts and monitor performance.</p>
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button className="btn btn-black" style={{ background: 'var(--orange-gradient)', borderColor: '#ff7a00', padding: '10px 18px', borderRadius: '8px', fontWeight: 700 }}
+              onClick={() => openAddStaffModal('Kitchen')}>➕ Add Kitchen Staff</button>
+          </div>
+        </div>
+        <div className="admin-card-container">
+          <div style={{ overflowX: 'auto' }}>
+            <table className="menu-items-table">
+              <thead>
+                <tr>
+                  <th>S.NO.</th>
+                  <th>KITCHEN STAFF NAME</th>
+                  <th>PHONE NUMBER</th>
+                  <th>EMAIL ADDRESS</th>
+                  <th>ASSIGNED TABLES</th>
+                  <th style={{ textAlign: 'center' }}>ACTIVE ORDERS</th>
+                  <th style={{ textAlign: 'center' }}>COMPLETED ORDERS</th>
+                  <th>STATUS</th>
+                  <th style={{ textAlign: 'right' }}>ACTIONS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {kitchenStaff.map((k, i) => {
+                  const myOrders = activeOrders.filter(o => {
+                    const chef = o.kitchenStaff || (kitchenStaffNames.length > 0 ? kitchenStaffNames[parseInt(o.id) % kitchenStaffNames.length] : 'Unassigned');
+                    return chef === k.name;
+                  });
+                  const myCompletedOrders = completedOrders.filter(o => {
+                    const chef = o.kitchenStaff || (kitchenStaffNames.length > 0 ? kitchenStaffNames[parseInt(o.id) % kitchenStaffNames.length] : 'Unassigned');
+                    return chef === k.name;
+                  });
+                  const isActive = k.status === 'On Duty' || k.status === 'Active';
+                  return (
+                    <tr key={k.id}>
+                      <td>{i + 1}</td>
+                      <td>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                          <div style={{ width: '30px', height: '30px', borderRadius: '50%', background: isActive ? 'rgba(255,122,0,0.1)' : '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                            <KitchenIcon size={14} color={isActive ? 'var(--primary)' : '#94a3b8'} />
+                          </div>
+                          <span style={{ fontWeight: 700 }}>{k.name}</span>
+                        </div>
+                      </td>
+                      <td>{k.phone || 'No phone'}</td>
+                      <td>{k.email || 'No email'}</td>
+                      <td>
+                        <span style={{ fontSize: '12px', color: '#94a3b8', fontStyle: 'italic' }}>None</span>
+                      </td>
+                      <td style={{ textAlign: 'center', fontWeight: 700, color: isActive ? 'var(--primary)' : 'inherit' }}>{myOrders.length}</td>
+                      <td style={{ textAlign: 'center', fontWeight: 700 }}>{myCompletedOrders.length}</td>
+                      <td>
+                        <span className={isActive ? 'status-pill-active' : 'status-pill-disabled'}>
+                          {isActive ? 'Active' : 'Inactive'}
+                        </span>
+                      </td>
+                      <td style={{ textAlign: 'right' }}>
+                        <button className="btn btn-outline" style={{ fontSize: '12px', padding: '6px 12px', borderRadius: '6px', fontWeight: 700 }} onClick={() => openEditStaffModal(k)}>
+                          Edit Staff
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {kitchenStaff.length === 0 && (
+                  <tr>
+                    <td colSpan="9" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>
+                      No kitchen staff registered. Add staff with the Kitchen role.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    );
+  };
+
+
+
+  const renderWaiterReport = () => {
+    const waiters = staff.filter(s => s.role === 'Waiter');
+    const waiterNames = [...new Set(waiters.map(w => w.name))];
+    const tableNums = [...new Set(tables.map(t => t.id.replace('T-', '')))];
+
+    const resetFilters = () => {
+      setWaiterFilterDateStart('');
+      setWaiterFilterDateEnd('');
+      setWaiterFilterName('All');
+      setWaiterFilterTable('All');
+      setWaiterFilterSource('All');
+      setWaiterFilterPayMode('All');
+      setWaiterFilterPayStatus('All');
+      setWaiterFilterOrderStatus('All');
+    };
+
+    const handleOfflinePaymentSubmit = (e) => {
+      e.preventDefault();
+      if (!activeReportOfflinePaymentOrder) return;
+      updateOrder(activeRestaurant.id, {
+        ...activeReportOfflinePaymentOrder,
+        billingStatus: 'paid',
+        paymentMode: offlinePaymentType
+      });
+      addToast(`Offline payment of ₹${activeReportOfflinePaymentOrder.total} recorded via ${offlinePaymentType}!`);
+      setActiveReportOfflinePaymentOrder(null);
+    };
+
+    const getTimelineTimes = (order) => {
+      const baseTime = order.time || '12:00 PM';
+      const match = baseTime.match(/(\d+):(\d+)\s*(AM|PM)/i);
+      if (!match) {
+        return {
+          received: baseTime,
+          accepted: '12:05 PM',
+          kitchen: '12:10 PM',
+          ready: '12:25 PM',
+          pickup: '12:28 PM',
+          served: '12:30 PM',
+          duration: '30 mins'
+        };
+      }
+      const hrs = parseInt(match[1]);
+      const mins = parseInt(match[2]);
+      const ampm = match[3].toUpperCase();
+
+      const formatTime = (offsetMins) => {
+        let totalMins = hrs * 60 + mins + offsetMins;
+        let h = Math.floor(totalMins / 60) % 12;
+        if (h === 0) h = 12;
+        let m = totalMins % 60;
+        let period = ampm;
+        if (Math.floor(totalMins / 60) >= 12 && ampm === 'AM') period = 'PM';
+        if (Math.floor(totalMins / 60) >= 24 && ampm === 'PM') period = 'AM';
+        return `${h}:${m.toString().padStart(2, '0')} ${period}`;
+      };
+
+      return {
+        received: baseTime,
+        accepted: formatTime(2),
+        kitchen: formatTime(5),
+        ready: formatTime(20),
+        pickup: formatTime(23),
+        served: formatTime(26),
+        duration: '26 mins'
+      };
+    };
+
+    // Filter orders
+    const filteredOrders = orders.filter(o => {
+      const oDate = o.date || '2026-06-10';
+      if (waiterFilterDateStart && oDate < waiterFilterDateStart) return false;
+      if (waiterFilterDateEnd && oDate > waiterFilterDateEnd) return false;
+
+      if (waiterFilterName !== 'All') {
+        if (waiterFilterName === 'Unassigned' && o.waiter !== 'Unassigned') return false;
+        if (o.waiter !== waiterFilterName) return false;
+      }
+
+      if (waiterFilterTable !== 'All' && o.table !== waiterFilterTable) return false;
+
+      const oSource = o.source || 'Dine-In';
+      if (waiterFilterSource !== 'All' && oSource !== waiterFilterSource) return false;
+
+      const oPayMode = o.paymentMode || (o.billingStatus === 'paid' ? 'Cash' : 'Pending');
+      if (waiterFilterPayMode !== 'All' && oPayMode !== waiterFilterPayMode) return false;
+
+      const oPayStatus = o.billingStatus === 'paid' ? 'Paid' : 'Unpaid';
+      if (waiterFilterPayStatus !== 'All' && oPayStatus !== waiterFilterPayStatus) return false;
+
+      if (waiterFilterOrderStatus !== 'All' && o.status.toLowerCase() !== waiterFilterOrderStatus.toLowerCase()) return false;
+
+      return true;
+    });
+
+    return (
+      <section className="panel-view active">
+        {/* Header */}
+        <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title">Waiter Report</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Track order history, source, status, payments, and detailed service timelines.</p>
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button className="btn btn-outline" style={{ padding: '10px 18px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('Waiter Report exported!')}>📊 Export Report</button>
+          </div>
+        </div>
+
+        {/* Filters Section */}
+        <div className="admin-card-container" style={{ marginBottom: '24px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: 800, marginBottom: '16px', color: 'var(--text-main)' }}>Waiter Filters</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Date From</label>
+              <input type="date" className="admin-input" value={waiterFilterDateStart} onChange={e => setWaiterFilterDateStart(e.target.value)} />
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Date To</label>
+              <input type="date" className="admin-input" value={waiterFilterDateEnd} onChange={e => setWaiterFilterDateEnd(e.target.value)} />
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Waiter</label>
+              <select className="admin-input" value={waiterFilterName} onChange={e => setWaiterFilterName(e.target.value)}>
+                <option value="All">All Waiters</option>
+                <option value="Unassigned">Unassigned</option>
+                {waiterNames.map(name => <option key={name} value={name}>{name}</option>)}
+              </select>
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Table</label>
+              <select className="admin-input" value={waiterFilterTable} onChange={e => setWaiterFilterTable(e.target.value)}>
+                <option value="All">All Tables</option>
+                {tableNums.map(num => <option key={num} value={num}>Table {num}</option>)}
+              </select>
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Order Source</label>
+              <select className="admin-input" value={waiterFilterSource} onChange={e => setWaiterFilterSource(e.target.value)}>
+                <option value="All">All Sources</option>
+                <option value="Dine-In">Dine-In</option>
+                <option value="Website">Website</option>
+              </select>
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Payment Mode</label>
+              <select className="admin-input" value={waiterFilterPayMode} onChange={e => setWaiterFilterPayMode(e.target.value)}>
+                <option value="All">All Modes</option>
+                <option value="Cash">Cash</option>
+                <option value="Card">Card</option>
+                <option value="UPI">UPI</option>
+                <option value="Net Banking">Net Banking</option>
+              </select>
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Payment Status</label>
+              <select className="admin-input" value={waiterFilterPayStatus} onChange={e => setWaiterFilterPayStatus(e.target.value)}>
+                <option value="All">All Statuses</option>
+                <option value="Paid">Paid</option>
+                <option value="Unpaid">Unpaid</option>
+              </select>
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Order Status</label>
+              <select className="admin-input" value={waiterFilterOrderStatus} onChange={e => setWaiterFilterOrderStatus(e.target.value)}>
+                <option value="All">All Statuses</option>
+                <option value="New">New</option>
+                <option value="Preparing">Preparing</option>
+                <option value="Ready">Ready</option>
+                <option value="Done">Done</option>
+              </select>
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
+            <button className="btn btn-outline" style={{ fontSize: '13px', padding: '8px 16px', borderRadius: '6px' }} onClick={resetFilters}>Reset Filters</button>
+          </div>
+        </div>
+
+        {/* Report Table Card */}
+        <div className="admin-card-container">
+          <div style={{ overflowX: 'auto' }}>
+            <table className="menu-items-table">
+              <thead>
+                <tr>
+                  <th>ORDER ID</th>
+                  <th>ORDER DATE</th>
+                  <th>TABLE NUMBER</th>
+                  <th>WAITER NAME</th>
+                  <th>ORDER SOURCE</th>
+                  <th>ORDER STATUS</th>
+                  <th>PAYMENT MODE</th>
+                  <th>PAYMENT STATUS</th>
+                  <th>TOTAL AMOUNT</th>
+                  <th style={{ textAlign: 'center' }}>VIEW</th>
+                  <th style={{ textAlign: 'center' }}>OFFLINE PAYMENT</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredOrders.map(o => {
+                  const isActive = o.status !== 'done';
+                  const isPaid = o.billingStatus === 'paid';
+                  const payMode = o.paymentMode || (isPaid ? 'Cash' : 'Pending');
+                  return (
+                    <tr key={o.id}>
+                      <td style={{ fontWeight: 700 }}>#ORD-{o.id}</td>
+                      <td>{o.date || '2026-06-10'}</td>
+                      <td>Table {o.table}</td>
+                      <td style={{ fontWeight: 600 }}>{o.waiter}</td>
+                      <td>
+                        <span style={{ fontSize: '11px', fontWeight: 700, padding: '2px 8px', borderRadius: '12px', background: (o.source === 'Website') ? '#eff6ff' : '#f1f5f9', color: (o.source === 'Website') ? '#2563eb' : '#475569' }}>
+                          {o.source || 'Dine-In'}
+                        </span>
+                      </td>
+                      <td>
+                        <span className={isActive ? 'status-pill-disabled' : 'status-pill-active'} style={{ borderColor: o.status === 'new' ? '#ff7a00' : o.status === 'preparing' ? '#2563eb' : '#10b981', color: o.status === 'new' ? '#ff7a00' : o.status === 'preparing' ? '#2563eb' : '#10b981', background: o.status === 'new' ? '#fff7ed' : o.status === 'preparing' ? '#eff6ff' : '#ecfdf5' }}>
+                          {o.status.toUpperCase()}
+                        </span>
+                      </td>
+                      <td>{payMode}</td>
+                      <td>
+                        <span className={isPaid ? 'status-pill-active' : 'status-pill-disabled'}>
+                          {isPaid ? 'Paid' : 'Unpaid'}
+                        </span>
+                      </td>
+                      <td style={{ fontWeight: 700, color: isPaid ? '#16a34a' : 'inherit' }}>₹{o.total.toLocaleString('en-IN')}</td>
+                      <td style={{ textAlign: 'center' }}>
+                        <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveReportViewOrder(o)}>
+                          <EyeIcon size={14} color="var(--primary)" />
+                        </button>
+                      </td>
+                      <td style={{ textAlign: 'center' }}>
+                        <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px', opacity: isPaid ? 0.5 : 1, cursor: isPaid ? 'not-allowed' : 'pointer' }} onClick={() => !isPaid && setActiveReportOfflinePaymentOrder(o)} disabled={isPaid}>
+                          <CreditCardIcon size={14} color="var(--primary)" />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {filteredOrders.length === 0 && (
+                  <tr>
+                    <td colSpan="11" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>No matching report data found.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Timeline Times Modal Popup */}
+        {activeReportViewOrder && (
+          <div className="order-view-modal-overlay" onClick={() => setActiveReportViewOrder(null)}>
+            <div className="order-view-modal-container" onClick={e => e.stopPropagation()} style={{ maxWidth: '450px' }}>
+              <button className="order-view-modal-close-btn" onClick={() => setActiveReportViewOrder(null)}>✕</button>
+              <div className="order-view-modal-header">
+                <div className="order-view-modal-title-row">
+                  <h2 className="order-view-modal-title">Order Service Timeline</h2>
+                  <span className="order-view-modal-id-badge">#ORD-{activeReportViewOrder.id}</span>
+                </div>
+              </div>
+              <div className="order-view-modal-body" style={{ padding: '24px' }}>
+                {(() => {
+                  const times = getTimelineTimes(activeReportViewOrder);
+                  const timelineItems = [
+                    { label: 'Order Received Time', val: times.received },
+                    { label: 'Order Accepted Time', val: times.accepted },
+                    { label: 'Kitchen Assigned Time', val: times.kitchen },
+                    { label: 'Food Ready Notification Time', val: times.ready },
+                    { label: 'Food Pickup Time', val: times.pickup },
+                    { label: 'Food Served Time', val: times.served },
+                  ];
+                  return (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', position: 'relative', paddingLeft: '24px' }}>
+                        <div style={{ position: 'absolute', left: '9px', top: '8px', bottom: '8px', width: '2px', background: 'var(--border)' }}></div>
+                        {timelineItems.map((item, idx) => (
+                          <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
+                            <div style={{ position: 'absolute', left: '-20px', width: '10px', height: '10px', borderRadius: '50%', background: 'var(--primary)', border: '2px solid #fff' }}></div>
+                            <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-main)' }}>{item.label}</span>
+                            <span style={{ fontSize: '13px', fontWeight: 700, color: '#64748b', fontFamily: 'monospace' }}>{item.val}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div style={{ borderTop: '1px solid var(--border)', paddingTop: '16px', marginTop: '8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--text-main)' }}>Total Service Duration</span>
+                        <span style={{ fontSize: '14px', fontWeight: 800, color: 'var(--primary)', fontFamily: 'monospace' }}>{times.duration}</span>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Offline Payment Modal Popup */}
+        {activeReportOfflinePaymentOrder && (
+          <div className="order-view-modal-overlay" onClick={() => setActiveReportOfflinePaymentOrder(null)}>
+            <div className="order-view-modal-container" onClick={e => e.stopPropagation()} style={{ maxWidth: '400px' }}>
+              <button className="order-view-modal-close-btn" onClick={() => setActiveReportOfflinePaymentOrder(null)}>✕</button>
+              <div className="order-view-modal-header">
+                <div className="order-view-modal-title-row">
+                  <h2 className="order-view-modal-title">Record Offline Payment</h2>
+                  <span className="order-view-modal-id-badge">#ORD-{activeReportOfflinePaymentOrder.id}</span>
+                </div>
+              </div>
+              <form onSubmit={handleOfflinePaymentSubmit} className="order-view-modal-body" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div className="admin-form-group">
+                  <label className="admin-form-label">Order Amount</label>
+                  <input type="text" className="admin-input" value={`₹${activeReportOfflinePaymentOrder.total}`} readOnly style={{ backgroundColor: 'var(--bg-tertiary)', fontWeight: 800, fontSize: '16px', color: '#16a34a' }} />
+                </div>
+                <div className="admin-form-group">
+                  <label className="admin-form-label">Payment Type</label>
+                  <select className="admin-input" value={offlinePaymentType} onChange={e => setOfflinePaymentType(e.target.value)}>
+                    <option value="Cash">Cash</option>
+                    <option value="Card">Card</option>
+                    <option value="UPI">UPI</option>
+                    <option value="Net Banking">Net Banking</option>
+                  </select>
+                </div>
+                <button type="submit" className="btn btn-black" style={{ background: 'var(--orange-gradient)', borderColor: '#ff7a00', color: '#fff', borderRadius: '8px', padding: '12px', fontWeight: 700, width: '100%', marginTop: '12px' }}>
+                  Submit Payment
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+      </section>
+    );
+  };
+
+  const renderKitchenReport = () => {
+    const kitchenStaff = staff.filter(s => s.role === 'Kitchen');
+    const kitchenStaffNames = [...new Set(kitchenStaff.map(k => k.name))];
+    const allDishes = [...new Set(activeRestaurant?.menu?.map(m => m.name) || [])];
+
+    const resetKitchenFilters = () => {
+      setKitchenFilterDateStart('');
+      setKitchenFilterDateEnd('');
+      setKitchenFilterStaff('All');
+      setKitchenFilterDish('All');
+      setKitchenFilterPriority('All');
+    };
+
+    const getKitchenTimelineTimes = (order) => {
+      const baseTime = order.time || '12:00 PM';
+      const match = baseTime.match(/(\d+):(\d+)\s*(AM|PM)/i);
+      if (!match) {
+        return {
+          assigned: '12:02 PM',
+          start: '12:04 PM',
+          end: '12:18 PM',
+          ready: '12:20 PM',
+          pickup: '12:23 PM',
+          prepDuration: '14 mins',
+          pickupDelay: '3 mins'
+        };
+      }
+      const hrs = parseInt(match[1]);
+      const mins = parseInt(match[2]);
+      const ampm = match[3].toUpperCase();
+
+      const formatTime = (offsetMins) => {
+        let totalMins = hrs * 60 + mins + offsetMins;
+        let h = Math.floor(totalMins / 60) % 12;
+        if (h === 0) h = 12;
+        let m = totalMins % 60;
+        let period = ampm;
+        if (Math.floor(totalMins / 60) >= 12 && ampm === 'AM') period = 'PM';
+        if (Math.floor(totalMins / 60) >= 24 && ampm === 'PM') period = 'AM';
+        return `${h}:${m.toString().padStart(2, '0')} ${period}`;
+      };
+
+      return {
+        assigned: formatTime(2),
+        start: formatTime(4),
+        end: formatTime(18),
+        ready: formatTime(20),
+        pickup: formatTime(23),
+        prepDuration: '14 mins',
+        pickupDelay: '3 mins'
+      };
+    };
+
+    const getItemsText = (items) => {
+      return items.map(item => `${item.name} (x${item.qty})`).join(', ');
+    };
+
+    const filteredOrders = orders.filter(o => {
+      const oDate = o.date || '2026-06-10';
+      if (kitchenFilterDateStart && oDate < kitchenFilterDateStart) return false;
+      if (kitchenFilterDateEnd && oDate > kitchenFilterDateEnd) return false;
+
+      const assignedChef = o.kitchenStaff || (kitchenStaffNames.length > 0 ? kitchenStaffNames[parseInt(o.id) % kitchenStaffNames.length] : 'Unassigned');
+      if (kitchenFilterStaff !== 'All' && assignedChef !== kitchenFilterStaff) return false;
+
+      if (kitchenFilterDish !== 'All') {
+        const hasDish = o.items.some(item => item.name === kitchenFilterDish);
+        if (!hasDish) return false;
+      }
+
+      const priority = o.priority || (o.notes ? 'Urgent' : 'Normal');
+      if (kitchenFilterPriority !== 'All' && priority !== kitchenFilterPriority) return false;
+
+      return true;
+    });
+
+    return (
+      <section className="panel-view active">
+        {/* Header */}
+        <div className="panel-header-flex" style={{ marginBottom: '24px' }}>
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title">Kitchen Operational Report</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Review kitchen preparation load, preparation duration, and delay details.</p>
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <button className="btn btn-outline" style={{ padding: '10px 18px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('Kitchen Report exported!')}>📊 Export Report</button>
+          </div>
+        </div>
+
+        {/* Filters Section */}
+        <div className="admin-card-container" style={{ marginBottom: '24px' }}>
+          <h3 style={{ fontSize: '14px', fontWeight: 800, marginBottom: '16px', color: 'var(--text-main)' }}>Kitchen Filters</h3>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px' }}>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Date From</label>
+              <input type="date" className="admin-input" value={kitchenFilterDateStart} onChange={e => setKitchenFilterDateStart(e.target.value)} />
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Date To</label>
+              <input type="date" className="admin-input" value={kitchenFilterDateEnd} onChange={e => setKitchenFilterDateEnd(e.target.value)} />
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Kitchen Staff</label>
+              <select className="admin-input" value={kitchenFilterStaff} onChange={e => setKitchenFilterStaff(e.target.value)}>
+                <option value="All">All Staff</option>
+                {kitchenStaffNames.map(name => <option key={name} value={name}>{name}</option>)}
+              </select>
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Dish</label>
+              <select className="admin-input" value={kitchenFilterDish} onChange={e => setKitchenFilterDish(e.target.value)}>
+                <option value="All">All Dishes</option>
+                {allDishes.map(name => <option key={name} value={name}>{name}</option>)}
+              </select>
+            </div>
+            <div className="admin-form-group">
+              <label className="admin-form-label">Priority Level</label>
+              <select className="admin-input" value={kitchenFilterPriority} onChange={e => setKitchenFilterPriority(e.target.value)}>
+                <option value="All">All Priority Levels</option>
+                <option value="Normal">Normal</option>
+                <option value="Urgent">Urgent</option>
+              </select>
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
+            <button className="btn btn-outline" style={{ fontSize: '13px', padding: '8px 16px', borderRadius: '6px' }} onClick={resetKitchenFilters}>Reset Filters</button>
+          </div>
+        </div>
+
+        {/* Report Table Card */}
+        <div className="admin-card-container">
+          <div style={{ overflowX: 'auto' }}>
+            <table className="menu-items-table">
+              <thead>
+                <tr>
+                  <th>KOT NUMBER</th>
+                  <th>ORDER ID</th>
+                  <th>ITEMS (DISH)</th>
+                  <th>TABLE NUMBER</th>
+                  <th>WAITER NAME</th>
+                  <th>KITCHEN STAFF NAME</th>
+                  <th style={{ textAlign: 'center' }}>VIEW</th>
+                  <th style={{ textAlign: 'center' }}>ITEM DETAILS</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredOrders.map(o => {
+                  const assignedChef = o.kitchenStaff || (kitchenStaffNames.length > 0 ? kitchenStaffNames[parseInt(o.id) % kitchenStaffNames.length] : 'Unassigned');
+                  return (
+                    <tr key={o.id}>
+                      <td style={{ fontWeight: 700 }}>#KOT-{o.id}</td>
+                      <td style={{ fontWeight: 600 }}>#ORD-{o.id}</td>
+                      <td style={{ whiteSpace: 'normal', minWidth: '220px' }}>{getItemsText(o.items)}</td>
+                      <td>Table {o.table}</td>
+                      <td style={{ fontWeight: 600 }}>{o.waiter}</td>
+                      <td style={{ fontWeight: 600 }}>{assignedChef}</td>
+                      <td style={{ textAlign: 'center' }}>
+                        <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveKitchenReportViewOrder(o)}>
+                          <EyeIcon size={14} color="var(--primary)" />
+                        </button>
+                      </td>
+                      <td style={{ textAlign: 'center' }}>
+                        <button className="btn btn-outline" style={{ padding: '6px 10px', borderRadius: '6px' }} onClick={() => setActiveKitchenReportItemOrder(o)}>
+                          <CreditCardIcon size={14} color="var(--primary)" />
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+                {filteredOrders.length === 0 && (
+                  <tr>
+                    <td colSpan="8" style={{ textAlign: 'center', padding: '30px', color: '#94a3b8' }}>No matching kitchen report data found.</td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* Timeline Times Modal Popup */}
+        {activeKitchenReportViewOrder && (
+          <div className="order-view-modal-overlay" onClick={() => setActiveKitchenReportViewOrder(null)}>
+            <div className="order-view-modal-container" onClick={e => e.stopPropagation()} style={{ maxWidth: '450px' }}>
+              <button className="order-view-modal-close-btn" onClick={() => setActiveKitchenReportViewOrder(null)}>✕</button>
+              <div className="order-view-modal-header">
+                <div className="order-view-modal-title-row">
+                  <h2 className="order-view-modal-title">Kitchen Service Timeline</h2>
+                  <span className="order-view-modal-id-badge">#KOT-{activeKitchenReportViewOrder.id}</span>
+                </div>
+              </div>
+              <div className="order-view-modal-body" style={{ padding: '24px' }}>
+                {(() => {
+                  const times = getKitchenTimelineTimes(activeKitchenReportViewOrder);
+                  const timelineItems = [
+                    { label: 'Kitchen Assigned Time', val: times.assigned },
+                    { label: 'Preparation Start Time', val: times.start },
+                    { label: 'Preparation End Time', val: times.end },
+                    { label: 'Food Ready Time', val: times.ready },
+                    { label: 'Waiter Pickup Time', val: times.pickup },
+                  ];
+                  return (
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', position: 'relative', paddingLeft: '24px' }}>
+                        <div style={{ position: 'absolute', left: '9px', top: '8px', bottom: '8px', width: '2px', background: 'var(--border)' }}></div>
+                        {timelineItems.map((item, idx) => (
+                          <div key={idx} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
+                            <div style={{ position: 'absolute', left: '-20px', width: '10px', height: '10px', borderRadius: '50%', background: 'var(--primary)', border: '2px solid #fff' }}></div>
+                            <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-main)' }}>{item.label}</span>
+                            <span style={{ fontSize: '13px', fontWeight: 700, color: '#64748b', fontFamily: 'monospace' }}>{item.val}</span>
+                          </div>
+                        ))}
+                      </div>
+                      <div style={{ borderTop: '1px solid var(--border)', paddingTop: '16px', marginTop: '8px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-main)' }}>Preparation Duration</span>
+                          <span style={{ fontSize: '14px', fontWeight: 800, color: 'var(--primary)', fontFamily: 'monospace' }}>{times.prepDuration}</span>
+                        </div>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-main)' }}>Pickup Delay Duration</span>
+                          <span style={{ fontSize: '14px', fontWeight: 800, color: 'var(--primary)', fontFamily: 'monospace' }}>{times.pickupDelay}</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Item Details Modal Popup */}
+        {activeKitchenReportItemOrder && (
+          <div className="order-view-modal-overlay" onClick={() => setActiveKitchenReportItemOrder(null)}>
+            <div className="order-view-modal-container" onClick={e => e.stopPropagation()} style={{ maxWidth: '400px' }}>
+              <button className="order-view-modal-close-btn" onClick={() => setActiveKitchenReportItemOrder(null)}>✕</button>
+              <div className="order-view-modal-header">
+                <div className="order-view-modal-title-row">
+                  <h2 className="order-view-modal-title">Item Details</h2>
+                  <span className="order-view-modal-id-badge">#ORD-{activeKitchenReportItemOrder.id}</span>
+                </div>
+              </div>
+              <div className="order-view-modal-body" style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                {activeKitchenReportItemOrder.items.map((item, idx) => {
+                  const menuItem = activeRestaurant?.menu?.find(m => m.name === item.name);
+                  const category = menuItem ? menuItem.category : 'Main Course';
+                  const priority = activeKitchenReportItemOrder.priority || (activeKitchenReportItemOrder.notes ? 'Urgent' : 'Normal');
+                  return (
+                    <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '12px', borderBottom: idx < activeKitchenReportItemOrder.items.length - 1 ? '1px dashed var(--border)' : 'none', paddingBottom: idx < activeKitchenReportItemOrder.items.length - 1 ? '20px' : '0' }}>
+                      <div className="admin-form-group">
+                        <label className="admin-form-label" style={{ fontSize: '13px', fontWeight: 800 }}>Dish Name</label>
+                        <div className="admin-input" style={{ backgroundColor: 'var(--bg-tertiary)', fontWeight: 800, fontSize: '15px', color: 'var(--text-main)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <span>{item.name}</span>
+                          <span style={{ fontSize: '10px', fontWeight: 700, padding: '2px 8px', borderRadius: '12px', background: 'rgba(255,122,0,0.1)', color: 'var(--primary)' }}>
+                            {category}
+                          </span>
+                        </div>
+                      </div>
+                      
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                        <div className="admin-form-group">
+                          <label className="admin-form-label" style={{ fontSize: '13px', fontWeight: 800 }}>Quantity</label>
+                          <div className="admin-input" style={{ fontWeight: 800, fontSize: '16px', color: '#16a34a', display: 'flex', alignItems: 'center' }}>
+                            {item.qty}
+                          </div>
+                        </div>
+                        <div className="admin-form-group">
+                          <label className="admin-form-label" style={{ fontSize: '13px', fontWeight: 800 }}>Priority Level</label>
+                          <div className="admin-input" style={{ display: 'flex', alignItems: 'center' }}>
+                            <span className={priority === 'Urgent' ? 'status-pill-disabled' : 'status-pill-active'} style={{
+                              borderColor: priority === 'Urgent' ? '#ef4444' : '#10b981',
+                              color: priority === 'Urgent' ? '#ef4444' : '#10b981',
+                              background: priority === 'Urgent' ? '#fef2f2' : '#ecfdf5',
+                              fontWeight: 800,
+                              fontSize: '11px',
+                              padding: '2px 8px',
+                              borderRadius: '12px',
+                              margin: 0
+                            }}>
+                              {priority}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      {activeKitchenReportItemOrder.notes && (
+                        <div className="admin-form-group">
+                          <label className="admin-form-label" style={{ fontSize: '13px', fontWeight: 800 }}>Special Instructions</label>
+                          <div className="admin-input" style={{ backgroundColor: '#fff', borderLeft: '3px solid var(--primary)', fontSize: '13px', color: 'var(--text-main)', fontStyle: 'italic' }}>
+                            {activeKitchenReportItemOrder.notes}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
+    );
+  };
+
+  const renderReports = () => {
+    const totalRevenue = orders.filter(o => o.billingStatus === 'paid').reduce((s, o) => s + o.total, 0);
+    const totalOrders = orders.length;
+    const paidOrders = orders.filter(o => o.billingStatus === 'paid').length;
+    const avgOrderValue = paidOrders > 0 ? Math.round(totalRevenue / paidOrders) : 0;
+    const popularItem = (() => {
+      const counts = {};
+      orders.forEach(o => o.items.forEach(i => { counts[i.name] = (counts[i.name] || 0) + i.qty; }));
+      const sorted = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+      return sorted[0] ? `${sorted[0][0]} (${sorted[0][1]} orders)` : 'N/A';
+    })();
+
+    // Item Report data
+    const itemStats = {};
+    orders.forEach(o => {
+      o.items.forEach(item => {
+        if (!itemStats[item.name]) itemStats[item.name] = { qty: 0, revenue: 0 };
+        itemStats[item.name].qty += item.qty;
+        itemStats[item.name].revenue += item.price * item.qty;
+      });
+    });
+    const itemReportData = Object.entries(itemStats)
+      .map(([name, data]) => ({ name, qty: data.qty, revenue: data.revenue }))
+      .sort((a, b) => b.revenue - a.revenue);
+
+    // Table Report data
+    const tableStats = {};
+    orders.forEach(o => {
+      const tKey = `Table ${o.table}`;
+      if (!tableStats[tKey]) tableStats[tKey] = { orders: 0, revenue: 0 };
+      tableStats[tKey].orders += 1;
+      tableStats[tKey].revenue += o.total || 0;
+    });
+    const tableReportData = Object.entries(tableStats)
+      .map(([name, data]) => ({ name, orders: data.orders, revenue: data.revenue }))
+      .sort((a, b) => b.revenue - a.revenue);
+
+    // Sales Report data (mock daily breakdown)
+    const salesReportData = [
+      { date: 'Today', orders: totalOrders, revenue: totalRevenue, avg: avgOrderValue },
+      { date: 'Yesterday', orders: Math.max(0, totalOrders - 3), revenue: Math.max(0, totalRevenue - 800), avg: avgOrderValue + 15 },
+      { date: '2 days ago', orders: Math.max(0, totalOrders - 1), revenue: Math.max(0, totalRevenue - 350), avg: avgOrderValue - 10 },
+    ];
+
+    // Customer Report data (derived from orders per table since no customer model)
+    const customerStats = {};
+    orders.forEach(o => {
+      const custName = `Guest - Table ${o.table}`;
+      if (!customerStats[custName]) customerStats[custName] = { visits: 0, spending: 0 };
+      customerStats[custName].visits += 1;
+      customerStats[custName].spending += o.total || 0;
+    });
+    const customerReportData = Object.entries(customerStats)
+      .map(([name, data]) => ({ name, visits: data.visits, spending: data.spending }))
+      .sort((a, b) => b.spending - a.spending);
+
+    const thStyle = { textAlign: 'left' };
+    const tdStyle = { padding: '12px 16px', fontSize: '13px', color: 'var(--text-main)', textAlign: 'left', borderBottom: '1px solid var(--border)' };
+
+    return (
+      <section className="panel-view active">
+        <div className="panel-header-flex" style={{ marginBottom: '24px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className="panel-title-desc">
+            <h2 className="panel-inner-title">Reports</h2>
+            <p style={{ fontSize: '13px', color: '#64748b', marginTop: '4px' }}>Provide operational and sales insights.</p>
+          </div>
+          <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+            <input type="date" style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '13px', color: 'var(--text-main)', background: '#fff' }} />
+            <span style={{ fontSize: '13px', color: '#94a3b8' }}>to</span>
+            <input type="date" style={{ padding: '8px 12px', borderRadius: '8px', border: '1px solid var(--border)', fontSize: '13px', color: 'var(--text-main)', background: '#fff' }} />
+            <button className="btn btn-outline" style={{ padding: '8px 16px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('Excel report exported!')}>📊 Export Excel</button>
+            <button className="btn btn-outline" style={{ padding: '8px 16px', borderRadius: '8px', fontSize: '13px', fontWeight: 700 }} onClick={() => addToast('PDF report exported!')}>📄 Export PDF</button>
+          </div>
+        </div>
+
+        {/* Unified Tab Navigation */}
+        <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', borderBottom: '1px solid #e2e8f0', paddingBottom: '16px' }}>
+          {[
+            { id: 'sales', icon: '📈', label: 'Sales Report' },
+            { id: 'items', icon: '🍽️', label: 'Item Report' },
+            { id: 'tables', icon: '🪑', label: 'Table Report' },
+            { id: 'customers', icon: '👥', label: 'Customer Report' }
+          ].map(tab => (
+            <button
+              key={tab.id}
+              onClick={() => setReportTab(tab.id)}
+              style={{
+                padding: '10px 20px',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: 600,
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                background: reportTab === tab.id ? '#000' : 'transparent',
+                color: reportTab === tab.id ? '#fff' : '#64748b',
+                border: `1px solid ${reportTab === tab.id ? '#000' : 'transparent'}`,
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+            >
+              <span>{tab.icon}</span>
+              {tab.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Unified Clean Table Container */}
+        <div style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.05)' }}>
+          <table className="menu-items-table" style={{ width: '100%', borderCollapse: 'collapse' }}>
+            {reportTab === 'sales' && (
+              <>
+                <thead>
+                  <tr>
+                    <th style={thStyle}>Date</th>
+                    <th style={thStyle}>Total Orders</th>
+                    <th style={thStyle}>Revenue</th>
+                    <th style={thStyle}>Avg Order Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {salesReportData.map((row, i) => (
+                    <tr key={i} style={{ transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                      <td style={{ ...tdStyle, fontWeight: 500 }}>{row.date}</td>
+                      <td style={tdStyle}>{row.orders}</td>
+                      <td style={{ ...tdStyle, fontWeight: 700, color: '#16a34a' }}>₹{row.revenue.toLocaleString('en-IN')}</td>
+                      <td style={tdStyle}>₹{row.avg}</td>
+                    </tr>
+                  ))}
+                  {salesReportData.length === 0 && (
+                    <tr><td colSpan="4" style={{ textAlign: 'center', padding: '32px', color: '#94a3b8' }}>No sales data available.</td></tr>
+                  )}
+                </tbody>
+              </>
+            )}
+
+            {reportTab === 'items' && (
+              <>
+                <thead>
+                  <tr>
+                    <th style={thStyle}>Item Name</th>
+                    <th style={thStyle}>Quantity Sold</th>
+                    <th style={thStyle}>Revenue</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {itemReportData.map((row, i) => (
+                    <tr key={i} style={{ transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                      <td style={{ ...tdStyle, fontWeight: 500 }}>{row.name}</td>
+                      <td style={tdStyle}>{row.qty}</td>
+                      <td style={{ ...tdStyle, fontWeight: 700, color: '#16a34a' }}>₹{row.revenue.toLocaleString('en-IN')}</td>
+                    </tr>
+                  ))}
+                  {itemReportData.length === 0 && (
+                    <tr><td colSpan="3" style={{ textAlign: 'center', padding: '32px', color: '#94a3b8' }}>No item data available.</td></tr>
+                  )}
+                </tbody>
+              </>
+            )}
+
+            {reportTab === 'tables' && (
+              <>
+                <thead>
+                  <tr>
+                    <th style={thStyle}>Table Number</th>
+                    <th style={thStyle}>Orders Count</th>
+                    <th style={thStyle}>Revenue Generated</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {tableReportData.map((row, i) => (
+                    <tr key={i} style={{ transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                      <td style={{ ...tdStyle, fontWeight: 500 }}>{row.name}</td>
+                      <td style={tdStyle}>{row.orders}</td>
+                      <td style={{ ...tdStyle, fontWeight: 700, color: '#16a34a' }}>₹{row.revenue.toLocaleString('en-IN')}</td>
+                    </tr>
+                  ))}
+                  {tableReportData.length === 0 && (
+                    <tr><td colSpan="3" style={{ textAlign: 'center', padding: '32px', color: '#94a3b8' }}>No table data available.</td></tr>
+                  )}
+                </tbody>
+              </>
+            )}
+
+            {reportTab === 'customers' && (
+              <>
+                <thead>
+                  <tr>
+                    <th style={thStyle}>Customer Name</th>
+                    <th style={thStyle}>Visits</th>
+                    <th style={thStyle}>Spending</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {customerReportData.map((row, i) => (
+                    <tr key={i} style={{ transition: 'background 0.2s' }} onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'} onMouseLeave={e => e.currentTarget.style.background = 'transparent'}>
+                      <td style={{ ...tdStyle, fontWeight: 500 }}>{row.name}</td>
+                      <td style={tdStyle}>{row.visits}</td>
+                      <td style={{ ...tdStyle, fontWeight: 700, color: '#16a34a' }}>₹{row.spending.toLocaleString('en-IN')}</td>
+                    </tr>
+                  ))}
+                  {customerReportData.length === 0 && (
+                    <tr><td colSpan="3" style={{ textAlign: 'center', padding: '32px', color: '#94a3b8' }}>No customer data available.</td></tr>
+                  )}
+                </tbody>
+              </>
+            )}
+          </table>
+        </div>
+      </section>
+    );
+  };
+
+
   return (
     <div id="dashboard-view" className="dashboard-wrapper">
       {/* SIDEBAR */}
@@ -3238,15 +4900,31 @@ export default function Admin() {
 
         <ul className="sidebar-menu">
           {isTabAllowed('overview') && (
-            <li className={`sidebar-item ${activeTab === 'overview' ? 'active' : ''}`} onClick={() => { setActiveTab('overview'); setActivePage(null); }}>
+            <li className={`sidebar-item ${activeTab === 'overview' ? 'active' : ''}`} onClick={() => { setActiveTab('overview'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
               <a href="#">
                 <DashboardIcon size={18} />
                 <span>Dashboard</span>
               </a>
             </li>
           )}
+          {isTabAllowed('saas') && (
+            <li className={`sidebar-item ${activeTab === 'saas' ? 'active' : ''}`} onClick={() => { setActiveTab('saas'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
+              <a href="#">
+                <TablesIcon size={18} />
+                <span>Table Management</span>
+              </a>
+            </li>
+          )}
+          {isTabAllowed('qr') && (
+            <li className={`sidebar-item ${activeTab === 'qr' ? 'active' : ''}`} onClick={() => { setActiveTab('qr'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
+              <a href="#">
+                <QrIcon size={18} />
+                <span>QR Code Management</span>
+              </a>
+            </li>
+          )}
           {isTabAllowed('menu') && (
-            <li className={`sidebar-item ${activeTab === 'menu' ? 'active' : ''}`} onClick={() => { setActiveTab('menu'); setActivePage(null); }}>
+            <li className={`sidebar-item ${activeTab === 'menu' ? 'active' : ''}`} onClick={() => { setActiveTab('menu'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
               <a href="#">
                 <MenuIcon size={18} />
                 <span>Menu Management</span>
@@ -3254,41 +4932,63 @@ export default function Admin() {
             </li>
           )}
           {isTabAllowed('orders') && (
-            <li className={`sidebar-item ${activeTab === 'orders' ? 'active' : ''}`} onClick={() => { setActiveTab('orders'); setActivePage(null); }}>
+            <li className={`sidebar-item ${activeTab === 'orders' ? 'active' : ''}`} onClick={() => { setActiveTab('orders'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
               <a href="#">
                 <OrdersIcon size={18} />
-                <span>Incoming Orders</span>
+                <span>Order Management</span>
                 {pendingOrdersCount > 0 && <span className="pulse-indicator" style={{ marginLeft: 'auto' }}></span>}
               </a>
             </li>
           )}
-          {isTabAllowed('billing') && (
-            <li className={`sidebar-item ${activeTab === 'billing' ? 'active' : ''}`} onClick={() => { setActiveTab('billing'); setActivePage(null); }}>
-              <a href="#">
-                <BillingIcon size={18} />
-                <span>Billing</span>
+          {isTabAllowed('waiters') && (
+            <li className={`sidebar-item has-dropdown ${['waiters', 'waiter-report'].includes(activeTab) ? 'active' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsWaitersMenuOpen(!isWaitersMenuOpen); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
+                <WaiterIcon size={18} />
+                <span>Waiter Management</span>
+                <span style={{ marginLeft: 'auto', transition: 'transform 0.2s', transform: isWaitersMenuOpen ? 'rotate(180deg)' : 'rotate(0)' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
               </a>
+              <ul className={`sidebar-dropdown-menu ${isWaitersMenuOpen ? 'open' : ''}`}>
+                <li>
+                  <a href="#" className={`sidebar-sub-item ${activeTab === 'waiters' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('waiters'); setActivePage(null); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
+                    Waiter List
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className={`sidebar-sub-item ${activeTab === 'waiter-report' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('waiter-report'); setActivePage(null); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
+                    Waiter Report
+                  </a>
+                </li>
+              </ul>
             </li>
           )}
-          {isTabAllowed('saas') && (
-            <li className={`sidebar-item ${activeTab === 'saas' ? 'active' : ''}`} onClick={() => { setActiveTab('saas'); setActivePage(null); }}>
-              <a href="#">
-                <TablesIcon size={18} />
-                <span>Tables</span>
+          {isTabAllowed('kitchen') && (
+            <li className={`sidebar-item has-dropdown ${['kitchen', 'kitchen-report'].includes(activeTab) ? 'active' : ''}`}>
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsKitchenMenuOpen(!isKitchenMenuOpen); setIsWaitersMenuOpen(false); setIsUsersMenuOpen(false); }}>
+                <KitchenIcon size={18} />
+                <span>Kitchen Management</span>
+                <span style={{ marginLeft: 'auto', transition: 'transform 0.2s', transform: isKitchenMenuOpen ? 'rotate(180deg)' : 'rotate(0)' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
               </a>
-            </li>
-          )}
-          {isTabAllowed('staff') && (
-            <li className={`sidebar-item ${activeTab === 'staff' ? 'active' : ''}`} onClick={() => { setActiveTab('staff'); setActivePage(null); }}>
-              <a href="#">
-                <StaffIcon size={18} />
-                <span>Staff</span>
-              </a>
+              <ul className={`sidebar-dropdown-menu ${isKitchenMenuOpen ? 'open' : ''}`}>
+                <li>
+                  <a href="#" className={`sidebar-sub-item ${activeTab === 'kitchen' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('kitchen'); setActivePage(null); setIsWaitersMenuOpen(false); setIsUsersMenuOpen(false); }}>
+                    Kitchen List
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className={`sidebar-sub-item ${activeTab === 'kitchen-report' ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('kitchen-report'); setActivePage(null); setIsWaitersMenuOpen(false); setIsUsersMenuOpen(false); }}>
+                    Kitchen Report
+                  </a>
+                </li>
+              </ul>
             </li>
           )}
           {isTabAllowed('users') && (
             <li className={`sidebar-item has-dropdown ${['roles', 'roles-add', 'users-list', 'users-add'].includes(activeTab) ? 'active' : ''}`}>
-              <a href="#" onClick={(e) => { e.preventDefault(); setIsUsersMenuOpen(!isUsersMenuOpen); }}>
+              <a href="#" onClick={(e) => { e.preventDefault(); setIsUsersMenuOpen(!isUsersMenuOpen); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); }}>
                 <UsersIcon size={18} />
                 <span>Users</span>
                 <span style={{ marginLeft: 'auto', transition: 'transform 0.2s', transform: isUsersMenuOpen ? 'rotate(180deg)' : 'rotate(0)' }}>
@@ -3297,20 +4997,36 @@ export default function Admin() {
               </a>
               <ul className={`sidebar-dropdown-menu ${isUsersMenuOpen ? 'open' : ''}`}>
                 <li>
-                  <a href="#" className={`sidebar-sub-item ${['roles', 'roles-add'].includes(activeTab) ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('roles'); setActivePage(null); }}>
+                  <a href="#" className={`sidebar-sub-item ${['roles', 'roles-add'].includes(activeTab) ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('roles'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); }}>
                     Roles & Permissions
                   </a>
                 </li>
                 <li>
-                  <a href="#" className={`sidebar-sub-item ${['users-list', 'users-add'].includes(activeTab) ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('users-list'); setActivePage(null); }}>
+                  <a href="#" className={`sidebar-sub-item ${['users-list', 'users-add'].includes(activeTab) ? 'active' : ''}`} onClick={(e) => { e.preventDefault(); setActiveTab('users-list'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); }}>
                     User Lists
                   </a>
                 </li>
               </ul>
             </li>
           )}
+          {isTabAllowed('billing') && (
+            <li className={`sidebar-item ${activeTab === 'billing' ? 'active' : ''}`} onClick={() => { setActiveTab('billing'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
+              <a href="#">
+                <BillingIcon size={18} />
+                <span>Billing</span>
+              </a>
+            </li>
+          )}
+          {isTabAllowed('reports') && (
+            <li className={`sidebar-item ${activeTab === 'reports' ? 'active' : ''}`} onClick={() => { setActiveTab('reports'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
+              <a href="#">
+                <ReportsIcon size={18} />
+                <span>Reports</span>
+              </a>
+            </li>
+          )}
           {isTabAllowed('settings') && (
-            <li className={`sidebar-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => { setActiveTab('settings'); setActivePage(null); }}>
+            <li className={`sidebar-item ${activeTab === 'settings' ? 'active' : ''}`} onClick={() => { setActiveTab('settings'); setActivePage(null); setIsWaitersMenuOpen(false); setIsKitchenMenuOpen(false); setIsUsersMenuOpen(false); }}>
               <a href="#">
                 <SettingsIcon size={18} />
                 <span>Settings</span>
@@ -3319,7 +5035,8 @@ export default function Admin() {
           )}
         </ul>
 
-       
+
+
       </aside>
 
       {/* MAIN CONTENT */}
@@ -3342,10 +5059,12 @@ export default function Admin() {
           <header className="main-header" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '16px 32px' }}>
             <div className="header-title-container" style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               <h1 className="header-title" style={{ textTransform: 'capitalize', fontSize: '22px', fontWeight: 800 }}>
-                {activeTab === 'orders' ? 'Incoming Orders' : 
-                 activeTab.includes('users') ? 'Users' : 
-                 activeTab.includes('roles') ? 'Roles & Permissions' : 
-                 activeTab}
+                {activeTab === 'orders' ? 'Incoming Orders' :
+                  activeTab === 'waiter-report' ? 'Waiter Report' :
+                    activeTab === 'kitchen-report' ? 'Kitchen Report' :
+                      activeTab.includes('users') ? 'Users' :
+                        activeTab.includes('roles') ? 'Roles & Permissions' :
+                          activeTab}
               </h1>
               {activeTab !== 'orders' && <span className="header-subtitle-date">{dateTimeStr}</span>}
             </div>
@@ -3356,7 +5075,7 @@ export default function Admin() {
               <button className="btn btn-user-profile" onClick={() => { setActiveTab('settings'); setActivePage(null); }}>
                 👤 {currentUser?.role || 'Admin'}
               </button>
-           
+
             </div>
           </header>
         )}
@@ -3370,7 +5089,13 @@ export default function Admin() {
               {activeTab === 'menu' && renderMenu()}
               {activeTab === 'billing' && renderBilling()}
               {activeTab === 'saas' && renderTables()}
-              {activeTab === 'staff' && renderStaff()}
+              {activeTab === 'qr' && renderQrManagement()}
+              {activeTab === 'customers' && renderCustomerManagement()}
+              {activeTab === 'waiters' && renderWaiterManagement()}
+              {activeTab === 'waiter-report' && renderWaiterReport()}
+              {activeTab === 'kitchen' && renderKitchenManagement()}
+              {activeTab === 'kitchen-report' && renderKitchenReport()}
+              {activeTab === 'reports' && renderReports()}
               {activeTab === 'roles' && renderRoles()}
               {activeTab === 'roles-add' && renderAddRole()}
               {activeTab === 'users-list' && renderUsersList()}
@@ -3429,14 +5154,35 @@ export default function Admin() {
                 </div>
 
                 {/* Status Badge Block */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13px' }}>
-                  <span style={{ fontWeight: 600, color: 'var(--text-muted)' }}>Status:</span>
-                  <Badge status={activeViewOrder.status} />
-                  {activeViewOrder.billingStatus && (
-                    <span className={`order-card-status-badge-premium billing-${activeViewOrder.billingStatus === 'paid' ? 'paid' : 'unpaid'}`} style={{ fontSize: '9px', marginLeft: 'auto' }}>
-                      💰 {activeViewOrder.billingStatus.toUpperCase()}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '13px', flexWrap: 'wrap' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontWeight: 600, color: 'var(--text-muted)' }}>Order Status:</span>
+                    <span style={{
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      padding: '4px 10px',
+                      borderRadius: '12px',
+                      textTransform: 'uppercase',
+                      background: activeViewOrder.status === 'done' ? '#dcfce7' : activeViewOrder.status === 'ready' ? '#dbeafe' : activeViewOrder.status === 'preparing' ? '#fef3c7' : '#f1f5f9',
+                      color: activeViewOrder.status === 'done' ? '#15803d' : activeViewOrder.status === 'ready' ? '#1d4ed8' : activeViewOrder.status === 'preparing' ? '#92400e' : '#475569'
+                    }}>
+                      {activeViewOrder.status === 'done' ? 'Completed' : activeViewOrder.status === 'new' ? 'New' : activeViewOrder.status}
                     </span>
-                  )}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <span style={{ fontWeight: 600, color: 'var(--text-muted)' }}>Payment:</span>
+                    <span style={{
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      padding: '4px 10px',
+                      borderRadius: '12px',
+                      textTransform: 'uppercase',
+                      background: activeViewOrder.billingStatus === 'paid' ? '#dcfce7' : '#fef3c7',
+                      color: activeViewOrder.billingStatus === 'paid' ? '#15803d' : '#92400e'
+                    }}>
+                      💰 {activeViewOrder.billingStatus === 'paid' ? 'Paid' : 'Pending'}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Notes Block */}
@@ -3449,7 +5195,7 @@ export default function Admin() {
                 {/* Items Table */}
                 <div className="order-view-items-section">
                   <span className="order-view-items-title">Dishes Summary</span>
-                  <table className="order-view-items-table">
+                  <table className="menu-items-table">
                     <thead>
                       <tr>
                         <th>Item Name</th>
@@ -3512,6 +5258,151 @@ export default function Admin() {
                   Close
                 </button>
               </div>
+            </div>
+          </div>
+        )}
+        {/* Generate QR Modal Popup */}
+        {isGenerateQrOpen && (
+          <div
+            style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px' }}
+            onClick={(e) => { if (e.target === e.currentTarget) setIsGenerateQrOpen(false); }}
+          >
+            <div style={{ background: '#fff', borderRadius: '16px', width: '100%', maxWidth: '500px', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 25px 50px rgba(0,0,0,0.25)' }}>
+              {/* Modal Header */}
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '20px 24px', borderBottom: '1px solid var(--border)' }}>
+                <div>
+                  <h3 style={{ margin: 0, fontSize: '18px', fontWeight: '800', color: 'var(--black)', fontFamily: 'Outfit, sans-serif' }}>Generate QR Code</h3>
+                  <p style={{ margin: '4px 0 0', fontSize: '13px', color: '#64748b' }}>Create a new dining table and generate its QR code.</p>
+                </div>
+                <button
+                  onClick={() => setIsGenerateQrOpen(false)}
+                  style={{ background: '#f1f5f9', border: 'none', borderRadius: '8px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '18px', color: '#64748b' }}
+                >✕</button>
+              </div>
+
+              {/* Modal Body */}
+              <form onSubmit={(e) => {
+                e.preventDefault();
+                if (!genQrForm.id) return;
+                const cleanId = genQrForm.id.trim();
+                const success = addDiningTable(activeRestaurant.id, {
+                  id: cleanId,
+                  status: 'Free',
+                  seats: parseInt(genQrForm.seats) || 4,
+                  name: genQrForm.name || '',
+                  area: genQrForm.area || 'Main Dining',
+                  waiter: genQrForm.waiter || ''
+                });
+                if (success) {
+                  addToast(`Created Table ${cleanId} and generated QR Code successfully!`);
+                  setIsGenerateQrOpen(false);
+                } else {
+                  addToast('Table ID already exists!');
+                }
+              }} style={{ padding: '24px', display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                <div className="form-group">
+                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Table Number / ID</label>
+                  <input
+                    type="text"
+                    className="admin-input"
+                    value={genQrForm.id}
+                    onChange={(e) => setGenQrForm({ ...genQrForm, id: e.target.value })}
+                    placeholder="e.g. T-06"
+                    required
+                  />
+                  <p style={{ fontSize: '11px', color: '#64748b', marginTop: '4px' }}>Format: T-XX (e.g. T-06, T-07)</p>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Table Name (Optional)</label>
+                  <input
+                    type="text"
+                    className="admin-input"
+                    value={genQrForm.name}
+                    onChange={(e) => setGenQrForm({ ...genQrForm, name: e.target.value })}
+                    placeholder="e.g. Window Seat 1"
+                  />
+                </div>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
+                  <div className="form-group">
+                    <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Seating Capacity</label>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      <button
+                        type="button"
+                        onClick={() => setGenQrForm({ ...genQrForm, seats: Math.max(1, genQrForm.seats - 1) })}
+                        style={{ border: '1px solid var(--border)', background: '#f8fafc', padding: '8px 14px', borderRadius: '8px 0 0 8px', cursor: 'pointer', fontWeight: 'bold' }}
+                      >-</button>
+                      <input
+                        type="number"
+                        className="admin-input"
+                        min="1"
+                        max="20"
+                        value={genQrForm.seats}
+                        onChange={(e) => setGenQrForm({ ...genQrForm, seats: parseInt(e.target.value) || 4 })}
+                        style={{ textAlign: 'center', borderRadius: 0, borderLeft: 'none', borderRight: 'none', margin: 0 }}
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setGenQrForm({ ...genQrForm, seats: Math.min(20, genQrForm.seats + 1) })}
+                        style={{ border: '1px solid var(--border)', background: '#f8fafc', padding: '8px 14px', borderRadius: '0 8px 8px 0', cursor: 'pointer', fontWeight: 'bold' }}
+                      >+</button>
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Area / Section</label>
+                    <select
+                      className="admin-input"
+                      value={genQrForm.area}
+                      onChange={(e) => setGenQrForm({ ...genQrForm, area: e.target.value })}
+                      style={{ cursor: 'pointer' }}
+                    >
+                      <option value="Main Dining">Main Dining</option>
+                      <option value="Patio">Patio</option>
+                      <option value="Bar">Bar</option>
+                      <option value="Private Room">Private Room</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" style={{ fontWeight: '600', marginBottom: '6px', display: 'block' }}>Assigned Waiter (Optional)</label>
+                  <select
+                    className="admin-input"
+                    value={genQrForm.waiter}
+                    onChange={(e) => setGenQrForm({ ...genQrForm, waiter: e.target.value })}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <option value="">Select Waiter...</option>
+                    <option value="Arjun K.">Arjun K.</option>
+                    <option value="Priya M.">Priya M.</option>
+                    <option value="Rahul S.">Rahul S.</option>
+                    <option value="Anita D.">Anita D.</option>
+                    <option value="Vikram S.">Vikram S.</option>
+                  </select>
+                </div>
+
+                {/* Modal Footer */}
+                <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '12px', marginTop: '12px', paddingTop: '16px', borderTop: '1px solid var(--border)' }}>
+                  <button
+                    type="button"
+                    className="btn btn-outline"
+                    onClick={() => setIsGenerateQrOpen(false)}
+                    style={{ padding: '10px 24px', fontSize: '13px', borderRadius: '8px' }}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn"
+                    style={{ background: 'var(--orange-gradient)', color: '#fff', border: 'none', fontWeight: '700', padding: '10px 24px', borderRadius: '8px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px', cursor: 'pointer' }}
+                  >
+                    Generate QR Code
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         )}

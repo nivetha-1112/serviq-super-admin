@@ -172,7 +172,8 @@ export default function Orders() {
                       style={{ color: 'var(--primary)', fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
                       onClick={() => setAssignWaiterModal({ isOpen: true, orderId: ord.id, selectedWaiter: ord.waiter || '' })}
                     >
-                      👤 {ord.waiter ? `Waiter: ${ord.waiter}` : 'Assign Waiter'}
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                      {ord.waiter ? `Waiter: ${ord.waiter}` : 'Assign Waiter'}
                     </span>
                   </div>
                 </div>
@@ -442,7 +443,7 @@ export default function Orders() {
                 {/* Items Table */}
                 <div className="order-view-items-section">
                   <span className="order-view-items-title">Dishes Summary</span>
-                  <table className="order-view-items-table">
+                  <table className="menu-items-table">
                     <thead>
                       <tr>
                         <th>Item Name</th>

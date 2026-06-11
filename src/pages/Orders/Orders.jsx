@@ -153,55 +153,190 @@ export default function Orders() {
           </div>
         </div>
 
-        {/* V3 Minimalist Order Grid */}
-        <div className="minimal-orders-grid">
-          {filteredOrders.map(ord => {
-            const minutesElapsed = parseInt((ord.timeAgo || '').replace(/[^0-9]/g, '')) || 0;
-            const itemSummary = ord.items.map(i => `${i.qty}x ${i.name}`).join(', ');
+        {/* Orders Table */}
+        <div style={{ overflowX: 'auto', borderRadius: '12px', border: '1px solid #e2e8f0', background: '#fff', boxShadow: '0 2px 12px rgba(0,0,0,0.05)' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', tableLayout: 'fixed', minWidth: '900px' }}>
+            <colgroup>
+              <col style={{ width: '100px' }} />
+              <col style={{ width: '80px' }} />
+              <col style={{ width: '220px' }} />
+              <col style={{ width: '110px' }} />
+              <col style={{ width: '100px' }} />
+              <col style={{ width: '80px' }} />
+              <col style={{ width: '110px' }} />
+              <col style={{ width: '110px' }} />
+              <col style={{ width: '120px' }} />
+            </colgroup>
+            <thead>
+              <tr style={{ background: '#111111' }}>
+                {['ORDER ID','TABLE','ITEMS & NOTES','TIME','WAITER','TOTAL','STATUS','PAYMENT','ACTIONS'].map(h => (
+                  <th key={h} style={{
+                    padding: '12px 14px',
+                    fontSize: '11px',
+                    fontWeight: 700,
+                    color: '#ff7a00',
+                    letterSpacing: '0.06em',
+                    textAlign: h === 'ACTIONS' ? 'center' : 'left',
+                    whiteSpace: 'nowrap',
+                    borderBottom: '2px solid #ff7a00',
+                    fontFamily: 'Outfit, sans-serif'
+                  }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {filteredOrders.map((ord, idx) => {
+                const isEven = idx % 2 === 0;
+                const statusColors = {
+                  new: { bg: 'rgba(255,122,0,0.08)', dot: '#ff7a00', text: 'NEW' },
+                  preparing: { bg: 'rgba(234,179,8,0.1)', dot: '#ca8a04', text: 'PREPARING' },
+                  ready: { bg: 'rgba(22,163,74,0.08)', dot: '#16a34a', text: 'READY' },
+                  done: { bg: 'rgba(100,116,139,0.08)', dot: '#64748b', text: 'COMPLETED' },
+                };
+                const sc = statusColors[ord.status] || statusColors.new;
 
-            return (
-              <div key={ord.id} className="minimal-order-card">
-                <div className={`minimal-icon-box ${ord.status}`}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
-                </div>
-                <div>
-                  <h3 className="minimal-heading">Table {ord.table} • #{ord.id}</h3>
-                  <p className="minimal-desc">{itemSummary}{ord.notes ? ` (Note: ${ord.notes})` : ''}</p>
-                  <div style={{ marginTop: '8px', fontSize: '12px' }}>
-                    <span 
-                      style={{ color: 'var(--primary)', fontWeight: 600, cursor: 'pointer', display: 'inline-flex', alignItems: 'center', gap: '4px' }}
-                      onClick={() => setAssignWaiterModal({ isOpen: true, orderId: ord.id, selectedWaiter: ord.waiter || '' })}
-                    >
-                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                      {ord.waiter ? `Waiter: ${ord.waiter}` : 'Assign Waiter'}
-                    </span>
-                  </div>
-                </div>
-                
-                <div className="minimal-btn-row">
-                  <button className="minimal-btn minimal-btn-outline" onClick={() => { setActiveViewOrder(ord); setActivePage('order-view'); }}>View Details</button>
-                  {ord.status === 'new' && (
-                    <button className="minimal-btn minimal-btn-solid" onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Accept Order</button>
-                  )}
-                  {ord.status === 'preparing' && (
-                    <button className="minimal-btn minimal-btn-solid" onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Mark as Ready</button>
-                  )}
-                  {ord.status === 'ready' && (
-                    <button className="minimal-btn minimal-btn-solid" style={{ background: '#16a34a', borderColor: '#16a34a' }} onClick={() => handleOrderStatusUpdate(ord.id, ord.status)}>Serve Order</button>
-                  )}
-                  {ord.status === 'done' && (
-                    <button className="minimal-btn minimal-btn-solid" style={{ background: '#000', borderColor: '#000', cursor: 'default' }} disabled>Served</button>
-                  )}
-                </div>
-              </div>
-            );
-          })}
+                return (
+                  <tr
+                    key={ord.id}
+                    style={{ background: isEven ? '#ffffff' : '#fafafa', borderBottom: '1px solid #f1f5f9', transition: 'background 0.15s' }}
+                    onMouseEnter={e => e.currentTarget.style.background = '#fff7ed'}
+                    onMouseLeave={e => e.currentTarget.style.background = isEven ? '#ffffff' : '#fafafa'}
+                  >
+                    {/* ORDER ID */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle' }}>
+                      <span style={{ fontWeight: 700, fontSize: '13px', color: '#1e293b', fontFamily: 'Outfit, sans-serif' }}>
+                        #{ord.id}
+                      </span>
+                    </td>
+
+                    {/* TABLE */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle' }}>
+                      <span style={{ fontSize: '13px', fontWeight: 600, color: '#334155' }}>
+                        Table {ord.table}
+                      </span>
+                    </td>
+
+                    {/* ITEMS & NOTES */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle' }}>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                        {ord.items.map((item, i) => (
+                          <span key={i} style={{ fontSize: '13px', color: '#1e293b', display: 'flex', alignItems: 'center', gap: '5px' }}>
+                            {item.name}
+                            <span style={{ background: '#fff3e0', color: '#ff7a00', fontSize: '10px', fontWeight: 700, padding: '1px 5px', borderRadius: '4px' }}>
+                              x{item.qty}
+                            </span>
+                          </span>
+                        ))}
+                        {ord.notes && (
+                          <span style={{ fontSize: '11px', color: '#94a3b8', fontStyle: 'italic', marginTop: '2px' }}>
+                            🌿 {ord.notes}
+                          </span>
+                        )}
+                      </div>
+                    </td>
+
+                    {/* TIME */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle' }}>
+                      <span style={{ fontSize: '12px', color: '#64748b' }}>
+                        {(ord.timeAgo || '').replace(/ ago ago$/i, ' ago').replace(/ago ago/gi, 'ago')}
+                      </span>
+                    </td>
+
+                    {/* WAITER */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle' }}>
+                      <span
+                        style={{ fontSize: '12px', color: ord.waiter ? '#334155' : '#94a3b8', display: 'flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}
+                        onClick={() => setAssignWaiterModal({ isOpen: true, orderId: ord.id, selectedWaiter: ord.waiter || '' })}
+                      >
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ flexShrink: 0 }}>
+                          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+                        </svg>
+                        {ord.waiter || 'Unassigned'}
+                      </span>
+                    </td>
+
+                    {/* TOTAL */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle' }}>
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#1e293b' }}>₹{ord.total}</span>
+                    </td>
+
+                    {/* STATUS */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle' }}>
+                      <span style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '5px',
+                        background: sc.bg, padding: '4px 9px', borderRadius: '20px',
+                        fontSize: '10px', fontWeight: 700, color: sc.dot, letterSpacing: '0.04em',
+                        border: `1px solid ${sc.dot}33`, whiteSpace: 'nowrap'
+                      }}>
+                        <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: sc.dot, display: 'inline-block', flexShrink: 0 }} />
+                        {sc.text}
+                      </span>
+                    </td>
+
+                    {/* PAYMENT */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle' }}>
+                      <span style={{
+                        display: 'inline-flex', alignItems: 'center', gap: '4px',
+                        background: ord.billingStatus === 'paid' ? 'rgba(22,163,74,0.08)' : 'rgba(255,122,0,0.08)',
+                        color: ord.billingStatus === 'paid' ? '#16a34a' : '#ff7a00',
+                        border: `1px solid ${ord.billingStatus === 'paid' ? '#16a34a33' : '#ff7a0033'}`,
+                        padding: '4px 9px', borderRadius: '20px', fontSize: '10px', fontWeight: 700,
+                        letterSpacing: '0.04em', whiteSpace: 'nowrap'
+                      }}>
+                        🔥 {ord.billingStatus === 'paid' ? 'Paid' : 'Pending'}
+                      </span>
+                    </td>
+
+                    {/* ACTIONS */}
+                    <td style={{ padding: '14px 14px', verticalAlign: 'middle', textAlign: 'center' }}>
+                      <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                        {/* View icon */}
+                        <button
+                          title="View Details"
+                          onClick={() => { setActiveViewOrder(ord); setActivePage('order-view'); }}
+                          style={{ background: 'none', border: '1px solid #e2e8f0', borderRadius: '6px', width: '30px', height: '30px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', color: '#64748b', transition: 'all 0.15s', flexShrink: 0 }}
+                          onMouseEnter={e => { e.currentTarget.style.borderColor = '#ff7a00'; e.currentTarget.style.color = '#ff7a00'; }}
+                          onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.color = '#64748b'; }}
+                        >
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/>
+                          </svg>
+                        </button>
+
+                        {/* Status action button */}
+                        {ord.status === 'new' && (
+                          <button onClick={() => handleOrderStatusUpdate(ord.id, ord.status)} style={{ background: '#ff7a00', color: '#fff', border: 'none', borderRadius: '6px', width: '90px', height: '28px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: 'Outfit, sans-serif', boxSizing: 'border-box' }}>
+                            Accept
+                          </button>
+                        )}
+                        {ord.status === 'preparing' && (
+                          <button onClick={() => handleOrderStatusUpdate(ord.id, ord.status)} style={{ background: '#ff7a00', color: '#fff', border: 'none', borderRadius: '6px', width: '90px', height: '28px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: 'Outfit, sans-serif', boxSizing: 'border-box' }}>
+                            Ready
+                          </button>
+                        )}
+                        {ord.status === 'ready' && (
+                          <button onClick={() => handleOrderStatusUpdate(ord.id, ord.status)} style={{ background: '#16a34a', color: '#fff', border: 'none', borderRadius: '6px', width: '90px', height: '28px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap', fontFamily: 'Outfit, sans-serif', boxSizing: 'border-box' }}>
+                            Complete
+                          </button>
+                        )}
+                        {ord.status === 'done' && (
+                          <button disabled style={{ background: '#64748b', color: '#fff', border: 'none', borderRadius: '6px', width: '90px', height: '28px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '11px', fontWeight: 700, cursor: 'default', whiteSpace: 'nowrap', fontFamily: 'Outfit, sans-serif', boxSizing: 'border-box' }}>
+                            Completed
+                          </button>
+                        )}
+                      </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
 
           {filteredOrders.length === 0 && (
-            <div className="mockup2-empty-state">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px' }}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
+            <div style={{ textAlign: 'center', padding: '60px 24px', color: '#94a3b8' }}>
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" style={{ marginBottom: '16px', opacity: 0.4 }}><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg>
               <h3 style={{ fontSize: '15px', color: '#64748b', marginBottom: '8px' }}>Monitoring kitchen traffic...</h3>
-              <p style={{ fontSize: '13px', margin: 0, maxWidth: '200px' }}>New orders will appear here in real-time.</p>
+              <p style={{ fontSize: '13px', margin: 0 }}>New orders will appear here in real-time.</p>
             </div>
           )}
         </div>

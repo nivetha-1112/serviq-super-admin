@@ -461,7 +461,7 @@ function switchTab(tabId) {
   const titles = {
     overview: "Dashboard",
     orders: "Incoming Orders",
-    menu: "Menu Management",
+    menu: "Menus list",
     billing: "Billing Panel",
     saas: "Tables & QR Management",
     staff: "Staff Management",

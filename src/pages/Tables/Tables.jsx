@@ -47,7 +47,7 @@ export default function Tables() {
       seats: parseInt(addTableForm.seats) || 4
     });
     if (success) {
-      addToast(`Created Table ${cleanId}!`);
+      addToast('Table Created Successfully');
       setActivePage(null);
     } else {
       addToast('Table ID already exists!');
@@ -227,7 +227,7 @@ export default function Tables() {
                   onClick={() => {
                     if (window.confirm(`Are you sure you want to delete Table ${currentTable.id}?`)) {
                       deleteDiningTable(activeRestaurant.id, currentTable.id);
-                      addToast(`Deleted Table ${currentTable.id}`);
+                      addToast('Table Deleted Successfully');
                       const remaining = tables.filter(t => t.id !== currentTable.id);
                       if (remaining.length > 0) {
                         setSelectedTableId(remaining[0].id);
@@ -330,7 +330,7 @@ export default function Tables() {
                 className="btn"
                 onClick={() => {
                   updateDiningTable(activeRestaurant.id, currentTable.id, { seats: draftSeats, status: draftStatus, waiter: draftWaiter });
-                  addToast(`Saved changes for Table ${currentTable.id}!`);
+                  addToast('Table Updated Successfully');
                 }}
                 style={{
                   padding: '10px 24px',

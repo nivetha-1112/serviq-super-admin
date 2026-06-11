@@ -425,7 +425,7 @@ textarea:focus {
 
 /* Dark Sidebar (Black theme) */
 .sidebar {
-  width: 250px;
+  width: 280px;
   background-color: var(--black);
   height: 100%;
   display: flex;
@@ -502,6 +502,15 @@ textarea:focus {
   font-weight: 500;
   font-size: 14px;
   transition: var(--transition);
+  white-space: nowrap;
+}
+
+.sidebar-item a > svg {
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  min-height: 20px;
+  flex-shrink: 0;
 }
 
 /* Active Highlight */
@@ -952,8 +961,8 @@ color: #000000;
 }
 
 .panel-inner-title {
-  font-size: 20px;
-  font-weight: 700;
+  font-size: 22px;
+  font-weight: 800;
   color: var(--text-main);
 }
 
@@ -6086,7 +6095,7 @@ body.dark-theme .mockup-empty-icon {
 }
 
 .profile-settings-container {
-  max-width: 1000px;
+  max-width: 100%;
   margin: 32px auto 0;
   padding: 0 24px;
 }
@@ -6413,16 +6422,16 @@ body.dark-theme .profile-btn-save {
 
 .mockup2-outline-dropdown {
   background: #ffffff;
-  border: 1px solid var(--border);
-  padding: 8px 16px;
+  border: 1px solid #ff7a00;
+  padding: 6px 12px;
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
-  color: var(--black);
+  color: #ff7a00;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
 }
 
 /* V2 Partitioned Order Card */

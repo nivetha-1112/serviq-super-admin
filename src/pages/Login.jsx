@@ -99,10 +99,6 @@ export default function Login() {
             Login as Admin
           </button>
         </form>
-
-        <div className="login-card-footer-plan">
-          Serviq SaaS · 4 Default Restaurants
-        </div>
       </div>
     </div>
   );

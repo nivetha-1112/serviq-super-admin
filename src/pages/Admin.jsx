@@ -1521,7 +1521,7 @@ export default function Admin() {
                             }}
                             title="Edit Order Details"
                           >
-                            ✏️
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                           </button>
                         )}
                       </div>
@@ -1530,7 +1530,19 @@ export default function Admin() {
                     <div className="billing-table-card-mid">
                       <span>{guests} Guests</span>
                       <span>•</span>
-                      <span>{isPaid ? 'Checkout' : `🕒 ${duration}`}</span>
+                      <span>
+                        {isPaid ? (
+                          'Checkout'
+                        ) : (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle' }}>
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            {duration}
+                          </span>
+                        )}
+                      </span>
                     </div>
 
                     <div className={`billing-table-card-bottom ${isPaid ? 'settled' : ''}`}>
@@ -1569,7 +1581,7 @@ export default function Admin() {
                     }}
                     title="Edit Bill Items"
                   >
-                    ✏️
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                   </button>
 
                   <button
@@ -1587,7 +1599,7 @@ export default function Admin() {
                     }}
                     title="Delete Active Orders"
                   >
-                    🗑️
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                   </button>
                 </div>
               </div>
@@ -1669,9 +1681,31 @@ export default function Admin() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
-                { id: 'UPI', label: 'UPI / QR Code', icon: '🔳', desc: 'Instant digital payment' },
-                { id: 'Card', label: 'Credit / Debit Card', icon: '💳', desc: 'Visa, Mastercard, RuPay' },
-                { id: 'Cash', label: 'Cash', icon: '💵', desc: 'Manual reconciliation' }
+                { id: 'UPI', label: 'UPI / QR Code', icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                    <line x1="7" y1="17" x2="7" y2="17.01"></line>
+                    <line x1="17" y1="17" x2="17" y2="17.01"></line>
+                    <line x1="17" y1="7" x2="17" y2="7.01"></line>
+                    <line x1="7" y1="7" x2="7" y2="7.01"></line>
+                  </svg>
+                ), desc: 'Instant digital payment' },
+                { id: 'Card', label: 'Credit / Debit Card', icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                  </svg>
+                ), desc: 'Visa, Mastercard, RuPay' },
+                { id: 'Cash', label: 'Cash', icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                    <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                    <circle cx="12" cy="12" r="2"></circle>
+                    <path d="M6 12h.01M18 12h.01"></path>
+                  </svg>
+                ), desc: 'Manual reconciliation' }
               ].map(method => {
                 const isSelected = billingPaymentMethod === method.id;
                 return (
@@ -1684,7 +1718,7 @@ export default function Admin() {
                     style={{ opacity: subtotal === 0 ? 0.6 : 1, cursor: subtotal === 0 ? 'not-allowed' : 'pointer' }}
                   >
                     <div className="pay-option-icon-box">
-                      <span style={{ fontSize: '18px' }}>{method.icon}</span>
+                      {method.icon}
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
                       <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--black)' }}>{method.label}</span>
@@ -1716,28 +1750,33 @@ export default function Admin() {
                 boxShadow: '0 2px 8px rgba(255, 122, 0, 0.2)'
               }}
             >
-              <span>✓</span> Mark as Paid
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}><polyline points="20 6 9 17 4 12"></polyline></svg> Mark as Paid
             </button>
 
             <div style={{ display: 'flex', gap: '10px' }}>
               <button
                 className="btn btn-outline"
                 onClick={() => addToast('Sending receipt print command...')}
-                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px' }}
+                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               >
-                🖨️ Print
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Print
               </button>
               <button
                 className="btn btn-outline"
                 onClick={() => addToast('Invoice sharing link generated!')}
-                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px' }}
+                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               >
-                🔗 Share
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                Share
               </button>
             </div>
 
             <div className="billing-tip-box-new">
-              💡 <strong>BILLING TIP</strong>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle' }}><path d="M9 18h6M10 22h4M12 2v1M5.22 5.22l.71.71M18.78 5.22l-.71.71M22 12h-1M2 12h1M5.9 16.1a6 6 0 1 1 12.2 0H5.9z"></path></svg>
+                <strong>BILLING TIP</strong>
+              </span>
               <p style={{ margin: '4px 0 0 0', fontSize: '10px', color: 'inherit', fontWeight: '500', lineHeight: 1.4, textAlign: 'left' }}>
                 Ensure QR codes are generated per bill for faster reconciliation in daily reports.
               </p>
@@ -2529,7 +2568,7 @@ export default function Admin() {
         {/* Card 3: Restaurant Information */}
         <div className="profile-card">
           <div className="profile-card-header">
-            <span className="profile-card-icon" style={{ color: '#3b82f6' }}>
+            <span className="profile-card-icon" style={{ color: 'var(--black)' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
             </span>
             <h3 className="profile-card-title">Restaurant Information</h3>
@@ -2561,8 +2600,14 @@ export default function Admin() {
         {/* Card 4: Tax Configuration */}
         <div className="profile-card">
           <div className="profile-card-header">
-            <span className="profile-card-icon" style={{ color: '#10b981' }}>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <span className="profile-card-icon" style={{ color: 'var(--black)' }}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M6 3h12" />
+                <path d="M6 8h12" />
+                <path d="m6 13 8.5 8" />
+                <path d="M6 13h3" />
+                <path d="M9 13c0-2.76 2.24-5 5-5" />
+              </svg>
             </span>
             <h3 className="profile-card-title">Tax Configuration</h3>
           </div>
@@ -2581,7 +2626,7 @@ export default function Admin() {
         {/* Card 5: Printer Configuration */}
         <div className="profile-card">
           <div className="profile-card-header">
-            <span className="profile-card-icon" style={{ color: '#8b5cf6' }}>
+            <span className="profile-card-icon" style={{ color: 'var(--black)' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
             </span>
             <h3 className="profile-card-title">Printer Configuration</h3>
@@ -2605,7 +2650,7 @@ export default function Admin() {
         {/* Card 6: User Management */}
         <div className="profile-card">
           <div className="profile-card-header">
-            <span className="profile-card-icon" style={{ color: '#f43f5e' }}>
+            <span className="profile-card-icon" style={{ color: 'var(--black)' }}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             </span>
             <h3 className="profile-card-title">User Management</h3>
@@ -2646,7 +2691,10 @@ export default function Admin() {
             </table>
           </div>
           <div style={{ padding: '0 24px 24px 24px', display: 'flex', justifyContent: 'flex-end' }}>
-            <button className="btn btn-black" style={{ padding: '8px 16px', fontSize: '13px' }} onClick={() => addToast('Add user modal clicked')}>➕ Add User</button>
+            <button className="btn btn-black" style={{ padding: '8px 16px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }} onClick={() => addToast('Add user modal clicked')}>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add User
+            </button>
           </div>
         </div>
 
@@ -5109,10 +5157,34 @@ export default function Admin() {
         {/* Unified Tab Navigation */}
         <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', borderBottom: '1px solid #e2e8f0', paddingBottom: '16px' }}>
           {[
-            { id: 'sales', icon: '📈', label: 'Sales Report' },
-            { id: 'items', icon: '🍽️', label: 'Item Report' },
-            { id: 'tables', icon: '🪑', label: 'Table Report' },
-            { id: 'customers', icon: '👥', label: 'Customer Report' }
+            { id: 'sales', icon: (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </svg>
+            ), label: 'Sales Report' },
+            { id: 'items', icon: (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+              </svg>
+            ), label: 'Item Report' },
+            { id: 'tables', icon: (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+                <line x1="15" y1="3" x2="15" y2="21"></line>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="3" y1="15" x2="21" y2="15"></line>
+              </svg>
+            ), label: 'Table Report' },
+            { id: 'customers', icon: (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            ), label: 'Customer Report' }
           ].map(tab => (
             <button
               key={tab.id}

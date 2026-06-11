@@ -146,7 +146,7 @@ export default function Billing() {
                             }}
                             title="Edit Order Details"
                           >
-                            ✏️
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                           </button>
                         )}
                       </div>
@@ -155,7 +155,19 @@ export default function Billing() {
                     <div className="billing-table-card-mid">
                       <span>{guests} Guests</span>
                       <span>•</span>
-                      <span>{isPaid ? 'Checkout' : `🕒 ${duration}`}</span>
+                      <span>
+                        {isPaid ? (
+                          'Checkout'
+                        ) : (
+                          <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle' }}>
+                              <circle cx="12" cy="12" r="10"></circle>
+                              <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            {duration}
+                          </span>
+                        )}
+                      </span>
                     </div>
 
                     <div className={`billing-table-card-bottom ${isPaid ? 'settled' : ''}`}>
@@ -194,7 +206,7 @@ export default function Billing() {
                     }}
                     title="Edit Bill Items"
                   >
-                    ✏️
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
                   </button>
 
                   <button
@@ -212,7 +224,7 @@ export default function Billing() {
                     }}
                     title="Delete Active Orders"
                   >
-                    🗑️
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
                   </button>
                 </div>
               </div>
@@ -294,9 +306,31 @@ export default function Billing() {
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
               {[
-                { id: 'UPI', label: 'UPI / QR Code', icon: '🔳', desc: 'Instant digital payment' },
-                { id: 'Card', label: 'Credit / Debit Card', icon: '💳', desc: 'Visa, Mastercard, RuPay' },
-                { id: 'Cash', label: 'Cash', icon: '💵', desc: 'Manual reconciliation' }
+                { id: 'UPI', label: 'UPI / QR Code', icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                    <line x1="7" y1="17" x2="7" y2="17.01"></line>
+                    <line x1="17" y1="17" x2="17" y2="17.01"></line>
+                    <line x1="17" y1="7" x2="17" y2="7.01"></line>
+                    <line x1="7" y1="7" x2="7" y2="7.01"></line>
+                  </svg>
+                ), desc: 'Instant digital payment' },
+                { id: 'Card', label: 'Credit / Debit Card', icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                    <line x1="1" y1="10" x2="23" y2="10"></line>
+                  </svg>
+                ), desc: 'Visa, Mastercard, RuPay' },
+                { id: 'Cash', label: 'Cash', icon: (
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'block' }}>
+                    <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                    <circle cx="12" cy="12" r="2"></circle>
+                    <path d="M6 12h.01M18 12h.01"></path>
+                  </svg>
+                ), desc: 'Manual reconciliation' }
               ].map(method => {
                 const isSelected = billingPaymentMethod === method.id;
                 return (
@@ -309,7 +343,7 @@ export default function Billing() {
                     style={{ opacity: subtotal === 0 ? 0.6 : 1, cursor: subtotal === 0 ? 'not-allowed' : 'pointer' }}
                   >
                     <div className="pay-option-icon-box">
-                      <span style={{ fontSize: '18px' }}>{method.icon}</span>
+                      {method.icon}
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
                       <span style={{ fontSize: '13px', fontWeight: 800, color: 'var(--black)' }}>{method.label}</span>
@@ -341,28 +375,33 @@ export default function Billing() {
                 boxShadow: '0 2px 8px rgba(255, 122, 0, 0.2)'
               }}
             >
-              <span>✓</span> Mark as Paid
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}><polyline points="20 6 9 17 4 12"></polyline></svg> Mark as Paid
             </button>
 
             <div style={{ display: 'flex', gap: '10px' }}>
               <button
                 className="btn btn-outline"
                 onClick={() => addToast('Sending receipt print command...')}
-                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px' }}
+                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               >
-                🖨️ Print
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                Print
               </button>
               <button
                 className="btn btn-outline"
                 onClick={() => addToast('Invoice sharing link generated!')}
-                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px' }}
+                style={{ flex: 1, padding: '10px 14px', fontSize: '13px', borderRadius: '8px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}
               >
-                🔗 Share
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                Share
               </button>
             </div>
 
             <div className="billing-tip-box-new">
-              💡 <strong>BILLING TIP</strong>
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ verticalAlign: 'middle' }}><path d="M9 18h6M10 22h4M12 2v1M5.22 5.22l.71.71M18.78 5.22l-.71.71M22 12h-1M2 12h1M5.9 16.1a6 6 0 1 1 12.2 0H5.9z"></path></svg>
+                <strong>BILLING TIP</strong>
+              </span>
               <p style={{ margin: '4px 0 0 0', fontSize: '10px', color: 'inherit', fontWeight: '500', lineHeight: 1.4, textAlign: 'left' }}>
                 Ensure QR codes are generated per bill for faster reconciliation in daily reports.
               </p>

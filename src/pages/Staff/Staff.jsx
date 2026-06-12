@@ -1,8 +1,57 @@
 import React, { useState } from 'react';
 import { useAppState } from '../../contexts/AppContext';
 import PageHeader from '../../components/PageHeader';
-import { PencilIcon, TrashIcon } from '../../components/Icons';
 import { Badge } from '../../components/Badge';
+
+const PencilIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+    <path d="m15 5 4 4" />
+  </svg>
+);
+
+const TrashIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M3 6h18" />
+    <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+    <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+    <line x1="10" x2="10" y1="11" y2="17" />
+    <line x1="14" x2="14" y1="11" y2="17" />
+  </svg>
+);
+
+const UsersIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M14 19a6 6 0 0 0-12 0" />
+    <circle cx="8" cy="9" r="4" />
+    <path d="M22 19a6 6 0 0 0-6-6 4 4 0 0 0 0-8" />
+  </svg>
+);
+
+const UserCheckIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <polyline points="16 11 18 13 22 9" />
+  </svg>
+);
+
+const KitchenIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6Z" />
+    <line x1="6" x2="18" y1="17" y2="17" />
+  </svg>
+);
+
+const WaiterIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M3 20a1 1 0 0 1 0-2h18a1 1 0 0 1 0 2Z" />
+    <path d="M20 16a8 8 0 1 0-16 0" />
+    <path d="M12 4v4" />
+    <path d="M10 4h4" />
+  </svg>
+);
+
 
 const sty = {
   pageCard: { background: '#fff', borderRadius: '16px', padding: '32px', border: '1px solid var(--border)', boxShadow: '0 4px 20px rgba(0,0,0,0.06)' },
@@ -141,7 +190,7 @@ export default function Staff() {
                   <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.length}</h3>
                   <div className="stat-sub-label green-label">Registered team</div>
                 </div>
-                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>👥</div>
+                <div className="stat-icon-wrapper"><UsersIcon size={18} color="#000000" /></div>
               </div>
             </div>
 
@@ -152,7 +201,7 @@ export default function Staff() {
                   <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.status === 'On Duty').length}</h3>
                   <div className="stat-sub-label green-label">Active duty</div>
                 </div>
-                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🟢</div>
+                <div className="stat-icon-wrapper"><UserCheckIcon size={18} color="#000000" /></div>
               </div>
             </div>
 
@@ -163,7 +212,7 @@ export default function Staff() {
                   <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.role === 'Kitchen').length}</h3>
                   <div className="stat-sub-label green-label">Culinary team</div>
                 </div>
-                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🍳</div>
+                <div className="stat-icon-wrapper"><KitchenIcon size={18} color="#000000" /></div>
               </div>
             </div>
 
@@ -174,7 +223,7 @@ export default function Staff() {
                   <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.role === 'Waiter').length}</h3>
                   <div className="stat-sub-label green-label">Service team</div>
                 </div>
-                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🍽️</div>
+                <div className="stat-icon-wrapper"><WaiterIcon size={18} color="#000000" /></div>
               </div>
             </div>
           </div>

@@ -198,6 +198,61 @@ const CustomerIcon = ({ size = 18, color = 'currentColor' }) => (
 );
 
 
+// Dashboard card icons
+const ClipboardListIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <rect width="8" height="4" x="8" y="2" rx="1" ry="1" />
+    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+  </svg>
+);
+
+const ChairIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M19 18V5a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v13" />
+    <path d="M3 14h18" />
+    <path d="M8 18v3" />
+    <path d="M16 18v3" />
+  </svg>
+);
+
+const IndianRupeeIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M6 3h12" />
+    <path d="M6 8h12" />
+    <path d="m6 13 8.5 8" />
+    <path d="M6 13h3a4 4 0 0 1 0 8H6" />
+  </svg>
+);
+
+const TimerIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <line x1="10" x2="14" y1="2" y2="2" />
+    <line x1="12" x2="12" y1="14" y2="11" />
+    <circle cx="12" cy="14" r="8" />
+  </svg>
+);
+
+const CheckSquareIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <polyline points="9 11 12 14 22 4" />
+    <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11" />
+  </svg>
+);
+
+const StarIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+  </svg>
+);
+
+const UserCheckIcon = ({ size = 18, color = 'currentColor' }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+    <circle cx="9" cy="7" r="4" />
+    <polyline points="16 11 18 13 22 9" />
+  </svg>
+);
+
 // Helper to determine the category icon based on food item name keywords
 const getFoodIcon = (name = '') => {
   const n = name.toLowerCase();
@@ -562,7 +617,7 @@ export default function Admin() {
               <h3>{orders.length}</h3>
               <div className="stat-sub-label green-label">Orders received today</div>
             </div>
-            <div className="stat-icon-wrapper">📋</div>
+            <div className="stat-icon-wrapper"><ClipboardListIcon size={18} color="#000000" /></div>
           </div>
         </div>
 
@@ -573,7 +628,7 @@ export default function Admin() {
               <h3>{occupiedTablesCount}</h3>
               <div className="stat-sub-label green-label">Occupied tables</div>
             </div>
-            <div className="stat-icon-wrapper">🪑</div>
+            <div className="stat-icon-wrapper"><ChairIcon size={18} color="#000000" /></div>
           </div>
         </div>
 
@@ -584,7 +639,7 @@ export default function Admin() {
               <h3>₹{todayRevenue.toLocaleString('en-IN')}</h3>
               <div className="stat-sub-label green-label">Daily sales</div>
             </div>
-            <div className="stat-icon-wrapper font-rupee">₹</div>
+            <div className="stat-icon-wrapper"><IndianRupeeIcon size={18} color="#000000" /></div>
           </div>
         </div>
 
@@ -595,7 +650,7 @@ export default function Admin() {
               <h3>₹{revenueThisMonth.toLocaleString('en-IN')}</h3>
               <div className="stat-sub-label green-label">Monthly sales</div>
             </div>
-            <div className="stat-icon-wrapper font-rupee">₹</div>
+            <div className="stat-icon-wrapper"><IndianRupeeIcon size={18} color="#000000" /></div>
           </div>
         </div>
 
@@ -606,7 +661,7 @@ export default function Admin() {
               <h3>{pendingOrdersCount}</h3>
               <div className="stat-sub-label red-label">Orders awaiting processing</div>
             </div>
-            <div className="stat-icon-wrapper">⏱️</div>
+            <div className="stat-icon-wrapper"><TimerIcon size={18} color="#000000" /></div>
           </div>
         </div>
 
@@ -617,7 +672,7 @@ export default function Admin() {
               <h3>{completedOrdersCount}</h3>
               <div className="stat-sub-label green-label">Orders served</div>
             </div>
-            <div className="stat-icon-wrapper">✅</div>
+            <div className="stat-icon-wrapper"><CheckSquareIcon size={18} color="#000000" /></div>
           </div>
         </div>
 
@@ -628,7 +683,7 @@ export default function Admin() {
               <h3 style={{ fontSize: topSellingItem.length > 15 ? '16px' : '20px' }}>{topSellingItem}</h3>
               <div className="stat-sub-label green-label">Most ordered items</div>
             </div>
-            <div className="stat-icon-wrapper">⭐</div>
+            <div className="stat-icon-wrapper"><StarIcon size={18} color="#000000" /></div>
           </div>
         </div>
 
@@ -639,7 +694,7 @@ export default function Admin() {
               <h3>{qrScansCount}</h3>
               <div className="stat-sub-label green-label">Total table scans</div>
             </div>
-            <div className="stat-icon-wrapper">📱</div>
+            <div className="stat-icon-wrapper"><QrIcon size={18} color="#000000" /></div>
           </div>
         </div>
       </div>
@@ -2246,7 +2301,7 @@ export default function Admin() {
                   <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.length}</h3>
                   <div className="stat-sub-label green-label">Registered team</div>
                 </div>
-                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>👥</div>
+                <div className="stat-icon-wrapper"><UsersIcon size={18} color="#000000" /></div>
               </div>
             </div>
 
@@ -2257,7 +2312,7 @@ export default function Admin() {
                   <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.status === 'On Duty').length}</h3>
                   <div className="stat-sub-label green-label">Active duty</div>
                 </div>
-                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🟢</div>
+                <div className="stat-icon-wrapper"><UserCheckIcon size={18} color="#000000" /></div>
               </div>
             </div>
 
@@ -2268,7 +2323,7 @@ export default function Admin() {
                   <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.role === 'Kitchen').length}</h3>
                   <div className="stat-sub-label green-label">Culinary team</div>
                 </div>
-                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🍳</div>
+                <div className="stat-icon-wrapper"><KitchenIcon size={18} color="#000000" /></div>
               </div>
             </div>
 
@@ -2279,7 +2334,7 @@ export default function Admin() {
                   <h3 style={{ color: 'var(--black)', marginTop: '4px', marginBottom: '4px', fontSize: '20px', fontWeight: '700' }}>{staff.filter(s => s.role === 'Waiter').length}</h3>
                   <div className="stat-sub-label green-label">Service team</div>
                 </div>
-                <div className="stat-icon-wrapper" style={{ fontSize: '16px' }}>🍽️</div>
+                <div className="stat-icon-wrapper"><WaiterIcon size={18} color="#000000" /></div>
               </div>
             </div>
           </div>
